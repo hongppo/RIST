@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>환경데이터 표준화 프로그램</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body { width: 1280px; height: 800px; color: #25282d; background: #f3f4f6; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; font-size: 16px; line-height: 1.5; }
+    .login-page { display: grid; place-items: center; width: 1280px; height: 800px; }
+    .login-form { width: 480px; max-width: 100%; margin: 0; padding: 44px 48px; border: 1px solid #d1d5db; border-radius: 12px; background: #ffffff; box-shadow: 0 4px 16px rgba(30, 35, 45, 0.04); }
+    .login-title { margin: 0 0 32px; color: #24272c; font-size: 28px; font-weight: 700; line-height: 1.4; letter-spacing: -0.045em; text-align: center; }
+    .login-field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 22px; }
+    .login-field.last { margin-bottom: 0; }
+    .login-label { color: #41464e; font-size: 15px; font-weight: 600; }
+    .login-input { display: block; width: 100%; height: 48px; padding: 0 14px; border: 1px solid #c6cbd2; border-radius: 6px; color: #25282d; background: #ffffff; font: inherit; font-size: 16px; }
+    .login-input::placeholder { color: #9298a1; opacity: 1; }
+    .login-input:focus { outline: 2px solid #7c8591; outline-offset: 2px; }
+    .login-error { margin: 16px 0 0; color: #c43434; font-size: 14px; line-height: 22px; }
+    .login-button { display: block; width: 100%; height: 48px; margin-top: 24px; padding: 0 16px; border: 1px solid #4e535b; border-radius: 6px; color: #ffffff; background: #535860; font: inherit; font-size: 16px; font-weight: 650; cursor: pointer; }
+    .login-button:focus-visible { outline: 2px solid #7c8591; outline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <main class="login-page">
+    <form class="login-form" aria-labelledby="login-service-title" data-component="login-form" data-component-title="로그인 폼" data-component-width="480">
+      <h1 class="login-title" id="login-service-title">환경데이터 표준화 프로그램</h1>
+      <div class="login-field">
+        <label class="login-label" for="login-username">아이디</label>
+        <input class="login-input" id="login-username" name="username" type="text" placeholder="아이디" autocomplete="username">
+      </div>
+      <div class="login-field last">
+        <label class="login-label" for="login-password">비밀번호</label>
+        <input class="login-input" id="login-password" name="password" type="password" placeholder="비밀번호" autocomplete="current-password">
+      </div>
+      <p class="login-error" id="login-error">오류 안내 메시지 영역</p>
+      <button class="login-button" type="button">로그인</button>
+    </form>
+  </main>
+</body>
+</html>

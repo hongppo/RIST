@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>긴 화면 예시</title>
+  <link rel="stylesheet" href="page-base.css">
+  <style>
+    html,body{height:2400px}
+    body{position:relative}
+    .page-top strong{letter-spacing:0}
+    .eyebrow{margin-top:32px;letter-spacing:0}
+    .long-content{display:flex;flex-direction:column;gap:72px;margin-top:52px}
+    .long-section{border:1px solid #e1e7ef;border-radius:12px;padding:36px;background:#fff}
+    .overview-section{height:450px}
+    .detail-section{height:650px}
+    .closing-section{height:710px}
+    .section-heading{display:flex;align-items:center;gap:15px;margin-bottom:28px}
+    .section-number{display:flex;align-items:center;justify-content:center;flex-shrink:0;width:42px;height:42px;border-radius:11px;background:#edf3fb;color:#5276a3;font-weight:650;font-size:15px}
+    .section-heading p{margin:5px 0 0;color:#8190a3;font-size:13px;line-height:1.7}
+    .overview-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .overview-card{height:220px;padding:26px;border-radius:8px;background:#f6f8fb;border:1px solid #edf0f5}
+    .overview-card h3{margin:0 0 14px;font-size:15px;font-weight:600}
+    .overview-card p{margin:0;color:#8291a5;font-size:13px;line-height:1.9;word-break:keep-all}
+    .overview-card .soft-line{margin-top:30px;width:84%}
+    .overview-card .soft-line:last-child{margin-top:14px;width:60%}
+    .section-tail{margin:23px 0 0;color:#8393a7;font-size:12px;line-height:1.8}
+    .detail-table{border:1px solid #e3e9f1;border-radius:8px;overflow:hidden}
+    .detail-row{display:grid;grid-template-columns:1fr 2fr 1.3fr;align-items:center;gap:25px;min-height:64px;padding:18px 24px;border-bottom:1px solid #ebeff5;font-size:13px;color:#71849b}
+    .detail-row:last-child{border-bottom:0}
+    .detail-row strong{font-weight:550;color:#4d627d}
+    .detail-table-heading{min-height:49px;background:#f5f7fa;font-size:12px;color:#7c8ea6}
+    .detail-row .soft-line{height:7px;width:85%}
+    .detail-row .soft-line:last-child{width:64%}
+    .closing-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:24px}
+    .closing-card{height:338px;padding:27px;border:1px solid #e4eaf2;border-radius:8px}
+    .closing-card h3{font-size:15px;margin:0 0 21px}
+    .closing-card p{font-size:13px;line-height:1.9;color:#8492a5;margin:0 0 24px}
+    .closing-card .soft-block{padding:23px;background:#f7f9fb}
+    .closing-card .soft-line{margin-bottom:19px;height:8px}
+    .closing-card .soft-line:last-child{margin-bottom:0;width:70%}
+    .end-message{display:flex;align-items:center;gap:18px;margin-top:28px;padding:28px;background:#f0f5fb;border:1px solid #dfe8f4;border-radius:8px;min-height:135px}
+    .end-symbol{display:flex;align-items:center;justify-content:center;width:38px;height:38px;flex-shrink:0;border-radius:50%;color:#5d7ba4;background:#fff;font-size:19px}
+    .end-message strong{font-size:15px;font-weight:600;color:#48678f}
+    .end-message p{font-size:13px;line-height:1.8;color:#7b8fa9;margin:7px 0 0}
+  </style>
+</head>
+<body>
+  <div class="page-top"><strong>화면 목업 뷰어</strong><span class="sample-label">긴 화면 예시</span></div>
+  <p class="eyebrow">위에서 아래로 이어지는 화면</p>
+  <h1 class="title">하나의 화면에 내용을 길게 배치합니다.</h1>
+  <p class="intro">아래로 이동하면서 시작 영역, 상세 내용, 마지막 영역을 차례로 확인하세요.</p>
+
+  <main class="long-content">
+    <section class="long-section overview-section" data-component="long-overview" data-component-title="시작 영역" data-component-width="1152">
+      <div class="section-heading"><span class="section-number">01</span><div><h2>시작 영역</h2><p>화면의 첫 부분에 제목과 주요 내용을 배치합니다.</p></div></div>
+      <div class="overview-cards">
+        <article class="overview-card"><h3>내용 요약</h3><p>전체 내용을 빠르게 살펴볼 수 있는 요약 공간입니다.</p><div class="soft-line"></div><div class="soft-line"></div></article>
+        <article class="overview-card"><h3>주요 항목</h3><p>함께 확인할 항목을 같은 크기의 카드로 나란히 배치합니다.</p><div class="soft-line"></div><div class="soft-line"></div></article>
+        <article class="overview-card"><h3>참고 정보</h3><p>추가로 필요한 정보나 짧은 안내를 표시하는 공간입니다.</p><div class="soft-line"></div><div class="soft-line"></div></article>
+      </div>
+      <p class="section-tail">아래로 이동하면 상세 내용이 이어집니다.</p>
+    </section>
+
+    <section class="long-section detail-section" data-component="long-details" data-component-title="상세 내용 영역" data-component-width="1152">
+      <div class="section-heading"><span class="section-number">02</span><div><h2>상세 내용</h2><p>항목이 많은 표나 반복되는 내용을 화면 중간에 배치합니다.</p></div></div>
+      <div class="detail-table">
+        <div class="detail-row detail-table-heading"><span>항목</span><span>내용</span><span>보조 정보</span></div>
+        <div class="detail-row"><strong>첫 번째 항목</strong><span class="soft-line"></span><span class="soft-line"></span></div>
+        <div class="detail-row"><strong>두 번째 항목</strong><span class="soft-line"></span><span class="soft-line"></span></div>
+        <div class="detail-row"><strong>세 번째 항목</strong><span class="soft-line"></span><span class="soft-line"></span></div>
+        <div class="detail-row"><strong>네 번째 항목</strong><span class="soft-line"></span><span class="soft-line"></span></div>
+        <div class="detail-row"><strong>다섯 번째 항목</strong><span class="soft-line"></span><span class="soft-line"></span></div>
+        <div class="detail-row"><strong>여섯 번째 항목</strong><span class="soft-line"></span><span class="soft-line"></span></div>
+      </div>
+      <p class="section-tail">화면의 너비는 일정하게 유지되고 아래로 내용이 이어집니다.</p>
+    </section>
+
+    <section class="long-section closing-section" data-component="long-closing" data-component-title="마지막 영역" data-component-width="1152">
+      <div class="section-heading"><span class="section-number">03</span><div><h2>마지막 영역</h2><p>끝부분에 함께 확인할 정보와 마무리 안내를 배치합니다.</p></div></div>
+      <div class="closing-grid">
+        <article class="closing-card"><h3>추가 내용</h3><p>긴 설명이나 보충할 내용을 이어서 표시할 수 있습니다.</p><div class="soft-block"><div class="soft-line"></div><div class="soft-line"></div><div class="soft-line"></div><div class="soft-line"></div></div></article>
+        <article class="closing-card"><h3>함께 확인할 정보</h3><p>화면의 끝부분에서도 관련 정보를 함께 살펴볼 수 있습니다.</p><div class="soft-block"><div class="soft-line"></div><div class="soft-line"></div><div class="soft-line"></div></div></article>
+      </div>
+      <div class="end-message"><span class="end-symbol">✓</span><div><strong>마지막 영역까지 확인했습니다.</strong><p>긴 화면도 위에서 아래까지 하나의 페이지로 살펴볼 수 있습니다.</p></div></div>
+    </section>
+  </main>
+  <div class="footer"><span>긴 화면 예시</span><span>화면 끝</span></div>
+</body>
+</html>

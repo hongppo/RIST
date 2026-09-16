@@ -1,0 +1,78 @@
+<!doctype html>
+<!-- Generated from docs/rist-policies.md. Edit the Markdown source, then run scripts/build_sources.py. -->
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RIST · 정책 문서</title>
+<style>
+    * { box-sizing: border-box; }
+    html, body { width: 1280px; margin: 0; }
+    body { background: #fff; color: #24364f; font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; -webkit-font-smoothing: antialiased; }
+    .policy-document { width: 1280px; height: auto; padding: 56px 72px 88px; }
+    .policy-header { position: relative; padding-right: 64px; padding-bottom: 32px; border-bottom: 1px solid #dfe4eb; }
+    .policy-header .document-download { position: absolute; top: 0; right: 0; display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid #dfe4eb; border-radius: 8px; background: #fff; color: #365d87; text-decoration: none; }
+    .policy-header .document-download:hover { border-color: #8fa9ca; background: #f5f8fc; color: #1c3553; }
+    .policy-header .document-download:focus-visible { outline: 3px solid #8fa9ca; outline-offset: 3px; border-radius: 8px; }
+    .policy-header.has-labeled-download { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 32px; padding-right: 0; }
+    .document-download-row { display: grid; grid-template-columns: minmax(0, 1fr) 44px; align-items: center; gap: 14px; max-width: 440px; }
+    .document-download-label { color: #62738a; text-align: right; font-size: 13px; line-height: 1.65; overflow-wrap: anywhere; }
+    .policy-header.has-labeled-download .document-download { position: static; flex-shrink: 0; }
+    .document-download svg { width: 22px; height: 22px; }
+    .policy-kicker { margin: 0 0 24px; color: #62738a; font-size: 12px; font-weight: 650; letter-spacing: 1.4px; }
+    h1 { margin: 0 0 16px; color: #16263d; font-size: 38px; font-weight: 750; line-height: 1.3; letter-spacing: -1px; }
+    .policy-header p { margin: 0; color: #62738a; font-size: 16px; line-height: 1.8; }
+    .policy-header .policy-meta { display: flex; flex-wrap: wrap; gap: 10px 24px; color: #62738a; font-size: 14px; line-height: 1.8; }
+    .policy-sections { padding-top: 36px; }
+    .policy-section { margin: 0 0 24px; padding: 28px 32px; border: 1px solid #dfe4eb; border-radius: 12px; background: #fff; scroll-margin-top: 24px; }
+    .policy-section:last-child { margin-bottom: 0; }
+    .policy-section:focus, .policy-section.is-policy-target { outline: 3px solid #8fa9ca; outline-offset: 3px; border-color: #365d87; background: #f5f8fc; }
+    h2 { margin: 0 0 18px; color: #16263d; font-size: 24px; font-weight: 700; line-height: 1.4; letter-spacing: -0.5px; }
+    h3 { margin: 26px 0 12px; font-size: 19px; line-height: 1.5; }
+    .policy-section p, .policy-section ul { margin: 14px 0 0; font-size: 17px; line-height: 1.85; }
+    .policy-section ul { padding-left: 24px; }
+    .policy-section li + li { margin-top: 5px; }
+    strong { color: #1c3553; font-weight: 700; }
+</style>
+</head>
+<body>
+<main class="policy-document" data-document-root>
+<header class="policy-header has-labeled-download">
+<div class="document-header-main"><div class="policy-kicker">RIST · POLICIES</div>
+<h1>정책 문서</h1>
+<div class="policy-meta"><span>버전 1</span><span>작성일 2026/09/16</span><span>수정일 2026/09/16</span></div>
+
+</div>
+<div class="document-download-row"><span class="document-download-label">정책 문서.md</span><a data-document-download href="../docs/rist-policies.md" download="정책 문서.md" class="document-download" title="정책 문서 MD 다운로드" aria-label="정책 문서 MD 다운로드"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m-5-5 5 5 5-5"/><path d="M4 15v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></svg></a></div>
+</header>
+<div class="policy-sections">
+<section class="policy-section" id="login-policy" tabindex="-1">
+<h2>로그인 정책</h2>
+<ul>
+<li>이번 버전은 프로그램 자체 로그인으로 운영합니다.</li>
+<li>SSO 연동은 고도화 범위로 진행합니다.</li>
+<li>이번 버전부터 추후 SSO 연동이 가능하도록 로그인 기능을 설계합니다.</li>
+</ul>
+</section>
+<section class="policy-section" id="upload-policy" tabindex="-1">
+<h2>파일 업로드 정책</h2>
+<ul>
+<li>이번 버전에서는 한 번에 파일 1개만 업로드할 수 있습니다. (향후 고도화 시 여러 파일을 업로드하고 대기 목록을 관리하는 구조로 확장할 수 있습니다.)</li>
+<li>CSV(.csv), PDF(.pdf), Excel(.xlsx) 파일을 업로드할 수 있으며, 확장자의 대소문자는 구분하지 않습니다.</li>
+<li>파일당 20MB 이하의 파일만 업로드할 수 있습니다.</li>
+<li>빈 파일(0바이트)은 업로드할 수 없습니다.</li>
+</ul>
+</section>
+<section class="policy-section" id="extraction-script-policy" tabindex="-1">
+<h2>추출 스크립트 관리 정책</h2>
+<ul>
+<li>파일 유형별로 추출 스크립트를 분리하여 관리합니다.</li>
+<li>각 유형에 판별 기준, 추출 규칙, 입력 항목과 적용 스크립트 버전을 연결합니다.</li>
+<li>자동 분류된 유형의 스크립트로 데이터를 추출하고, 해당 규칙에 따라 입력·검토 화면을 구성합니다.</li>
+<li>스크립트 변경 시 새 버전과 변경 이력을 남기며, 진행 중인 작업은 시작 시 적용된 버전을 유지합니다.</li>
+</ul>
+</section>
+</div>
+</main>
+</body>
+</html>

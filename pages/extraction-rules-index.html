@@ -1,0 +1,141 @@
+<!doctype html>
+<!-- Generated extraction-rule document. Edit docs/extraction-rules Markdown, then run scripts/build_sources.py. -->
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>인덱스</title>
+<style>
+    * { box-sizing: border-box; }
+    html, body { width: 1280px; margin: 0; }
+    body { background: #fff; color: #24364f; font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; -webkit-font-smoothing: antialiased; }
+    .policy-document { width: 1280px; height: auto; padding: 56px 72px 88px; }
+    .policy-header { position: relative; padding-right: 64px; padding-bottom: 32px; border-bottom: 1px solid #dfe4eb; }
+    .policy-header .document-download { position: absolute; top: 0; right: 0; display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid #dfe4eb; border-radius: 8px; background: #fff; color: #365d87; text-decoration: none; }
+    .policy-header .document-download:hover { border-color: #8fa9ca; background: #f5f8fc; color: #1c3553; }
+    .policy-header .document-download:focus-visible { outline: 3px solid #8fa9ca; outline-offset: 3px; border-radius: 8px; }
+    .policy-header.has-labeled-download { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 32px; padding-right: 0; }
+    .document-download-row { display: grid; grid-template-columns: minmax(0, 1fr) 44px; align-items: center; gap: 14px; max-width: 440px; }
+    .document-download-label { color: #62738a; text-align: right; font-size: 13px; line-height: 1.65; overflow-wrap: anywhere; }
+    .policy-header.has-labeled-download .document-download { position: static; flex-shrink: 0; }
+    .document-download svg { width: 22px; height: 22px; }
+    .policy-kicker { margin: 0 0 24px; color: #62738a; font-size: 12px; font-weight: 650; letter-spacing: 1.4px; }
+    h1 { margin: 0 0 16px; color: #16263d; font-size: 38px; font-weight: 750; line-height: 1.3; letter-spacing: -1px; }
+    .policy-header p { margin: 0; color: #62738a; font-size: 16px; line-height: 1.8; }
+    .policy-header .policy-meta { display: flex; flex-wrap: wrap; gap: 10px 24px; color: #62738a; font-size: 14px; line-height: 1.8; }
+    .policy-sections { padding-top: 36px; }
+    .policy-section { margin: 0 0 24px; padding: 28px 32px; border: 1px solid #dfe4eb; border-radius: 12px; background: #fff; scroll-margin-top: 24px; }
+    .policy-section:last-child { margin-bottom: 0; }
+    .policy-section:focus, .policy-section.is-policy-target { outline: 3px solid #8fa9ca; outline-offset: 3px; border-color: #365d87; background: #f5f8fc; }
+    h2 { margin: 0 0 18px; color: #16263d; font-size: 24px; font-weight: 700; line-height: 1.4; letter-spacing: -0.5px; }
+    h3 { margin: 26px 0 12px; font-size: 19px; line-height: 1.5; }
+    .policy-section p, .policy-section ul { margin: 14px 0 0; font-size: 17px; line-height: 1.85; }
+    .policy-section ul { padding-left: 24px; }
+    .policy-section li + li { margin-top: 5px; }
+    strong { color: #1c3553; font-weight: 700; }
+
+    .schema-document .policy-header .schema-meta { display: flex; flex-wrap: wrap; gap: 10px 24px; color: #62738a; font-size: 14px; line-height: 1.8; }
+    .schema-document .schema-group { padding: 0; border: 0; background: transparent; margin-top: 36px; }
+    .schema-group > h2 { margin: 0 0 22px; }
+    .schema-level-3 > h3 { margin: 0 0 18px; color: #16263d; font-size: 23px; font-weight: 700; line-height: 1.45; overflow-wrap: anywhere; }
+    .schema-level-4 { margin: 28px 0 0; padding: 24px 0 0; border: 0; border-top: 1px solid #dfe4eb; border-radius: 0; }
+    .schema-level-4 > h4 { margin: 0 0 16px; color: #16263d; font-size: 19px; line-height: 1.5; }
+    .schema-document p, .schema-document li { overflow-wrap: anywhere; }
+    .schema-document .policy-section p, .schema-document .policy-section ul, .schema-document .policy-section ol { margin: 14px 0 0; font-size: 16px; line-height: 1.85; }
+    .schema-document ul, .schema-document ol { padding-left: 24px; }
+    .schema-document code { padding: 2px 4px; border-radius: 4px; background: #edf2f7; color: #264463; font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; font-size: 0.88em; white-space: normal; overflow-wrap: anywhere; }
+    .schema-document a { color: #285d94; text-decoration: underline; text-underline-offset: 3px; }
+    .schema-document a:hover { color: #163d69; }
+    .schema-document a:focus-visible { outline: 2px solid #365d87; outline-offset: 4px; border-radius: 2px; }
+    .schema-table-wrap { width: 100%; margin: 18px 0; }
+    .schema-table-wrap:last-child { margin-bottom: 0; }
+    .schema-document table { width: 100%; table-layout: fixed; border-collapse: collapse; font-size: 14px; line-height: 1.75; }
+    .schema-document th, .schema-document td { padding: 12px 13px; border: 1px solid #dfe4eb; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: normal; }
+    .schema-document th { background: #eef3f8; color: #243e5c; font-weight: 700; }
+    .schema-document tbody tr:nth-child(even) { background: #fafbfd; }
+    .schema-document table code { padding: 0; background: transparent; font-size: 12.5px; line-height: 1.7; }
+    .schema-columns th:nth-child(1) { width: 21%; }
+    .schema-columns th:nth-child(2) { width: 14%; }
+    .schema-columns th:nth-child(3) { width: 18%; }
+    .schema-columns th:nth-child(4) { width: 6%; }
+    .schema-columns th:nth-child(5) { width: 41%; }
+    .schema-columns th:nth-child(4), .schema-columns td:nth-child(4) { text-align: center; padding-left: 6px; padding-right: 6px; white-space: nowrap; }
+    .schema-catalog th:nth-child(1) { width: 25%; }
+    .schema-catalog th:nth-child(2) { width: 22%; }
+    .schema-catalog th:nth-child(3) { width: 45%; }
+    .schema-catalog th:nth-child(4) { width: 8%; }
+    .schema-catalog td:last-child { white-space: nowrap; }
+    .schema-reference th:first-child { width: 26%; }
+    .schema-document .align-center { text-align: center; }
+    .schema-document .align-right { text-align: right; }
+
+    .extraction-document .policy-header { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 32px; padding-right: 0; }
+    .extraction-downloads { display: grid; gap: 10px; max-width: 440px; }
+    .extraction-download-row { display: grid; grid-template-columns: minmax(0, 1fr) 44px; align-items: center; gap: 14px; min-height: 44px; }
+    .extraction-download-label { color: #62738a; text-align: right; font-size: 13px; line-height: 1.65; overflow-wrap: anywhere; }
+    .extraction-document .policy-header .document-download { position: static; flex-shrink: 0; }
+    .extraction-document pre { margin: 18px 0; padding: 18px 20px; overflow-x: auto; border: 1px solid #dfe4eb; border-radius: 8px; background: #f5f8fc; }
+    .extraction-document pre code { display: block; padding: 0; background: transparent; font-size: 13px; line-height: 1.8; white-space: pre; overflow-wrap: normal; }
+    .extraction-catalog th:first-child { width: 76%; }
+    .extraction-catalog th:last-child { width: 24%; }
+</style>
+</head>
+<body>
+<main class="policy-document schema-document extraction-document" data-document-root>
+<header class="policy-header">
+<div class="extraction-header-main"><div class="policy-kicker">RIST · EXTRACTION RULES</div>
+<h1>인덱스</h1>
+<div class="schema-meta"><span>버전 1</span><span>작성일 2026/09/16</span><span>수정일 2026/09/16</span></div></div>
+<div class="extraction-downloads"><div class="extraction-download-row"><span class="extraction-download-label">index.md</span><a data-document-download href="../docs/extraction-rules/index.md" download="index.md" class="document-download" title="index.md 다운로드" aria-label="index.md 다운로드"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m-5-5 5 5 5-5"/><path d="M4 15v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></svg></a></div></div>
+</header>
+<div class="policy-sections">
+<section class="policy-section schema-level-2" id="파일-유형" tabindex="-1">
+<h2>파일 유형</h2>
+<div class="schema-table-wrap"><table class="extraction-catalog">
+<thead>
+<tr><th scope="col">파일 유형</th><th scope="col">바로가기</th></tr>
+</thead>
+<tbody>
+<tr><td>CSV</td><td><a href="#csv">이동</a></td></tr>
+<tr><td>EXCEL</td><td><a href="#excel">이동</a></td></tr>
+<tr><td>PDF</td><td><a href="#pdf">이동</a></td></tr>
+</tbody>
+</table></div>
+</section>
+<section class="policy-section schema-level-2" id="csv" tabindex="-1">
+<h2>CSV</h2>
+<div class="schema-table-wrap"><table class="extraction-catalog">
+<thead>
+<tr><th scope="col">규칙명</th><th scope="col">바로가기</th></tr>
+</thead>
+<tbody>
+<tr><td>CSV-001</td><td><a href="extraction-rule-csv-001.html" data-viewer-page="extraction-rule-csv-001">상세</a></td></tr>
+</tbody>
+</table></div>
+</section>
+<section class="policy-section schema-level-2" id="excel" tabindex="-1">
+<h2>EXCEL</h2>
+<div class="schema-table-wrap"><table class="extraction-catalog">
+<thead>
+<tr><th scope="col">규칙명</th><th scope="col">바로가기</th></tr>
+</thead>
+<tbody>
+
+</tbody>
+</table></div>
+</section>
+<section class="policy-section schema-level-2" id="pdf" tabindex="-1">
+<h2>PDF</h2>
+<div class="schema-table-wrap"><table class="extraction-catalog">
+<thead>
+<tr><th scope="col">규칙명</th><th scope="col">바로가기</th></tr>
+</thead>
+<tbody>
+
+</tbody>
+</table></div>
+</section>
+</div>
+</main>
+</body>
+</html>

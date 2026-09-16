@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RIST 기본 사용자 흐름</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body { width: 1280px; color: #20334c; background: #ffffff; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; font-size: 20px; line-height: 1.5; }
+    .flow-page { width: 1280px; padding: 64px 64px 56px; }
+    .flow-header { display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 32px; margin-bottom: 34px; border-bottom: 1px solid #dce3eb; }
+    .flow-eyebrow { margin: 0 0 12px; color: #5f7188; font-size: 16px; font-weight: 650; letter-spacing: 0.08em; }
+    .flow-title { margin: 0; color: #172d49; font-size: 42px; line-height: 1.25; letter-spacing: -0.045em; font-weight: 750; }
+    .flow-legend { display: flex; flex-direction: column; gap: 7px; padding-bottom: 2px; color: #607087; font-size: 14px; }
+    .flow-key { display: flex; align-items: center; gap: 9px; }
+    .flow-key-line { display: inline-block; width: 24px; height: 0; border-top: 2px solid #536b89; }
+    .flow-key-line.exception { border-color: #947553; }
+    .flow-key-line.reference { border-color: #8c99aa; border-top-style: dashed; }
+    .flow-diagram { position: relative; width: 1152px; height: 2580px; background: #ffffff; }
+    .flow-connections { position: absolute; inset: 0; width: 1152px; height: 2580px; overflow: visible; pointer-events: none; }
+    .flow-path { fill: none; stroke: #536b89; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; marker-end: url(#flow-arrow); }
+    .flow-path.exception { stroke: #947553; marker-end: url(#flow-arrow-exception); }
+    .flow-path.reference { stroke: #8c99aa; stroke-dasharray: 6 6; marker-end: url(#flow-arrow-reference); }
+    .flow-path.join { marker-end: none; }
+    .flow-diamond { fill: #f4f7fb; stroke: #8b9db4; stroke-width: 1.8; }
+    .flow-column { position: absolute; top: 0; margin: 0; color: #738198; font-size: 15px; letter-spacing: 0.025em; font-weight: 600; }
+    .flow-node { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 320px; height: 120px; padding: 18px 20px; border: 1.5px solid #aab8c9; border-radius: 12px; color: #20334c; background: #ffffff; text-align: center; }
+    .flow-node.small { width: 300px; height: 110px; }
+    .flow-node.reference { border-style: dashed; border-color: #aeb9c8; background: #f7f9fc; }
+    .flow-node.exception { border-color: #cbbba8; background: #fcfaf7; }
+    .flow-node.terminal { border-radius: 56px; }
+    .flow-node.review { height: 260px; padding: 20px; border: 0; background: #243d5e; color: #ffffff; }
+    .flow-node.success { border-color: #708d8c; background: #f4f9f8; }
+    .flow-id { display: block; margin-bottom: 7px; color: #697e97; font-size: 15px; font-weight: 650; letter-spacing: 0.05em; }
+    .flow-node.exception .flow-id { color: #8d7459; }
+    .flow-node.review .flow-id { color: #c4d4e6; }
+    .flow-node-title { margin: 0; font-size: 24px; font-weight: 650; line-height: 1.35; letter-spacing: -0.035em; }
+    .flow-node-title.compact { font-size: 22px; }
+    .flow-node-sub { margin: 8px 0 0; color: #6d7c90; font-size: 16px; }
+    .flow-review-steps { display: flex; flex-direction: column; gap: 5px; margin-top: 14px; padding-top: 14px; width: 100%; border-top: 1px solid #506683; color: #e4ecf6; font-size: 17px; line-height: 1.4; }
+    .flow-decision { position: absolute; display: flex; align-items: center; justify-content: center; left: 250px; top: 620px; width: 360px; height: 200px; text-align: center; color: #253c59; font-size: 23px; font-weight: 650; line-height: 1.4; letter-spacing: -0.035em; }
+    .flow-edge-label { position: absolute; margin: 0; padding: 3px 8px; background: #ffffff; color: #5d7088; font-size: 17px; line-height: 1.4; white-space: nowrap; }
+    .flow-edge-label.exception { color: #896e4f; }
+    .flow-edge-label.reference { color: #78879a; }
+    .flow-edge-label.center { transform: translateX(-50%); }
+    .flow-edge-label.two-lines { white-space: normal; text-align: center; }
+  </style>
+</head>
+<body>
+  <main class="flow-page" data-document-root>
+    <header class="flow-header">
+      <div>
+        <p class="flow-eyebrow">RIST · 데이터 추출 프로그램</p>
+        <h1 class="flow-title">기본 사용자 흐름</h1>
+      </div>
+      <div class="flow-legend" aria-label="연결선 구분">
+        <span class="flow-key"><i class="flow-key-line"></i>기본 진행</span>
+        <span class="flow-key"><i class="flow-key-line exception"></i>예외·재시도</span>
+        <span class="flow-key"><i class="flow-key-line reference"></i>조회·복귀</span>
+      </div>
+    </header>
+
+    <section class="flow-diagram" aria-label="로그인부터 파일 업로드, 추출, 입력·검토, 최종 저장과 이력 조회까지의 흐름" data-component="rist-basic-flow" data-component-title="기본 사용자 순서도" data-component-width="1152">
+      <p class="flow-column" style="left: 270px;">업로드 · 입력 · 저장</p>
+      <p class="flow-column" style="left: 800px;">예외 처리 · 이력 조회</p>
+
+      <svg class="flow-connections" viewBox="0 0 1152 2580" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 1 1 L 9 5 L 1 9 Z" fill="#536b89"></path></marker>
+          <marker id="flow-arrow-exception" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 1 1 L 9 5 L 1 9 Z" fill="#947553"></path></marker>
+          <marker id="flow-arrow-reference" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 1 1 L 9 5 L 1 9 Z" fill="#8c99aa"></path></marker>
+        </defs>
+        <polygon class="flow-diamond" points="430,620 610,720 430,820 250,720"></polygon>
+
+        <path class="flow-path" data-from="U-01" data-to="U-02" d="M 430 150 V 230"></path>
+        <path class="flow-path" data-from="U-02" data-to="U-03" d="M 430 340 V 440"></path>
+        <path class="flow-path" data-from="U-03" data-to="type-decision" d="M 430 560 V 620"></path>
+        <path class="flow-path" data-from="type-decision" data-to="extract" d="M 430 820 V 955"></path>
+        <path class="flow-path" data-from="extract" data-to="U-04" d="M 430 1075 V 1490"></path>
+        <path class="flow-path" data-from="U-04" data-to="M-03" d="M 430 1750 V 1850"></path>
+        <path class="flow-path" data-from="M-03" data-to="U-05" d="M 430 1970 V 2130"></path>
+
+        <path class="flow-path exception" data-from="type-decision" data-to="type-unsupported" d="M 610 720 H 800"></path>
+        <path class="flow-path exception join" data-from="type-unsupported" data-to="end" d="M 1100 720 H 1130 V 1015"></path>
+        <path class="flow-path exception" data-from="extract" data-to="extraction-failed" d="M 590 990 H 800"></path>
+        <path class="flow-path exception join" data-from="extraction-failed" data-to="end" d="M 1100 1015 H 1130"></path>
+        <path class="flow-path exception" data-from="failure-merge" data-to="end" d="M 1130 1015 V 1475 H 1100"></path>
+        <path class="flow-path exception" data-from="extract" data-to="retry" d="M 590 1040 H 650 V 1225 H 800"></path>
+        <path class="flow-path exception" data-from="retry" data-to="extract" d="M 800 1260 H 620 V 1058 H 590"></path>
+        <path class="flow-path reference" data-from="end" data-to="U-02-return-failure" d="M 950 1530 V 1650"></path>
+        <path class="flow-path exception" data-from="M-03" data-to="U-04" d="M 270 1910 H 165 V 1610 H 270"></path>
+
+        <path class="flow-path reference" data-from="U-02" data-to="U-06-reference" d="M 590 285 H 800"></path>
+        <path class="flow-path reference" data-from="U-05" data-to="U-02-return-saved" d="M 430 2250 V 2390"></path>
+        <path class="flow-path reference" data-from="U-05" data-to="U-06" d="M 590 2180 H 800"></path>
+        <path class="flow-path reference" data-from="U-05" data-to="U-07" d="M 590 2220 H 710 V 2450 H 800"></path>
+        <path class="flow-path" data-from="U-06" data-to="U-07" d="M 910 2250 V 2390"></path>
+        <path class="flow-path reference" data-from="U-07" data-to="U-06" d="M 990 2390 V 2250"></path>
+      </svg>
+
+      <div class="flow-node terminal" id="flow-u01" style="left: 270px; top: 50px; height: 100px;">
+        <span class="flow-id">U-01</span><h2 class="flow-node-title">로그인</h2>
+      </div>
+      <div class="flow-node" id="flow-u02" style="left: 270px; top: 230px; height: 110px;">
+        <span class="flow-id">U-02</span><h2 class="flow-node-title">파일 업로드</h2>
+      </div>
+      <div class="flow-node small reference" id="flow-history-reference" style="left: 800px; top: 230px;">
+        <span class="flow-id">조회 · U-06</span><h2 class="flow-node-title compact">업로드 이력으로 이동</h2>
+      </div>
+      <div class="flow-node" id="flow-u03" style="left: 270px; top: 440px;">
+        <span class="flow-id">U-03</span><h2 class="flow-node-title">파일유형 자동 확인</h2>
+      </div>
+      <div class="flow-decision">유형 자동<br>확정 가능?</div>
+      <div class="flow-node small exception" id="flow-type-unsupported" style="left: 800px; top: 665px;">
+        <h2 class="flow-node-title compact">분류 규칙 불일치 안내</h2>
+      </div>
+      <div class="flow-node" id="flow-extract" style="left: 270px; top: 955px;">
+        <span class="flow-id">U-03</span><h2 class="flow-node-title">등록 스크립트 실행</h2>
+      </div>
+      <div class="flow-node exception" id="flow-extraction-failed" style="left: 800px; top: 955px; width: 300px;">
+        <h2 class="flow-node-title compact">추출 실패 안내</h2>
+      </div>
+      <div class="flow-node small exception" id="flow-retry" style="left: 800px; top: 1185px;">
+        <span class="flow-id">U-03</span><h2 class="flow-node-title compact">다시 시도 안내</h2>
+      </div>
+      <div class="flow-node small exception terminal" id="flow-end" style="left: 800px; top: 1420px;">
+        <h2 class="flow-node-title">해당 작업 종료</h2>
+      </div>
+      <div class="flow-node small reference" id="flow-upload-return-failure" style="left: 800px; top: 1650px; height: 100px;">
+        <span class="flow-id">복귀 · U-02</span><h2 class="flow-node-title compact">파일 업로드</h2>
+      </div>
+      <div class="flow-node review" id="flow-u04" style="left: 270px; top: 1490px;">
+        <span class="flow-id">U-04</span>
+        <h2 class="flow-node-title">메타데이터 입력<br>및 결과 검토</h2>
+        <div class="flow-review-steps">
+          <span>메타데이터 입력</span>
+          <span>추출값 대조 · 개별·일괄 수정</span>
+          <span>분석 기록별 검토 완료</span>
+        </div>
+      </div>
+      <div class="flow-node" id="flow-m03" style="left: 270px; top: 1850px;">
+        <span class="flow-id">M-03</span><h2 class="flow-node-title">최종 저장 확인</h2>
+      </div>
+      <div class="flow-node success" id="flow-u05" style="left: 270px; top: 2130px;">
+        <span class="flow-id">U-05</span><h2 class="flow-node-title">저장 결과 확인</h2>
+      </div>
+      <div class="flow-node reference" id="flow-upload-return-saved" style="left: 270px; top: 2390px;">
+        <span class="flow-id">복귀 · U-02</span><h2 class="flow-node-title">파일 업로드</h2>
+      </div>
+      <div class="flow-node" id="flow-u06" style="left: 800px; top: 2130px; width: 300px;">
+        <span class="flow-id">U-06</span><h2 class="flow-node-title">업로드 이력</h2>
+      </div>
+      <div class="flow-node" id="flow-u07" style="left: 800px; top: 2390px; width: 300px;">
+        <span class="flow-id">U-07</span><h2 class="flow-node-title">업로드 이력 상세</h2>
+      </div>
+
+      <p class="flow-edge-label center" style="left: 430px; top: 371px;">업로드 및 추출</p>
+      <p class="flow-edge-label center" style="left: 430px; top: 866px;">가능</p>
+      <p class="flow-edge-label exception center" style="left: 705px; top: 680px;">불가능</p>
+      <p class="flow-edge-label exception center two-lines" style="left: 695px; top: 927px; width: 205px;">구조 불일치·읽기 실패</p>
+      <p class="flow-edge-label exception two-lines" style="left: 662px; top: 1120px; width: 138px;">일시적<br>통신 실패</p>
+      <p class="flow-edge-label exception center" style="left: 714px; top: 1284px;">사용자 재시도</p>
+      <p class="flow-edge-label center" style="left: 430px; top: 1320px;">추출 성공</p>
+      <p class="flow-edge-label reference center" style="left: 950px; top: 1574px;">새 파일 업로드</p>
+      <p class="flow-edge-label center" style="left: 430px; top: 1783px;">검토 완료</p>
+      <p class="flow-edge-label exception center" style="left: 165px; top: 1750px;">수정 필요</p>
+      <p class="flow-edge-label center" style="left: 430px; top: 2026px;">검증 통과</p>
+      <p class="flow-edge-label reference center" style="left: 695px; top: 249px;">이력 보기</p>
+      <p class="flow-edge-label reference center" style="left: 695px; top: 2141px;">이력 보기</p>
+      <p class="flow-edge-label reference center" style="left: 430px; top: 2302px;">새 파일 업로드</p>
+      <p class="flow-edge-label reference center two-lines" style="left: 710px; top: 2310px; width: 126px;">저장 결과<br>상세</p>
+      <p class="flow-edge-label center two-lines" style="left: 885px; top: 2304px; width: 58px;">상세<br>조회</p>
+      <p class="flow-edge-label reference center two-lines" style="left: 1020px; top: 2304px; width: 58px;">목록<br>복귀</p>
+    </section>
+  </main>
+</body>
+</html>

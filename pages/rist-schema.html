@@ -1,0 +1,741 @@
+<!doctype html>
+<!-- Generated from docs/rist-schema.md. Edit the Markdown source, then run scripts/build_sources.py. -->
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RIST · 통합 스키마</title>
+<style>
+    * { box-sizing: border-box; }
+    html, body { width: 1280px; margin: 0; }
+    body { background: #fff; color: #24364f; font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; -webkit-font-smoothing: antialiased; }
+    .policy-document { width: 1280px; height: auto; padding: 56px 72px 88px; }
+    .policy-header { position: relative; padding-right: 64px; padding-bottom: 32px; border-bottom: 1px solid #dfe4eb; }
+    .policy-header .document-download { position: absolute; top: 0; right: 0; display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid #dfe4eb; border-radius: 8px; background: #fff; color: #365d87; text-decoration: none; }
+    .policy-header .document-download:hover { border-color: #8fa9ca; background: #f5f8fc; color: #1c3553; }
+    .policy-header .document-download:focus-visible { outline: 3px solid #8fa9ca; outline-offset: 3px; border-radius: 8px; }
+    .policy-header.has-labeled-download { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 32px; padding-right: 0; }
+    .document-download-row { display: grid; grid-template-columns: minmax(0, 1fr) 44px; align-items: center; gap: 14px; max-width: 440px; }
+    .document-download-label { color: #62738a; text-align: right; font-size: 13px; line-height: 1.65; overflow-wrap: anywhere; }
+    .policy-header.has-labeled-download .document-download { position: static; flex-shrink: 0; }
+    .document-download svg { width: 22px; height: 22px; }
+    .policy-kicker { margin: 0 0 24px; color: #62738a; font-size: 12px; font-weight: 650; letter-spacing: 1.4px; }
+    h1 { margin: 0 0 16px; color: #16263d; font-size: 38px; font-weight: 750; line-height: 1.3; letter-spacing: -1px; }
+    .policy-header p { margin: 0; color: #62738a; font-size: 16px; line-height: 1.8; }
+    .policy-header .policy-meta { display: flex; flex-wrap: wrap; gap: 10px 24px; color: #62738a; font-size: 14px; line-height: 1.8; }
+    .policy-sections { padding-top: 36px; }
+    .policy-section { margin: 0 0 24px; padding: 28px 32px; border: 1px solid #dfe4eb; border-radius: 12px; background: #fff; scroll-margin-top: 24px; }
+    .policy-section:last-child { margin-bottom: 0; }
+    .policy-section:focus, .policy-section.is-policy-target { outline: 3px solid #8fa9ca; outline-offset: 3px; border-color: #365d87; background: #f5f8fc; }
+    h2 { margin: 0 0 18px; color: #16263d; font-size: 24px; font-weight: 700; line-height: 1.4; letter-spacing: -0.5px; }
+    h3 { margin: 26px 0 12px; font-size: 19px; line-height: 1.5; }
+    .policy-section p, .policy-section ul { margin: 14px 0 0; font-size: 17px; line-height: 1.85; }
+    .policy-section ul { padding-left: 24px; }
+    .policy-section li + li { margin-top: 5px; }
+    strong { color: #1c3553; font-weight: 700; }
+
+    .schema-document .policy-header .schema-meta { display: flex; flex-wrap: wrap; gap: 10px 24px; color: #62738a; font-size: 14px; line-height: 1.8; }
+    .schema-document .schema-group { padding: 0; border: 0; background: transparent; margin-top: 36px; }
+    .schema-group > h2 { margin: 0 0 22px; }
+    .schema-level-3 > h3 { margin: 0 0 18px; color: #16263d; font-size: 23px; font-weight: 700; line-height: 1.45; overflow-wrap: anywhere; }
+    .schema-level-4 { margin: 28px 0 0; padding: 24px 0 0; border: 0; border-top: 1px solid #dfe4eb; border-radius: 0; }
+    .schema-level-4 > h4 { margin: 0 0 16px; color: #16263d; font-size: 19px; line-height: 1.5; }
+    .schema-document p, .schema-document li { overflow-wrap: anywhere; }
+    .schema-document .policy-section p, .schema-document .policy-section ul, .schema-document .policy-section ol { margin: 14px 0 0; font-size: 16px; line-height: 1.85; }
+    .schema-document ul, .schema-document ol { padding-left: 24px; }
+    .schema-document code { padding: 2px 4px; border-radius: 4px; background: #edf2f7; color: #264463; font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; font-size: 0.88em; white-space: normal; overflow-wrap: anywhere; }
+    .schema-document a { color: #285d94; text-decoration: underline; text-underline-offset: 3px; }
+    .schema-document a:hover { color: #163d69; }
+    .schema-document a:focus-visible { outline: 2px solid #365d87; outline-offset: 4px; border-radius: 2px; }
+    .schema-table-wrap { width: 100%; margin: 18px 0; }
+    .schema-table-wrap:last-child { margin-bottom: 0; }
+    .schema-document table { width: 100%; table-layout: fixed; border-collapse: collapse; font-size: 14px; line-height: 1.75; }
+    .schema-document th, .schema-document td { padding: 12px 13px; border: 1px solid #dfe4eb; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: normal; }
+    .schema-document th { background: #eef3f8; color: #243e5c; font-weight: 700; }
+    .schema-document tbody tr:nth-child(even) { background: #fafbfd; }
+    .schema-document table code { padding: 0; background: transparent; font-size: 12.5px; line-height: 1.7; }
+    .schema-columns th:nth-child(1) { width: 21%; }
+    .schema-columns th:nth-child(2) { width: 14%; }
+    .schema-columns th:nth-child(3) { width: 18%; }
+    .schema-columns th:nth-child(4) { width: 6%; }
+    .schema-columns th:nth-child(5) { width: 41%; }
+    .schema-columns th:nth-child(4), .schema-columns td:nth-child(4) { text-align: center; padding-left: 6px; padding-right: 6px; white-space: nowrap; }
+    .schema-catalog th:nth-child(1) { width: 25%; }
+    .schema-catalog th:nth-child(2) { width: 22%; }
+    .schema-catalog th:nth-child(3) { width: 45%; }
+    .schema-catalog th:nth-child(4) { width: 8%; }
+    .schema-catalog td:last-child { white-space: nowrap; }
+    .schema-reference th:first-child { width: 26%; }
+    .schema-document .align-center { text-align: center; }
+    .schema-document .align-right { text-align: right; }
+</style>
+</head>
+<body>
+<main class="policy-document schema-document" data-document-root>
+<header class="policy-header has-labeled-download">
+<div class="document-header-main"><div class="policy-kicker">RIST · SCHEMA</div>
+<h1>통합 스키마</h1>
+<div class="schema-meta"><span>버전 1</span><span>작성일 2026/09/16</span><span>수정일 2026/09/16</span></div>
+</div>
+<div class="document-download-row"><span class="document-download-label">통합 스키마.md</span><a data-document-download href="../docs/rist-schema.md" download="통합 스키마.md" class="document-download" title="통합 스키마 MD 다운로드" aria-label="통합 스키마 MD 다운로드"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m-5-5 5 5 5-5"/><path d="M4 15v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></svg></a></div>
+</header>
+<div class="policy-sections">
+<section class="policy-section schema-level-2" id="문서-개요" tabindex="-1">
+<h2>문서 개요</h2>
+<div class="schema-table-wrap"><table class="schema-reference">
+<thead>
+<tr><th scope="col">항목</th><th scope="col">내용</th></tr>
+</thead>
+<tbody>
+<tr><td>목적</td><td>환경데이터 표준화 프로그램의 데이터 저장 구조 정의</td></tr>
+<tr><td>구성</td><td>17개 논리 테이블의 컬럼·관계·제약 조건</td></tr>
+</tbody>
+</table></div>
+</section>
+<section class="policy-section schema-level-2" id="테이블-목록" tabindex="-1">
+<h2>테이블 목록</h2>
+<div class="schema-table-wrap"><table class="schema-catalog">
+<thead>
+<tr><th scope="col">테이블명</th><th scope="col">한글 이름</th><th scope="col">간단한 설명</th><th scope="col">바로가기</th></tr>
+</thead>
+<tbody>
+<tr><td><code>analysis_record</code></td><td>분석 기본 기록</td><td>최종 저장한 시료·담당자·기관·일자·분석 기간·좌표</td><td><a href="#analysis_record">상세</a></td></tr>
+<tr><td><code>analysis_result</code></td><td>물질별 분석 결과</td><td>분석 기록별 물질·BASE·방법·결과·단위</td><td><a href="#analysis_result">상세</a></td></tr>
+<tr><td><code>uploaded_file</code></td><td>업로드 파일</td><td>원본 파일·업로더·처리 상태·적용 규칙·이력</td><td><a href="#uploaded_file">상세</a></td></tr>
+<tr><td><code>review_work</code></td><td>데이터 검토 작업</td><td>작업 상태·버전·저장 기준점</td><td><a href="#review_work">상세</a></td></tr>
+<tr><td><code>review_record</code></td><td>검토 중 분석 기본 기록</td><td>최종 저장 전 기본 항목의 추출값·입력값·수정값</td><td><a href="#review_record">상세</a></td></tr>
+<tr><td><code>review_result</code></td><td>검토 중 물질별 결과</td><td>최종 저장 전 물질별 추출값·수정값·검증 상태</td><td><a href="#review_result">상세</a></td></tr>
+<tr><td><code>user_account</code></td><td>회원</td><td>사용자 이름·역할·계정 상태</td><td><a href="#user_account">상세</a></td></tr>
+<tr><td><code>user_identity</code></td><td>회원 인증 정보</td><td>인증 제공자별 회원 식별 정보</td><td><a href="#user_identity">상세</a></td></tr>
+<tr><td><code>location_master</code></td><td>지역·관측 지점 목록</td><td>반복 사용하는 지점명·위경도</td><td><a href="#location_master">상세</a></td></tr>
+<tr><td><code>substance_master</code></td><td>분석 물질 목록</td><td>물질명·CAS 번호·물질 식별</td><td><a href="#substance_master">상세</a></td></tr>
+<tr><td><code>base_master</code></td><td>BASE 목록</td><td>BASE 선택·매칭 기준</td><td><a href="#base_master">상세</a></td></tr>
+<tr><td><code>sampling_method_master</code></td><td>채취법 목록</td><td>채취 방법 명칭·적용 조건</td><td><a href="#sampling_method_master">상세</a></td></tr>
+<tr><td><code>analysis_method_master</code></td><td>분석법 목록</td><td>분석법 명칭·고시번호·방법 코드</td><td><a href="#analysis_method_master">상세</a></td></tr>
+<tr><td><code>substance_method_map</code></td><td>물질별 방법·추천 매핑</td><td>물질·매체별 BASE·방법 조합·추천 순위</td><td><a href="#substance_method_map">상세</a></td></tr>
+<tr><td><code>common_option</code></td><td>공통 선택 항목</td><td>구분·매체·담당자·기관·단위의 그룹별 목록</td><td><a href="#common_option">상세</a></td></tr>
+<tr><td><code>file_type_master</code></td><td>파일 유형 목록</td><td>유형 코드·명칭·사용 여부·현재 적용 버전</td><td><a href="#file_type_master">상세</a></td></tr>
+<tr><td><code>file_type_rule_version</code></td><td>유형별 추출 규칙 버전</td><td>판별·추출·입력 명세·실행 스크립트·변경 이력</td><td><a href="#file_type_rule_version">상세</a></td></tr>
+</tbody>
+</table></div>
+</section>
+<section class="policy-section schema-level-2 schema-group" id="테이블별-상세-항목" tabindex="-1">
+<h2>테이블별 상세 항목</h2>
+<section class="policy-section schema-level-3" id="공통-표기저장-기준" tabindex="-1">
+<h3>공통 표기·저장 기준</h3>
+<div class="schema-table-wrap"><table class="schema-reference">
+<thead>
+<tr><th scope="col">항목</th><th scope="col">기준</th></tr>
+</thead>
+<tbody>
+<tr><td>스키마 수준</td><td>DBMS 미지정의 논리 스키마</td></tr>
+<tr><td>ID</td><td>UUID 자동 발급. 검토 기록·결과의 ID를 최종 테이블에도 재사용</td></tr>
+<tr><td>NULL</td><td>값이 없으면 SQL NULL. 빈 값의 안내 문구나 문자열 <code>NULL</code>로 대체하지 않음</td></tr>
+<tr><td>업무 필수값</td><td>표의 NULL은 저장 구조의 허용 여부. 최종 저장 시 해당 유형의 input_schema로 필수값·허용 조합을 추가 검증</td></tr>
+<tr><td>숫자</td><td>정밀 소수형 사용. DECIMAL의 정밀도·소수 자릿수는 원본 최대 범위로 확정. 임의 반올림·절삭 금지</td></tr>
+<tr><td>시스템 시각</td><td>TIMESTAMP WITH TIME ZONE. UTC 저장</td></tr>
+<tr><td>분석 일시</td><td>원본의 날짜·시각·정밀도 보존. 실제 시각이 없는 날짜를 00:00으로 만들지 않음</td></tr>
+<tr><td>좌표</td><td>십진수 도 단위의 위도·경도. 지도용 WGS 84를 저장 기준으로 제안하며, 다른 원본 좌표계는 유형별 변환 명세 필요</td></tr>
+<tr><td>보존</td><td>최초 추출값과 최종값을 분리. 목록 ID와 저장 당시 명칭·값을 함께 보존</td></tr>
+<tr><td>참조 정합성</td><td>목록에 연결된 표시값을 직접 수정하면 기존 ID를 재검증. 연결이 유효하지 않으면 ID만 NULL로 해제하고 수정값은 보존</td></tr>
+<tr><td>최종 데이터</td><td>같은 파일의 analysis_record·analysis_result와 최종 상태를 하나의 트랜잭션으로 저장</td></tr>
+</tbody>
+</table></div>
+</section>
+<section class="policy-section schema-level-3" id="주요-관계" tabindex="-1">
+<h3>주요 관계</h3>
+<div class="schema-table-wrap"><table class="schema-reference">
+<thead>
+<tr><th scope="col">관계</th><th scope="col">연결</th></tr>
+</thead>
+<tbody>
+<tr><td>회원 → 업로드</td><td>user_account 1 : N uploaded_file</td></tr>
+<tr><td>회원 → 인증 정보</td><td>user_account 1 : N user_identity</td></tr>
+<tr><td>업로드 → 검토 작업</td><td>uploaded_file 1 : 0-1 review_work</td></tr>
+<tr><td>검토 작업 → 기본 기록 → 결과</td><td>review_work 1 : N review_record 1 : N review_result</td></tr>
+<tr><td>업로드 → 최종 기본 기록 → 결과</td><td>uploaded_file 1 : N analysis_record 1 : N analysis_result</td></tr>
+<tr><td>파일 유형 → 규칙 버전</td><td>file_type_master 1 : N file_type_rule_version</td></tr>
+<tr><td>물질 → 방법·추천 조합</td><td>substance_master 1 : N substance_method_map</td></tr>
+</tbody>
+</table></div>
+</section>
+<section class="policy-section schema-level-3" id="공통-데이터-표현" tabindex="-1">
+<h3>공통 데이터 표현</h3>
+<div class="schema-table-wrap"><table class="schema-reference">
+<thead>
+<tr><th scope="col">저장 항목</th><th scope="col">내용·기준</th></tr>
+</thead>
+<tbody>
+<tr><td>source_snapshot</td><td>필드별 최초 추출 문자열·해석값·원본 위치. 정밀 숫자는 JSON에서도 문자열로 보존. 값이 없는 필드도 추출 여부 구분</td></tr>
+<tr><td>field_meta.was_extracted</td><td>최초 파일 추출 여부. 값 변경 후에도 최초 추출 여부 유지</td></tr>
+<tr><td>field_meta.value_source</td><td>현재 값의 출처: EXTRACTED / MANUAL / MATCHED / SYSTEM</td></tr>
+<tr><td>field_meta.input_mode</td><td>LIST / DIRECT / DATE_TIME / COORDINATE / SYSTEM. 값의 입력 방식 코드</td></tr>
+<tr><td>field_meta.is_modified</td><td>최초 추출값 대비 현재 값의 변경 여부</td></tr>
+<tr><td>field_meta.match_status</td><td>MATCHED: 목록 연결, UNRESOLVED: 값은 있으나 미연결, EMPTY: 값 없음, NOT_REQUIRED: 목록 참조 대상 아님</td></tr>
+<tr><td>validation_issues</td><td>필드명·오류 코드·수준·안내의 목록. 필수값 오류·형식 오류와 단순 미입력 안내 구분</td></tr>
+<tr><td>checkpoint_values</td><td>마지막 작업 저장 시점의 업무값·목록 ID·field_meta. 원본 스냅샷은 별도 불변 보존. 복원 시 검증 결과 재계산</td></tr>
+</tbody>
+</table></div>
+<ul>
+<li>field_meta와 source_snapshot은 <strong>컬럼명별 객체</strong>로 저장. 검토·최종 테이블에 동일한 필드 상태 정의 적용.</li>
+<li>추출값이 타입·범위에 맞지 않으면 최초 문자열과 오류를 보존하고, 유효한 업무값이 확정되기 전까지 해당 타입 컬럼은 NULL 허용.</li>
+<li>목록 미선택이어도 직접 입력값·추출값이 있으면 보존. 목록 ID 미연결만으로 표시값을 NULL로 덮어쓰지 않음.</li>
+<li>직접 입력값과 기준 목록은 별도 저장. 추천 순위는 값의 유효성을 의미하지 않음.</li>
+<li>회원·기준 목록의 참조 행은 삭제 대신 비활성화. 업무 데이터의 회원·지점·물질·방법 연결이 삭제로 끊어지지 않게 처리.</li>
+</ul>
+</section>
+<section class="policy-section schema-level-3" id="analysis_record" tabindex="-1">
+<h3>analysis_record</h3>
+<p><strong>분석 기본 기록</strong> — 최종 저장한 기본 정보.</p>
+<div class="schema-table-wrap"><table class="schema-columns">
+<thead>
+<tr><th scope="col">컬럼명</th><th scope="col">한글 이름</th><th scope="col">자료형</th><th scope="col">NULL</th><th scope="col">제약·설명</th></tr>
+</thead>
+<tbody>
+<tr><td><code>record_id</code></td><td>분석 기록 ID</td><td><code>UUID</code></td><td>불가</td><td>PK. 검토 기록과 같은 ID</td></tr>
+<tr><td><code>file_id</code></td><td>업로드 파일 ID</td><td><code>UUID</code></td><td>불가</td><td>FK → uploaded_file.file_id</td></tr>
+<tr><td><code>record_order</code></td><td>파일 내 기록 순서</td><td><code>INTEGER</code></td><td>불가</td><td>1 이상. 파일 내 원본 기록 순서</td></tr>
+<tr><td><code>created_by</code></td><td>등록 회원 ID</td><td><code>UUID</code></td><td>불가</td><td>FK → user_account.user_id. 업로드 회원</td></tr>
+<tr><td><code>category_option_id</code></td><td>구분 목록 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → common_option.option_id. CATEGORY 그룹</td></tr>
+<tr><td><code>category</code></td><td>구분</td><td><code>TEXT</code></td><td>허용</td><td>추출·직접 입력·선택한 명칭 보존</td></tr>
+<tr><td><code>medium_option_id</code></td><td>매체 목록 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → common_option.option_id. MEDIUM 그룹</td></tr>
+<tr><td><code>medium</code></td><td>매체</td><td><code>TEXT</code></td><td>허용</td><td>추출·직접 입력·선택한 명칭 보존</td></tr>
+<tr><td><code>sample_name</code></td><td>시료명</td><td><code>TEXT</code></td><td>허용</td><td>시료의 표시 이름. 식별키로 사용하지 않음</td></tr>
+<tr><td><code>person_option_id</code></td><td>담당자 목록 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → common_option.option_id. PERSON 그룹</td></tr>
+<tr><td><code>person_in_charge</code></td><td>담당자</td><td><code>TEXT</code></td><td>허용</td><td>분석 업무 담당자. 로그인 회원과 별개</td></tr>
+<tr><td><code>institution_option_id</code></td><td>분석 기관 목록 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → common_option.option_id. INSTITUTION 그룹</td></tr>
+<tr><td><code>analysis_institution</code></td><td>분석 기관</td><td><code>TEXT</code></td><td>허용</td><td>선택하거나 직접 입력한 기관명</td></tr>
+<tr><td><code>collected_date</code></td><td>채취 날짜</td><td><code>DATE</code></td><td>허용</td><td>날짜 부분. 날짜만 확인되어도 저장</td></tr>
+<tr><td><code>collected_at</code></td><td>채취 일시</td><td><code>TIMESTAMP</code></td><td>허용</td><td>실제 시각이 확인된 경우에만 저장</td></tr>
+<tr><td><code>collected_precision</code></td><td>채취 일자 정밀도</td><td><code>TEXT</code></td><td>허용</td><td>UNKNOWN / DATE / MINUTE / SECOND</td></tr>
+<tr><td><code>analyzed_date</code></td><td>분석 날짜</td><td><code>DATE</code></td><td>허용</td><td>분석 시작 날짜</td></tr>
+<tr><td><code>analyzed_at</code></td><td>분석 일시</td><td><code>TIMESTAMP</code></td><td>허용</td><td>분석 시작 시각이 확인된 경우에만 저장</td></tr>
+<tr><td><code>analyzed_precision</code></td><td>분석 일자 정밀도</td><td><code>TEXT</code></td><td>허용</td><td>UNKNOWN / DATE / MINUTE / SECOND</td></tr>
+<tr><td><code>analysis_duration_days</code></td><td>분석 기간</td><td><code>INTEGER</code></td><td>허용</td><td>일 단위, 1 이상. 시작일만 있으면 1일</td></tr>
+<tr><td><code>location_id</code></td><td>등록 지점 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → location_master.location_id. 파일 추출·직접 좌표는 미연결 가능</td></tr>
+<tr><td><code>location_name</code></td><td>등록 지점명</td><td><code>TEXT</code></td><td>허용</td><td>지역 선택 시 해당 시점 명칭 보존</td></tr>
+<tr><td><code>latitude</code></td><td>위도</td><td><code>DECIMAL</code></td><td>허용</td><td>-90 이상 90 이하. 측정 당시 좌표</td></tr>
+<tr><td><code>longitude</code></td><td>경도</td><td><code>DECIMAL</code></td><td>허용</td><td>-180 이상 180 이하. 측정 당시 좌표</td></tr>
+<tr><td><code>source_locator</code></td><td>원본 내 위치</td><td><code>TEXT</code></td><td>허용</td><td>원본 페이지·행·셀·추출 구간 식별</td></tr>
+<tr><td><code>source_snapshot</code></td><td>최초 추출값</td><td><code>JSON</code></td><td>불가</td><td>최초 추출값·원본 위치 보존. 이후 수정 불가</td></tr>
+<tr><td><code>field_meta</code></td><td>필드 상태</td><td><code>JSON</code></td><td>불가</td><td>추출 여부·현재 입력 방식·수정 여부·목록 연결 상태</td></tr>
+<tr><td><code>extracted_at</code></td><td>추출 완료 시각</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>uploaded_file.extracted_at과 일치</td></tr>
+<tr><td><code>created_at</code></td><td>최종 등록 시각</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>파일 전체 최종 저장 시 기록</td></tr>
+</tbody>
+</table></div>
+<ul>
+<li>저장 단위: 시료·측정의 분석 기록 1건. 시료명이 같아도 시각·위치가 다르면 별도 기록.</li>
+<li><code>record_id</code>는 review_record의 ID를 재사용하되 검토 테이블에 대한 FK는 두지 않음. <code>created_by</code>는 업로드 회원, person_in_charge는 업무 담당자.</li>
+<li><code>UNIQUE(file_id, record_order)</code>. file_id 단독 UNIQUE는 적용하지 않음. 같은 파일에 여러 기록 연결.</li>
+<li>날짜만 있으면 *_date만 저장하고 *_at은 NULL. 일시가 있으면 두 날짜 부분을 일치시키며 정밀도 보존.</li>
+<li>위경도는 함께 NULL이거나 함께 유효한 값. 등록 지점 수정 시 기존 측정 좌표·지점명을 자동 변경하지 않음.</li>
+</ul>
+</section>
+<section class="policy-section schema-level-3" id="analysis_result" tabindex="-1">
+<h3>analysis_result</h3>
+<p><strong>물질별 분석 결과</strong> — 최종 저장한 물질별 결과.</p>
+<div class="schema-table-wrap"><table class="schema-columns">
+<thead>
+<tr><th scope="col">컬럼명</th><th scope="col">한글 이름</th><th scope="col">자료형</th><th scope="col">NULL</th><th scope="col">제약·설명</th></tr>
+</thead>
+<tbody>
+<tr><td><code>result_id</code></td><td>분석 결과 ID</td><td><code>UUID</code></td><td>불가</td><td>PK. 검토 결과와 같은 ID</td></tr>
+<tr><td><code>record_id</code></td><td>분석 기록 ID</td><td><code>UUID</code></td><td>불가</td><td>FK → analysis_record.record_id</td></tr>
+<tr><td><code>result_order</code></td><td>기록 내 결과 순서</td><td><code>INTEGER</code></td><td>불가</td><td>1 이상</td></tr>
+<tr><td><code>substance_id</code></td><td>분석 물질 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → substance_master.substance_id. 미매칭 시 NULL</td></tr>
+<tr><td><code>substance_name</code></td><td>분석 물질명</td><td><code>TEXT</code></td><td>허용</td><td>추출·수정·직접 입력한 이름. CAS 포함 표기 보존</td></tr>
+<tr><td><code>base_id</code></td><td>BASE ID</td><td><code>UUID</code></td><td>허용</td><td>FK → base_master.base_id</td></tr>
+<tr><td><code>base_name</code></td><td>BASE 표시값</td><td><code>TEXT</code></td><td>허용</td><td>선택 당시 명칭 또는 직접 입력값</td></tr>
+<tr><td><code>sampling_method_id</code></td><td>채취법 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → sampling_method_master.sampling_method_id</td></tr>
+<tr><td><code>sampling_method_name</code></td><td>채취법 표시값</td><td><code>TEXT</code></td><td>허용</td><td>선택 당시 명칭 또는 직접 입력값</td></tr>
+<tr><td><code>analysis_method_id</code></td><td>분석법 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → analysis_method_master.analysis_method_id</td></tr>
+<tr><td><code>analysis_method_name</code></td><td>분석법 표시값</td><td><code>TEXT</code></td><td>허용</td><td>선택 당시 명칭 또는 직접 입력값</td></tr>
+<tr><td><code>analysis_method_code</code></td><td>분석법 코드</td><td><code>TEXT</code></td><td>허용</td><td>선택 당시 고시번호·코드 보존</td></tr>
+<tr><td><code>result_text</code></td><td>결과 표시값</td><td><code>TEXT</code></td><td>허용</td><td>검토한 최종 문자열. 비수치·부등호 표기 포함</td></tr>
+<tr><td><code>result_value</code></td><td>숫자 결과</td><td><code>DECIMAL</code></td><td>허용</td><td>result_text가 수치로 확정되는 경우만 저장</td></tr>
+<tr><td><code>result_raw</code></td><td>결과 원문</td><td><code>TEXT</code></td><td>허용</td><td>파일에서 추출한 최초 결과 문자열. 수정 불가</td></tr>
+<tr><td><code>unit_option_id</code></td><td>단위 목록 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → common_option.option_id. UNIT 그룹</td></tr>
+<tr><td><code>unit</code></td><td>단위 표시값</td><td><code>TEXT</code></td><td>허용</td><td>선택 당시 명칭 또는 추출·직접 입력한 표기</td></tr>
+<tr><td><code>source_locator</code></td><td>원본 내 위치</td><td><code>TEXT</code></td><td>허용</td><td>원본 페이지·행·셀·추출 구간 식별</td></tr>
+<tr><td><code>source_snapshot</code></td><td>최초 추출값</td><td><code>JSON</code></td><td>불가</td><td>최초 추출값·원본 위치 보존. 이후 수정 불가</td></tr>
+<tr><td><code>field_meta</code></td><td>필드 상태</td><td><code>JSON</code></td><td>불가</td><td>추출 여부·현재 입력 방식·수정 여부·목록 연결 상태</td></tr>
+<tr><td><code>created_at</code></td><td>최종 등록 시각</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>파일 전체 최종 저장 시 기록</td></tr>
+</tbody>
+</table></div>
+<ul>
+<li>저장 단위: 분석 기록에 속한 물질별 결과 1건. 같은 물질의 반복 측정도 별도 결과로 보존.</li>
+<li><code>result_id</code>는 review_result에서 발급한 값을 최종 저장 시 그대로 사용. review_result에 대한 FK는 두지 않음.</li>
+<li><code>UNIQUE(record_id, result_order)</code>. 물질명·물질 ID를 결과의 고유키로 사용하지 않음.</li>
+<li>목록 ID가 NULL이어도 직접 입력한 명칭·코드·단위는 유지. 필수 연결 여부는 유형 규칙으로 검증.</li>
+<li>result_raw와 source_snapshot은 최초 값. 사용자 수정은 result_text·result_value에 반영. 비수치를 0으로 대체하지 않음.</li>
+</ul>
+</section>
+<section class="policy-section schema-level-3" id="uploaded_file" tabindex="-1">
+<h3>uploaded_file</h3>
+<p><strong>업로드 파일</strong> — 파일 접수부터 최종 저장까지의 기준.</p>
+<div class="schema-table-wrap"><table class="schema-columns">
+<thead>
+<tr><th scope="col">컬럼명</th><th scope="col">한글 이름</th><th scope="col">자료형</th><th scope="col">NULL</th><th scope="col">제약·설명</th></tr>
+</thead>
+<tbody>
+<tr><td><code>file_id</code></td><td>파일 ID</td><td><code>UUID</code></td><td>불가</td><td>PK. 업로드마다 새로 발급</td></tr>
+<tr><td><code>uploaded_by</code></td><td>업로드 회원 ID</td><td><code>UUID</code></td><td>불가</td><td>FK → user_account.user_id</td></tr>
+<tr><td><code>original_file_name</code></td><td>원본 파일명</td><td><code>TEXT</code></td><td>불가</td><td>사용자 파일명. 중복 허용</td></tr>
+<tr><td><code>uploaded_file_name</code></td><td>서버 저장 파일명</td><td><code>TEXT</code></td><td>불가</td><td>UNIQUE. 서버가 생성한 파일명</td></tr>
+<tr><td><code>storage_key</code></td><td>원본 저장 위치</td><td><code>TEXT</code></td><td>불가</td><td>UNIQUE. 파일 저장소 경로·객체 키</td></tr>
+<tr><td><code>extension</code></td><td>확장자</td><td><code>TEXT</code></td><td>불가</td><td>csv / pdf / xlsx. 소문자로 정규화</td></tr>
+<tr><td><code>file_size_bytes</code></td><td>파일 크기</td><td><code>BIGINT</code></td><td>불가</td><td>0 초과. 업로드 정책의 20MB 상한 적용</td></tr>
+<tr><td><code>storage_status</code></td><td>원본 보관 상태</td><td><code>TEXT</code></td><td>불가</td><td>AVAILABLE / EXPIRED / MISSING</td></tr>
+<tr><td><code>processing_status</code></td><td>파일 처리 상태</td><td><code>TEXT</code></td><td>불가</td><td>접수·분류·추출·검토·최종 저장·종료 상태</td></tr>
+<tr><td><code>file_type</code></td><td>파일 유형</td><td><code>TEXT</code></td><td>허용</td><td>FK → file_type_master.file_type. 판별 전·판별 불가 시 NULL</td></tr>
+<tr><td><code>applied_rule_version_id</code></td><td>적용 규칙 버전 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → file_type_rule_version.rule_version_id. 작업에 고정한 버전</td></tr>
+<tr><td><code>execution_id</code></td><td>현재 추출 실행 ID</td><td><code>UUID</code></td><td>허용</td><td>실행 응답 식별. 과거 응답의 덮어쓰기 방지</td></tr>
+<tr><td><code>uploaded_at</code></td><td>접수 완료 시각</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>원본 접수 시 서버 기록</td></tr>
+<tr><td><code>extracted_at</code></td><td>추출 완료 시각</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>허용</td><td>채택한 추출이 완료된 시각</td></tr>
+<tr><td><code>saved_at</code></td><td>최종 저장 완료 시각</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>허용</td><td>작업 저장 시각과 구분. 최종 저장 전 NULL</td></tr>
+<tr><td><code>saved_by</code></td><td>최종 저장 회원 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → user_account.user_id. uploaded_by와 일치</td></tr>
+<tr><td><code>saved_record_count</code></td><td>최종 기본 기록 수</td><td><code>INTEGER</code></td><td>불가</td><td>기본값 0. 실제 저장 건수</td></tr>
+<tr><td><code>saved_result_count</code></td><td>최종 물질 결과 수</td><td><code>INTEGER</code></td><td>불가</td><td>기본값 0. 실제 저장 건수</td></tr>
+<tr><td><code>last_error</code></td><td>마지막 처리 오류</td><td><code>JSON</code></td><td>허용</td><td>단계·오류 코드·메시지·발생 시각</td></tr>
+<tr><td><code>updated_at</code></td><td>최종 상태 변경 시각</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>서버 기록</td></tr>
+</tbody>
+</table></div>
+<ul>
+<li>한 파일의 작업 저장과 최종 저장은 같은 file_id를 유지. 같은 파일을 다시 업로드하면 새 file_id 발급.</li>
+<li>유형 미확정 시 file_type·applied_rule_version_id는 NULL이며 최종 분석 기록은 없음.</li>
+<li>file_type과 적용 버전의 file_type은 일치. 작업에 연결한 적용 버전은 불변.</li>
+<li>file_id별 최종 저장은 중복 불가. SAVED 상태에서는 saved_at·saved_by와 실제 최종 기록·결과 건수가 일치.</li>
+</ul>
+<section class="policy-section schema-level-4" id="파일-처리-상태" tabindex="-1">
+<h4>파일 처리 상태</h4>
+<div class="schema-table-wrap"><table class="schema-reference">
+<thead>
+<tr><th scope="col">코드</th><th scope="col">의미</th></tr>
+</thead>
+<tbody>
+<tr><td>RECEIVED</td><td>파일 접수 완료</td></tr>
+<tr><td>DETECTING</td><td>파일 유형 확인 중</td></tr>
+<tr><td>TYPE_UNSUPPORTED</td><td>등록 규칙에 맞는 유형 없음·종료</td></tr>
+<tr><td>EXTRACTING</td><td>데이터 추출 중</td></tr>
+<tr><td>REVIEWING</td><td>사전 준비·상세 검토 중. 작업 저장 이후에도 유지</td></tr>
+<tr><td>EXTRACTION_FAILED</td><td>추출 실패</td></tr>
+<tr><td>SAVING</td><td>파일 전체 최종 저장 중</td></tr>
+<tr><td>SAVED</td><td>최종 저장 완료</td></tr>
+<tr><td>SAVE_FAILED</td><td>최종 저장 실패</td></tr>
+<tr><td>CANCELED</td><td>작업 취소</td></tr>
+<tr><td>EXPIRED</td><td>작업 만료</td></tr>
+</tbody>
+</table></div>
+</section>
+</section>
+<section class="policy-section schema-level-3" id="review_work" tabindex="-1">
+<h3>review_work</h3>
+<p><strong>데이터 검토 작업</strong> — 파일별 검토 상태와 작업 데이터 버전.</p>
+<div class="schema-table-wrap"><table class="schema-columns">
+<thead>
+<tr><th scope="col">컬럼명</th><th scope="col">한글 이름</th><th scope="col">자료형</th><th scope="col">NULL</th><th scope="col">제약·설명</th></tr>
+</thead>
+<tbody>
+<tr><td><code>work_id</code></td><td>검토 작업 ID</td><td><code>UUID</code></td><td>불가</td><td>PK</td></tr>
+<tr><td><code>file_id</code></td><td>파일 ID</td><td><code>UUID</code></td><td>불가</td><td>FK → uploaded_file.file_id. UNIQUE</td></tr>
+<tr><td><code>user_id</code></td><td>작업 회원 ID</td><td><code>UUID</code></td><td>불가</td><td>FK → user_account.user_id. 업로드 회원과 일치</td></tr>
+<tr><td><code>current_stage</code></td><td>현재 검토 단계</td><td><code>TEXT</code></td><td>불가</td><td>PREPARATION: 사전 준비 / DETAIL: 상세 검토</td></tr>
+<tr><td><code>work_status</code></td><td>검토 작업 상태</td><td><code>TEXT</code></td><td>불가</td><td>REVIEWING / FINALIZING / FINALIZED / CANCELED / EXPIRED</td></tr>
+<tr><td><code>revision</code></td><td>현재 작업 버전</td><td><code>BIGINT</code></td><td>불가</td><td>0부터 단조 증가. 데이터 변경·복원 시 증가</td></tr>
+<tr><td><code>saved_revision</code></td><td>작업 저장 기준 버전</td><td><code>BIGINT</code></td><td>허용</td><td>마지막 작업 저장이 성공한 revision. 최초 저장 전 NULL</td></tr>
+<tr><td><code>work_saved_at</code></td><td>작업 저장 시각</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>허용</td><td>마지막 작업 저장 완료 시각</td></tr>
+<tr><td><code>work_saved_by</code></td><td>작업 저장 회원 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → user_account.user_id</td></tr>
+<tr><td><code>validated_revision</code></td><td>전체 검증 완료 버전</td><td><code>BIGINT</code></td><td>허용</td><td>전체 필수값·형식 검증을 통과한 revision. 변경 시 무효화</td></tr>
+<tr><td><code>last_edited_by</code></td><td>최근 편집 회원 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → user_account.user_id</td></tr>
+<tr><td><code>created_at</code></td><td>작업 생성 시각</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>추출 결과로 검토 작업 생성</td></tr>
+<tr><td><code>updated_at</code></td><td>작업 변경 시각</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>서버 기록</td></tr>
+<tr><td><code>expires_at</code></td><td>작업 만료 시각</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>허용</td><td>작업 보관 정책 적용 시 설정</td></tr>
+</tbody>
+</table></div>
+<ul>
+<li>파일당 review_work는 최대 1건. 모든 검토 단계가 같은 work_id와 데이터를 참조.</li>
+<li>revision을 기준으로 동시 변경을 제어. 변경·복원 시 revision은 증가하고 validated_revision은 무효화.</li>
+<li>작업 저장 시 전체 검토 행의 checkpoint_values와 saved_revision·work_saved_at·work_saved_by를 하나의 트랜잭션으로 갱신. 실패 시 기존 저장 기준점 유지.</li>
+<li>최종 데이터는 필수값·형식 검증을 통과한 동일 revision에서 생성. 기록·결과가 0건이거나 미해결 오류가 있으면 최종 저장 불가.</li>
+<li>analysis_record·analysis_result 생성과 파일 SAVED·작업 FINALIZED 상태는 같은 트랜잭션으로 확정. 일부 데이터만 남는 최종 저장은 허용하지 않음.</li>
+</ul>
+</section>
+<section class="policy-section schema-level-3" id="review_record" tabindex="-1">
+<h3>review_record</h3>
+<p><strong>검토 중 분석 기본 기록</strong> — 최종 저장 전 기본 항목.</p>
+<div class="schema-table-wrap"><table class="schema-columns">
+<thead>
+<tr><th scope="col">컬럼명</th><th scope="col">한글 이름</th><th scope="col">자료형</th><th scope="col">NULL</th><th scope="col">제약·설명</th></tr>
+</thead>
+<tbody>
+<tr><td><code>record_id</code></td><td>검토 기본 기록 ID</td><td><code>UUID</code></td><td>불가</td><td>PK. 추출 결과 수신 시 발급, 최종 기록에 재사용</td></tr>
+<tr><td><code>work_id</code></td><td>검토 작업 ID</td><td><code>UUID</code></td><td>불가</td><td>FK → review_work.work_id</td></tr>
+<tr><td><code>record_order</code></td><td>파일 내 기록 순서</td><td><code>INTEGER</code></td><td>불가</td><td>1 이상. UNIQUE(work_id, record_order)</td></tr>
+<tr><td><code>category_option_id</code></td><td>구분 목록 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → common_option.option_id. CATEGORY 그룹</td></tr>
+<tr><td><code>category</code></td><td>구분</td><td><code>TEXT</code></td><td>허용</td><td>추출·직접 입력·선택한 명칭 보존</td></tr>
+<tr><td><code>medium_option_id</code></td><td>매체 목록 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → common_option.option_id. MEDIUM 그룹</td></tr>
+<tr><td><code>medium</code></td><td>매체</td><td><code>TEXT</code></td><td>허용</td><td>추출·직접 입력·선택한 명칭 보존</td></tr>
+<tr><td><code>sample_name</code></td><td>시료명</td><td><code>TEXT</code></td><td>허용</td><td>시료의 표시 이름. 식별키로 사용하지 않음</td></tr>
+<tr><td><code>person_option_id</code></td><td>담당자 목록 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → common_option.option_id. PERSON 그룹</td></tr>
+<tr><td><code>person_in_charge</code></td><td>담당자</td><td><code>TEXT</code></td><td>허용</td><td>분석 업무 담당자. 로그인 회원과 별개</td></tr>
+<tr><td><code>institution_option_id</code></td><td>분석 기관 목록 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → common_option.option_id. INSTITUTION 그룹</td></tr>
+<tr><td><code>analysis_institution</code></td><td>분석 기관</td><td><code>TEXT</code></td><td>허용</td><td>선택하거나 직접 입력한 기관명</td></tr>
+<tr><td><code>collected_date</code></td><td>채취 날짜</td><td><code>DATE</code></td><td>허용</td><td>날짜 부분. 날짜만 확인되어도 저장</td></tr>
+<tr><td><code>collected_at</code></td><td>채취 일시</td><td><code>TIMESTAMP</code></td><td>허용</td><td>실제 시각이 확인된 경우에만 저장</td></tr>
+<tr><td><code>collected_precision</code></td><td>채취 일자 정밀도</td><td><code>TEXT</code></td><td>허용</td><td>UNKNOWN / DATE / MINUTE / SECOND</td></tr>
+<tr><td><code>analyzed_date</code></td><td>분석 날짜</td><td><code>DATE</code></td><td>허용</td><td>분석 시작 날짜</td></tr>
+<tr><td><code>analyzed_at</code></td><td>분석 일시</td><td><code>TIMESTAMP</code></td><td>허용</td><td>분석 시작 시각이 확인된 경우에만 저장</td></tr>
+<tr><td><code>analyzed_precision</code></td><td>분석 일자 정밀도</td><td><code>TEXT</code></td><td>허용</td><td>UNKNOWN / DATE / MINUTE / SECOND</td></tr>
+<tr><td><code>analysis_duration_days</code></td><td>분석 기간</td><td><code>INTEGER</code></td><td>허용</td><td>일 단위, 1 이상. 시작일만 있으면 1일</td></tr>
+<tr><td><code>location_id</code></td><td>등록 지점 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → location_master.location_id. 파일 추출·직접 좌표는 미연결 가능</td></tr>
+<tr><td><code>location_name</code></td><td>등록 지점명</td><td><code>TEXT</code></td><td>허용</td><td>지역 선택 시 해당 시점 명칭 보존</td></tr>
+<tr><td><code>latitude</code></td><td>위도</td><td><code>DECIMAL</code></td><td>허용</td><td>-90 이상 90 이하. 측정 당시 좌표</td></tr>
+<tr><td><code>longitude</code></td><td>경도</td><td><code>DECIMAL</code></td><td>허용</td><td>-180 이상 180 이하. 측정 당시 좌표</td></tr>
+<tr><td><code>source_locator</code></td><td>원본 내 위치</td><td><code>TEXT</code></td><td>허용</td><td>원본 페이지·행·셀·추출 구간 식별</td></tr>
+<tr><td><code>source_snapshot</code></td><td>최초 추출값</td><td><code>JSON</code></td><td>불가</td><td>최초 추출값·원본 위치 보존. 이후 수정 불가</td></tr>
+<tr><td><code>field_meta</code></td><td>필드 상태</td><td><code>JSON</code></td><td>불가</td><td>추출 여부·현재 입력 방식·수정 여부·목록 연결 상태</td></tr>
+<tr><td><code>validation_issues</code></td><td>필드 검증 결과</td><td><code>JSON</code></td><td>불가</td><td>오류 코드·대상 필드·수준·안내. 오류가 없으면 빈 목록</td></tr>
+<tr><td><code>checkpoint_values</code></td><td>작업 저장값</td><td><code>JSON</code></td><td>허용</td><td>마지막 명시적 작업 저장의 업무값·목록 ID·field_meta. 최초 저장 전 NULL</td></tr>
+<tr><td><code>updated_by</code></td><td>최근 변경 회원 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → user_account.user_id</td></tr>
+<tr><td><code>created_at</code></td><td>검토 행 생성 시각</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>추출 결과의 행 생성 시 기록</td></tr>
+<tr><td><code>updated_at</code></td><td>검토 행 변경 시각</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>서버 기록</td></tr>
+</tbody>
+</table></div>
+<ul>
+<li>업무 컬럼은 analysis_record와 같은 의미·형식. 누락·미확정 값은 NULL로 두고 최초 문자열과 오류는 별도 보존.</li>
+<li>구분부터 경도까지의 기본 항목은 record_id 단위로 저장. 하위 review_result에 기본 항목을 중복 저장하지 않음.</li>
+<li>source_snapshot은 불변. field_meta는 초기 추출 여부와 현재 입력 방식·수정 여부를 구분.</li>
+<li>checkpoint_values는 업무값과 연결 ID·필드 상태를 함께 저장. 복원 시 validation_issues를 재검증하고 validated_revision을 무효화.</li>
+<li>작업 저장·최종 저장의 데이터 범위는 동일 work_id에 속한 전체 기록과 결과.</li>
+</ul>
+</section>
+<section class="policy-section schema-level-3" id="review_result" tabindex="-1">
+<h3>review_result</h3>
+<p><strong>검토 중 물질별 결과</strong> — 최종 저장 전 물질 항목.</p>
+<div class="schema-table-wrap"><table class="schema-columns">
+<thead>
+<tr><th scope="col">컬럼명</th><th scope="col">한글 이름</th><th scope="col">자료형</th><th scope="col">NULL</th><th scope="col">제약·설명</th></tr>
+</thead>
+<tbody>
+<tr><td><code>result_id</code></td><td>검토 물질 결과 ID</td><td><code>UUID</code></td><td>불가</td><td>PK. 추출 결과 수신 시 발급, 최종 결과에 재사용</td></tr>
+<tr><td><code>record_id</code></td><td>검토 기본 기록 ID</td><td><code>UUID</code></td><td>불가</td><td>FK → review_record.record_id</td></tr>
+<tr><td><code>result_order</code></td><td>기록 내 결과 순서</td><td><code>INTEGER</code></td><td>불가</td><td>1 이상. UNIQUE(record_id, result_order)</td></tr>
+<tr><td><code>substance_id</code></td><td>분석 물질 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → substance_master.substance_id. 미매칭 시 NULL</td></tr>
+<tr><td><code>substance_name</code></td><td>분석 물질명</td><td><code>TEXT</code></td><td>허용</td><td>추출·수정·직접 입력한 이름. CAS 포함 표기 보존</td></tr>
+<tr><td><code>base_id</code></td><td>BASE ID</td><td><code>UUID</code></td><td>허용</td><td>FK → base_master.base_id</td></tr>
+<tr><td><code>base_name</code></td><td>BASE 표시값</td><td><code>TEXT</code></td><td>허용</td><td>선택 당시 명칭 또는 직접 입력값</td></tr>
+<tr><td><code>sampling_method_id</code></td><td>채취법 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → sampling_method_master.sampling_method_id</td></tr>
+<tr><td><code>sampling_method_name</code></td><td>채취법 표시값</td><td><code>TEXT</code></td><td>허용</td><td>선택 당시 명칭 또는 직접 입력값</td></tr>
+<tr><td><code>analysis_method_id</code></td><td>분석법 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → analysis_method_master.analysis_method_id</td></tr>
+<tr><td><code>analysis_method_name</code></td><td>분석법 표시값</td><td><code>TEXT</code></td><td>허용</td><td>선택 당시 명칭 또는 직접 입력값</td></tr>
+<tr><td><code>analysis_method_code</code></td><td>분석법 코드</td><td><code>TEXT</code></td><td>허용</td><td>선택 당시 고시번호·코드 보존</td></tr>
+<tr><td><code>result_text</code></td><td>결과 표시값</td><td><code>TEXT</code></td><td>허용</td><td>검토한 최종 문자열. 비수치·부등호 표기 포함</td></tr>
+<tr><td><code>result_value</code></td><td>숫자 결과</td><td><code>DECIMAL</code></td><td>허용</td><td>result_text가 수치로 확정되는 경우만 저장</td></tr>
+<tr><td><code>result_raw</code></td><td>결과 원문</td><td><code>TEXT</code></td><td>허용</td><td>파일에서 추출한 최초 결과 문자열. 수정 불가</td></tr>
+<tr><td><code>unit_option_id</code></td><td>단위 목록 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → common_option.option_id. UNIT 그룹</td></tr>
+<tr><td><code>unit</code></td><td>단위 표시값</td><td><code>TEXT</code></td><td>허용</td><td>선택 당시 명칭 또는 추출·직접 입력한 표기</td></tr>
+<tr><td><code>source_locator</code></td><td>원본 내 위치</td><td><code>TEXT</code></td><td>허용</td><td>원본 페이지·행·셀·추출 구간 식별</td></tr>
+<tr><td><code>source_snapshot</code></td><td>최초 추출값</td><td><code>JSON</code></td><td>불가</td><td>최초 추출값·원본 위치 보존. 이후 수정 불가</td></tr>
+<tr><td><code>field_meta</code></td><td>필드 상태</td><td><code>JSON</code></td><td>불가</td><td>추출 여부·현재 입력 방식·수정 여부·목록 연결 상태</td></tr>
+<tr><td><code>validation_issues</code></td><td>필드 검증 결과</td><td><code>JSON</code></td><td>불가</td><td>오류 코드·대상 필드·수준·안내. 오류가 없으면 빈 목록</td></tr>
+<tr><td><code>checkpoint_values</code></td><td>작업 저장값</td><td><code>JSON</code></td><td>허용</td><td>마지막 명시적 작업 저장의 업무값·목록 ID·field_meta. 최초 저장 전 NULL</td></tr>
+<tr><td><code>updated_by</code></td><td>최근 변경 회원 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → user_account.user_id</td></tr>
+<tr><td><code>created_at</code></td><td>검토 행 생성 시각</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>추출 결과의 행 생성 시 기록</td></tr>
+<tr><td><code>updated_at</code></td><td>검토 행 변경 시각</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>서버 기록</td></tr>
+</tbody>
+</table></div>
+<ul>
+<li>작업 소속은 부모 review_record.work_id로 결정. 별도 work_id 컬럼 없이 부모 관계로 참조.</li>
+<li>분석 물질·BASE·채취법·분석법·결과·단위는 result_id 단위로 저장.</li>
+<li>result_raw와 source_snapshot은 최초 추출값. 검토 수정은 현재 표시값과 수치값에만 반영.</li>
+<li>checkpoint_values는 업무값·목록 ID·field_meta를 함께 보관하고 복원 시 재검증.</li>
+<li>파일 내 결과 순서는 부모 record_order와 result_order의 조합으로 결정.</li>
+</ul>
+</section>
+<section class="policy-section schema-level-3" id="user_account" tabindex="-1">
+<h3>user_account</h3>
+<p><strong>회원</strong> — 사용자 이름·권한·계정 상태.</p>
+<div class="schema-table-wrap"><table class="schema-columns">
+<thead>
+<tr><th scope="col">컬럼명</th><th scope="col">한글 이름</th><th scope="col">자료형</th><th scope="col">NULL</th><th scope="col">제약·설명</th></tr>
+</thead>
+<tbody>
+<tr><td><code>user_id</code></td><td>회원 ID</td><td><code>UUID</code></td><td>불가</td><td>PK. 인증 방식 변경 후에도 유지</td></tr>
+<tr><td><code>display_name</code></td><td>사용자 이름</td><td><code>TEXT</code></td><td>불가</td><td>회원의 사용자 이름</td></tr>
+<tr><td><code>role_code</code></td><td>권한</td><td><code>TEXT</code></td><td>불가</td><td><code>USER</code>: 일반 회원 / <code>ADMIN</code>: 관리자</td></tr>
+<tr><td><code>status</code></td><td>계정 상태</td><td><code>TEXT</code></td><td>불가</td><td><code>ACTIVE</code>, <code>INACTIVE</code></td></tr>
+<tr><td><code>created_at</code></td><td>생성 일시</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>최초 생성 시각</td></tr>
+<tr><td><code>updated_at</code></td><td>수정 일시</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>마지막 변경 시각</td></tr>
+</tbody>
+</table></div>
+<ul>
+<li>로그인 회원과 분석 기록의 담당자는 별개입니다. 업로드·저장 행위자는 <code>user_id</code>로 연결합니다.</li>
+<li>계정 상태가 <code>INACTIVE</code>여도 기존 업로드·저장 기록의 회원 참조는 유지.</li>
+</ul>
+</section>
+<section class="policy-section schema-level-3" id="user_identity" tabindex="-1">
+<h3>user_identity</h3>
+<p><strong>회원 인증 정보</strong> — 회원별 인증 제공자·식별자·비밀번호 해시.</p>
+<div class="schema-table-wrap"><table class="schema-columns">
+<thead>
+<tr><th scope="col">컬럼명</th><th scope="col">한글 이름</th><th scope="col">자료형</th><th scope="col">NULL</th><th scope="col">제약·설명</th></tr>
+</thead>
+<tbody>
+<tr><td><code>identity_id</code></td><td>인증 정보 ID</td><td><code>UUID</code></td><td>불가</td><td>PK</td></tr>
+<tr><td><code>user_id</code></td><td>회원 ID</td><td><code>UUID</code></td><td>불가</td><td>FK → <code>user_account.user_id</code></td></tr>
+<tr><td><code>provider_kind</code></td><td>인증 방식</td><td><code>TEXT</code></td><td>불가</td><td><code>LOCAL</code>, <code>SSO</code></td></tr>
+<tr><td><code>provider_key</code></td><td>인증 제공자 식별자</td><td><code>TEXT</code></td><td>불가</td><td>자체 인증 제공자 또는 SSO 발급자를 구분하는 고정 식별자</td></tr>
+<tr><td><code>provider_subject</code></td><td>제공자 내 사용자 식별자</td><td><code>TEXT</code></td><td>불가</td><td>자체 로그인 ID 또는 SSO의 변경되지 않는 사용자 식별자</td></tr>
+<tr><td><code>password_hash</code></td><td>비밀번호 해시</td><td><code>TEXT</code></td><td>허용</td><td><code>LOCAL</code>은 필수, <code>SSO</code>는 NULL. 평문 비밀번호 저장 금지</td></tr>
+<tr><td><code>is_active</code></td><td>인증 사용 여부</td><td><code>BOOLEAN</code></td><td>불가</td><td>기본값 <code>true</code></td></tr>
+<tr><td><code>created_at</code></td><td>생성 일시</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>최초 연결 시각</td></tr>
+<tr><td><code>updated_at</code></td><td>수정 일시</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>마지막 변경 시각</td></tr>
+</tbody>
+</table></div>
+<ul>
+<li><code>(provider_key, provider_subject)</code>는 고유하며, 회원별 <code>LOCAL</code> 인증 정보는 최대 1개입니다.</li>
+<li>자체 로그인 ID는 등록·조회 시 동일한 정규화 기준을 적용합니다. SSO 식별자는 제공자의 식별 규칙을 유지합니다.</li>
+<li>하나의 user_id에 여러 인증 정보를 연결할 수 있으며, 인증 방식과 관계없이 user_id 유지.</li>
+</ul>
+</section>
+<section class="policy-section schema-level-3" id="location_master" tabindex="-1">
+<h3>location_master</h3>
+<p><strong>지역·관측 지점 목록</strong> — 지역·관측 지점명과 기준 좌표.</p>
+<div class="schema-table-wrap"><table class="schema-columns">
+<thead>
+<tr><th scope="col">컬럼명</th><th scope="col">한글 이름</th><th scope="col">자료형</th><th scope="col">NULL</th><th scope="col">제약·설명</th></tr>
+</thead>
+<tbody>
+<tr><td><code>location_id</code></td><td>지역·관측 지점 ID</td><td><code>UUID</code></td><td>불가</td><td>PK</td></tr>
+<tr><td><code>location_name</code></td><td>지역·관측 지점명</td><td><code>TEXT</code></td><td>불가</td><td>지역·관측 지점의 명칭</td></tr>
+<tr><td><code>latitude</code></td><td>위도</td><td><code>DECIMAL</code></td><td>불가</td><td>WGS 84 좌표. <code>-90 ≤ 값 ≤ 90</code></td></tr>
+<tr><td><code>longitude</code></td><td>경도</td><td><code>DECIMAL</code></td><td>불가</td><td>WGS 84 좌표. <code>-180 ≤ 값 ≤ 180</code></td></tr>
+<tr><td><code>description</code></td><td>위치 설명</td><td><code>TEXT</code></td><td>허용</td><td>지점 구분을 위한 설명</td></tr>
+<tr><td><code>is_active</code></td><td>사용 여부</td><td><code>BOOLEAN</code></td><td>불가</td><td>기본값 <code>true</code></td></tr>
+<tr><td><code>created_by</code></td><td>등록 회원 ID</td><td><code>UUID</code></td><td>불가</td><td>FK → <code>user_account.user_id</code></td></tr>
+<tr><td><code>updated_by</code></td><td>수정 회원 ID</td><td><code>UUID</code></td><td>불가</td><td>FK → <code>user_account.user_id</code></td></tr>
+<tr><td><code>created_at</code></td><td>생성 일시</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>최초 등록 시각</td></tr>
+<tr><td><code>updated_at</code></td><td>수정 일시</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>마지막 변경 시각</td></tr>
+</tbody>
+</table></div>
+<ul>
+<li>위도·경도는 모두 필수이며 WGS 84 범위 제약 적용.</li>
+<li>선택한 지점의 좌표는 분석 기록에 복사하여 보존합니다. 지점 정보 변경이 기존 기록의 좌표를 자동 변경하지 않습니다.</li>
+<li>파일에서 추출한 좌표는 분석 기록별로 보존. 지점 참조 없이 location_id가 NULL인 기록도 허용.</li>
+<li>지역·관측 지점명은 고유 키로 사용하지 않습니다. 동일 명칭의 지점은 위치 설명과 좌표로 구분합니다.</li>
+<li>검토 중 좌표를 직접 수정해 선택한 지점과 달라지면 기록의 location_id·location_name을 해제하고 수정 좌표를 유지합니다. 최초 위치 정보는 source_snapshot에 보존합니다.</li>
+</ul>
+</section>
+<section class="policy-section schema-level-3" id="substance_master" tabindex="-1">
+<h3>substance_master</h3>
+<p>분석 물질의 식별 정보와 선택·매칭 기준을 관리합니다.</p>
+<div class="schema-table-wrap"><table class="schema-columns">
+<thead>
+<tr><th scope="col">컬럼명</th><th scope="col">한글 이름</th><th scope="col">자료형</th><th scope="col">NULL</th><th scope="col">제약·설명</th></tr>
+</thead>
+<tbody>
+<tr><td><code>substance_id</code></td><td>분석 물질 ID</td><td><code>UUID</code></td><td>불가</td><td>PK</td></tr>
+<tr><td><code>substance_name</code></td><td>물질명</td><td><code>TEXT</code></td><td>불가</td><td>공백만 있는 값 불가. 표준 표시명</td></tr>
+<tr><td><code>cas_number</code></td><td>CAS 번호</td><td><code>TEXT</code></td><td>허용</td><td>값이 있는 경우 UNIQUE</td></tr>
+<tr><td><code>is_active</code></td><td>사용 여부</td><td><code>BOOLEAN</code></td><td>불가</td><td>기본값 <code>true</code></td></tr>
+<tr><td><code>created_at</code></td><td>생성 시각</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>서버 기록</td></tr>
+<tr><td><code>created_by</code></td><td>생성 사용자 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → <code>user_account.user_id</code>. 초기 목록 등록 시 NULL 허용</td></tr>
+<tr><td><code>updated_at</code></td><td>최종 수정 시각</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>생성 시각으로 초기화, 변경 시 갱신</td></tr>
+<tr><td><code>updated_by</code></td><td>최종 수정 사용자 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → <code>user_account.user_id</code></td></tr>
+</tbody>
+</table></div>
+<ul>
+<li>substance_name에는 UNIQUE를 적용하지 않으며, substance_id로 물질 식별.</li>
+<li>결과의 표시값은 기록에 보존하며, 목록에서 선택·확정한 경우 물질 ID를 연결합니다.</li>
+<li>참조 중인 항목은 삭제 대신 비활성화합니다.</li>
+</ul>
+</section>
+<section class="policy-section schema-level-3" id="base_master" tabindex="-1">
+<h3>base_master</h3>
+<p>BASE의 표시명과 선택·매칭 목록을 관리합니다.</p>
+<div class="schema-table-wrap"><table class="schema-columns">
+<thead>
+<tr><th scope="col">컬럼명</th><th scope="col">한글 이름</th><th scope="col">자료형</th><th scope="col">NULL</th><th scope="col">제약·설명</th></tr>
+</thead>
+<tbody>
+<tr><td><code>base_id</code></td><td>BASE ID</td><td><code>UUID</code></td><td>불가</td><td>PK</td></tr>
+<tr><td><code>base_name</code></td><td>BASE 이름</td><td><code>TEXT</code></td><td>불가</td><td>공백만 있는 값 불가</td></tr>
+<tr><td><code>description</code></td><td>설명</td><td><code>TEXT</code></td><td>허용</td><td>항목의 의미·적용 조건</td></tr>
+<tr><td><code>is_active</code></td><td>사용 여부</td><td><code>BOOLEAN</code></td><td>불가</td><td>기본값 <code>true</code></td></tr>
+<tr><td><code>created_at</code></td><td>생성 시각</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>서버 기록</td></tr>
+<tr><td><code>created_by</code></td><td>생성 사용자 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → <code>user_account.user_id</code>. 초기 목록 등록 시 NULL 허용</td></tr>
+<tr><td><code>updated_at</code></td><td>최종 수정 시각</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>생성 시각으로 초기화, 변경 시 갱신</td></tr>
+<tr><td><code>updated_by</code></td><td>최종 수정 사용자 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → <code>user_account.user_id</code></td></tr>
+</tbody>
+</table></div>
+<ul>
+<li>직접 입력값은 결과에 보존하며, 입력만으로 목록에 자동 등록하지 않습니다.</li>
+<li>참조 중인 항목은 삭제 대신 비활성화합니다.</li>
+</ul>
+</section>
+<section class="policy-section schema-level-3" id="sampling_method_master" tabindex="-1">
+<h3>sampling_method_master</h3>
+<p>시료 채취 방법의 명칭과 선택 목록을 관리합니다.</p>
+<div class="schema-table-wrap"><table class="schema-columns">
+<thead>
+<tr><th scope="col">컬럼명</th><th scope="col">한글 이름</th><th scope="col">자료형</th><th scope="col">NULL</th><th scope="col">제약·설명</th></tr>
+</thead>
+<tbody>
+<tr><td><code>sampling_method_id</code></td><td>채취법 ID</td><td><code>UUID</code></td><td>불가</td><td>PK</td></tr>
+<tr><td><code>method_name</code></td><td>채취법 이름</td><td><code>TEXT</code></td><td>불가</td><td>공백만 있는 값 불가</td></tr>
+<tr><td><code>description</code></td><td>설명</td><td><code>TEXT</code></td><td>허용</td><td>적용 조건·구분 정보</td></tr>
+<tr><td><code>is_active</code></td><td>사용 여부</td><td><code>BOOLEAN</code></td><td>불가</td><td>기본값 <code>true</code></td></tr>
+<tr><td><code>created_at</code></td><td>생성 시각</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>서버 기록</td></tr>
+<tr><td><code>created_by</code></td><td>생성 사용자 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → <code>user_account.user_id</code>. 초기 목록 등록 시 NULL 허용</td></tr>
+<tr><td><code>updated_at</code></td><td>최종 수정 시각</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>생성 시각으로 초기화, 변경 시 갱신</td></tr>
+<tr><td><code>updated_by</code></td><td>최종 수정 사용자 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → <code>user_account.user_id</code></td></tr>
+</tbody>
+</table></div>
+<ul>
+<li>method_name에는 UNIQUE를 적용하지 않으며, sampling_method_id로 채취법 식별.</li>
+<li>직접 입력값은 결과에 보존하며, 입력만으로 목록에 자동 등록하지 않습니다.</li>
+<li>참조 중인 항목은 삭제 대신 비활성화합니다.</li>
+</ul>
+</section>
+<section class="policy-section schema-level-3" id="analysis_method_master" tabindex="-1">
+<h3>analysis_method_master</h3>
+<p>분석법의 명칭·코드와 선택 목록을 관리합니다.</p>
+<div class="schema-table-wrap"><table class="schema-columns">
+<thead>
+<tr><th scope="col">컬럼명</th><th scope="col">한글 이름</th><th scope="col">자료형</th><th scope="col">NULL</th><th scope="col">제약·설명</th></tr>
+</thead>
+<tbody>
+<tr><td><code>analysis_method_id</code></td><td>분석법 ID</td><td><code>UUID</code></td><td>불가</td><td>PK</td></tr>
+<tr><td><code>method_code</code></td><td>분석법 코드</td><td><code>TEXT</code></td><td>허용</td><td>고시번호·방법 코드. 명칭과 함께 식별</td></tr>
+<tr><td><code>method_name</code></td><td>분석법 이름</td><td><code>TEXT</code></td><td>불가</td><td>공백만 있는 값 불가</td></tr>
+<tr><td><code>description</code></td><td>설명</td><td><code>TEXT</code></td><td>허용</td><td>적용 조건·코드 발급 기준</td></tr>
+<tr><td><code>is_active</code></td><td>사용 여부</td><td><code>BOOLEAN</code></td><td>불가</td><td>기본값 <code>true</code></td></tr>
+<tr><td><code>created_at</code></td><td>생성 시각</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>서버 기록</td></tr>
+<tr><td><code>created_by</code></td><td>생성 사용자 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → <code>user_account.user_id</code>. 초기 목록 등록 시 NULL 허용</td></tr>
+<tr><td><code>updated_at</code></td><td>최종 수정 시각</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>생성 시각으로 초기화, 변경 시 갱신</td></tr>
+<tr><td><code>updated_by</code></td><td>최종 수정 사용자 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → <code>user_account.user_id</code></td></tr>
+</tbody>
+</table></div>
+<ul>
+<li>method_name·method_code 각각에 전역 UNIQUE를 적용하지 않으며, analysis_method_id로 분석법 식별.</li>
+<li>직접 입력값은 결과에 보존하며, 입력만으로 목록에 자동 등록하지 않습니다.</li>
+<li>참조 중인 항목은 삭제 대신 비활성화합니다.</li>
+</ul>
+</section>
+<section class="policy-section schema-level-3" id="substance_method_map" tabindex="-1">
+<h3>substance_method_map</h3>
+<p>물질·매체별 BASE·채취법·분석법의 적용 조합과 추천 순서를 관리합니다.</p>
+<div class="schema-table-wrap"><table class="schema-columns">
+<thead>
+<tr><th scope="col">컬럼명</th><th scope="col">한글 이름</th><th scope="col">자료형</th><th scope="col">NULL</th><th scope="col">제약·설명</th></tr>
+</thead>
+<tbody>
+<tr><td><code>mapping_id</code></td><td>매핑 ID</td><td><code>UUID</code></td><td>불가</td><td>PK</td></tr>
+<tr><td><code>substance_id</code></td><td>분석 물질 ID</td><td><code>UUID</code></td><td>불가</td><td>FK → <code>substance_master.substance_id</code></td></tr>
+<tr><td><code>medium_option_id</code></td><td>매체 항목 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → <code>common_option.option_id</code>. <code>MEDIUM</code> 그룹만 허용. NULL은 매체 제한 없음</td></tr>
+<tr><td><code>base_id</code></td><td>BASE ID</td><td><code>UUID</code></td><td>허용</td><td>FK → <code>base_master.base_id</code></td></tr>
+<tr><td><code>sampling_method_id</code></td><td>채취법 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → <code>sampling_method_master.sampling_method_id</code></td></tr>
+<tr><td><code>analysis_method_id</code></td><td>분석법 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → <code>analysis_method_master.analysis_method_id</code></td></tr>
+<tr><td><code>recommendation_rank</code></td><td>추천 순위</td><td><code>INTEGER</code></td><td>불가</td><td>0 이상. 낮을수록 우선순위 높음</td></tr>
+<tr><td><code>match_conditions</code></td><td>추가 적용 조건</td><td><code>JSON</code></td><td>허용</td><td>조건 명세 버전과 허용된 조건 항목만 저장. NULL은 추가 조건 없음</td></tr>
+<tr><td><code>is_active</code></td><td>사용 여부</td><td><code>BOOLEAN</code></td><td>불가</td><td>기본값 <code>true</code></td></tr>
+<tr><td><code>created_at</code></td><td>생성 시각</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>서버 기록</td></tr>
+<tr><td><code>created_by</code></td><td>생성 사용자 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → <code>user_account.user_id</code>. 초기 목록 등록 시 NULL 허용</td></tr>
+<tr><td><code>updated_at</code></td><td>최종 수정 시각</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>생성 시각으로 초기화, 변경 시 갱신</td></tr>
+<tr><td><code>updated_by</code></td><td>최종 수정 사용자 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → <code>user_account.user_id</code></td></tr>
+</tbody>
+</table></div>
+<ul>
+<li><code>base_id</code>·<code>sampling_method_id</code>·<code>analysis_method_id</code> 중 하나 이상 필수입니다. 여러 값이 있으면 하나의 적용 조합으로 관리합니다.</li>
+<li>적용 조건은 물질·매체·match_conditions로 정의. recommendation_rank는 적용 가능한 조합의 우선순위.</li>
+<li>동일 물질·매체·방법 조합·정규화한 추가 조건의 중복을 금지합니다. 이때 NULL끼리는 동일한 값으로 비교하며, DBMS에 맞는 제약 또는 트랜잭션 검증을 적용합니다.</li>
+<li>물질·매체 등 조건 변경 시 연결된 BASE·방법 조합의 유효성을 재검증. 유효하지 않은 참조는 공통 참조 정합성 기준 적용.</li>
+</ul>
+</section>
+<section class="policy-section schema-level-3" id="common_option" tabindex="-1">
+<h3>common_option</h3>
+<p>구분·매체·담당자·분석 기관·단위의 그룹별 선택 목록을 관리합니다.</p>
+<div class="schema-table-wrap"><table class="schema-columns">
+<thead>
+<tr><th scope="col">컬럼명</th><th scope="col">한글 이름</th><th scope="col">자료형</th><th scope="col">NULL</th><th scope="col">제약·설명</th></tr>
+</thead>
+<tbody>
+<tr><td><code>option_id</code></td><td>항목 ID</td><td><code>UUID</code></td><td>불가</td><td>PK</td></tr>
+<tr><td><code>option_group</code></td><td>항목 그룹</td><td><code>TEXT</code></td><td>불가</td><td><code>CATEGORY</code>·<code>MEDIUM</code>·<code>PERSON</code>·<code>INSTITUTION</code>·<code>UNIT</code></td></tr>
+<tr><td><code>option_code</code></td><td>항목 코드</td><td><code>TEXT</code></td><td>불가</td><td>그룹 내 고정 식별 코드. UNIQUE(<code>option_group</code>, <code>option_code</code>)</td></tr>
+<tr><td><code>option_name</code></td><td>항목 이름</td><td><code>TEXT</code></td><td>불가</td><td>항목 명칭. 공백만 있는 값 불가</td></tr>
+<tr><td><code>display_order</code></td><td>기본 표시 순서</td><td><code>INTEGER</code></td><td>불가</td><td>기본값 0, 0 이상. 낮을수록 먼저 표시</td></tr>
+<tr><td><code>is_active</code></td><td>사용 여부</td><td><code>BOOLEAN</code></td><td>불가</td><td>기본값 <code>true</code></td></tr>
+<tr><td><code>created_at</code></td><td>생성 시각</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>서버 기록</td></tr>
+<tr><td><code>created_by</code></td><td>생성 사용자 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → <code>user_account.user_id</code>. 초기 목록 등록 시 NULL 허용</td></tr>
+<tr><td><code>updated_at</code></td><td>최종 수정 시각</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>생성 시각으로 초기화, 변경 시 갱신</td></tr>
+<tr><td><code>updated_by</code></td><td>최종 수정 사용자 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → <code>user_account.user_id</code></td></tr>
+</tbody>
+</table></div>
+<ul>
+<li>그룹 의미: <code>CATEGORY</code> 구분, <code>MEDIUM</code> 매체, <code>PERSON</code> 담당자, <code>INSTITUTION</code> 분석 기관, <code>UNIT</code> 단위. 담당자 목록과 로그인 회원은 별개입니다.</li>
+<li>참조 필드별 허용 그룹을 검증합니다. 이름에 전역 UNIQUE를 적용하지 않으며, 코드는 참조 후 변경하지 않습니다.</li>
+<li>참조 ID와 추출·직접 입력값이 모두 없으면 해당 업무 컬럼은 NULL.</li>
+<li>직접 입력값을 자동 등록하지 않으며, 기록 당시 표시값은 기록에 보존합니다. 참조 중인 항목은 삭제 대신 비활성화합니다.</li>
+</ul>
+</section>
+<section class="policy-section schema-level-3" id="file_type_master" tabindex="-1">
+<h3>file_type_master</h3>
+<p><strong>파일 유형 목록</strong> — 유형 코드·사용 여부·현재 적용할 추출 규칙 버전 관리.</p>
+<div class="schema-table-wrap"><table class="schema-columns">
+<thead>
+<tr><th scope="col">컬럼명</th><th scope="col">한글 이름</th><th scope="col">자료형</th><th scope="col">NULL</th><th scope="col">제약·설명</th></tr>
+</thead>
+<tbody>
+<tr><td><code>file_type</code></td><td>파일 유형 코드</td><td><code>TEXT</code></td><td>불가</td><td>PK. 등록 후 변경하지 않는 유형 식별자</td></tr>
+<tr><td><code>type_name</code></td><td>파일 유형명</td><td><code>TEXT</code></td><td>불가</td><td>유형의 명칭</td></tr>
+<tr><td><code>description</code></td><td>유형 설명</td><td><code>TEXT</code></td><td>허용</td><td>파일 구조·용도 설명</td></tr>
+<tr><td><code>allowed_extensions</code></td><td>허용 확장자</td><td><code>JSON</code></td><td>불가</td><td><code>csv</code>, <code>pdf</code>, <code>xlsx</code> 중 해당 유형에서 허용하는 확장자 배열</td></tr>
+<tr><td><code>current_rule_version_id</code></td><td>현재 적용 규칙 버전 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → <code>file_type_rule_version.rule_version_id</code>. 적용 준비 전에는 NULL</td></tr>
+<tr><td><code>is_active</code></td><td>사용 여부</td><td><code>BOOLEAN</code></td><td>불가</td><td>신규 작업의 자동 분류·적용 여부</td></tr>
+<tr><td><code>updated_by</code></td><td>수정 회원 ID</td><td><code>UUID</code></td><td>불가</td><td>FK → <code>user_account.user_id</code></td></tr>
+<tr><td><code>updated_at</code></td><td>수정 일시</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>마지막 변경 시각</td></tr>
+</tbody>
+</table></div>
+<ul>
+<li>allowed_extensions는 해당 유형의 허용 확장자 배열. 판별 명세는 연결된 규칙 버전의 detection_spec에 저장.</li>
+<li>현재 적용 버전은 동일한 <code>file_type</code>에 속하며, 실행 가능한 스크립트 배포가 완료된 버전이어야 합니다.</li>
+<li>적용 가능한 유형 조건: is_active = true, current_rule_version_id가 배포 완료된 버전을 참조.</li>
+<li>유형 상태·현재 적용 버전 변경 시 기존 uploaded_file.applied_rule_version_id는 유지.</li>
+</ul>
+</section>
+<section class="policy-section schema-level-3" id="file_type_rule_version" tabindex="-1">
+<h3>file_type_rule_version</h3>
+<p><strong>유형별 추출 규칙 버전</strong> — 판별·추출·필드 명세와 실행 스크립트의 버전별 참조.</p>
+<div class="schema-table-wrap"><table class="schema-columns">
+<thead>
+<tr><th scope="col">컬럼명</th><th scope="col">한글 이름</th><th scope="col">자료형</th><th scope="col">NULL</th><th scope="col">제약·설명</th></tr>
+</thead>
+<tbody>
+<tr><td><code>rule_version_id</code></td><td>규칙 버전 ID</td><td><code>UUID</code></td><td>불가</td><td>PK</td></tr>
+<tr><td><code>file_type</code></td><td>파일 유형 코드</td><td><code>TEXT</code></td><td>불가</td><td>FK → <code>file_type_master.file_type</code></td></tr>
+<tr><td><code>version_label</code></td><td>버전명</td><td><code>TEXT</code></td><td>불가</td><td><code>(file_type, version_label)</code> 고유</td></tr>
+<tr><td><code>detection_spec</code></td><td>유형 판별 명세</td><td><code>JSON</code></td><td>불가</td><td>파일 구조·헤더·필수 항목 등 자동 분류 기준</td></tr>
+<tr><td><code>extraction_spec</code></td><td>데이터 추출 명세</td><td><code>JSON</code></td><td>불가</td><td>원본 항목과 저장 항목의 매핑·변환·물질별 행 생성 기준</td></tr>
+<tr><td><code>input_schema</code></td><td>입력·검토 항목 명세</td><td><code>JSON</code></td><td>불가</td><td>필드 범위·순서·출처·입력 방식·검증·편집 범위</td></tr>
+<tr><td><code>parser_key</code></td><td>추출 스크립트 식별자</td><td><code>TEXT</code></td><td>불가</td><td>실행할 스크립트의 고정 식별자</td></tr>
+<tr><td><code>parser_version</code></td><td>추출 스크립트 버전</td><td><code>TEXT</code></td><td>불가</td><td>해당 규칙에 연결된 스크립트 버전</td></tr>
+<tr><td><code>artifact_ref</code></td><td>실행 파일 참조</td><td><code>TEXT</code></td><td>불가</td><td>실행 스크립트의 버전이 고정된 위치 또는 참조값</td></tr>
+<tr><td><code>artifact_digest</code></td><td>실행 파일 검증값</td><td><code>TEXT</code></td><td>불가</td><td>실행 코드의 동일성을 확인하는 해시값</td></tr>
+<tr><td><code>change_summary</code></td><td>변경 내용</td><td><code>TEXT</code></td><td>불가</td><td>최초 등록 또는 이전 버전 대비 변경 사항</td></tr>
+<tr><td><code>registered_by</code></td><td>등록 회원 ID</td><td><code>UUID</code></td><td>불가</td><td>FK → <code>user_account.user_id</code></td></tr>
+<tr><td><code>registered_at</code></td><td>등록 일시</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>버전 명세 등록 시각</td></tr>
+<tr><td><code>deployed_at</code></td><td>배포 일시</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>허용</td><td>실행 가능한 스크립트의 배포 완료 시각. 배포 전 NULL</td></tr>
+</tbody>
+</table></div>
+<ul>
+<li>input_schema: 필드별 필수 여부·NULL 허용·입력 방식·단계별 편집 가능 여부·변경 적용 범위를 담는 JSON 명세.</li>
+<li>등록된 버전의 명세·코드 참조는 불변. 변경 버전은 새 rule_version_id와 version_label로 저장.</li>
+<li>uploaded_file.applied_rule_version_id는 해당 파일에 적용된 고정 버전을 참조.</li>
+</ul>
+</section>
+</section>
+</div>
+</main>
+</body>
+</html>

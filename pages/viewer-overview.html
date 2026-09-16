@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>공통 뷰어 안내</title>
+  <link rel="stylesheet" href="page-base.css">
+  <style>
+    body{padding:40px 64px}
+    .page-top strong{letter-spacing:0}
+    .eyebrow{margin:24px 0 10px;letter-spacing:0}
+    .title{font-size:28px;margin-bottom:10px}
+    .guides{display:grid;grid-template-columns:repeat(2,1fr);gap:20px 24px;margin-top:28px}
+    .guide{border:1px solid #e1e7f0;border-radius:10px;padding:24px 26px;height:212px;background:#fff}
+    .guide-heading{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+    .guide-count{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;width:30px;height:30px;border-radius:8px;background:#edf3fb;color:#496b9d;font-size:11px;font-weight:650}
+    .guide h2{font-size:17px}
+    .guide p{font-size:13.5px;line-height:1.85;color:#73839a;word-break:keep-all;margin:0}
+    .guide p+p{margin-top:8px}
+    .guide strong{color:#49617f;font-weight:600}
+    .guide kbd{display:inline-block;padding:0 5px;border:1px solid #dce4ef;border-radius:4px;background:#f7f9fc;font:inherit;font-size:11px;color:#516c90;line-height:1.7;vertical-align:1px}
+    .guide .arrow{font-weight:650;color:#496b9d}
+  </style>
+</head>
+<body>
+  <div class="page-top"><strong>화면 목업 뷰어</strong><span class="sample-label">사용 안내</span></div>
+  <p class="eyebrow">화면 탐색부터 코드 복사까지</p>
+  <h1 class="title">화면을 살펴보고, 필요한 내용을 복사하세요.</h1>
+  <p class="intro">목업과 설명을 함께 확인하고, 텍스트나 화면 코드를 가져갈 수 있습니다.</p>
+  <div class="guides">
+    <section class="guide" data-component="guide-navigation" data-component-title="페이지·패널 안내" data-component-width="564">
+      <div class="guide-heading"><span class="guide-count">01</span><h2>페이지와 패널</h2></div>
+      <p>왼쪽 목록에서 화면을 선택합니다.<br>하단 화살표는 현재 목록 안에서만 이동합니다.</p>
+      <p>왼쪽 패널은 <span class="arrow">&lt;</span>, 오른쪽 패널은 <span class="arrow">&gt;</span>로 숨깁니다.<br>가장자리에 남은 <strong>반대 방향 화살표</strong>로 다시 엽니다.</p>
+    </section>
+    <section class="guide" data-component="guide-zoom" data-component-title="확대·이동 안내" data-component-width="564">
+      <div class="guide-heading"><span class="guide-count">02</span><h2>확대와 화면 이동</h2></div>
+      <p><strong>핀치</strong>로 목업만 확대하고, <strong>스크롤</strong> 또는<br><kbd>Space</kbd> + 드래그로 긴 화면을 이동합니다.</p>
+      <p><strong>너비 맞춤</strong>을 누르면 너비에 맞춰 맨 위로 이동합니다.</p>
+    </section>
+    <section class="guide" data-component="guide-description" data-component-title="설명·텍스트 복사 안내" data-component-width="564">
+      <div class="guide-heading"><span class="guide-count">03</span><h2>설명과 텍스트 복사</h2></div>
+      <p><strong>번호 표시</strong>로 화면 번호를 켜고 끕니다.<br>번호를 누르면 오른쪽 설명이 강조되고,<br>숨겨진 설명 패널도 열립니다.</p>
+      <p>텍스트를 드래그해 선택하고 <kbd>⌘C</kbd> 또는 <kbd>Ctrl+C</kbd>로 복사합니다.</p>
+    </section>
+    <section class="guide" data-component="guide-code" data-component-title="화면 코드 복사 안내" data-component-width="564">
+      <div class="guide-heading"><span class="guide-count">04</span><h2>화면 코드 복사</h2></div>
+      <p><strong>코드 보기 → 복사 대상 선택 → 코드 복사</strong><br>페이지 전체 또는 등록된 컴포넌트의 HTML과 CSS를 복사합니다.</p>
+      <p><strong>컴포넌트 선택</strong>으로 화면의 영역을 직접 지정할 수 있습니다.</p>
+    </section>
+  </div>
+  <div class="footer"><span>공통 뷰어 안내</span></div>
+</body>
+</html>

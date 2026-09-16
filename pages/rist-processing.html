@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>파일 확인 및 추출</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body { width: 1280px; height: 800px; color: #25282d; background: #f3f4f6; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; font-size: 16px; line-height: 1.5; }
+    .app-header { display: flex; align-items: center; justify-content: space-between; width: 1280px; max-width: 100%; height: 80px; padding: 0 56px; border-bottom: 1px solid #d1d5db; background: #ffffff; }
+    .app-service-name { color: #24272c; font-size: 22px; font-weight: 700; line-height: 1.4; letter-spacing: -0.035em; }
+    .app-profile { display: flex; align-items: center; gap: 10px; height: 42px; padding: 0 12px; border: 1px solid #d1d5db; border-radius: 6px; color: #41464e; background: #ffffff; font: inherit; font-size: 15px; cursor: pointer; }
+    .app-user-icon { display: block; width: 24px; height: 24px; color: #757c86; }
+    .app-profile-chevron { display: block; width: 16px; height: 16px; margin-left: 4px; color: #757c86; }
+    .app-profile:focus-visible { outline: 2px solid #7c8591; outline-offset: 3px; }
+    .processing-main { width: 1056px; margin: 44px auto 0; }
+    .processing-title { margin: 0 0 24px; color: #24272c; font-size: 32px; font-weight: 700; line-height: 1.4; letter-spacing: -0.045em; }
+    .processing-file { display: flex; align-items: center; gap: 18px; width: 1056px; max-width: 100%; height: 96px; padding: 24px 32px; border: 1px solid #d1d5db; border-radius: 10px; background: #ffffff; }
+    .processing-file-icon { display: block; width: 34px; height: 40px; flex-shrink: 0; color: #808893; }
+    .processing-file-name { margin: 0; color: #353b43; font-size: 18px; font-weight: 600; }
+    .processing-file-size { margin-left: auto; color: #787f89; font-size: 15px; }
+    .processing-status { width: 1056px; max-width: 100%; height: 368px; margin-top: 24px; padding: 44px 64px; border: 1px solid #d1d5db; border-radius: 10px; background: #ffffff; }
+    .processing-message { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+    .processing-spinner { display: block; width: 44px; height: 44px; }
+    .processing-message-text { margin: 0; color: #353b43; font-size: 22px; font-weight: 600; line-height: 1.5; letter-spacing: -0.025em; }
+    .processing-stepper { display: flex; list-style: none; margin: 44px 0 0; padding: 0; }
+    .processing-step { position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .processing-step::after { content: ''; position: absolute; top: 16px; left: calc(50% + 28px); width: calc(100% - 56px); height: 1px; background: #d8dce2; }
+    .processing-step:last-child::after { display: none; }
+    .processing-step-indicator { display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid #c9ced6; border-radius: 50%; color: #858d98; background: #ffffff; }
+    .processing-step-icon { display: block; width: 18px; height: 18px; }
+    .processing-step.is-complete .processing-step-indicator { border-color: #727b87; color: #ffffff; background: #727b87; }
+    .processing-step.is-current .processing-step-indicator { border: 2px solid #555f6d; color: #555f6d; }
+    .processing-step-dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+    .processing-step.is-waiting .processing-step-dot { width: 6px; height: 6px; color: #c8cdd4; }
+    .processing-step-label { margin-top: 12px; color: #747c87; font-size: 16px; font-weight: 600; }
+    .processing-step-state { margin-top: 4px; color: #8b929d; font-size: 14px; }
+    .processing-step.is-current .processing-step-label, .processing-step.is-current .processing-step-state { color: #414a56; }
+  </style>
+</head>
+<body>
+  <header class="app-header" data-component="processing-header" data-component-title="Header" data-component-width="1280">
+    <span class="app-service-name">환경데이터 표준화 프로그램</span>
+    <button class="app-profile" type="button" aria-label="사용자 메뉴" aria-haspopup="menu" aria-expanded="false">
+      <svg class="app-user-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.6"></circle>
+        <path d="M 5 21 V 19 A 7 7 0 0 1 19 19 V 21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+      <span>박보검</span>
+      <svg class="app-profile-chevron" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M 4 6 L 8 10 L 12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </button>
+  </header>
+
+  <main class="processing-main">
+    <h1 class="processing-title">파일 확인 및 추출</h1>
+    <section class="processing-file" aria-label="파일 정보" data-component="processing-file" data-component-title="File summary" data-component-width="1056">
+      <svg class="processing-file-icon" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M 7 2 H 21 L 29 10 V 36 A 2 2 0 0 1 27 38 H 7 A 2 2 0 0 1 5 36 V 4 A 2 2 0 0 1 7 2 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path>
+        <path d="M 21 2 V 10 H 29 M 11 19 H 23 M 11 25 H 23 M 11 31 H 19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+      <p class="processing-file-name">환경측정결과.xlsx</p>
+      <span class="processing-file-size">1.2 MB</span>
+    </section>
+
+    <section class="processing-status" aria-label="처리 상태" data-component="processing-status" data-component-title="Spinner / Stepper" data-component-width="1056">
+      <div class="processing-message" role="status">
+        <svg class="processing-spinner" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="22" cy="22" r="18" stroke="#e0e3e8" stroke-width="4"></circle>
+          <path d="M 22 4 A 18 18 0 0 1 40 22" stroke="#606b79" stroke-width="4" stroke-linecap="round"></path>
+        </svg>
+        <p class="processing-message-text">파일 유형을 확인하고 있습니다.</p>
+      </div>
+      <ol class="processing-stepper" aria-label="처리 진행 단계">
+        <li class="processing-step is-complete">
+          <span class="processing-step-indicator" aria-hidden="true">
+            <svg class="processing-step-icon" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M 4 9 L 7.5 12.5 L 14 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </span>
+          <span class="processing-step-label">파일 업로드</span>
+          <span class="processing-step-state">완료</span>
+        </li>
+        <li class="processing-step is-current" aria-current="step">
+          <span class="processing-step-indicator" aria-hidden="true"><span class="processing-step-dot"></span></span>
+          <span class="processing-step-label">파일 유형 확인</span>
+          <span class="processing-step-state">진행 중</span>
+        </li>
+        <li class="processing-step is-waiting">
+          <span class="processing-step-indicator" aria-hidden="true"><span class="processing-step-dot"></span></span>
+          <span class="processing-step-label">데이터 추출</span>
+          <span class="processing-step-state">대기</span>
+        </li>
+      </ol>
+    </section>
+  </main>
+</body>
+</html>

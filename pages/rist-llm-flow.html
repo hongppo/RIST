@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RIST LLM 추출 순서도</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body { width: 1280px; color: #20334c; background: #ffffff; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; font-size: 20px; line-height: 1.5; }
+    .flow-page { width: 1280px; padding: 64px 64px 56px; }
+    .flow-header { display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 32px; margin-bottom: 34px; border-bottom: 1px solid #dce3eb; }
+    .flow-eyebrow { margin: 0 0 12px; color: #5f7188; font-size: 16px; font-weight: 650; letter-spacing: 0.08em; }
+    .flow-title { margin: 0; color: #172d49; font-size: 42px; line-height: 1.25; letter-spacing: -0.045em; font-weight: 750; }
+    .flow-legend { display: flex; flex-direction: column; gap: 7px; padding-bottom: 2px; color: #607087; font-size: 14px; }
+    .flow-key { display: flex; align-items: center; gap: 9px; }
+    .flow-key-line { display: inline-block; width: 24px; height: 0; border-top: 2px solid #536b89; }
+    .flow-key-line.exception { border-color: #947553; }
+    .flow-key-line.reference { border-color: #8c99aa; border-top-style: dashed; }
+    .flow-diagram { position: relative; width: 1152px; height: 2470px; background: #ffffff; }
+    .flow-connections { position: absolute; inset: 0; width: 1152px; height: 2470px; overflow: visible; pointer-events: none; }
+    .flow-path { fill: none; stroke: #536b89; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; marker-end: url(#flow-arrow); }
+    .flow-path.exception { stroke: #947553; marker-end: url(#flow-arrow-exception); }
+    .flow-path.reference { stroke: #8c99aa; stroke-dasharray: 6 6; marker-end: url(#flow-arrow-reference); }
+    .flow-path.join { marker-end: none; }
+    .flow-diamond { fill: #f4f7fb; stroke: #8b9db4; stroke-width: 1.8; }
+    .flow-column { position: absolute; top: 0; margin: 0; color: #738198; font-size: 15px; letter-spacing: 0.025em; font-weight: 600; }
+    .flow-node { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 320px; height: 120px; padding: 18px 20px; border: 1.5px solid #aab8c9; border-radius: 12px; color: #20334c; background: #ffffff; text-align: center; }
+    .flow-node.small { width: 300px; height: 110px; }
+    .flow-node.reference { border-style: dashed; border-color: #aeb9c8; background: #f7f9fc; }
+    .flow-node.exception { border-color: #cbbba8; background: #fcfaf7; }
+    .flow-node.terminal { border-radius: 56px; }
+    .flow-node.review { height: 260px; padding: 20px; border: 0; background: #243d5e; color: #ffffff; }
+    .flow-node.success { border-color: #708d8c; background: #f4f9f8; }
+    .flow-id { display: block; margin-bottom: 7px; color: #697e97; font-size: 15px; font-weight: 650; letter-spacing: 0.05em; }
+    .flow-node.exception .flow-id { color: #8d7459; }
+    .flow-node.review .flow-id { color: #c4d4e6; }
+    .flow-node-title { margin: 0; font-size: 24px; font-weight: 650; line-height: 1.35; letter-spacing: -0.035em; }
+    .flow-node-title.compact { font-size: 22px; }
+    .flow-node-sub { margin: 8px 0 0; color: #6d7c90; font-size: 16px; }
+    .flow-review-steps { display: flex; flex-direction: column; gap: 5px; margin-top: 14px; padding-top: 14px; width: 100%; border-top: 1px solid #506683; color: #e4ecf6; font-size: 17px; line-height: 1.4; }
+    .flow-decision { position: absolute; display: flex; align-items: center; justify-content: center; width: 360px; height: 200px; text-align: center; color: #253c59; font-size: 23px; font-weight: 650; line-height: 1.4; letter-spacing: -0.035em; }
+    .flow-edge-label { position: absolute; margin: 0; padding: 3px 8px; background: #ffffff; color: #5d7088; font-size: 17px; line-height: 1.4; white-space: nowrap; }
+    .flow-edge-label.exception { color: #896e4f; }
+    .flow-edge-label.reference { color: #78879a; }
+    .flow-edge-label.center { transform: translateX(-50%); }
+    .flow-edge-label.two-lines { white-space: normal; text-align: center; }
+  </style>
+</head>
+<body>
+  <main class="flow-page" data-document-root>
+    <header class="flow-header">
+      <div>
+        <p class="flow-eyebrow">RIST · 고도화 범위</p>
+        <h1 class="flow-title">LLM 추출 순서도</h1>
+      </div>
+      <div class="flow-legend" aria-label="연결선 구분">
+        <span class="flow-key"><i class="flow-key-line"></i>추출 · 검토 · 저장</span>
+        <span class="flow-key"><i class="flow-key-line exception"></i>실패 · 수정</span>
+        <span class="flow-key"><i class="flow-key-line reference"></i>업로드로 복귀</span>
+      </div>
+    </header>
+
+    <section class="flow-diagram" aria-label="기존 규칙으로 유형이 확정되지 않는 파일의 LLM 추출 및 사용자 검토·저장 흐름" data-component="rist-llm-flow" data-component-title="LLM 추출 순서도" data-component-width="1152">
+      <p class="flow-column" style="left: 270px;">등록 규칙 · 입력 · 저장</p>
+      <p class="flow-column" style="left: 800px;">LLM 추출</p>
+
+      <svg class="flow-connections" viewBox="0 0 1152 2470" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 1 1 L 9 5 L 1 9 Z" fill="#536b89"></path></marker>
+          <marker id="flow-arrow-exception" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 1 1 L 9 5 L 1 9 Z" fill="#947553"></path></marker>
+          <marker id="flow-arrow-reference" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 1 1 L 9 5 L 1 9 Z" fill="#8c99aa"></path></marker>
+        </defs>
+        <polygon class="flow-diamond" points="430,420 610,520 430,620 250,520"></polygon>
+        <polygon class="flow-diamond" points="950,700 1130,820 950,940 770,820"></polygon>
+
+        <path class="flow-path" data-from="U-02" data-to="U-03" d="M 430 160 V 250"></path>
+        <path class="flow-path" data-from="U-03" data-to="type-decision" d="M 430 370 V 420"></path>
+        <path class="flow-path" data-from="type-decision" data-to="script-extract" d="M 430 620 V 760"></path>
+        <path class="flow-path" data-from="type-decision" data-to="llm-extract" d="M 610 520 H 800"></path>
+        <path class="flow-path" data-from="llm-extract" data-to="llm-validation" d="M 950 580 V 700"></path>
+        <path class="flow-path" data-from="script-extract" data-to="U-04" d="M 430 880 V 1100"></path>
+        <path class="flow-path" data-from="llm-validation" data-to="U-04" d="M 770 820 H 690 V 1230 H 590"></path>
+
+        <path class="flow-path exception" data-from="script-extract" data-to="script-failed" d="M 270 820 H 120 V 940"></path>
+        <path class="flow-path exception" data-from="script-failed" data-to="script-end" d="M 120 1050 V 1180"></path>
+        <path class="flow-path reference" data-from="script-end" data-to="U-02-return-script" d="M 120 1280 V 1400"></path>
+        <path class="flow-path exception" data-from="llm-validation" data-to="llm-failed" d="M 950 940 V 1120"></path>
+        <path class="flow-path exception" data-from="llm-failed" data-to="llm-end" d="M 950 1230 V 1370"></path>
+        <path class="flow-path reference" data-from="llm-end" data-to="U-02-return-llm" d="M 950 1470 V 1570"></path>
+
+        <path class="flow-path" data-from="U-04" data-to="M-03" d="M 430 1360 V 1660"></path>
+        <path class="flow-path exception" data-from="M-03" data-to="U-04" d="M 270 1735 H 245 V 1230 H 270"></path>
+        <path class="flow-path" data-from="M-03" data-to="U-05" d="M 430 1810 V 1990"></path>
+        <path class="flow-path reference" data-from="U-05" data-to="U-02-return-saved" d="M 430 2110 V 2280"></path>
+      </svg>
+
+      <div class="flow-node" id="llm-flow-u02" style="left: 270px; top: 50px; height: 110px;">
+        <span class="flow-id">U-02</span><h2 class="flow-node-title">파일 업로드</h2>
+      </div>
+      <div class="flow-node" id="llm-flow-u03" style="left: 270px; top: 250px;">
+        <span class="flow-id">U-03</span><h2 class="flow-node-title">파일유형 자동 분류</h2>
+      </div>
+      <div class="flow-decision" id="llm-flow-type-decision" style="left: 250px; top: 420px;">기존 규칙으로<br>유형 확정 가능?</div>
+      <div class="flow-node" id="llm-flow-script" style="left: 270px; top: 760px;">
+        <span class="flow-id">U-03</span><h2 class="flow-node-title">등록 스크립트 추출</h2>
+      </div>
+      <div class="flow-node" id="llm-flow-extract" style="left: 800px; top: 460px; width: 300px; background: #f4f7fb;">
+        <span class="flow-id">U-03</span><h2 class="flow-node-title">LLM 추출 시도</h2>
+      </div>
+      <div class="flow-decision" id="llm-flow-validation" style="left: 770px; top: 700px; height: 240px; font-size: 22px;">검토 가능한 결과<br>및 검증 통과?</div>
+
+      <div class="flow-node small exception" id="llm-flow-script-failed" style="left: 10px; top: 940px; width: 220px;">
+        <h2 class="flow-node-title compact">추출 실패 안내</h2>
+      </div>
+      <div class="flow-node small exception terminal" id="llm-flow-script-end" style="left: 10px; top: 1180px; width: 220px; height: 100px;">
+        <h2 class="flow-node-title compact">해당 작업 종료</h2>
+      </div>
+      <div class="flow-node small reference" id="llm-flow-upload-return-script" style="left: 10px; top: 1400px; width: 220px; height: 100px;">
+        <span class="flow-id">복귀 · U-02</span><h2 class="flow-node-title compact">파일 업로드</h2>
+      </div>
+      <div class="flow-node small exception" id="llm-flow-failed" style="left: 800px; top: 1120px;">
+        <h2 class="flow-node-title compact">LLM 추출 실패 안내</h2>
+      </div>
+      <div class="flow-node small exception terminal" id="llm-flow-end" style="left: 800px; top: 1370px; height: 100px;">
+        <h2 class="flow-node-title">해당 작업 종료</h2>
+      </div>
+      <div class="flow-node small reference" id="llm-flow-upload-return-llm" style="left: 800px; top: 1570px; height: 100px;">
+        <span class="flow-id">복귀 · U-02</span><h2 class="flow-node-title compact">파일 업로드</h2>
+      </div>
+
+      <div class="flow-node review" id="llm-flow-u04" style="left: 270px; top: 1100px;">
+        <span class="flow-id">U-04</span>
+        <h2 class="flow-node-title">메타데이터 입력<br>및 추출 결과 검토</h2>
+        <div class="flow-review-steps">
+          <span>메타데이터 입력</span>
+          <span>추출 방식 확인 · 원본 대조</span>
+          <span>결과 수정 · 기록별 검토 완료</span>
+        </div>
+      </div>
+      <div class="flow-node" id="llm-flow-m03" style="left: 270px; top: 1660px; height: 150px;">
+        <span class="flow-id">M-03</span><h2 class="flow-node-title">업로드 사용자<br>최종 저장 확정</h2>
+      </div>
+      <div class="flow-node success" id="llm-flow-u05" style="left: 270px; top: 1990px;">
+        <span class="flow-id">U-05</span><h2 class="flow-node-title">저장 결과 확인</h2>
+      </div>
+      <div class="flow-node reference" id="llm-flow-upload-return-saved" style="left: 270px; top: 2280px;">
+        <span class="flow-id">복귀 · U-02</span><h2 class="flow-node-title">파일 업로드</h2>
+      </div>
+
+      <p class="flow-edge-label center" style="left: 430px; top: 186px;">업로드 및 추출</p>
+      <p class="flow-edge-label center" style="left: 430px; top: 670px;">가능</p>
+      <p class="flow-edge-label center" style="left: 705px; top: 478px;">불가능</p>
+      <p class="flow-edge-label center" style="left: 430px; top: 971px;">추출 성공</p>
+      <p class="flow-edge-label center" style="left: 690px; top: 966px;">통과</p>
+      <p class="flow-edge-label exception center" style="left: 120px; top: 875px;">복구 불가 실패</p>
+      <p class="flow-edge-label exception center two-lines" style="left: 950px; top: 1000px; width: 280px;">실패·검증 불가·<br>검토 가능한 결과 없음</p>
+      <p class="flow-edge-label reference center" style="left: 120px; top: 1320px;">새 파일 업로드</p>
+      <p class="flow-edge-label reference center" style="left: 950px; top: 1500px;">새 파일 업로드</p>
+      <p class="flow-edge-label center" style="left: 430px; top: 1500px;">검토 완료</p>
+      <p class="flow-edge-label exception center" style="left: 245px; top: 1540px;">수정 필요</p>
+      <p class="flow-edge-label center" style="left: 430px; top: 1875px;">검증 통과 · 저장</p>
+      <p class="flow-edge-label reference center" style="left: 430px; top: 2178px;">새 파일 업로드</p>
+    </section>
+  </main>
+</body>
+</html>
