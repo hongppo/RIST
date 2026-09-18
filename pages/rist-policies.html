@@ -40,18 +40,63 @@
 <header class="policy-header has-labeled-download">
 <div class="document-header-main"><div class="policy-kicker">RIST · POLICIES</div>
 <h1>정책 문서</h1>
-<div class="policy-meta"><span>버전 1</span><span>작성일 2026/09/16</span><span>수정일 2026/09/16</span></div>
+<div class="policy-meta"><span>버전 1</span><span>작성일 2026/09/16</span><span>수정일 2026/09/18</span></div>
 
 </div>
 <div class="document-download-row"><span class="document-download-label">정책 문서.md</span><a data-document-download href="../docs/rist-policies.md" download="정책 문서.md" class="document-download" title="정책 문서 MD 다운로드" aria-label="정책 문서 MD 다운로드"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m-5-5 5 5 5-5"/><path d="M4 15v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></svg></a></div>
 </header>
 <div class="policy-sections">
+<section class="policy-section" id="policy-index" tabindex="-1">
+<h2>인덱스</h2>
+<p>정책 항목은 한글 가나다순, 영문 ABC순으로 배치합니다.</p>
+<ul>
+<li><a href="#login-policy">로그인 정책</a></li>
+<li><a href="#location-policy">지역(위도·경도) 정책</a></li>
+<li><a href="#extraction-script-policy">추출 스크립트 관리 정책</a></li>
+<li><a href="#upload-policy">파일 업로드 정책</a></li>
+</ul>
+</section>
 <section class="policy-section" id="login-policy" tabindex="-1">
 <h2>로그인 정책</h2>
 <ul>
 <li>이번 버전은 프로그램 자체 로그인으로 운영합니다.</li>
 <li>SSO 연동은 고도화 범위로 진행합니다.</li>
 <li>이번 버전부터 추후 SSO 연동이 가능하도록 로그인 기능을 설계합니다.</li>
+</ul>
+</section>
+<section class="policy-section" id="location-policy" tabindex="-1">
+<h2>지역(위도·경도) 정책</h2>
+<h3>좌표 입력·수정</h3>
+<ul>
+<li>원본 파일에서 위도·경도를 추출하며, 값이 없으면 1단계에서 지도 클릭 또는 등록 지점 목록 선택으로 일괄 입력합니다. 2단계 상세 검토에서는 각 행의 좌표를 개별 수정할 수 있습니다.</li>
+<li>위도·경도 중 하나만 추출되면 1단계 지도에 해당 위치의 포인트를 표시하지 않습니다. 왼쪽 입력란에는 추출된 좌표만 표시하고 해당 필드에만 추출 배지를 표시합니다.</li>
+<li>한쪽 좌표만 있는 상태에서 지도 또는 등록 지점을 선택하면 선택한 지점의 위도·경도로 둘 다 교체합니다. 최초 추출 여부와 현재 수정 상태는 별도로 관리합니다.</li>
+<li>검토 중에는 한쪽 좌표만 있는 상태의 작업 저장을 허용합니다. 최종 저장 시에는 위도·경도가 모두 유효하거나 모두 NULL이어야 하며, 유형별 필수값 기준을 함께 적용합니다.</li>
+</ul>
+<h3>화면 표시·입력 검증</h3>
+<ul>
+<li>1·2단계 모두 도분초 형식으로 표시하며, 초는 소수점 2자리로 표시합니다. 예: `36°01′22.09″N`.</li>
+<li>2단계에서 직접 수정할 때는 공백 없이 도·분·초·방향을 정해진 순서와 기호로 입력합니다. 초의 소수부는 2자리를 초과하여 입력할 수 있습니다.</li>
+<li>위도 방향은 N/S, 경도 방향은 E/W를 사용합니다. 분·초는 0 이상 60 미만이며, 위도 90도·경도 180도에서는 분·초가 모두 0이어야 합니다.</li>
+<li>입력 형식 또는 좌표 범위가 잘못되면 오류를 표시하고 해당 변경의 저장을 차단합니다.</li>
+</ul>
+<h3>DB 저장·정밀도 보존</h3>
+<ul>
+<li>입력 경로와 관계없이 위도·경도는 십진수 도 단위의 `DECIMAL(13,10)`으로 저장합니다. 저장 전 원래 값이 위도 -90 이상 90 이하, 경도 -180 이상 180 이하인지 검증합니다.</li>
+<li>십진수 좌표는 소수점 10자리 이하면 값 변경 없이 저장합니다. 10자리를 초과하거나 도분초를 십진수로 변환한 경우에는 소수점 11번째 자리에서 반올림하여 10자리로 저장합니다. 절댓값 기준 5 이상은 올리고 부호를 유지합니다.</li>
+<li>변환·계산은 십진수 정밀 연산으로 처리하고 최종 저장 직전에 한 번만 반올림합니다. DB의 자동 반올림·절삭에 맡기지 않습니다.</li>
+<li>화면 표시용 변환·반올림은 저장값에 반영하지 않습니다. 좌표를 수정하지 않고 저장하면 기존 내부 십진수 값을 유지하며, 실제 수정한 필드만 도분초에서 십진수로 변환합니다.</li>
+<li>파일에서 추출한 최초 좌표 원문은 `source_snapshot`에 변경 없이 보존합니다.</li>
+</ul>
+<p>세부 입력 형식과 검증·저장 구현은 개발 파트와 추가 논의합니다. 검토 중 부분 좌표 허용과 십진수 초과 자릿수 처리 규칙은 통합 스키마에도 맞춰 반영할 항목입니다.</p>
+</section>
+<section class="policy-section" id="extraction-script-policy" tabindex="-1">
+<h2>추출 스크립트 관리 정책</h2>
+<ul>
+<li>파일 유형별로 추출 스크립트를 분리하여 관리합니다.</li>
+<li>각 유형에 판별 기준, 추출 규칙, 입력 항목과 적용 스크립트 버전을 연결합니다.</li>
+<li>자동 분류된 유형의 스크립트로 데이터를 추출하고, 해당 규칙에 따라 입력·검토 화면을 구성합니다.</li>
+<li>스크립트 변경 시 새 버전과 변경 이력을 남기며, 진행 중인 작업은 시작 시 적용된 버전을 유지합니다.</li>
 </ul>
 </section>
 <section class="policy-section" id="upload-policy" tabindex="-1">
@@ -61,15 +106,6 @@
 <li>CSV(.csv), PDF(.pdf), Excel(.xlsx) 파일을 업로드할 수 있으며, 확장자의 대소문자는 구분하지 않습니다.</li>
 <li>파일당 20MB 이하의 파일만 업로드할 수 있습니다.</li>
 <li>빈 파일(0바이트)은 업로드할 수 없습니다.</li>
-</ul>
-</section>
-<section class="policy-section" id="extraction-script-policy" tabindex="-1">
-<h2>추출 스크립트 관리 정책</h2>
-<ul>
-<li>파일 유형별로 추출 스크립트를 분리하여 관리합니다.</li>
-<li>각 유형에 판별 기준, 추출 규칙, 입력 항목과 적용 스크립트 버전을 연결합니다.</li>
-<li>자동 분류된 유형의 스크립트로 데이터를 추출하고, 해당 규칙에 따라 입력·검토 화면을 구성합니다.</li>
-<li>스크립트 변경 시 새 버전과 변경 이력을 남기며, 진행 중인 작업은 시작 시 적용된 버전을 유지합니다.</li>
 </ul>
 </section>
 </div>

@@ -12,7 +12,16 @@ POLICY_HEADING = re.compile(r'^## (.+?) \{#([a-z][a-z0-9-]*)\}$')
 
 
 def inline(text):
-    """Escape every input character before applying the sole inline format."""
+    """Render escaped inline text and Obsidian links to stable policy IDs."""
+    parts = []
+    start = 0
+    for match in re.finditer(r'\[\[#([^\]\n]+?) \{#([a-z][a-z0-9-]*)\}\|([^\]\n]+)\]\]', text):
+        parts.append(inline(text[start:match.start()]))
+        parts.append('<a href="#' + match[2] + '">' + escape(match[3]) + '</a>')
+        start = match.end()
+    if parts:
+        parts.append(inline(text[start:]))
+        return ''.join(parts)
     return re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', escape(text))
 
 
@@ -63,6 +72,8 @@ def render_markdown(source):
             title = line[2:].strip()
         elif line.startswith('## '):
             flush()
+            if line == '## 인덱스':
+                line = '## 인덱스 {#policy-index}'
             match = POLICY_HEADING.fullmatch(line)
             if not match:
                 raise ValueError(f'Line {number}: use ## Policy title {{#policy-id}} with a lowercase ID.')
@@ -95,6 +106,9 @@ def render_markdown(source):
         '<h2>' + inline(heading) + '</h2>\n' + '\n'.join(blocks) + '\n</section>'
         for identifier, heading, blocks in sections
     )
+    for target in re.findall(r'<a href="#([^"<>]+)">', '\n'.join(intro) + content):
+        if target not in identifiers:
+            raise ValueError(f'Unknown policy index target: {target}')
     return title, '\n'.join(intro), content
 
 
