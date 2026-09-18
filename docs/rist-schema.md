@@ -2,7 +2,7 @@
 type: planning
 hub: "[[💡planning]]"
 created_at: 2026-09-16
-updated_at: 2026-09-16
+updated_at: 2026-09-18
 client: "[[RIST(포항산업과학연구원)]]"
 project: "[[RIST 데이터 표준화 프로그램 개발]]"
 status: 초안
@@ -48,10 +48,13 @@ version: 1
 | ID | UUID 자동 발급. 검토 기록·결과의 ID를 최종 테이블에도 재사용 |
 | NULL | 값이 없으면 SQL NULL. 빈 값의 안내 문구나 문자열 `NULL`로 대체하지 않음 |
 | 업무 필수값 | 표의 NULL은 저장 구조의 허용 여부. 최종 저장 시 해당 유형의 input_schema로 필수값·허용 조합을 추가 검증 |
-| 숫자 | 정밀 소수형 사용. DECIMAL의 정밀도·소수 자릿수는 원본 최대 범위로 확정. 임의 반올림·절삭 금지 |
+| 숫자 | 정밀 소수형 사용. 좌표는 아래 자릿수 규칙 적용. 그 외 DECIMAL의 정밀도·소수 자릿수는 원본 최대 범위로 확정. 임의 반올림·절삭 금지 |
 | 시스템 시각 | TIMESTAMP WITH TIME ZONE. UTC 저장 |
 | 분석 일시 | 원본의 날짜·시각·정밀도 보존. 실제 시각이 없는 날짜를 00:00으로 만들지 않음 |
 | 좌표 | 십진수 도 단위의 위도·경도. 지도용 WGS 84를 저장 기준으로 제안하며, 다른 원본 좌표계는 유형별 변환 명세 필요 |
+| 좌표 자릿수 | 위도·경도 모두 `DECIMAL(13,10)`. 전체 13자리 중 소수부 10자리, 정수부 최대 3자리. analysis_record·review_record·location_master에 동일 적용 |
+| 십진수 좌표 입력 | 소수점 10자리 이하는 값 변경 없이 저장. 10자리를 초과하면 저장 전에 정밀도 초과를 검증하고 DB의 자동 반올림·절삭에 맡기지 않음. 파일 원문은 source_snapshot에 보존 |
+| 도분초 좌표 변환 | 십진수 변환 결과는 소수점 11번째 자리에서 반올림하여 10자리로 저장. 절댓값 기준 5 이상은 올리고 부호 유지. 파일의 도분초 원문은 source_snapshot에 보존 |
 | 보존 | 최초 추출값과 최종값을 분리. 목록 ID와 저장 당시 명칭·값을 함께 보존 |
 | 참조 정합성 | 목록에 연결된 표시값을 직접 수정하면 기존 ID를 재검증. 연결이 유효하지 않으면 ID만 NULL로 해제하고 수정값은 보존 |
 | 최종 데이터 | 같은 파일의 analysis_record·analysis_result와 최종 상태를 하나의 트랜잭션으로 저장 |
@@ -115,8 +118,8 @@ version: 1
 | `analysis_duration_days` | 분석 기간 | `INTEGER` | 허용 | 일 단위, 1 이상. 시작일만 있으면 1일 |
 | `location_id` | 등록 지점 ID | `UUID` | 허용 | FK → location_master.location_id. 파일 추출·직접 좌표는 미연결 가능 |
 | `location_name` | 등록 지점명 | `TEXT` | 허용 | 지역 선택 시 해당 시점 명칭 보존 |
-| `latitude` | 위도 | `DECIMAL` | 허용 | -90 이상 90 이하. 측정 당시 좌표 |
-| `longitude` | 경도 | `DECIMAL` | 허용 | -180 이상 180 이하. 측정 당시 좌표 |
+| `latitude` | 위도 | `DECIMAL(13,10)` | 허용 | -90 이상 90 이하. 측정 당시 좌표 |
+| `longitude` | 경도 | `DECIMAL(13,10)` | 허용 | -180 이상 180 이하. 측정 당시 좌표 |
 | `source_locator` | 원본 내 위치 | `TEXT` | 허용 | 원본 페이지·행·셀·추출 구간 식별 |
 | `source_snapshot` | 최초 추출값 | `JSON` | 불가 | 최초 추출값·원본 위치 보존. 이후 수정 불가 |
 | `field_meta` | 필드 상태 | `JSON` | 불가 | 추출 여부·현재 입력 방식·수정 여부·목록 연결 상태 |
@@ -265,8 +268,8 @@ version: 1
 | `analysis_duration_days` | 분석 기간 | `INTEGER` | 허용 | 일 단위, 1 이상. 시작일만 있으면 1일 |
 | `location_id` | 등록 지점 ID | `UUID` | 허용 | FK → location_master.location_id. 파일 추출·직접 좌표는 미연결 가능 |
 | `location_name` | 등록 지점명 | `TEXT` | 허용 | 지역 선택 시 해당 시점 명칭 보존 |
-| `latitude` | 위도 | `DECIMAL` | 허용 | -90 이상 90 이하. 측정 당시 좌표 |
-| `longitude` | 경도 | `DECIMAL` | 허용 | -180 이상 180 이하. 측정 당시 좌표 |
+| `latitude` | 위도 | `DECIMAL(13,10)` | 허용 | -90 이상 90 이하. 측정 당시 좌표 |
+| `longitude` | 경도 | `DECIMAL(13,10)` | 허용 | -180 이상 180 이하. 측정 당시 좌표 |
 | `source_locator` | 원본 내 위치 | `TEXT` | 허용 | 원본 페이지·행·셀·추출 구간 식별 |
 | `source_snapshot` | 최초 추출값 | `JSON` | 불가 | 최초 추출값·원본 위치 보존. 이후 수정 불가 |
 | `field_meta` | 필드 상태 | `JSON` | 불가 | 추출 여부·현재 입력 방식·수정 여부·목록 연결 상태 |
@@ -364,8 +367,8 @@ version: 1
 | --- | --- | --- | --- | --- |
 | `location_id` | 지역·관측 지점 ID | `UUID` | 불가 | PK |
 | `location_name` | 지역·관측 지점명 | `TEXT` | 불가 | 지역·관측 지점의 명칭 |
-| `latitude` | 위도 | `DECIMAL` | 불가 | WGS 84 좌표. `-90 ≤ 값 ≤ 90` |
-| `longitude` | 경도 | `DECIMAL` | 불가 | WGS 84 좌표. `-180 ≤ 값 ≤ 180` |
+| `latitude` | 위도 | `DECIMAL(13,10)` | 불가 | WGS 84 좌표. `-90 ≤ 값 ≤ 90` |
+| `longitude` | 경도 | `DECIMAL(13,10)` | 불가 | WGS 84 좌표. `-180 ≤ 값 ≤ 180` |
 | `description` | 위치 설명 | `TEXT` | 허용 | 지점 구분을 위한 설명 |
 | `is_active` | 사용 여부 | `BOOLEAN` | 불가 | 기본값 `true` |
 | `created_by` | 등록 회원 ID | `UUID` | 불가 | FK → `user_account.user_id` |

@@ -76,7 +76,7 @@ window.MOCKUP_VIEWER_MANIFEST = {
         },
         {
           id: 'rist-review-detail-55',
-          title: '데이터 검토: 2단계(55행)',
+          title: '데이터 검토: 2단계(행 추가를 할 경우)',
           src: 'pages/rist-review-detail-55.html',
           width: 1280,
           autoHeight: true,
