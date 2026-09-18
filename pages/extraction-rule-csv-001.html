@@ -85,7 +85,7 @@
 <header class="policy-header">
 <div class="extraction-header-main"><div class="policy-kicker">RIST · EXTRACTION RULES</div>
 <h1>CSV-001</h1>
-<div class="schema-meta"><span>버전 1</span><span>작성일 2026/09/16</span><span>수정일 2026/09/16</span></div></div>
+<div class="schema-meta"><span>버전 1</span><span>작성일 2026/09/16</span><span>수정일 2026/09/18</span></div></div>
 <div class="extraction-downloads"><div class="extraction-download-row"><span class="extraction-download-label">csv-001.md</span><a data-document-download href="../docs/extraction-rules/csv/csv-001.md" download="csv-001.md" class="document-download" title="csv-001.md 다운로드" aria-label="csv-001.md 다운로드"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m-5-5 5 5 5-5"/><path d="M4 15v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></svg></a></div></div>
 </header>
 <div class="policy-sections">
@@ -98,7 +98,7 @@
 <tbody>
 <tr><td>규칙 코드</td><td><code>CSV-001</code></td></tr>
 <tr><td>대상</td><td>SIFT-MS CSV의 물질별 농도 구간</td></tr>
-<tr><td>원본 파일명</td><td><code>SIFT-MS offline 측정_rawdata_김희진 - 복사본.csv</code></td></tr>
+<tr><td>샘플 파일명</td><td><code>SIFT-MS offline 측정_rawdata_김희진 - 복사본.csv</code></td></tr>
 <tr><td>추출 단위</td><td>파일당 분석 기본 기록 1건, 해당 기록에 연결된 물질별 결과 N건</td></tr>
 <tr><td>기본 항목 매핑</td><td><a href="rist-schema.html#review_record" data-viewer-page="rist-schema" data-viewer-anchor="review_record">통합 스키마 · review_record</a></td></tr>
 <tr><td>물질별 항목 매핑</td><td><a href="rist-schema.html#review_result" data-viewer-page="rist-schema" data-viewer-anchor="review_result">통합 스키마 · review_result</a></td></tr>
@@ -166,20 +166,27 @@
 </tbody>
 </table></div>
 </section>
-<section class="policy-section schema-level-3" id="컬럼-매핑" tabindex="-1">
-<h3>컬럼 매핑</h3>
+<section class="policy-section schema-level-3" id="공통-항목-추출-예시-및-컬럼-매핑" tabindex="-1">
+<h3>공통 항목 추출 예시 및 컬럼 매핑</h3>
 <div class="schema-table-wrap"><table class="schema-reference">
 <thead>
-<tr><th scope="col">컬럼</th><th scope="col">초기값·변환 규칙</th><th scope="col">값의 출처</th></tr>
+<tr><th scope="col">샘플 원본 위치</th><th scope="col">셀 전체 원문</th></tr>
 </thead>
 <tbody>
-<tr><td><code>record_order</code></td><td><code>1</code></td><td>SYSTEM</td></tr>
-<tr><td><code>sample_name</code></td><td>해석한 시료명</td><td>EXTRACTED</td></tr>
-<tr><td><code>analyzed_date</code></td><td>날짜를 DATE로 변환</td><td>EXTRACTED</td></tr>
-<tr><td><code>analyzed_at</code></td><td>날짜·시간을 초 단위 TIMESTAMP로 변환</td><td>EXTRACTED</td></tr>
-<tr><td><code>analyzed_precision</code></td><td>날짜·시간 모두 유효하면 <code>SECOND</code></td><td>SYSTEM</td></tr>
-<tr><td><code>analysis_duration_days</code></td><td>유효한 분석 시작 날짜가 있으면 <code>1</code>. 시작 날짜가 없으면 NULL</td><td>SYSTEM</td></tr>
-<tr><td>각 결과의 <code>unit</code></td><td>해석한 단위</td><td>EXTRACTED</td></tr>
+<tr><td><code>A256</code></td><td><code>RIST_Sample_inlet-9923-20251105-174039.xml: Analyte concentration (ppb)</code></td></tr>
+</tbody>
+</table></div>
+<div class="schema-table-wrap"><table class="schema-reference">
+<thead>
+<tr><th scope="col">항목</th><th scope="col">매핑 컬럼</th><th scope="col">샘플 원본 위치</th><th scope="col">샘플 원본 값·해석 대상</th><th scope="col">실제 추출·계산 예시</th><th scope="col">추출·변환 규칙</th></tr>
+</thead>
+<tbody>
+<tr><td>기록 순서</td><td><code>record_order</code></td><td>해당 없음</td><td>해당 없음</td><td><code>1</code></td><td>SYSTEM. 파일당 기본 기록 1건이므로 1 부여</td></tr>
+<tr><td>시료명</td><td><code>sample_name</code></td><td><code>A256</code></td><td>원문 중 <code>RIST_Sample</code></td><td><code>RIST_Sample</code></td><td>EXTRACTED. 시작 행의 <code>_inlet-</code> 앞 문자열에서 앞뒤 공백 제거</td></tr>
+<tr><td>분석 날짜</td><td><code>analyzed_date</code></td><td><code>A256</code></td><td>원문 중 <code>20251105</code></td><td><code>2025/11/05</code></td><td>EXTRACTED. <code>.xml</code> 직전 날짜·시간 토큰 중 날짜를 검증하여 DATE로 변환</td></tr>
+<tr><td>분석 일시</td><td><code>analyzed_at</code></td><td><code>A256</code></td><td>원문 중 <code>20251105-174039</code></td><td><code>2025/11/05 17:40:39</code></td><td>EXTRACTED. 유효한 날짜·시간을 초 단위 TIMESTAMP로 변환. 시간대 부여하지 않음</td></tr>
+<tr><td>분석 정밀도</td><td><code>analyzed_precision</code></td><td><code>A256</code></td><td>원문 중 <code>20251105-174039</code></td><td><code>SECOND</code></td><td>SYSTEM. 날짜·시간이 모두 유효하고 초까지 존재하면 SECOND. 부분 오류 처리는 아래 기준 적용</td></tr>
+<tr><td>분석 기간</td><td><code>analysis_duration_days</code></td><td><code>A256</code></td><td>원문 중 <code>20251105</code></td><td><code>1</code></td><td>SYSTEM. 유효한 분석 시작 날짜가 있으면 공통 계산값 1. 시작 날짜가 없으면 NULL</td></tr>
 </tbody>
 </table></div>
 <ul>
@@ -207,19 +214,19 @@
 </tbody>
 </table></div>
 </section>
-<section class="policy-section schema-level-3" id="컬럼-매핑-2" tabindex="-1">
-<h3>컬럼 매핑</h3>
+<section class="policy-section schema-level-3" id="물질별-추출-예시-및-컬럼-매핑" tabindex="-1">
+<h3>물질별 추출 예시 및 컬럼 매핑</h3>
 <div class="schema-table-wrap"><table class="schema-reference">
 <thead>
-<tr><th scope="col">컬럼</th><th scope="col">원본</th><th scope="col">초기값·변환 규칙</th></tr>
+<tr><th scope="col">항목</th><th scope="col">매핑 컬럼</th><th scope="col">샘플 원본 위치</th><th scope="col">샘플 원본 값·해석 대상</th><th scope="col">실제 추출·계산 예시</th><th scope="col">추출·변환 규칙</th></tr>
 </thead>
 <tbody>
-<tr><td><code>result_order</code></td><td>결과 행 순서</td><td>제외된 행을 빼고 1부터 연속 부여. 검토가 필요한 행도 포함</td></tr>
-<tr><td><code>substance_name</code></td><td>C열</td><td>앞뒤 공백만 제거. CAS 번호·복합 물질명·구분 기호 보존</td></tr>
-<tr><td><code>result_raw</code></td><td>D열</td><td>CSV 파서가 해석한 최초 셀 문자열 그대로 보존. 존재하는 빈 셀은 빈 문자열, 열 자체가 없으면 NULL</td></tr>
-<tr><td><code>result_text</code></td><td>D열</td><td>앞뒤 공백 제거값으로 초기화. 빈 값이면 NULL</td></tr>
-<tr><td><code>result_value</code></td><td>D열</td><td>전체 문자열이 유효한 숫자일 때만 정밀 소수로 변환. 그 외 NULL</td></tr>
-<tr><td><code>unit</code></td><td><code>A{S}</code></td><td>공통 항목에서 추출한 단위</td></tr>
+<tr><td>결과 순서</td><td><code>result_order</code></td><td><code>C258:D258</code></td><td>첫 번째 유효 결과 행</td><td><code>1</code></td><td>SYSTEM. 제외된 행을 빼고 1부터 연속 부여. 검토가 필요한 행도 포함</td></tr>
+<tr><td>분석물질</td><td><code>substance_name</code></td><td><code>C258</code></td><td><code>1-butanamine (109-73-9)</code></td><td><code>1-butanamine (109-73-9)</code></td><td>EXTRACTED. C열 앞뒤 공백만 제거. CAS 번호·복합 물질명·구분 기호 보존</td></tr>
+<tr><td>결과 원문</td><td><code>result_raw</code></td><td><code>D258</code></td><td><code>4.627399605208463</code></td><td><code>4.627399605208463</code> (문자열)</td><td>EXTRACTED. CSV 파서의 최초 셀 문자열 그대로 보존. 존재하는 빈 셀은 빈 문자열, 열 자체가 없으면 NULL</td></tr>
+<tr><td>결과 표시값</td><td><code>result_text</code></td><td><code>D258</code></td><td><code>4.627399605208463</code></td><td><code>4.627399605208463</code> (문자열)</td><td>EXTRACTED. D열 앞뒤 공백 제거. 빈 값이면 NULL</td></tr>
+<tr><td>숫자 결과</td><td><code>result_value</code></td><td><code>D258</code></td><td><code>4.627399605208463</code></td><td><code>4.627399605208463</code> (정밀 소수)</td><td>EXTRACTED. 전체 문자열이 유효한 숫자일 때만 정밀 소수로 변환. 그 외 NULL. JSON 전달 시 문자열 사용</td></tr>
+<tr><td>단위</td><td><code>unit</code></td><td><code>A256</code></td><td>원문 마지막 괄호의 <code>(ppb)</code></td><td><code>ppb</code></td><td>EXTRACTED. 시작 행의 마지막 괄호 안 문자열에서 앞뒤 공백 제거. 해당 기록의 모든 결과에 적용</td></tr>
 </tbody>
 </table></div>
 </section>
