@@ -92,6 +92,7 @@
       const message = event.data;
       if (event.source !== parent || !message || message.channel !== 'mockup-viewer-host' || message.token !== frameToken) return;
       if (message.action === 'pick-mode') setSelecting(message.active === true);
+      if (message.action === 'viewport-motion') window.dispatchEvent(new Event('mockup-viewer:viewport-motion'));
       if (message.action === 'canvas-reset') { canvasBlocked = message.blocked === true; if (canvasInput) canvasInput.reset(); }
       if (message.action === 'canvas-space' && canvasInput) canvasInput.setSpace(message.active === true);
       if (message.action === 'document-target') {
@@ -229,6 +230,10 @@
       channel: 'mockup-viewer-host', token, action
     }, details || {}), '*');
   }
+  $('canvas-viewport').addEventListener('scroll', () => sendToFrame('viewport-motion'), { passive: true });
+  window.addEventListener('mockup-viewer:canvas-input', event => {
+    if (event.detail && ['scroll', 'pan', 'pan-start', 'zoom'].includes(event.detail.kind)) sendToFrame('viewport-motion');
+  });
   function resetCanvasInput() {
     sendToFrame('canvas-reset', { blocked: picking || dialog.open });
     window.dispatchEvent(new CustomEvent('mockup-viewer:canvas-reset'));

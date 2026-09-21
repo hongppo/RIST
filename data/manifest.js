@@ -57,31 +57,114 @@ window.MOCKUP_VIEWER_MANIFEST = {
           summary: '파일 처리 오류 안내 및 파일 업로드 화면으로 복귀'
         },
         {
-          id: 'rist-review-preparation',
-          title: '데이터 검토: 1단계',
-          src: 'pages/rist-review-preparation.html',
+          id: 'rist-review-preparation-initial',
+          title: '데이터 검토: 1단계(초기 상태)',
+          src: 'pages/rist-review-preparation-initial.html',
+          width: 1280,
+          height: 800,
+          kind: 'RIST · U-04',
+          summary: '',
+          hideEmptyDescription: true
+        },
+        {
+          id: 'rist-review-preparation-dropdown',
+          title: '데이터 검토: 1단계(드롭다운 예시)',
+          src: 'pages/rist-review-preparation-dropdown.html',
+          width: 1280,
+          height: 800,
+          kind: 'RIST · U-04',
+          summary: '',
+          hideEmptyDescription: true
+        },
+        {
+          id: 'rist-review-preparation-search',
+          title: '데이터 검토: 1단계(검색 예시)',
+          src: 'pages/rist-review-preparation-search.html',
+          width: 1280,
+          height: 800,
+          kind: 'RIST · U-04',
+          summary: '',
+          hideEmptyDescription: true
+        },
+        {
+          id: 'rist-review-preparation-search-empty',
+          title: '데이터 검토: 1단계(검색 결과 없을 때 예시)',
+          src: 'pages/rist-review-preparation-search-empty.html',
+          width: 1280,
+          height: 800,
+          kind: 'RIST · U-04',
+          summary: '',
+          hideEmptyDescription: true
+        },
+        {
+          id: 'rist-review-preparation-direct-input',
+          title: '데이터 검토: 1단계(직접 입력 예시)',
+          src: 'pages/rist-review-preparation-direct-input.html',
+          width: 1280,
+          height: 800,
+          kind: 'RIST · U-04',
+          summary: '',
+          hideEmptyDescription: true
+        },
+        {
+          id: 'rist-review-preparation-region-examples',
+          title: '데이터 검토: 1단계(지역 섹션 예시)',
+          src: 'pages/rist-review-preparation-region-examples.html',
           width: 1280,
           autoHeight: true,
           kind: 'RIST · U-04',
-          summary: '추출된 항목 확인, 미추출 항목 입력 및 위치 확인'
+          summary: '',
+          hideEmptyDescription: true
+        },
+        {
+          id: 'rist-review-preparation-date-time',
+          title: '데이터 검토: 1단계(날짜, 시간 입력 예시)',
+          src: 'pages/rist-review-preparation-date-time.html',
+          width: 1280,
+          height: 800,
+          kind: 'RIST · U-04',
+          summary: '',
+          hideEmptyDescription: true
+        },
+        {
+          id: 'rist-review-preparation-selected',
+          title: '데이터 검토: 1단계(값 선택 시)',
+          src: 'pages/rist-review-preparation-selected.html',
+          width: 1280,
+          height: 800,
+          kind: 'RIST · U-04',
+          summary: '',
+          hideEmptyDescription: true
+        },
+        {
+          id: 'rist-review-preparation-saved',
+          title: '데이터 검토: 1단계(값 저장 시)',
+          src: 'pages/rist-review-preparation-saved.html',
+          width: 1280,
+          height: 800,
+          kind: 'RIST · U-04',
+          summary: '',
+          hideEmptyDescription: true
+        },
+        {
+          id: 'rist-review-preparation-add-modals',
+          title: '데이터 검토: 1단계(신규 추가 모달)',
+          src: 'pages/rist-review-preparation-add-modals.html',
+          width: 1280,
+          autoHeight: true,
+          kind: 'RIST · U-04',
+          summary: '',
+          hideEmptyDescription: true
         },
         {
           id: 'rist-review-detail',
           title: '데이터 검토: 2단계',
           src: 'pages/rist-review-detail.html',
           width: 1280,
-          autoHeight: true,
+          height: 800,
           kind: 'RIST · U-04',
-          summary: '물질별 통합 데이터 검토, 개별·일괄 수정 및 최종 저장'
-        },
-        {
-          id: 'rist-review-detail-55',
-          title: '데이터 검토: 2단계(행 추가를 할 경우)',
-          src: 'pages/rist-review-detail-55.html',
-          width: 1280,
-          autoHeight: true,
-          kind: 'RIST · U-04',
-          summary: '50행 추가 조회 후 총 55행의 데이터와 표 내부 세로 스크롤'
+          summary: '',
+          hideEmptyDescription: true
         }
       ]
     },

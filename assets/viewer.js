@@ -275,7 +275,7 @@
     $('description-page-label').textContent = '현재 화면 · ' + String(page.scopeIndex + 1).padStart(2, '0');
     $('description-page-title').textContent = page.title;
     $('description-page-summary').textContent = page.summary || '';
-    if (!entries.length) {
+    if (!entries.length && !page.hideEmptyDescription) {
       const empty = document.createElement('p');
       empty.className = 'no-descriptions';
       empty.textContent = '이 화면에 등록된 설명이 없습니다.';
