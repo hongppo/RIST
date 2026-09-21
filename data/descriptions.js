@@ -306,6 +306,20 @@ window.MOCKUP_VIEWER_DESCRIPTIONS = {
     "y": 755
   }
 ],
+  'rist-save-confirm': [],
+  'rist-saving': [],
+  'rist-save-complete': [],
+  'rist-save-error': [],
+  'rist-save-status': [],
+  'rist-upload-history': [],
+  'rist-upload-history-empty': [],
+  'rist-upload-history-no-results': [],
+  'rist-upload-history-error': [],
+  'rist-upload-history-detail': [],
+  'rist-upload-history-detail-unavailable': [],
+  'rist-profile-menu': [],
+  'rist-review-detail-validation': [],
+  'rist-review-cancel-confirm': [],
   'viewer-overview': [
     {
       id: 'viewer-navigation',

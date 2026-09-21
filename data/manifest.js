@@ -30,6 +30,13 @@ window.MOCKUP_VIEWER_MANIFEST = {
           summary: '사용자 인증'
         },
         {
+          id: 'rist-profile-menu',
+          title: '프로필 메뉴',
+          src: 'pages/rist-profile-menu.html',
+          width: 1280, height: 800,
+          summary: '', hideEmptyDescription: true
+        },
+        {
           id: 'rist-upload',
           title: '파일 업로드',
           src: 'pages/rist-upload.html',
@@ -175,6 +182,97 @@ window.MOCKUP_VIEWER_MANIFEST = {
           kind: 'RIST · U-04',
           summary: '',
           hideEmptyDescription: true
+        },
+        {
+          id: 'rist-review-detail-validation',
+          title: '데이터 검토: 2단계(입력 오류)',
+          src: 'pages/rist-review-detail-validation.html',
+          width: 1280, height: 800,
+          summary: '', hideEmptyDescription: true
+        },
+        {
+          id: 'rist-review-cancel-confirm',
+          title: '데이터 검토(작업 취소 확인)',
+          src: 'pages/rist-review-cancel-confirm.html',
+          width: 1280, height: 800,
+          summary: '', hideEmptyDescription: true
+        },
+        {
+          id: 'rist-save-confirm',
+          title: '최종 저장 확인',
+          src: 'pages/rist-save-confirm.html',
+          width: 1280, height: 800,
+          summary: '', hideEmptyDescription: true
+        },
+        {
+          id: 'rist-saving',
+          title: '최종 저장 중',
+          src: 'pages/rist-saving.html',
+          width: 1280, height: 800,
+          summary: '', hideEmptyDescription: true
+        },
+        {
+          id: 'rist-save-complete',
+          title: '최종 저장 완료',
+          src: 'pages/rist-save-complete.html',
+          width: 1280, height: 800,
+          summary: '', hideEmptyDescription: true
+        },
+        {
+          id: 'rist-save-error',
+          title: '오류 화면(최종 저장)',
+          src: 'pages/rist-save-error.html',
+          width: 1280, height: 800,
+          summary: '', hideEmptyDescription: true
+        },
+        {
+          id: 'rist-save-status',
+          title: '최종 저장 상태 확인',
+          src: 'pages/rist-save-status.html',
+          width: 1280, height: 800,
+          summary: '', hideEmptyDescription: true
+        },
+        {
+          id: 'rist-upload-history',
+          title: '업로드 이력',
+          src: 'pages/rist-upload-history.html',
+          width: 1280, height: 800,
+          summary: '', hideEmptyDescription: true
+        },
+        {
+          id: 'rist-upload-history-empty',
+          title: '업로드 이력(이력 없음)',
+          src: 'pages/rist-upload-history-empty.html',
+          width: 1280, height: 800,
+          summary: '', hideEmptyDescription: true
+        },
+        {
+          id: 'rist-upload-history-no-results',
+          title: '업로드 이력(검색 결과 없음)',
+          src: 'pages/rist-upload-history-no-results.html',
+          width: 1280, height: 800,
+          summary: '', hideEmptyDescription: true
+        },
+        {
+          id: 'rist-upload-history-error',
+          title: '오류 화면(업로드 이력 조회)',
+          src: 'pages/rist-upload-history-error.html',
+          width: 1280, height: 800,
+          summary: '', hideEmptyDescription: true
+        },
+        {
+          id: 'rist-upload-history-detail',
+          title: '업로드 이력 상세',
+          src: 'pages/rist-upload-history-detail.html',
+          width: 1280, height: 800,
+          summary: '', hideEmptyDescription: true
+        },
+        {
+          id: 'rist-upload-history-detail-unavailable',
+          title: '업로드 이력 상세(원본 다운로드 불가)',
+          src: 'pages/rist-upload-history-detail-unavailable.html',
+          width: 1280, height: 800,
+          summary: '', hideEmptyDescription: true
         }
       ]
     },
