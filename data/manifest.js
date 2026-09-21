@@ -21,6 +21,15 @@ window.MOCKUP_VIEWER_MANIFEST = {
           summary: 'RIST 데이터 표준화 프로그램 인터페이스 기획안 · 그로스마케팅랩 · v0.1'
         },
         {
+          id: 'rist-change-history',
+          title: '변경 히스토리',
+          src: 'pages/rist-change-history.html',
+          width: 1280,
+          autoHeight: true,
+          summary: '',
+          hideEmptyDescription: true
+        },
+        {
           id: 'rist-login',
           title: '로그인',
           src: 'pages/rist-login.html',
@@ -187,13 +196,6 @@ window.MOCKUP_VIEWER_MANIFEST = {
           id: 'rist-review-detail-validation',
           title: '데이터 검토: 2단계(입력 오류)',
           src: 'pages/rist-review-detail-validation.html',
-          width: 1280, height: 800,
-          summary: '', hideEmptyDescription: true
-        },
-        {
-          id: 'rist-review-cancel-confirm',
-          title: '데이터 검토(작업 취소 확인)',
-          src: 'pages/rist-review-cancel-confirm.html',
           width: 1280, height: 800,
           summary: '', hideEmptyDescription: true
         },

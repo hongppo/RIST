@@ -319,7 +319,7 @@ window.MOCKUP_VIEWER_DESCRIPTIONS = {
   'rist-upload-history-detail-unavailable': [],
   'rist-profile-menu': [],
   'rist-review-detail-validation': [],
-  'rist-review-cancel-confirm': [],
+  'rist-change-history': [],
   'viewer-overview': [
     {
       id: 'viewer-navigation',
