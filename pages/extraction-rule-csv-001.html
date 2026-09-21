@@ -85,10 +85,23 @@
 <header class="policy-header">
 <div class="extraction-header-main"><div class="policy-kicker">RIST · EXTRACTION RULES</div>
 <h1>CSV-001</h1>
-<div class="schema-meta"><span>버전 1</span><span>작성일 2026/09/16</span><span>수정일 2026/09/18</span></div></div>
+<div class="schema-meta"><span>버전 1</span><span>작성일 2026/09/16</span><span>수정일 2026/09/21</span></div></div>
 <div class="extraction-downloads"><div class="extraction-download-row"><span class="extraction-download-label">csv-001.md</span><a data-document-download href="../docs/extraction-rules/csv/csv-001.md" download="csv-001.md" class="document-download" title="csv-001.md 다운로드" aria-label="csv-001.md 다운로드"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m-5-5 5 5 5-5"/><path d="M4 15v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></svg></a></div></div>
 </header>
 <div class="policy-sections">
+<section class="policy-section schema-level-2" id="변경-이력" tabindex="-1">
+<h2>변경 이력</h2>
+<div class="schema-table-wrap"><table class="schema-reference">
+<thead>
+<tr><th scope="col">수정일</th><th scope="col">변경 항목</th><th scope="col">변경 내용</th></tr>
+</thead>
+<tbody>
+<tr><td>2026/09/21</td><td>저장 변환·스키마 정합성</td><td>파서의 원본 기록별 basic + results[] 1:N 반환 유지. 파서 record_order를 DB source_record_order로 매핑하고, 공통 저장 계층에서 결과별 독립 기본 기록·결과 1:1 쌍과 DB record_order를 생성하도록 명시. 최초 ID·순서·원본 보존 기준 추가. 분석법 고시번호·시험방법 코드의 미추출 NULL 명시</td></tr>
+<tr><td>2026/09/18</td><td>추출 예시·컬럼 매핑</td><td>공통 항목과 물질별 매핑 표에 샘플 원본 위치·값, 실제 추출·계산 예시, 적용 규칙 추가. 계산·시스템 값과 직접 추출값 구분</td></tr>
+<tr><td>2026/09/16</td><td>최초 작성</td><td>CSV-001 판별·추출 구간, 항목 매핑, 수치·날짜 해석, 원본 보존, 오류 처리 및 공통 처리 연결 정의</td></tr>
+</tbody>
+</table></div>
+</section>
 <section class="policy-section schema-level-2" id="규칙-개요" tabindex="-1">
 <h2>규칙 개요</h2>
 <div class="schema-table-wrap"><table class="schema-reference">
@@ -99,7 +112,7 @@
 <tr><td>규칙 코드</td><td><code>CSV-001</code></td></tr>
 <tr><td>대상</td><td>SIFT-MS CSV의 물질별 농도 구간</td></tr>
 <tr><td>샘플 파일명</td><td><code>SIFT-MS offline 측정_rawdata_김희진 - 복사본.csv</code></td></tr>
-<tr><td>추출 단위</td><td>파일당 분석 기본 기록 1건, 해당 기록에 연결된 물질별 결과 N건</td></tr>
+<tr><td>파서 추출 단위</td><td>파일당 분석 기본 기록 1건, 해당 기록에 연결된 물질별 결과 N건</td></tr>
 <tr><td>기본 항목 매핑</td><td><a href="rist-schema.html#review_record" data-viewer-page="rist-schema" data-viewer-anchor="review_record">통합 스키마 · review_record</a></td></tr>
 <tr><td>물질별 항목 매핑</td><td><a href="rist-schema.html#review_result" data-viewer-page="rist-schema" data-viewer-anchor="review_result">통합 스키마 · review_result</a></td></tr>
 <tr><td>규칙 목록</td><td><a href="extraction-rules-index.html#csv" data-viewer-page="extraction-rules-index" data-viewer-anchor="csv">추출 규칙</a></td></tr>
@@ -181,7 +194,7 @@
 <tr><th scope="col">항목</th><th scope="col">매핑 컬럼</th><th scope="col">샘플 원본 위치</th><th scope="col">샘플 원본 값·해석 대상</th><th scope="col">실제 추출·계산 예시</th><th scope="col">추출·변환 규칙</th></tr>
 </thead>
 <tbody>
-<tr><td>기록 순서</td><td><code>record_order</code></td><td>해당 없음</td><td>해당 없음</td><td><code>1</code></td><td>SYSTEM. 파일당 기본 기록 1건이므로 1 부여</td></tr>
+<tr><td>원본 기록 순서</td><td>파서 <code>record_order</code></td><td>해당 없음</td><td>해당 없음</td><td><code>1</code></td><td>SYSTEM. 원본 기본 기록 1건이므로 파서에서는 1 유지. DB source_record_order로 매핑</td></tr>
 <tr><td>시료명</td><td><code>sample_name</code></td><td><code>A256</code></td><td>원문 중 <code>RIST_Sample</code></td><td><code>RIST_Sample</code></td><td>EXTRACTED. 시작 행의 <code>_inlet-</code> 앞 문자열에서 앞뒤 공백 제거</td></tr>
 <tr><td>분석 날짜</td><td><code>analyzed_date</code></td><td><code>A256</code></td><td>원문 중 <code>20251105</code></td><td><code>2025/11/05</code></td><td>EXTRACTED. <code>.xml</code> 직전 날짜·시간 토큰 중 날짜를 검증하여 DATE로 변환</td></tr>
 <tr><td>분석 일시</td><td><code>analyzed_at</code></td><td><code>A256</code></td><td>원문 중 <code>20251105-174039</code></td><td><code>2025/11/05 17:40:39</code></td><td>EXTRACTED. 유효한 날짜·시간을 초 단위 TIMESTAMP로 변환. 시간대 부여하지 않음</td></tr>
@@ -260,6 +273,7 @@
 <tr><td>채취 일자</td><td><code>collected_date</code>, <code>collected_at</code>, <code>collected_precision</code></td><td>날짜·일시 NULL, 정밀도 <code>UNKNOWN</code></td></tr>
 <tr><td>위치</td><td><code>location_id</code>, <code>location_name</code>, <code>latitude</code>, <code>longitude</code></td><td>모두 NULL</td></tr>
 <tr><td>물질별 방법</td><td>BASE, 채취법, 분석법</td><td>ID·명칭·코드 모두 NULL</td></tr>
+<tr><td>분석법 세부 필드</td><td><code>analysis_method_notice_number</code>, <code>analysis_method_test_code</code></td><td>추출 근거 없음. 모두 NULL</td></tr>
 <tr><td>추출값의 목록 연결</td><td><code>substance_id</code>, <code>unit_option_id</code></td><td>미매칭 시 NULL. 추출한 물질명·단위는 유지</td></tr>
 </tbody>
 </table></div>
@@ -310,20 +324,48 @@
 <li><code>validation_issues</code>에 대상 컬럼·오류 코드·수준·안내를 기록. 비수치 표현의 최종 저장 허용 여부는 유형의 <code>input_schema</code>로 검증.</li>
 </ul>
 </section>
-<section class="policy-section schema-level-2" id="공통-처리-연결" tabindex="-1">
+<section class="policy-section schema-level-2 schema-group" id="공통-처리-연결" tabindex="-1">
 <h2>공통 처리 연결</h2>
 <div class="schema-table-wrap"><table class="schema-reference">
 <thead>
 <tr><th scope="col">구분</th><th scope="col">적용 기준</th></tr>
 </thead>
 <tbody>
-<tr><td>스크립트 반환</td><td>기본 기록 1건, 연결된 전체 결과, 원본 위치·추출 상태·검증 항목</td></tr>
-<tr><td>검토 데이터</td><td>공통 처리 계층에서 <code>review_record</code>·<code>review_result</code>로 수신. ID와 작업 연결값은 공통 계층에서 생성·연결</td></tr>
+<tr><td>스크립트 반환</td><td>원본 기본 기록 1건의 <code>basic</code>과 전체 <code>results[]</code>, 원본 위치·추출 상태·검증 항목. 파서 <code>record_order=1</code> 유지</td></tr>
+<tr><td>검토 데이터</td><td>공통 저장 계층이 아래 변환 기준에 따라 결과 행마다 독립적인 <code>review_record</code>·<code>review_result</code> 1:1 쌍을 생성</td></tr>
 <tr><td>업로드 정보</td><td>파일명·업로더·파일 유형·적용 규칙 버전은 <code>uploaded_file</code>에서 관리</td></tr>
 <tr><td>규칙 버전</td><td>작업 시작 시 결정된 버전으로 실행. 실행 중 최신 버전으로 교체하지 않음</td></tr>
 <tr><td>최종 저장</td><td>검토 완료 후 공통 저장 처리에서 <code>analysis_record</code>·<code>analysis_result</code>로 반영</td></tr>
 </tbody>
 </table></div>
+<section class="policy-section schema-level-3" id="파서-반환과-저장-행-변환" tabindex="-1">
+<h3>파서 반환과 저장 행 변환</h3>
+<div class="schema-table-wrap"><table class="schema-reference">
+<thead>
+<tr><th scope="col">대상</th><th scope="col">변환 기준</th></tr>
+</thead>
+<tbody>
+<tr><td>파서 반환 구조</td><td>원본 기록별 <code>records[].basic</code>과 <code>records[].results[]</code>의 1:N 구조 유지. 이하 추출·구분 예시의 <code>record_order</code>는 파서의 원본 기록 순서</td></tr>
+<tr><td>원본 기록 순서</td><td>파서 <code>record_order</code>를 DB 기본 기록의 <code>source_record_order</code>로 매핑. 같은 원본에서 파생된 모든 행에 같은 값 보존</td></tr>
+<tr><td>DB 행 순서</td><td>공통 저장 계층이 파서의 원본 기록 순서 → 그 안의 <code>result_order</code> 순서로 전체 결과를 펼쳐 DB <code>record_order</code>를 1부터 연속 부여</td></tr>
+<tr><td>결과 순서</td><td>DB <code>result_order</code>는 파서의 원본 기록 내 결과 순서를 그대로 보존. 결과별 기본 기록을 생성해도 1로 재설정하지 않음</td></tr>
+<tr><td>저장 쌍</td><td>펼쳐진 결과마다 해당 <code>basic</code>을 복사한 독립 기본 기록 1건과 결과 1건을 1:1로 생성. 서로 다른 결과가 기본 기록을 공유하지 않음</td></tr>
+<tr><td>ID 발급</td><td>공통 저장 계층이 최초 검토 행 생성 시 각 쌍의 <code>record_id</code>·<code>result_id</code>를 발급하고 연결. 최종 저장에서는 같은 ID 재사용</td></tr>
+<tr><td>보존</td><td>원본 위치·스냅샷은 해당 쌍에 연결하여 보존. 최초 ID와 <code>record_order</code>·<code>source_record_order</code>·<code>result_order</code>는 검토·최종 저장 및 화면 정렬 중 변경하지 않음</td></tr>
+<tr><td>파서 책임</td><td>원본 추출과 검증 정보 반환만 수행. DB 조회·저장, 마스터 ID 발급은 수행하지 않음</td></tr>
+</tbody>
+</table></div>
+<div class="schema-table-wrap"><table class="schema-reference">
+<thead>
+<tr><th scope="col">파서 원본 기록 순서</th><th scope="col">파서 결과 순서</th><th scope="col">DB source_record_order</th><th scope="col">DB result_order</th><th scope="col">DB record_order</th><th scope="col">저장 단위</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>독립 기본 기록·결과 1쌍</td></tr>
+<tr><td>1</td><td>2</td><td>1</td><td>2</td><td>2</td><td>독립 기본 기록·결과 1쌍</td></tr>
+<tr><td>2</td><td>1</td><td>2</td><td>1</td><td>3</td><td>독립 기본 기록·결과 1쌍</td></tr>
+</tbody>
+</table></div>
+</section>
 </section>
 </div>
 </main>
