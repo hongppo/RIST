@@ -81,17 +81,17 @@ function expectPage(app, id, counter) {
   assert.equal(app.counter(), counter);
 }
 
-test('screen planning pages stay within their sixteen-page list through buttons and keyboard routes', () => {
+test('screen planning pages stay within their seventeen-page list through buttons and keyboard routes', () => {
   const app = boot();
-  const ids = ['rist-cover', 'rist-login', 'rist-upload', 'rist-processing', 'rist-error', 'rist-review-preparation-initial', 'rist-review-preparation-dropdown', 'rist-review-preparation-search', 'rist-review-preparation-search-empty', 'rist-review-preparation-direct-input', 'rist-review-preparation-region-examples', 'rist-review-preparation-date-time', 'rist-review-preparation-selected', 'rist-review-preparation-saved', 'rist-review-preparation-add-modals', 'rist-review-detail'];
-  const markers = [0, 2, 4, 3, 3, 0, 0, 1, 0, 0, 4, 0, 0, 0, 0, 0];
+  const ids = ['rist-cover', 'rist-login', 'rist-upload', 'rist-processing', 'rist-error', 'rist-review-preparation-initial', 'rist-review-preparation-stage-confirm', 'rist-review-preparation-dropdown', 'rist-review-preparation-search', 'rist-review-preparation-search-empty', 'rist-review-preparation-direct-input', 'rist-review-preparation-region-examples', 'rist-review-preparation-date-time', 'rist-review-preparation-selected', 'rist-review-preparation-changed', 'rist-review-preparation-add-modals', 'rist-review-detail'];
+  const markers = [0, 2, 4, 3, 3, 1, 0, 0, 1, 0, 0, 4, 0, 0, 0, 0, 7];
   assert.equal(app.get('page-breadcrumb').textContent, '화면 기획서');
   app.get('previous-page').click(); app.key('ArrowLeft'); app.iframe('previous');
-  expectPage(app, 'rist-cover', '01/16');
+  expectPage(app, 'rist-cover', '01/17');
   ids.forEach((id, index) => {
-    expectPage(app, id, String(index + 1).padStart(2, '0') + '/16');
+    expectPage(app, id, String(index + 1).padStart(2, '0') + '/17');
     assert.equal(app.get('annotation-layer').children.length, markers[index]);
-    if (id.startsWith('rist-review-preparation-') && !['rist-review-preparation-search', 'rist-review-preparation-region-examples'].includes(id)) {
+    if (id.startsWith('rist-review-preparation-') && !['rist-review-preparation-initial', 'rist-review-preparation-search', 'rist-review-preparation-region-examples'].includes(id)) {
       assert.equal(app.get('description-list').children.length, 0);
       assert.equal(app.get('description-page-summary').textContent, '');
     }
@@ -101,11 +101,11 @@ test('screen planning pages stay within their sixteen-page list through buttons 
   });
   assert.equal(app.get('next-page').disabled, true);
   app.get('next-page').click(); app.key('ArrowRight'); app.iframe('next');
-  expectPage(app, 'rist-review-detail', '16/16');
-  assert.equal(app.get('description-page-label').textContent, '현재 화면 · 16');
+  expectPage(app, 'rist-review-detail', '17/17');
+  assert.equal(app.get('description-page-label').textContent, '현재 화면 · 17');
   for (let i = ids.length - 2; i >= 0; i--) {
     app.key('ArrowLeft');
-    expectPage(app, ids[i], String(i + 1).padStart(2, '0') + '/16');
+    expectPage(app, ids[i], String(i + 1).padStart(2, '0') + '/17');
   }
 });
 
@@ -128,7 +128,7 @@ test('policy list contains four documents and stops at both list boundaries', ()
 
 test('login description links cross from screen planning to the policy list without changing IDs', () => {
   const app = boot({ hash: '#rist-login' });
-  expectPage(app, 'rist-login', '02/16');
+  expectPage(app, 'rist-login', '02/17');
   const link = app.descendants('description-list').find(node => node.tagName === 'A');
   assert.equal(link.href, '#rist-policies/login-policy');
   link.click();
@@ -136,7 +136,7 @@ test('login description links cross from screen planning to the policy list with
   assert.equal(app.get('page-breadcrumb').textContent, '정책');
   assert.deepEqual(app.setPages.at(-1), { id: 'rist-policies', anchor: 'login-policy' });
   app.pageLink('rist-login');
-  expectPage(app, 'rist-login', '02/16');
+  expectPage(app, 'rist-login', '02/17');
 });
 
 test('schema table shortcuts preserve their fragment and remain in the schema page', () => {
@@ -181,12 +181,12 @@ test('direct tree selection and hash links still cross lists and refresh numberi
   app.pageButton('annotation-example').click();
   expectPage(app, 'annotation-example', '02/03');
   app.pageButton('rist-cover').click();
-  expectPage(app, 'rist-cover', '01/16');
+  expectPage(app, 'rist-cover', '01/17');
   app.location.hash = '#long-page-example';
   expectPage(app, 'long-page-example', '03/03');
   assert.equal(app.pageButton('long-page-example').getAttribute('aria-current'), 'page');
   app.location.hash = '#rist-cover';
-  expectPage(app, 'rist-cover', '01/16');
+  expectPage(app, 'rist-cover', '01/17');
 });
 
 test('nested groups share their top-level sequence and do not enter the next top-level list', () => {
@@ -359,14 +359,14 @@ test('target markers follow frame coordinates while fixed markers and descriptio
 test('review stage tabs and footer page links route between registered pages without entering groups', () => {
   const app = boot({ hash: '#rist-review-preparation-initial' });
   app.pageLink('rist-review-detail');
-  expectPage(app, 'rist-review-detail', '16/16');
+  expectPage(app, 'rist-review-detail', '17/17');
   assert.equal(app.location.hash, '#rist-review-detail');
   app.pageLink('rist-review-detail');
   app.pageLink('rist');
   app.pageLink('missing-page');
-  expectPage(app, 'rist-review-detail', '16/16');
+  expectPage(app, 'rist-review-detail', '17/17');
   app.pageLink('rist-review-preparation-initial');
-  expectPage(app, 'rist-review-preparation-initial', '06/16');
+  expectPage(app, 'rist-review-preparation-initial', '06/17');
 });
 
 

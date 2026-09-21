@@ -67,6 +67,16 @@ window.MOCKUP_VIEWER_MANIFEST = {
           hideEmptyDescription: true
         },
         {
+          id: 'rist-review-preparation-stage-confirm',
+          title: '데이터 검토: 1단계(단계 이동 확인)',
+          src: 'pages/rist-review-preparation-stage-confirm.html',
+          width: 1280,
+          height: 800,
+          kind: 'RIST · U-04',
+          summary: '',
+          hideEmptyDescription: true
+        },
+        {
           id: 'rist-review-preparation-dropdown',
           title: '데이터 검토: 1단계(드롭다운 예시)',
           src: 'pages/rist-review-preparation-dropdown.html',
@@ -137,9 +147,9 @@ window.MOCKUP_VIEWER_MANIFEST = {
           hideEmptyDescription: true
         },
         {
-          id: 'rist-review-preparation-saved',
-          title: '데이터 검토: 1단계(값 저장 시)',
-          src: 'pages/rist-review-preparation-saved.html',
+          id: 'rist-review-preparation-changed',
+          title: '데이터 검토: 1단계(값 변경 시)',
+          src: 'pages/rist-review-preparation-changed.html',
           width: 1280,
           height: 800,
           kind: 'RIST · U-04',
