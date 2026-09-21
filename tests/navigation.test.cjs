@@ -84,7 +84,7 @@ function expectPage(app, id, counter) {
 test('screen planning pages stay within their seventeen-page list through buttons and keyboard routes', () => {
   const app = boot();
   const ids = ['rist-cover', 'rist-login', 'rist-upload', 'rist-processing', 'rist-error', 'rist-review-preparation-initial', 'rist-review-preparation-stage-confirm', 'rist-review-preparation-dropdown', 'rist-review-preparation-search', 'rist-review-preparation-search-empty', 'rist-review-preparation-direct-input', 'rist-review-preparation-region-examples', 'rist-review-preparation-date-time', 'rist-review-preparation-selected', 'rist-review-preparation-changed', 'rist-review-preparation-add-modals', 'rist-review-detail'];
-  const markers = [0, 2, 4, 3, 3, 1, 0, 0, 1, 0, 0, 4, 0, 0, 0, 0, 7];
+  const markers = [0, 2, 4, 3, 3, 2, 0, 0, 1, 0, 0, 4, 0, 0, 0, 0, 7];
   assert.equal(app.get('page-breadcrumb').textContent, '화면 기획서');
   app.get('previous-page').click(); app.key('ArrowLeft'); app.iframe('previous');
   expectPage(app, 'rist-cover', '01/17');
