@@ -214,6 +214,12 @@ def build_page(path):
             css = inline_css(css_path.read_text(encoding='utf-8'), css_path.parent)
             css_parts.append(css)
             node.start, node.children, node.end = '<style>', [css], '</style>'
+        elif node.tag == 'script' and node.attrs.get('src'):
+            src = node.attrs['src']
+            script_path = (path.parent / unquote(urlsplit(src).path)).resolve()
+            if urlsplit(src).scheme or urlsplit(src).netloc or not script_path.is_relative_to(ROOT):
+                raise ValueError(f'{path.name}: scripts must be local: {src}')
+            node.start, node.children, node.end = '<script>', [script_path.read_text(encoding='utf-8')], '</script>'
         elif node.tag == 'style':
             css = inline_css(''.join(node.children), path.parent)
             css_parts.append(css)

@@ -7,6 +7,7 @@ from html import escape
 from pathlib import Path
 import re
 
+
 ROOT = Path(__file__).resolve().parent.parent
 POLICY_HEADING = re.compile(r'^## (.+?) \{#([a-z][a-z0-9-]*)\}$')
 
@@ -43,6 +44,7 @@ def split_frontmatter(source):
 
 
 def render_markdown(source):
+    from build_schema import table_cells, table_separator, render_table
     _, lines = split_frontmatter(source)
     title = None
     intro = []
@@ -51,8 +53,15 @@ def render_markdown(source):
     paragraph = []
     items = []
     identifiers = set()
+    table_lines = []
 
     def flush():
+        if table_lines:
+            if len(table_lines) < 2 or not table_separator(table_lines[1]):
+                raise ValueError('Policy tables need a header and separator row.')
+            rows = [table_cells(table_lines[0])] + [table_cells(row) for row in table_lines[2:]]
+            current.append(render_table(rows, table_cells(table_lines[1])))
+            table_lines.clear()
         if paragraph:
             current.append('<p>' + inline(' '.join(paragraph)) + '</p>')
             paragraph.clear()
@@ -62,6 +71,13 @@ def render_markdown(source):
 
     for number, raw in enumerate(lines, 1):
         line = raw.strip()
+        if line.startswith('|'):
+            if not table_lines:
+                flush()
+            table_lines.append(line)
+            continue
+        if table_lines:
+            flush()
         if not line:
             flush()
             continue
@@ -139,6 +155,12 @@ STYLE = '''
     .policy-section p, .policy-section ul { margin: 14px 0 0; font-size: 17px; line-height: 1.85; }
     .policy-section ul { padding-left: 24px; }
     .policy-section li + li { margin-top: 5px; }
+    .policy-section table { width: 100%; table-layout: fixed; border-collapse: collapse; margin: 18px 0; font-size: 15px; line-height: 1.75; }
+    .policy-section th, .policy-section td { border: 1px solid #dfe4eb; padding: 12px 14px; text-align: left; vertical-align: top; overflow-wrap: anywhere; }
+    .policy-section th { background: #f3f6fa; color: #16263d; font-weight: 700; }
+    .policy-section th:first-child, .policy-section td:first-child { width: 15%; }
+    .policy-section .align-center { text-align: center; }
+    .policy-section .align-right { text-align: right; }
     strong { color: #1c3553; font-weight: 700; }
 '''
 

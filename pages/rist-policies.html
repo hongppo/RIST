@@ -32,6 +32,12 @@
     .policy-section p, .policy-section ul { margin: 14px 0 0; font-size: 17px; line-height: 1.85; }
     .policy-section ul { padding-left: 24px; }
     .policy-section li + li { margin-top: 5px; }
+    .policy-section table { width: 100%; table-layout: fixed; border-collapse: collapse; margin: 18px 0; font-size: 15px; line-height: 1.75; }
+    .policy-section th, .policy-section td { border: 1px solid #dfe4eb; padding: 12px 14px; text-align: left; vertical-align: top; overflow-wrap: anywhere; }
+    .policy-section th { background: #f3f6fa; color: #16263d; font-weight: 700; }
+    .policy-section th:first-child, .policy-section td:first-child { width: 15%; }
+    .policy-section .align-center { text-align: center; }
+    .policy-section .align-right { text-align: right; }
     strong { color: #1c3553; font-weight: 700; }
 </style>
 </head>
@@ -40,7 +46,7 @@
 <header class="policy-header has-labeled-download">
 <div class="document-header-main"><div class="policy-kicker">RIST · POLICIES</div>
 <h1>정책 문서</h1>
-<div class="policy-meta"><span>버전 1</span><span>작성일 2026/09/16</span><span>수정일 2026/09/21</span></div>
+<div class="policy-meta"><span>버전 1</span><span>작성일 2026/09/16</span><span>수정일 2026/09/22</span></div>
 
 </div>
 <div class="document-download-row"><span class="document-download-label">정책 문서.md</span><a data-document-download href="../docs/rist-policies.md" download="정책 문서.md" class="document-download" title="정책 문서 MD 다운로드" aria-label="정책 문서 MD 다운로드"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m-5-5 5 5 5-5"/><path d="M4 15v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></svg></a></div>
@@ -62,7 +68,9 @@
 <ul>
 <li>프로그램 자체 로그인으로 운영합니다.</li>
 <li>SSO 연동은 고도화 범위이며, 로그인 기능은 SSO 연결이 가능한 구조로 설계합니다.</li>
-<li>로그인 후 작업 중에는 세션이 자동 종료되거나 만료되지 않으며, 시간 초과로 작업을 종료하지 않습니다.</li>
+<li>로그인 세션은 보안성 검토에서 확정한 세션 관리 기준을 적용합니다. SSO 연동 시에는 SSO의 세션 만료·재인증 기준을 함께 적용합니다.</li>
+<li>파일 추출·저장 등 처리가 진행 중인 시간은 유휴 시간에 산입하지 않습니다. 사용자 활동이 없는 상태가 정해진 유휴 시간을 초과하면 세션이 만료됩니다.</li>
+<li>세션 만료 시 사용자에게 안내하고 재로그인을 요구합니다.</li>
 </ul>
 </section>
 <section class="policy-section" id="upload-history-policy" tabindex="-1">
@@ -78,9 +86,9 @@
 <h2>작업 저장·종료 정책</h2>
 <ul>
 <li>‘작업 저장’은 현재 로그인 세션의 작업 상태를 저장하며, ‘검토 완료 및 저장’은 검토 결과를 최종 저장합니다.</li>
-<li>최종 저장 전에 로그아웃하거나 브라우저를 종료하면 진행 중인 작업 상태를 다음 로그인에서 복원하지 않습니다. 다음 로그인은 파일 업로드 화면에서 시작합니다.</li>
+<li>최종 저장 전에 로그아웃하거나 브라우저를 종료한 경우, 또는 유휴 시간 초과로 세션이 만료된 경우에는 진행 중인 작업 상태를 다음 로그인에서 복원하지 않습니다. 다음 로그인은 파일 업로드 화면에서 시작합니다.</li>
 <li>최종 저장한 결과는 작업 종료 후에도 이력에서 조회할 수 있으며, 보관된 원본 파일을 다운로드할 수 있습니다.</li>
-<li>진행 중인 작업에서 파일 확인·추출 오류, 검토 입력 오류, 저장 실패·저장 응답 미확정 상태를 안내합니다. 발생 단계와 오류에 따라 수정·재시도·저장 상태 확인을 제공합니다.</li>
+<li>진행 중인 작업에서 파일 확인·추출 오류, 저장 실패·저장 응답 미확정 상태를 안내합니다. 발생 단계와 오류에 따라 수정·재시도·저장 상태 확인을 제공합니다.</li>
 </ul>
 </section>
 <section class="policy-section" id="location-policy" tabindex="-1">
@@ -100,7 +108,7 @@
 <li>이동 관측소 등 파일에서 추출한 좌표는 등록 지점이나 지점명이 없어도 저장할 수 있습니다. 행마다 위치가 다르면 각 행의 추출 좌표를 각각 보존하며, 지점명 부재를 이유로 유효한 좌표를 삭제하거나 서로 다른 행의 좌표를 동일하게 통일하지 않습니다.</li>
 <li>위도·경도 중 하나만 추출되면 1단계 지도에 해당 위치의 포인트를 표시하지 않습니다. 해당 좌표 입력란에는 추출된 좌표만 표시하고 해당 필드에만 추출 배지를 표시합니다.</li>
 <li>한쪽 좌표만 있는 상태에서 지도 또는 등록 지점을 선택하면 선택한 위치의 위도·경도로 둘 다 교체합니다. 최초 추출 여부와 현재 수정 상태는 별도로 관리합니다.</li>
-<li>검토 중에는 한쪽 좌표만 있는 상태의 작업 저장을 허용합니다. 최종 저장 시에는 위도·경도가 모두 유효하거나 모두 NULL이어야 하며, 유형별 필수값 기준을 함께 적용합니다.</li>
+<li>파일에서 한쪽 좌표만 추출되어 검토 데이터에 보존된 상태는 작업 저장을 허용합니다. 최종 저장 시에는 위도·경도가 모두 유효하거나 모두 NULL이어야 하며, 유형별 필수값 기준을 함께 적용합니다.</li>
 </ul>
 <h3>변경 범위·저장</h3>
 <ul>
@@ -108,12 +116,10 @@
 <li>단순 표시·선택·열람만으로 첫 행의 좌표를 다른 행에 자동 복제하지 않습니다.</li>
 <li>검토 중 ‘변경’은 작업 데이터에 반영하는 동작이며, 최종 저장 시 결과 데이터로 확정합니다. 지점 목록에 등록하지 않은 좌표도 검토·결과 데이터에 저장합니다.</li>
 </ul>
-<h3>화면 표시·입력 검증</h3>
+<h3>화면 표시</h3>
 <ul>
 <li>1·2단계 모두 도분초 형식으로 표시하며, 초는 소수점 2자리로 표시합니다. 예: `36°01′22.09″N`.</li>
-<li>2단계에서 직접 수정할 때는 공백 없이 도·분·초·방향을 정해진 순서와 기호로 입력합니다. 초의 소수부는 2자리를 초과하여 입력할 수 있습니다.</li>
-<li>위도 방향은 N/S, 경도 방향은 E/W를 사용합니다. 분·초는 0 이상 60 미만이며, 위도 90도·경도 180도에서는 분·초가 모두 0이어야 합니다.</li>
-<li>입력 형식 또는 좌표 범위가 잘못되면 오류를 표시하고 해당 변경의 적용을 차단합니다.</li>
+<li>초의 소수부는 2자리를 초과하여 입력할 수 있습니다.</li>
 </ul>
 <h3>DB 저장·정밀도 보존</h3>
 <ul>

@@ -193,13 +193,6 @@ window.MOCKUP_VIEWER_MANIFEST = {
           hideEmptyDescription: true
         },
         {
-          id: 'rist-review-detail-validation',
-          title: '데이터 검토: 2단계(입력 오류)',
-          src: 'pages/rist-review-detail-validation.html',
-          width: 1280, height: 800,
-          summary: '', hideEmptyDescription: true
-        },
-        {
           id: 'rist-save-confirm',
           title: '최종 저장 확인',
           src: 'pages/rist-save-confirm.html',

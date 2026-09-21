@@ -83,15 +83,15 @@ function expectPage(app, id, counter) {
 
 test('screen planning pages stay within their screen-planning list through buttons and keyboard routes', () => {
   const app = boot();
-  const ids = ['rist-cover', 'rist-change-history', 'rist-login', 'rist-profile-menu', 'rist-upload', 'rist-processing', 'rist-error', 'rist-review-preparation-initial', 'rist-review-preparation-stage-confirm', 'rist-review-preparation-dropdown', 'rist-review-preparation-search', 'rist-review-preparation-search-empty', 'rist-review-preparation-direct-input', 'rist-review-preparation-region-examples', 'rist-review-preparation-date-time', 'rist-review-preparation-selected', 'rist-review-preparation-changed', 'rist-review-preparation-add-modals', 'rist-review-detail', 'rist-review-detail-validation', 'rist-save-confirm', 'rist-saving', 'rist-save-complete', 'rist-save-error', 'rist-save-status', 'rist-upload-history', 'rist-upload-history-empty', 'rist-upload-history-no-results', 'rist-upload-history-error', 'rist-upload-history-detail', 'rist-upload-history-detail-unavailable'];
-  const markers = [0, 0, 2, 0, 4, 3, 3, 2, 0, 0, 1, 0, 0, 4, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  const ids = ['rist-cover', 'rist-change-history', 'rist-login', 'rist-profile-menu', 'rist-upload', 'rist-processing', 'rist-error', 'rist-review-preparation-initial', 'rist-review-preparation-stage-confirm', 'rist-review-preparation-dropdown', 'rist-review-preparation-search', 'rist-review-preparation-search-empty', 'rist-review-preparation-direct-input', 'rist-review-preparation-region-examples', 'rist-review-preparation-date-time', 'rist-review-preparation-selected', 'rist-review-preparation-changed', 'rist-review-preparation-add-modals', 'rist-review-detail', 'rist-save-confirm', 'rist-saving', 'rist-save-complete', 'rist-save-error', 'rist-save-status', 'rist-upload-history', 'rist-upload-history-empty', 'rist-upload-history-no-results', 'rist-upload-history-error', 'rist-upload-history-detail', 'rist-upload-history-detail-unavailable'];
+  const markers = [0, 0, 2, 0, 4, 3, 3, 2, 0, 0, 1, 0, 0, 4, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   assert.equal(app.get('page-breadcrumb').textContent, '화면 기획서');
   app.get('previous-page').click(); app.key('ArrowLeft'); app.iframe('previous');
-  expectPage(app, 'rist-cover', '01/31');
+  expectPage(app, 'rist-cover', '01/30');
   ids.forEach((id, index) => {
-    expectPage(app, id, String(index + 1).padStart(2, '0') + '/31');
+    expectPage(app, id, String(index + 1).padStart(2, '0') + '/30');
     assert.equal(app.get('annotation-layer').children.length, markers[index]);
-    if (markers[index] === 0 && id !== 'rist-cover') {
+    if (markers[index] === 0 && !['rist-cover'].includes(id)) {
       assert.equal(app.get('description-list').children.length, 0);
       assert.equal(app.get('description-page-summary').textContent, '');
     }
@@ -101,11 +101,11 @@ test('screen planning pages stay within their screen-planning list through butto
   });
   assert.equal(app.get('next-page').disabled, true);
   app.get('next-page').click(); app.key('ArrowRight'); app.iframe('next');
-  expectPage(app, 'rist-upload-history-detail-unavailable', '31/31');
-  assert.equal(app.get('description-page-label').textContent, '현재 화면 · 31');
+  expectPage(app, 'rist-upload-history-detail-unavailable', '30/30');
+  assert.equal(app.get('description-page-label').textContent, '현재 화면 · 30');
   for (let i = ids.length - 2; i >= 0; i--) {
     app.key('ArrowLeft');
-    expectPage(app, ids[i], String(i + 1).padStart(2, '0') + '/31');
+    expectPage(app, ids[i], String(i + 1).padStart(2, '0') + '/30');
   }
 });
 
@@ -128,7 +128,7 @@ test('policy list contains four documents and stops at both list boundaries', ()
 
 test('login description links cross from screen planning to the policy list without changing IDs', () => {
   const app = boot({ hash: '#rist-login' });
-  expectPage(app, 'rist-login', '03/31');
+  expectPage(app, 'rist-login', '03/30');
   const link = app.descendants('description-list').find(node => node.tagName === 'A');
   assert.equal(link.href, '#rist-policies/login-policy');
   link.click();
@@ -136,7 +136,7 @@ test('login description links cross from screen planning to the policy list with
   assert.equal(app.get('page-breadcrumb').textContent, '정책');
   assert.deepEqual(app.setPages.at(-1), { id: 'rist-policies', anchor: 'login-policy' });
   app.pageLink('rist-login');
-  expectPage(app, 'rist-login', '03/31');
+  expectPage(app, 'rist-login', '03/30');
 });
 
 test('schema table shortcuts preserve their fragment and remain in the schema page', () => {
@@ -181,12 +181,12 @@ test('direct tree selection and hash links still cross lists and refresh numberi
   app.pageButton('annotation-example').click();
   expectPage(app, 'annotation-example', '02/03');
   app.pageButton('rist-cover').click();
-  expectPage(app, 'rist-cover', '01/31');
+  expectPage(app, 'rist-cover', '01/30');
   app.location.hash = '#long-page-example';
   expectPage(app, 'long-page-example', '03/03');
   assert.equal(app.pageButton('long-page-example').getAttribute('aria-current'), 'page');
   app.location.hash = '#rist-cover';
-  expectPage(app, 'rist-cover', '01/31');
+  expectPage(app, 'rist-cover', '01/30');
 });
 
 test('nested groups share their top-level sequence and do not enter the next top-level list', () => {
@@ -359,14 +359,14 @@ test('target markers follow frame coordinates while fixed markers and descriptio
 test('review stage tabs and footer page links route between registered pages without entering groups', () => {
   const app = boot({ hash: '#rist-review-preparation-initial' });
   app.pageLink('rist-review-detail');
-  expectPage(app, 'rist-review-detail', '19/31');
+  expectPage(app, 'rist-review-detail', '19/30');
   assert.equal(app.location.hash, '#rist-review-detail');
   app.pageLink('rist-review-detail');
   app.pageLink('rist');
   app.pageLink('missing-page');
-  expectPage(app, 'rist-review-detail', '19/31');
+  expectPage(app, 'rist-review-detail', '19/30');
   app.pageLink('rist-review-preparation-initial');
-  expectPage(app, 'rist-review-preparation-initial', '08/31');
+  expectPage(app, 'rist-review-preparation-initial', '08/30');
 });
 
 

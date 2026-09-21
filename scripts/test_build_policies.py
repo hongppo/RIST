@@ -16,6 +16,18 @@ import build_sources
 
 
 class BuildPoliciesTests(unittest.TestCase):
+    def test_policy_table_escapes_content_and_keeps_following_blocks(self):
+        source = '# Title\n## Policy {#policy}\n| Item | Example |\n| --- | --- |\n| <script> | `a|b` |\n\n### After\n- Kept\n'
+        _, _, html = render_markdown(source)
+        self.assertIn('<table', html)
+        self.assertIn('&lt;script&gt;', html)
+        self.assertNotIn('<script>', html)
+        self.assertIn('<code>a|b</code>', html)
+        self.assertLess(html.index('</table>'), html.index('<h3>After</h3>'))
+        self.assertIn('<li>Kept</li>', html)
+        with self.assertRaisesRegex(ValueError, 'same number of columns'):
+            render_markdown(source.replace('| <script> | `a|b` |', '| Only one cell |'))
+
     def test_metadata_header_preserves_policy_body_and_anchors(self):
         body = '# 정책 문서\n\n소개입니다.\n\n## 로그인 정책 {#login-policy}\n\n로그인 내용입니다.\n\n## 파일 업로드 정책 {#upload-policy}\n\n업로드 내용입니다.\n'
         source = '---\nversion: 1\ncreated_at: 2026-09-16\nupdated_at: 2026-09-17\n---\n\n' + body

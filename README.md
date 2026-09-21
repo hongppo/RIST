@@ -81,7 +81,7 @@ body { position: relative; }
 
 ## 변경 히스토리 관리
 
-원본은 `docs/rist-change-history.md`입니다. `scripts/build_sources.py`가 기존 문서 렌더러로 `pages/rist-change-history.html`을 생성하므로 HTML은 직접 편집하지 않습니다.
+옵시디언 `work-log/planning/RIST/POC/버전 관리 문서(기획서용)/변경 히스토리.md`와 로컬 `docs/rist-change-history.md`를 동일하게 관리합니다. `scripts/build_sources.py`가 기존 문서 렌더러로 `pages/rist-change-history.html`을 생성하므로 HTML은 직접 편집하지 않습니다.
 
 앞으로의 변경 이력은 날짜별 개요 표에 실제 반영일(한국 시간, `YYYY/MM/DD`)과 변경 내용을 최신순으로 추가합니다. 같은 날짜의 내용은 해당 날짜 행에 누적하며, 별도의 상세 영역이나 변경 이유·변경 전후 항목은 만들지 않습니다. 실제 반영된 변경만 기록하고 기존 이력은 유지합니다.
 
