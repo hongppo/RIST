@@ -58,6 +58,7 @@ function boot({ hash = '#rist-cover', tree, descriptions, zoom = 1, storage = { 
     localStorage: storage,
     requestAnimationFrame: () => 1, cancelAnimationFrame() {}, setTimeout, clearTimeout });
   vm.runInContext(fs.readFileSync(path.join(root, 'data/extraction-rules.js'), 'utf8'), context);
+  vm.runInContext(fs.readFileSync(path.join(root, 'data/db-lists.js'), 'utf8'), context);
   vm.runInContext(fs.readFileSync(path.join(root, 'data/manifest.js'), 'utf8'), context);
   if (tree) window.MOCKUP_VIEWER_MANIFEST = { tree };
   vm.runInContext(fs.readFileSync(path.join(root, 'data/descriptions.js'), 'utf8'), context);
@@ -391,4 +392,32 @@ test('extraction rule pages share a separate index-first scope and preserve docu
   assert.equal(app.location.hash, '#extraction-rules-index/csv');
   app.pageButton('extraction-rule-csv-001').click();
   expectPage(app, 'extraction-rule-csv-001', '02/03');
+});
+
+
+test('DB lists navigate within their own group boundaries', () => {
+  const groups = [
+    ['DB 리스트', ['rist-db-lists-index', ...['category','medium','person','institution','location','base','sampling-method','analysis-method','unit'].map(s=>'rist-db-list-'+s)]]
+  ];
+  for (const [title, ids] of groups) {
+    const app = boot({hash:'#'+ids[0]});
+    assert.equal(app.get('page-breadcrumb').textContent,title);
+    assert.equal(app.get('previous-page').disabled,true);
+    ids.forEach((id,index)=>{
+      expectPage(app,id,String(index+1).padStart(2,'0')+'/'+String(ids.length).padStart(2,'0'));
+      assert.equal(app.get('annotation-layer').children.length,0);
+      assert.equal(app.get('description-list').children.length,0);
+      app.get('next-page').click();
+    });
+    assert.equal(app.get('next-page').disabled,true);
+    app.key('ArrowRight');
+    assert.equal(app.current(),ids.at(-1));
+  }
+});
+
+test('DB document links keep stable page IDs',()=>{
+  const app=boot({hash:'#rist-db-lists-index'});
+  app.pageLink('rist-db-list-location');
+  expectPage(app,'rist-db-list-location','06/10');
+  assert.equal(app.get('page-breadcrumb').textContent,'DB 리스트');
 });

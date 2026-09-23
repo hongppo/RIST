@@ -81,7 +81,7 @@
 <header class="policy-header has-labeled-download">
 <div class="document-header-main"><div class="policy-kicker">RIST · SCHEMA</div>
 <h1>통합 스키마</h1>
-<div class="schema-meta"><span>버전 1</span><span>작성일 2026/09/16</span><span>수정일 2026/09/21</span></div>
+<div class="schema-meta"><span>버전 1</span><span>작성일 2026/09/16</span><span>수정일 2026/09/23</span></div>
 </div>
 <div class="document-download-row"><span class="document-download-label">통합 스키마.md</span><a data-document-download href="../docs/rist-schema.md" download="통합 스키마.md" class="document-download" title="통합 스키마 MD 다운로드" aria-label="통합 스키마 MD 다운로드"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m-5-5 5 5 5-5"/><path d="M4 15v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></svg></a></div>
 </header>
@@ -93,6 +93,7 @@
 <tr><th scope="col">변경일</th><th scope="col">구분</th><th scope="col">주요 변경 내용</th></tr>
 </thead>
 <tbody>
+<tr><td>2026/09/23</td><td>채취법 코드·저장값 보완</td><td>채취법 마스터의 고시번호·시험방법 코드 분리 및 설명·적용 조건 정의 보완. 검토·최종 결과에 선택 당시 코드 또는 추출값을 보존하는 컬럼 추가</td></tr>
 <tr><td>2026/09/21</td><td>저장·정밀도 정합성</td><td>검토 중 부분 추출 좌표의 작업 저장 허용과 최종 좌표 쌍 검증 분리. 소수점 10자리 초과 반올림·정밀값 재사용 명시. 파서 1:N 반환을 행별 1:1 저장으로 변환하는 순서·ID·원문 보존 계약 보완</td></tr>
 <tr><td>2026/09/21</td><td>행별 저장·목록 구조</td><td>기본 기록·물질 결과를 행별 1:1로 변경하고 원본 기록 순서 보존. 담당자·기관 전용 테이블 추가로 17개에서 19개 테이블로 확장. 다국어 명칭·비고·주소·분석법 코드 분리, 내부 물질 추천 기준 및 변경·저장·복원 규칙 정리</td></tr>
 <tr><td>2026/09/18</td><td>좌표 정밀도</td><td>위도·경도를 DECIMAL(13,10)으로 명시하고 좌표 자릿수·도분초 변환 반올림·원문 보존 기준 추가</td></tr>
@@ -132,7 +133,7 @@
 <tr><td><code>location_master</code></td><td>지역·관측 지점 목록</td><td>반복 사용하는 지점명·주소·위경도</td><td><a href="#location_master">상세</a></td></tr>
 <tr><td><code>substance_master</code></td><td>내부 물질 추천 기준</td><td>표준 물질명·CAS 기반 내부 식별·추천 기준</td><td><a href="#substance_master">상세</a></td></tr>
 <tr><td><code>base_master</code></td><td>BASE 목록</td><td>BASE 선택·매칭 기준</td><td><a href="#base_master">상세</a></td></tr>
-<tr><td><code>sampling_method_master</code></td><td>채취법 목록</td><td>채취 방법 명칭·적용 조건</td><td><a href="#sampling_method_master">상세</a></td></tr>
+<tr><td><code>sampling_method_master</code></td><td>채취법 목록</td><td>채취법 명칭·고시번호·시험방법 코드·설명·적용 조건</td><td><a href="#sampling_method_master">상세</a></td></tr>
 <tr><td><code>analysis_method_master</code></td><td>분석법 목록</td><td>분석법 명칭·고시번호·방법 코드</td><td><a href="#analysis_method_master">상세</a></td></tr>
 <tr><td><code>substance_method_map</code></td><td>물질별 방법·추천 매핑</td><td>내부 물질 기준과 BASE·방법 추천 조합 연결</td><td><a href="#substance_method_map">상세</a></td></tr>
 <tr><td><code>common_option</code></td><td>공통 선택 항목</td><td>구분·매체·단위의 그룹별 목록</td><td><a href="#common_option">상세</a></td></tr>
@@ -222,7 +223,7 @@
 <tr><td>직접 입력 항목</td><td>시료명·분석 물질·결과·일자·기간·좌표는 직접 입력·수정 가능. 필드별 입력 형식·필수 여부는 유형별 명세 적용</td></tr>
 <tr><td>다국어 명칭</td><td>institution_master·base_master·sampling_method_master·analysis_method_master의 한글명·영문명은 각각 NULL 허용. 앞뒤 공백 제거 후 빈 값은 NULL로 정규화하고 하나 이상 유효한 이름 필수</td></tr>
 <tr><td>선택 시 표시명</td><td>다국어 목록은 한글명이 있으면 한글명, 없으면 영문명을 사용. 기관 약칭은 보조 정보이며 이름 필수 조건을 대체하지 않음. 단일 명칭 목록은 해당 명칭 사용</td></tr>
-<tr><td>기록 시점 보존</td><td>목록 선택 시 ID와 당시 표시값을 함께 기록. 분석법은 고시번호·시험방법 코드도 각각 복사. 이후 목록 수정은 기존 기록값을 자동 변경하지 않음</td></tr>
+<tr><td>기록 시점 보존</td><td>목록 선택 시 ID와 당시 표시값을 함께 기록. 채취법·분석법은 고시번호·시험방법 코드도 각각 복사. 이후 목록 수정은 기존 기록값을 자동 변경하지 않음</td></tr>
 <tr><td>신규 등록·변경 구분</td><td>목록 등록과 검토값 변경은 별도 처리. 신규 등록만으로 검토값을 변경하지 않으며, 검토 변경을 되돌려도 등록된 목록 항목은 삭제하지 않음</td></tr>
 <tr><td>식별·비활성화</td><td>이름만으로 전역 UNIQUE를 설정하지 않음. ID로 식별하고, 이미 참조된 항목은 삭제 대신 비활성화</td></tr>
 </tbody>
@@ -318,6 +319,8 @@
 <tr><td><code>base_name</code></td><td>BASE 표시값</td><td><code>TEXT</code></td><td>허용</td><td>선택 당시 명칭 또는 추출값</td></tr>
 <tr><td><code>sampling_method_id</code></td><td>채취법 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → sampling_method_master.sampling_method_id</td></tr>
 <tr><td><code>sampling_method_name</code></td><td>채취법 표시값</td><td><code>TEXT</code></td><td>허용</td><td>선택 당시 명칭 또는 추출값</td></tr>
+<tr><td><code>sampling_method_notice_number</code></td><td>채취법 고시번호</td><td><code>TEXT</code></td><td>허용</td><td>추출값 또는 선택 당시 고시번호 보존</td></tr>
+<tr><td><code>sampling_method_test_code</code></td><td>채취법 시험방법 코드</td><td><code>TEXT</code></td><td>허용</td><td>추출값 또는 선택 당시 시험방법 코드 보존</td></tr>
 <tr><td><code>analysis_method_id</code></td><td>분석법 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → analysis_method_master.analysis_method_id</td></tr>
 <tr><td><code>analysis_method_name</code></td><td>분석법 표시값</td><td><code>TEXT</code></td><td>허용</td><td>선택 당시 명칭 또는 추출값</td></tr>
 <tr><td><code>analysis_method_notice_number</code></td><td>분석법 고시번호</td><td><code>TEXT</code></td><td>허용</td><td>추출값 또는 선택 당시 고시번호 보존</td></tr>
@@ -520,6 +523,8 @@
 <tr><td><code>base_name</code></td><td>BASE 표시값</td><td><code>TEXT</code></td><td>허용</td><td>선택 당시 명칭 또는 추출값</td></tr>
 <tr><td><code>sampling_method_id</code></td><td>채취법 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → sampling_method_master.sampling_method_id</td></tr>
 <tr><td><code>sampling_method_name</code></td><td>채취법 표시값</td><td><code>TEXT</code></td><td>허용</td><td>선택 당시 명칭 또는 추출값</td></tr>
+<tr><td><code>sampling_method_notice_number</code></td><td>채취법 고시번호</td><td><code>TEXT</code></td><td>허용</td><td>추출값 또는 선택 당시 고시번호 보존</td></tr>
+<tr><td><code>sampling_method_test_code</code></td><td>채취법 시험방법 코드</td><td><code>TEXT</code></td><td>허용</td><td>추출값 또는 선택 당시 시험방법 코드 보존</td></tr>
 <tr><td><code>analysis_method_id</code></td><td>분석법 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → analysis_method_master.analysis_method_id</td></tr>
 <tr><td><code>analysis_method_name</code></td><td>분석법 표시값</td><td><code>TEXT</code></td><td>허용</td><td>선택 당시 명칭 또는 추출값</td></tr>
 <tr><td><code>analysis_method_notice_number</code></td><td>분석법 고시번호</td><td><code>TEXT</code></td><td>허용</td><td>추출값 또는 선택 당시 고시번호 보존</td></tr>
@@ -724,16 +729,18 @@
 </section>
 <section class="policy-section schema-level-3" id="sampling_method_master" tabindex="-1">
 <h3>sampling_method_master</h3>
-<p><strong>채취법 목록</strong> — 한글명·영문명과 선택·매칭 기준.</p>
+<p><strong>채취법 목록</strong> — 한글명·영문명·고시번호·시험방법 코드와 설명·적용 조건.</p>
 <div class="schema-table-wrap"><table class="schema-columns">
 <thead>
 <tr><th scope="col">컬럼명</th><th scope="col">한글 이름</th><th scope="col">자료형</th><th scope="col">NULL</th><th scope="col">제약·설명</th></tr>
 </thead>
 <tbody>
 <tr><td><code>sampling_method_id</code></td><td>채취법 ID</td><td><code>UUID</code></td><td>불가</td><td>PK</td></tr>
+<tr><td><code>notice_number</code></td><td>고시번호</td><td><code>TEXT</code></td><td>허용</td><td>고시번호. 시험방법 코드와 별도 저장</td></tr>
+<tr><td><code>test_method_code</code></td><td>시험방법 코드</td><td><code>TEXT</code></td><td>허용</td><td>시험방법의 코드. 고시번호와 별도 저장</td></tr>
 <tr><td><code>method_name_ko</code></td><td>채취법명(한글)</td><td><code>TEXT</code></td><td>허용</td><td>한글명·영문명 중 하나 이상 필수</td></tr>
 <tr><td><code>method_name_en</code></td><td>채취법명(영문)</td><td><code>TEXT</code></td><td>허용</td><td>한글명·영문명 중 하나 이상 필수</td></tr>
-<tr><td><code>description</code></td><td>비고</td><td><code>TEXT</code></td><td>허용</td><td>등록 비고</td></tr>
+<tr><td><code>description</code></td><td>설명·적용 조건</td><td><code>TEXT</code></td><td>허용</td><td>설명·적용 조건 원문. 확정된 자동 추천·입력 규칙을 의미하지 않음</td></tr>
 <tr><td><code>is_active</code></td><td>사용 여부</td><td><code>BOOLEAN</code></td><td>불가</td><td>기본값 <code>true</code></td></tr>
 <tr><td><code>created_at</code></td><td>생성 시각</td><td><code>TIMESTAMP WITH TIME ZONE</code></td><td>불가</td><td>서버 기록</td></tr>
 <tr><td><code>created_by</code></td><td>생성 사용자 ID</td><td><code>UUID</code></td><td>허용</td><td>FK → user_account.user_id. 초기 목록 등록 시 NULL 허용</td></tr>
@@ -745,6 +752,8 @@
 <li>공통 다국어 명칭·표시명 기준 적용. 명칭에 전역 UNIQUE를 적용하지 않으며 ID로 식별.</li>
 <li>사용자 변경은 목록 선택 또는 신규 등록 후 선택으로 확정. 미매칭 추출값은 결과에 보존하며 자동 등록하지 않음.</li>
 <li>선택 당시 표시값은 결과에 보존. 참조 중인 항목은 삭제 대신 비활성화.</li>
+<li>고시번호·시험방법 코드 각각에도 전역 UNIQUE를 적용하지 않음. review_result·analysis_result의 sampling_method_notice_number·sampling_method_test_code에 추출값 또는 선택 당시 값을 각각 보존. 마스터 변경으로 기존 결과값을 자동 변경하지 않음.</li>
+<li>고시번호 공란을 시험방법 코드로 채우지 않음. 원문 코드 <code>-</code>는 문자 그대로 보존하고 공란으로 바꾸지 않으며, 원본 공란은 값이 없는 상태로 유지.</li>
 </ul>
 </section>
 <section class="policy-section schema-level-3" id="analysis_method_master" tabindex="-1">

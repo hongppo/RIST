@@ -2,7 +2,7 @@
 type: planning
 hub: "[[💡planning]]"
 created_at: 2026-09-16
-updated_at: 2026-09-21
+updated_at: 2026-09-23
 client: "[[RIST(포항산업과학연구원)]]"
 project: "[[RIST 데이터 표준화 프로그램 개발]]"
 status: 초안
@@ -13,6 +13,7 @@ version: 1
 
 | 변경일 | 구분 | 주요 변경 내용 |
 | --- | --- | --- |
+| 2026/09/23 | 채취법 코드·저장값 보완 | 채취법 마스터의 고시번호·시험방법 코드 분리 및 설명·적용 조건 정의 보완. 검토·최종 결과에 선택 당시 코드 또는 추출값을 보존하는 컬럼 추가 |
 | 2026/09/21 | 저장·정밀도 정합성 | 검토 중 부분 추출 좌표의 작업 저장 허용과 최종 좌표 쌍 검증 분리. 소수점 10자리 초과 반올림·정밀값 재사용 명시. 파서 1:N 반환을 행별 1:1 저장으로 변환하는 순서·ID·원문 보존 계약 보완 |
 | 2026/09/21 | 행별 저장·목록 구조 | 기본 기록·물질 결과를 행별 1:1로 변경하고 원본 기록 순서 보존. 담당자·기관 전용 테이블 추가로 17개에서 19개 테이블로 확장. 다국어 명칭·비고·주소·분석법 코드 분리, 내부 물질 추천 기준 및 변경·저장·복원 규칙 정리 |
 | 2026/09/18 | 좌표 정밀도 | 위도·경도를 DECIMAL(13,10)으로 명시하고 좌표 자릿수·도분초 변환 반올림·원문 보존 기준 추가 |
@@ -42,7 +43,7 @@ version: 1
 | `location_master` | 지역·관측 지점 목록 | 반복 사용하는 지점명·주소·위경도 | [상세](#location_master) |
 | `substance_master` | 내부 물질 추천 기준 | 표준 물질명·CAS 기반 내부 식별·추천 기준 | [상세](#substance_master) |
 | `base_master` | BASE 목록 | BASE 선택·매칭 기준 | [상세](#base_master) |
-| `sampling_method_master` | 채취법 목록 | 채취 방법 명칭·적용 조건 | [상세](#sampling_method_master) |
+| `sampling_method_master` | 채취법 목록 | 채취법 명칭·고시번호·시험방법 코드·설명·적용 조건 | [상세](#sampling_method_master) |
 | `analysis_method_master` | 분석법 목록 | 분석법 명칭·고시번호·방법 코드 | [상세](#analysis_method_master) |
 | `substance_method_map` | 물질별 방법·추천 매핑 | 내부 물질 기준과 BASE·방법 추천 조합 연결 | [상세](#substance_method_map) |
 | `common_option` | 공통 선택 항목 | 구분·매체·단위의 그룹별 목록 | [상세](#common_option) |
@@ -112,7 +113,7 @@ version: 1
 | 직접 입력 항목 | 시료명·분석 물질·결과·일자·기간·좌표는 직접 입력·수정 가능. 필드별 입력 형식·필수 여부는 유형별 명세 적용 |
 | 다국어 명칭 | institution_master·base_master·sampling_method_master·analysis_method_master의 한글명·영문명은 각각 NULL 허용. 앞뒤 공백 제거 후 빈 값은 NULL로 정규화하고 하나 이상 유효한 이름 필수 |
 | 선택 시 표시명 | 다국어 목록은 한글명이 있으면 한글명, 없으면 영문명을 사용. 기관 약칭은 보조 정보이며 이름 필수 조건을 대체하지 않음. 단일 명칭 목록은 해당 명칭 사용 |
-| 기록 시점 보존 | 목록 선택 시 ID와 당시 표시값을 함께 기록. 분석법은 고시번호·시험방법 코드도 각각 복사. 이후 목록 수정은 기존 기록값을 자동 변경하지 않음 |
+| 기록 시점 보존 | 목록 선택 시 ID와 당시 표시값을 함께 기록. 채취법·분석법은 고시번호·시험방법 코드도 각각 복사. 이후 목록 수정은 기존 기록값을 자동 변경하지 않음 |
 | 신규 등록·변경 구분 | 목록 등록과 검토값 변경은 별도 처리. 신규 등록만으로 검토값을 변경하지 않으며, 검토 변경을 되돌려도 등록된 목록 항목은 삭제하지 않음 |
 | 식별·비활성화 | 이름만으로 전역 UNIQUE를 설정하지 않음. ID로 식별하고, 이미 참조된 항목은 삭제 대신 비활성화 |
 
@@ -193,6 +194,8 @@ version: 1
 | `base_name` | BASE 표시값 | `TEXT` | 허용 | 선택 당시 명칭 또는 추출값 |
 | `sampling_method_id` | 채취법 ID | `UUID` | 허용 | FK → sampling_method_master.sampling_method_id |
 | `sampling_method_name` | 채취법 표시값 | `TEXT` | 허용 | 선택 당시 명칭 또는 추출값 |
+| `sampling_method_notice_number` | 채취법 고시번호 | `TEXT` | 허용 | 추출값 또는 선택 당시 고시번호 보존 |
+| `sampling_method_test_code` | 채취법 시험방법 코드 | `TEXT` | 허용 | 추출값 또는 선택 당시 시험방법 코드 보존 |
 | `analysis_method_id` | 분석법 ID | `UUID` | 허용 | FK → analysis_method_master.analysis_method_id |
 | `analysis_method_name` | 분석법 표시값 | `TEXT` | 허용 | 선택 당시 명칭 또는 추출값 |
 | `analysis_method_notice_number` | 분석법 고시번호 | `TEXT` | 허용 | 추출값 또는 선택 당시 고시번호 보존 |
@@ -364,6 +367,8 @@ version: 1
 | `base_name` | BASE 표시값 | `TEXT` | 허용 | 선택 당시 명칭 또는 추출값 |
 | `sampling_method_id` | 채취법 ID | `UUID` | 허용 | FK → sampling_method_master.sampling_method_id |
 | `sampling_method_name` | 채취법 표시값 | `TEXT` | 허용 | 선택 당시 명칭 또는 추출값 |
+| `sampling_method_notice_number` | 채취법 고시번호 | `TEXT` | 허용 | 추출값 또는 선택 당시 고시번호 보존 |
+| `sampling_method_test_code` | 채취법 시험방법 코드 | `TEXT` | 허용 | 추출값 또는 선택 당시 시험방법 코드 보존 |
 | `analysis_method_id` | 분석법 ID | `UUID` | 허용 | FK → analysis_method_master.analysis_method_id |
 | `analysis_method_name` | 분석법 표시값 | `TEXT` | 허용 | 선택 당시 명칭 또는 추출값 |
 | `analysis_method_notice_number` | 분석법 고시번호 | `TEXT` | 허용 | 추출값 또는 선택 당시 고시번호 보존 |
@@ -530,14 +535,16 @@ version: 1
 
 ### sampling_method_master
 
-**채취법 목록** — 한글명·영문명과 선택·매칭 기준.
+**채취법 목록** — 한글명·영문명·고시번호·시험방법 코드와 설명·적용 조건.
 
 | 컬럼명 | 한글 이름 | 자료형 | NULL | 제약·설명 |
 | --- | --- | --- | --- | --- |
 | `sampling_method_id` | 채취법 ID | `UUID` | 불가 | PK |
+| `notice_number` | 고시번호 | `TEXT` | 허용 | 고시번호. 시험방법 코드와 별도 저장 |
+| `test_method_code` | 시험방법 코드 | `TEXT` | 허용 | 시험방법의 코드. 고시번호와 별도 저장 |
 | `method_name_ko` | 채취법명(한글) | `TEXT` | 허용 | 한글명·영문명 중 하나 이상 필수 |
 | `method_name_en` | 채취법명(영문) | `TEXT` | 허용 | 한글명·영문명 중 하나 이상 필수 |
-| `description` | 비고 | `TEXT` | 허용 | 등록 비고 |
+| `description` | 설명·적용 조건 | `TEXT` | 허용 | 설명·적용 조건 원문. 확정된 자동 추천·입력 규칙을 의미하지 않음 |
 | `is_active` | 사용 여부 | `BOOLEAN` | 불가 | 기본값 `true` |
 | `created_at` | 생성 시각 | `TIMESTAMP WITH TIME ZONE` | 불가 | 서버 기록 |
 | `created_by` | 생성 사용자 ID | `UUID` | 허용 | FK → user_account.user_id. 초기 목록 등록 시 NULL 허용 |
@@ -547,6 +554,8 @@ version: 1
 - 공통 다국어 명칭·표시명 기준 적용. 명칭에 전역 UNIQUE를 적용하지 않으며 ID로 식별.
 - 사용자 변경은 목록 선택 또는 신규 등록 후 선택으로 확정. 미매칭 추출값은 결과에 보존하며 자동 등록하지 않음.
 - 선택 당시 표시값은 결과에 보존. 참조 중인 항목은 삭제 대신 비활성화.
+- 고시번호·시험방법 코드 각각에도 전역 UNIQUE를 적용하지 않음. review_result·analysis_result의 sampling_method_notice_number·sampling_method_test_code에 추출값 또는 선택 당시 값을 각각 보존. 마스터 변경으로 기존 결과값을 자동 변경하지 않음.
+- 고시번호 공란을 시험방법 코드로 채우지 않음. 원문 코드 `-`는 문자 그대로 보존하고 공란으로 바꾸지 않으며, 원본 공란은 값이 없는 상태로 유지.
 
 ### analysis_method_master
 
