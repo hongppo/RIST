@@ -35,5 +35,14 @@ window.MOCKUP_VIEWER_EXTRACTION_RULE_PAGES = [
     "width": 1280,
     "autoHeight": true,
     "kind": "추출 규칙"
+  },
+  {
+    "id": "extraction-rule-pdf-003",
+    "title": "PDF-003",
+    "summary": "PDF-003 파일의 판별·추출·변환 규칙과 컬럼 매핑.",
+    "src": "pages/extraction-rule-pdf-003.html",
+    "width": 1280,
+    "autoHeight": true,
+    "kind": "추출 규칙"
   }
 ];

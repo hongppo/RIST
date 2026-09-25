@@ -373,28 +373,30 @@ test('review stage tabs and footer page links route between registered pages wit
 
 test('extraction rule pages share a separate index-first scope and preserve document anchor links', () => {
   const app = boot({ hash: '#extraction-rules-index' });
-  expectPage(app, 'extraction-rules-index', '01/04');
+  expectPage(app, 'extraction-rules-index', '01/05');
   assert.equal(app.get('page-breadcrumb').textContent, '추출 규칙');
   app.key('ArrowLeft');
-  expectPage(app, 'extraction-rules-index', '01/04');
+  expectPage(app, 'extraction-rules-index', '01/05');
   app.pageLink('extraction-rule-csv-001');
-  expectPage(app, 'extraction-rule-csv-001', '02/04');
+  expectPage(app, 'extraction-rule-csv-001', '02/05');
   app.key('ArrowRight');
-  expectPage(app, 'extraction-rule-pdf-001', '03/04');
+  expectPage(app, 'extraction-rule-pdf-001', '03/05');
   app.iframe('next');
-  expectPage(app, 'extraction-rule-pdf-002', '04/04');
+  expectPage(app, 'extraction-rule-pdf-002', '04/05');
   app.get('next-page').click();
-  expectPage(app, 'extraction-rule-pdf-002', '04/04');
+  expectPage(app, 'extraction-rule-pdf-003', '05/05');
+  app.get('next-page').click();
+  expectPage(app, 'extraction-rule-pdf-003', '05/05');
   assert.equal(app.get('next-page').disabled, true);
   app.pageLink('rist-schema', 'review_record');
   expectPage(app, 'rist-schema', '02/04');
   assert.equal(app.location.hash, '#rist-schema/review_record');
   assert.deepEqual(app.setPages.at(-1), { id: 'rist-schema', anchor: 'review_record' });
   app.pageLink('extraction-rules-index', 'csv');
-  expectPage(app, 'extraction-rules-index', '01/04');
+  expectPage(app, 'extraction-rules-index', '01/05');
   assert.equal(app.location.hash, '#extraction-rules-index/csv');
   app.pageButton('extraction-rule-csv-001').click();
-  expectPage(app, 'extraction-rule-csv-001', '02/04');
+  expectPage(app, 'extraction-rule-csv-001', '02/05');
 });
 
 
