@@ -137,7 +137,7 @@
 <tr><td>공통 항목</td><td>기본 정보 시료명·채취일자·시험기간 시작일과 하단 기관명 추출. 종료일 - 시작일 + 1로 기간 계산. 날짜만 있으면 DATE와 일시 NULL, 시료명 속 시각은 전용하지 않음</td></tr>
 <tr><td>물질·결과·단위</td><td>시험항목 물질명과 같은 행의 해당 시료 결과를 연결. 단위는 실제 병합 셀이 덮는 행에만 적용하며 괄호 속 표기까지 보존. 반복 헤더 제외, 물질명이 있는 빈 결과 행은 유지</td></tr>
 <tr><td>값·정밀도</td><td>0·<code>n.d</code>·공란을 구분. <code>n.d</code>는 원문·표시값 유지 및 수치 NULL, 0으로 치환하지 않음. 소수 자릿수·원문을 보존하고 Decimal 사용</td></tr>
-<tr><td>지역 매칭</td><td>시료명·지역 입력값 → <a href="rist-matching-location.html" data-viewer-page="rist-matching-location">지역 매칭</a> → 지점·DB 좌표. 등록 단어의 유일한 대응만 사용하며 미매칭·복수 지점은 NULL. 기관 주소로 좌표를 추정하지 않음</td></tr>
+<tr><td>지역 매칭</td><td>시료명·지역 입력값 → <a href="rist-matching-location.html" data-viewer-page="rist-matching-location">지역 매칭</a> → 지점·DB 좌표. 관측 지점 DB 전체의 정식 지점명·도시명 뒤 지역 부분을 대조하며 미매칭·복수 지점은 NULL. 기관 주소로 좌표를 추정하지 않음</td></tr>
 <tr><td>분석법 매칭</td><td>시험항목 추출·입력값 → <a href="rist-matching-analysis-method.html" data-viewer-page="rist-matching-analysis-method">분석법 매칭</a> → 시험방법 코드 + DB 분석법명. 공통 추출값 우선 원칙의 유형별 예외로, PDF 기재 여부·개정판 차이와 관계없이 정해진 매칭값 적용. 미대응·불명확은 NULL, 시험방법 원문·고시번호는 별도 보존</td></tr>
 <tr><td>인터페이스 입력</td><td>추출·계산·매칭 후 남은 구분·매체·담당자·위치·BASE·채취법·분석법 등을 보완. 가이드 예시·파일명으로 자동 생성하지 않음</td></tr>
 <tr><td>행 전개·출처</td><td>연결 보고서별 기본 기록 + 시험항목별 결과 N건. 다음 페이지에서도 결과 순서를 이어 저장 시 독립 1:1 쌍으로 전개. 직접 추출·계산·매칭을 구분하고 제외 구간·병합 셀 적용 범위·원문 위치 보존</td></tr>
