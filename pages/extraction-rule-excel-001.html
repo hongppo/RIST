@@ -124,6 +124,25 @@
 </tbody>
 </table></div>
 </section>
+<section class="policy-section schema-level-2" id="핵심-규칙-요약표" tabindex="-1">
+<h2>핵심 규칙 요약표</h2>
+<div class="schema-table-wrap"><table class="schema-reference">
+<thead>
+<tr><th scope="col">구분</th><th scope="col">핵심 적용 기준</th></tr>
+</thead>
+<tbody>
+<tr><td>유형 판별</td><td><strong>1행 C열부터 시료명, B열 2행부터 분석물질, C2부터 교차 결과</strong>라는 고정 구조 자체로 판별. 특정 물질 조합·표식은 요구하지 않음. 시료·물질 수와 마지막 행·열은 가변. 이동·전치 구조나 유형 중복·범위 미확정은 임의 확정하지 않고 미지원 안내·종료</td></tr>
+<tr><td>추출 범위</td><td>고정 시작 위치에서 같은 시료 헤더 행·물질명 열에 대응하는 결과 범위를 확인. 축 끊김 뒤 내용이나 주석·별도 표를 임의 연결하지 않음. A열·B1의 공란은 필수조건이 아니며 서식 끝·첫 빈 결과만으로 종료하지 않음</td></tr>
+<tr><td>빈 양식 열 제외</td><td>위치와 관계없이 <strong>시료명 헤더가 숫자 0이고 모든 물질 행 결과도 숫자 0인 열</strong>만 제외. 정상 시료명의 결과는 전부 0이어도 보존. CY·제외 열 개수는 샘플 예시</td></tr>
+<tr><td>항목별 추출</td><td>1행 시료명과 B열 물질명을 전체 보존하고 교차 셀을 해당 시료·물질 결과에 연결. <code>M,P-Xylene</code>을 분리하거나 <code>O-Xylene</code>과 병합하지 않음. 날짜·단위는 파일에 없으므로 추정하지 않음</td></tr>
+<tr><td>값·정밀도</td><td>XLSX 내부 숫자 <code>&lt;v&gt;</code> 문자열을 원문으로 보존하고 Decimal로 해석. Excel 화면 표시나 이진 부동소수점 값으로 대체하지 않음. 실제 0 보존, 비수치는 원문 유지·수치 NULL, 빈 결과는 NULL. 임의 반올림 금지</td></tr>
+<tr><td>지역 매칭</td><td>시료명·지역 입력값 → <a href="rist-matching-location.html" data-viewer-page="rist-matching-location">지역 매칭</a> → 같은 DB 행의 지점·좌표. 각 시료의 결과에만 적용하고 없음·복수 지점은 NULL. 첫 시료 좌표를 전체에 복제하지 않음</td></tr>
+<tr><td>분석법 매칭</td><td>물질 추출·입력값 → <a href="rist-matching-analysis-method.html" data-viewer-page="rist-matching-analysis-method">분석법 매칭</a> → 코드·DB 분석법명. 없음·불명확은 NULL. VOCs 전체에 한 분석법을 일괄 적용하거나 두 Xylene 표기를 임의 통합하지 않음</td></tr>
+<tr><td>인터페이스 입력</td><td>구분·매체·담당자·기관·채취일자·분석일자·BASE·채취법·단위와 매칭 후 비는 위치·분석법을 보완. 날짜가 없는데 기간 1일을 만들지 않으며 가이드 입력 예시는 자동값이 아님</td></tr>
+<tr><td>행 전개·출처</td><td>시료 열마다 기본 기록, 위→아래 물질 행마다 결과 생성. 시료 열 순서→물질 행 순서로 독립 1:1 저장 쌍 전개. 셀 주소·유형·숫자 원문·표시 형식과 매칭 근거 보존</td></tr>
+</tbody>
+</table></div>
+</section>
 <section class="policy-section schema-level-2 schema-group" id="파일-읽기-및-유형-판별" tabindex="-1">
 <h2>파일 읽기 및 유형 판별</h2>
 <section class="policy-section schema-level-3" id="행열-역할과-고정-위치" tabindex="-1">
