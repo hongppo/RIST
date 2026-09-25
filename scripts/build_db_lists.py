@@ -51,6 +51,9 @@ def build_db_lists(root=ROOT):
         return False
     page_map = {folder / (slug + '.md'): ('rist-db-lists-index' if slug == 'index' else 'rist-db-list-' + slug) for slug, _ in DOCUMENTS}
     page_map.update({source: 'extraction-rule-' + source.stem for source in discover_rules(root)})
+    matching_analysis = root / 'docs' / 'matching-rules' / 'analysis-method.md'
+    if matching_analysis.is_file() and matching_analysis.resolve().is_relative_to((root / 'docs').resolve()):
+        page_map[matching_analysis] = 'rist-matching-analysis-method'
     # Validate every document before writing any generated files.
     pages, rendered = [], {}
     for slug, title in DOCUMENTS:

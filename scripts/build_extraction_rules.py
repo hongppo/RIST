@@ -303,6 +303,18 @@ def build_extraction_rules(root=ROOT):
     schema = root / 'docs' / 'rist-schema.md'
     if schema.is_file() and inside(schema, root / 'docs'):
         page_map[schema] = 'rist-schema'
+    location = root / 'docs' / 'db-lists' / 'location.md'
+    if location.is_file() and inside(location, root / 'docs'):
+        page_map[location] = 'rist-db-list-location'
+    matching_location = root / 'docs' / 'matching-rules' / 'location.md'
+    if matching_location.is_file() and inside(matching_location, root / 'docs'):
+        page_map[matching_location] = 'rist-matching-location'
+    matching_analysis = root / 'docs' / 'matching-rules' / 'analysis-method.md'
+    if matching_analysis.is_file() and inside(matching_analysis, root / 'docs'):
+        page_map[matching_analysis] = 'rist-matching-analysis-method'
+    analysis_db = root / 'docs' / 'db-lists' / 'analysis-method.md'
+    if analysis_db.is_file() and inside(analysis_db, root / 'docs'):
+        page_map[analysis_db] = 'rist-db-list-analysis-method'
     pages, documents = [], {}
     for source in [index, *rules]:
         source_text = index_source if source == index else source.read_text(encoding='utf-8')

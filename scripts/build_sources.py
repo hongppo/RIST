@@ -23,6 +23,7 @@ from build_change_history import build_change_history
 from build_policies import build_policies
 from build_schema import build_schema
 from build_extraction_rules import build_extraction_rules
+from build_matching_rules import build_matching_rules
 from build_db_lists import build_db_lists
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -294,6 +295,7 @@ def main():
     build_policies(ROOT)
     build_schema(ROOT)
     build_extraction_rules(ROOT)
+    build_matching_rules(ROOT)
     build_db_lists(ROOT)
     pages = sorted((ROOT / 'pages').rglob('*.html'))
     registry = {path.relative_to(ROOT).as_posix(): build_page(path) for path in pages}

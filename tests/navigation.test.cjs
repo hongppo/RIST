@@ -58,6 +58,7 @@ function boot({ hash = '#rist-cover', tree, descriptions, zoom = 1, storage = { 
     localStorage: storage,
     requestAnimationFrame: () => 1, cancelAnimationFrame() {}, setTimeout, clearTimeout });
   vm.runInContext(fs.readFileSync(path.join(root, 'data/extraction-rules.js'), 'utf8'), context);
+  vm.runInContext(fs.readFileSync(path.join(root, 'data/matching-rules.js'), 'utf8'), context);
   vm.runInContext(fs.readFileSync(path.join(root, 'data/db-lists.js'), 'utf8'), context);
   vm.runInContext(fs.readFileSync(path.join(root, 'data/manifest.js'), 'utf8'), context);
   if (tree) window.MOCKUP_VIEWER_MANIFEST = { tree };
@@ -373,35 +374,38 @@ test('review stage tabs and footer page links route between registered pages wit
 
 test('extraction rule pages share a separate index-first scope and preserve document anchor links', () => {
   const app = boot({ hash: '#extraction-rules-index' });
-  expectPage(app, 'extraction-rules-index', '01/05');
+  expectPage(app, 'extraction-rules-index', '01/06');
   assert.equal(app.get('page-breadcrumb').textContent, '추출 규칙');
   app.key('ArrowLeft');
-  expectPage(app, 'extraction-rules-index', '01/05');
+  expectPage(app, 'extraction-rules-index', '01/06');
   app.pageLink('extraction-rule-csv-001');
-  expectPage(app, 'extraction-rule-csv-001', '02/05');
+  expectPage(app, 'extraction-rule-csv-001', '02/06');
   app.key('ArrowRight');
-  expectPage(app, 'extraction-rule-pdf-001', '03/05');
+  expectPage(app, 'extraction-rule-excel-001', '03/06');
+  app.key('ArrowRight');
+  expectPage(app, 'extraction-rule-pdf-001', '04/06');
   app.iframe('next');
-  expectPage(app, 'extraction-rule-pdf-002', '04/05');
+  expectPage(app, 'extraction-rule-pdf-002', '05/06');
   app.get('next-page').click();
-  expectPage(app, 'extraction-rule-pdf-003', '05/05');
+  expectPage(app, 'extraction-rule-pdf-003', '06/06');
   app.get('next-page').click();
-  expectPage(app, 'extraction-rule-pdf-003', '05/05');
+  expectPage(app, 'extraction-rule-pdf-003', '06/06');
   assert.equal(app.get('next-page').disabled, true);
   app.pageLink('rist-schema', 'review_record');
   expectPage(app, 'rist-schema', '02/04');
   assert.equal(app.location.hash, '#rist-schema/review_record');
   assert.deepEqual(app.setPages.at(-1), { id: 'rist-schema', anchor: 'review_record' });
   app.pageLink('extraction-rules-index', 'csv');
-  expectPage(app, 'extraction-rules-index', '01/05');
+  expectPage(app, 'extraction-rules-index', '01/06');
   assert.equal(app.location.hash, '#extraction-rules-index/csv');
   app.pageButton('extraction-rule-csv-001').click();
-  expectPage(app, 'extraction-rule-csv-001', '02/05');
+  expectPage(app, 'extraction-rule-csv-001', '02/06');
 });
 
 
-test('DB lists navigate within their own group boundaries', () => {
+test('matching and DB lists navigate within their own group boundaries', () => {
   const groups = [
+    ['매칭 규칙', ['rist-matching-index', 'rist-matching-location', 'rist-matching-analysis-method']],
     ['DB 리스트', ['rist-db-lists-index', ...['category','medium','person','institution','location','base','sampling-method','analysis-method','unit'].map(s=>'rist-db-list-'+s)]]
   ];
   for (const [title, ids] of groups) {
@@ -420,8 +424,8 @@ test('DB lists navigate within their own group boundaries', () => {
   }
 });
 
-test('DB document links keep stable page IDs',()=>{
-  const app=boot({hash:'#rist-db-lists-index'});
+test('matching document links enter the DB group without changing page IDs',()=>{
+  const app=boot({hash:'#rist-matching-location'});
   app.pageLink('rist-db-list-location');
   expectPage(app,'rist-db-list-location','06/10');
   assert.equal(app.get('page-breadcrumb').textContent,'DB 리스트');

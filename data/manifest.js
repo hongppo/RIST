@@ -321,6 +321,11 @@ window.MOCKUP_VIEWER_MANIFEST = {
       children: window.MOCKUP_VIEWER_EXTRACTION_RULE_PAGES || []
     },
     {
+      id: 'matching-rules',
+      title: '매칭 규칙',
+      children: window.MOCKUP_VIEWER_MATCHING_RULE_PAGES || []
+    },
+    {
       id: 'db-lists',
       title: 'DB 리스트',
       children: window.MOCKUP_VIEWER_DB_LIST_PAGES || []
