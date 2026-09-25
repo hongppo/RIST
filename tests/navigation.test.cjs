@@ -374,34 +374,36 @@ test('review stage tabs and footer page links route between registered pages wit
 
 test('extraction rule pages share a separate index-first scope and preserve document anchor links', () => {
   const app = boot({ hash: '#extraction-rules-index' });
-  expectPage(app, 'extraction-rules-index', '01/07');
+  expectPage(app, 'extraction-rules-index', '01/08');
   assert.equal(app.get('page-breadcrumb').textContent, '추출 규칙');
   app.key('ArrowLeft');
-  expectPage(app, 'extraction-rules-index', '01/07');
+  expectPage(app, 'extraction-rules-index', '01/08');
+  app.key('ArrowRight');
+  expectPage(app, 'extraction-file-list', '02/08');
   app.pageLink('extraction-rule-csv-001');
-  expectPage(app, 'extraction-rule-csv-001', '02/07');
+  expectPage(app, 'extraction-rule-csv-001', '03/08');
   app.key('ArrowRight');
-  expectPage(app, 'extraction-rule-excel-001', '03/07');
+  expectPage(app, 'extraction-rule-excel-001', '04/08');
   app.key('ArrowRight');
-  expectPage(app, 'extraction-rule-excel-002', '04/07');
+  expectPage(app, 'extraction-rule-excel-002', '05/08');
   app.key('ArrowRight');
-  expectPage(app, 'extraction-rule-pdf-001', '05/07');
+  expectPage(app, 'extraction-rule-pdf-001', '06/08');
   app.iframe('next');
-  expectPage(app, 'extraction-rule-pdf-002', '06/07');
+  expectPage(app, 'extraction-rule-pdf-002', '07/08');
   app.get('next-page').click();
-  expectPage(app, 'extraction-rule-pdf-003', '07/07');
+  expectPage(app, 'extraction-rule-pdf-003', '08/08');
   app.get('next-page').click();
-  expectPage(app, 'extraction-rule-pdf-003', '07/07');
+  expectPage(app, 'extraction-rule-pdf-003', '08/08');
   assert.equal(app.get('next-page').disabled, true);
   app.pageLink('rist-schema', 'review_record');
   expectPage(app, 'rist-schema', '02/04');
   assert.equal(app.location.hash, '#rist-schema/review_record');
   assert.deepEqual(app.setPages.at(-1), { id: 'rist-schema', anchor: 'review_record' });
   app.pageLink('extraction-rules-index', 'csv');
-  expectPage(app, 'extraction-rules-index', '01/07');
+  expectPage(app, 'extraction-rules-index', '01/08');
   assert.equal(app.location.hash, '#extraction-rules-index/csv');
   app.pageButton('extraction-rule-csv-001').click();
-  expectPage(app, 'extraction-rule-csv-001', '02/07');
+  expectPage(app, 'extraction-rule-csv-001', '03/08');
 });
 
 

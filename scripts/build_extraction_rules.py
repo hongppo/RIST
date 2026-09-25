@@ -46,7 +46,7 @@ def discover_rules(root):
     return sorted(rules, key=lambda path: (path.parent.name, int(RULE_NAME.fullmatch(path.name)[2]), path.name))
 
 
-def rebuild_index(source, rules):
+def rebuild_index(source, rules, include_file_list=False):
     """Keep the exact frontmatter, and derive every catalog row from a rule file."""
     split_frontmatter(source)  # Validate before changing the source.
     lines = source.splitlines(keepends=True)
@@ -55,6 +55,8 @@ def rebuild_index(source, rules):
         end = next(index for index in range(1, len(lines)) if lines[index].strip() == '---')
         frontmatter = ''.join(lines[:end + 1]).rstrip('\r\n') + '\n\n'
     body = ['## 파일 유형', '', '| 파일 유형 | 바로가기 |', '| --- | --- |']
+    if include_file_list:
+        body[0:0] = ['## 파일 분류 목록', '', '[파일 분류 목록](file-list.md)', '']
     body.extend(f'| {kind.upper()} | [이동](#{kind}) |' for kind in TYPES)
     for kind in TYPES:
         body.extend(['', f'## {kind.upper()}', '', '| 규칙명 | 바로가기 |', '| --- | --- |'])
@@ -297,8 +299,12 @@ def build_extraction_rules(root=ROOT):
     if not index.is_file() or not inside(index, root / 'docs' / 'extraction-rules'):
         return False
     rules = discover_rules(root)
-    index_source = rebuild_index(index.read_text(encoding='utf-8'), rules)
+    index_source = rebuild_index(index.read_text(encoding='utf-8'), rules, (index.parent / 'file-list.md').is_file())
     page_map = {index: 'extraction-rules-index'}
+    file_list = index.parent / 'file-list.md'
+    supplements = [file_list] if file_list.is_file() and inside(file_list, index.parent) else []
+    if supplements:
+        page_map[file_list] = 'extraction-file-list'
     page_map.update({rule: 'extraction-rule-' + rule.stem for rule in rules})
     schema = root / 'docs' / 'rist-schema.md'
     if schema.is_file() and inside(schema, root / 'docs'):
@@ -316,15 +322,23 @@ def build_extraction_rules(root=ROOT):
     if analysis_db.is_file() and inside(analysis_db, root / 'docs'):
         page_map[analysis_db] = 'rist-db-list-analysis-method'
     pages, documents = [], {}
-    for source in [index, *rules]:
+    for source in [index, *supplements, *rules]:
         source_text = index_source if source == index else source.read_text(encoding='utf-8')
         metadata, content = Renderer(root, source, page_map).render(source_text)
-        title = '인덱스' if source == index else source.stem.upper()
+        title = '인덱스' if source == index else '파일 분류 목록' if source == file_list else source.stem.upper()
         page_id = page_map[source]
         pages.append({'id': page_id, 'title': title,
-                      'summary': 'CSV·EXCEL·PDF 유형별 추출 규칙 목록.' if source == index else rule_summary(title),
+                      'summary': 'CSV·EXCEL·PDF 유형별 추출 규칙 목록.' if source == index else '' if source == file_list else rule_summary(title),
                       'src': 'pages/' + page_id + '.html', 'width': 1280, 'autoHeight': True, 'kind': '추출 규칙'})
-        documents[root / 'pages' / (page_id + '.html')] = document_html(root, source, title, metadata, content)
+        if source == file_list:
+            document = ('<!doctype html>\n<html lang="ko"><head><meta charset="UTF-8">'
+                        '<meta name="viewport" content="width=device-width, initial-scale=1.0">'
+                        '<title>파일 분류 목록</title><style>' + STYLE + '</style></head><body>'
+                        '<main class="policy-document schema-document extraction-document" data-document-root>'
+                        '<div class="policy-sections">' + content + '</div></main></body></html>\n')
+        else:
+            document = document_html(root, source, title, metadata, content)
+        documents[root / 'pages' / (page_id + '.html')] = document
     index.write_text(index_source, encoding='utf-8')
     (root / 'pages').mkdir(parents=True, exist_ok=True)
     for path, document in documents.items():

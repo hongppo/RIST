@@ -10,6 +10,15 @@ window.MOCKUP_VIEWER_EXTRACTION_RULE_PAGES = [
     "kind": "추출 규칙"
   },
   {
+    "id": "extraction-file-list",
+    "title": "파일 분류 목록",
+    "summary": "",
+    "src": "pages/extraction-file-list.html",
+    "width": 1280,
+    "autoHeight": true,
+    "kind": "추출 규칙"
+  },
+  {
     "id": "extraction-rule-csv-001",
     "title": "CSV-001",
     "summary": "CSV-001 파일의 판별·추출·변환 규칙과 컬럼 매핑.",
