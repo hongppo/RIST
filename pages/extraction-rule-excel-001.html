@@ -102,7 +102,7 @@
 <tr><th scope="col">수정일</th><th scope="col">변경 항목</th><th scope="col">변경 내용</th></tr>
 </thead>
 <tbody>
-<tr><td>2026/09/25</td><td>최초 작성</td><td>시료 열·물질 행의 VOCs 결과 행렬 판별, 실제 0과 빈 양식 열 구분, 원문 정밀도 보존 및 지역·분석법 매칭 정의</td></tr>
+<tr><td>2026/09/25</td><td>최초 작성</td><td>시료 열·물질 행의 VOCs 결과 행렬 판별, 실제 0과 빈 양식 열 구분, 원문 정밀도 보존 및 지역·분석법 매칭 정의; 분석법 추출값 우선·DB 보완 및 PDF-002 예외 명시</td></tr>
 </tbody>
 </table></div>
 </section>
@@ -137,7 +137,7 @@
 <tr><td>항목별 추출</td><td>1행 시료명과 B열 물질명을 전체 보존하고 교차 셀을 해당 시료·물질 결과에 연결. <code>M,P-Xylene</code>을 분리하거나 <code>O-Xylene</code>과 병합하지 않음. 날짜·단위는 파일에 없으므로 추정하지 않음</td></tr>
 <tr><td>값·정밀도</td><td>XLSX 내부 숫자 <code>&lt;v&gt;</code> 문자열을 원문으로 보존하고 Decimal로 해석. Excel 화면 표시나 이진 부동소수점 값으로 대체하지 않음. 실제 0 보존, 비수치는 원문 유지·수치 NULL, 빈 결과는 NULL. 임의 반올림 금지</td></tr>
 <tr><td>지역 매칭</td><td>시료명·지역 입력값 → <a href="rist-matching-location.html" data-viewer-page="rist-matching-location">지역 매칭</a> → 같은 DB 행의 지점·좌표. 각 시료의 결과에만 적용하고 없음·복수 지점은 NULL. 첫 시료 좌표를 전체에 복제하지 않음</td></tr>
-<tr><td>분석법 매칭</td><td>물질 추출·입력값 → <a href="rist-matching-analysis-method.html" data-viewer-page="rist-matching-analysis-method">분석법 매칭</a> → 코드·DB 분석법명. 없음·불명확은 NULL. VOCs 전체에 한 분석법을 일괄 적용하거나 두 Xylene 표기를 임의 통합하지 않음</td></tr>
+<tr><td>분석법 매칭</td><td>명확한 직접 추출 분석법이 없는 이 유형에서는 DB 매칭으로 보완. 물질 추출·입력값 → <a href="rist-matching-analysis-method.html" data-viewer-page="rist-matching-analysis-method">분석법 매칭</a> → 코드·DB 분석법명. 없음·불명확은 NULL. VOCs 전체에 한 분석법을 일괄 적용하거나 두 Xylene 표기를 임의 통합하지 않음</td></tr>
 <tr><td>인터페이스 입력</td><td>구분·매체·담당자·기관·채취일자·분석일자·BASE·채취법·단위와 매칭 후 비는 위치·분석법을 보완. 날짜가 없는데 기간 1일을 만들지 않으며 가이드 입력 예시는 자동값이 아님</td></tr>
 <tr><td>행 전개·출처</td><td>시료 열마다 기본 기록, 위→아래 물질 행마다 결과 생성. 시료 열 순서→물질 행 순서로 독립 1:1 저장 쌍 전개. 셀 주소·유형·숫자 원문·표시 형식과 매칭 근거 보존</td></tr>
 </tbody>
@@ -339,6 +339,7 @@
 </section>
 <section class="policy-section schema-level-3" id="분석법-db-매칭" tabindex="-1">
 <h3>분석법 DB 매칭</h3>
+<p>명확하게 추출한 분석법을 우선 적용하고, 없을 때 분석물질의 DB 매칭값으로 보완한다. 명확한 추출값은 DB 값이 다르거나 매칭되지 않아도 덮어쓰거나 NULL로 바꾸지 않는다. 불명확한 원문은 스냅샷과 확인 사유를 보존하되 확정 추출값으로 사용하지 않는다. DB 보완도 대응이 없거나 불명확하면 미확정 업무값은 NULL로 유지한다. 분석법 표시값·시험방법 코드는 같은 방법에 대응해야 하며, 분석법 ID는 실제 적용한 방법과 일치하는 DB 항목에만 연결한다. 다른 방법의 ID를 붙이지 않는다. 직접 추출은 EXTRACTED, DB 보완은 MATCHED로 구분하고 원문·위치·매칭 근거를 보존한다.</p>
 <p>분석물질이 <a href="rist-matching-analysis-method.html" data-viewer-page="rist-matching-analysis-method">분석법 매칭</a>의 항목에 대응하면 파일 유형과 관계없이 해당 <a href="rist-db-list-analysis-method.html" data-viewer-page="rist-db-list-analysis-method">분석법 DB</a>를 연결한다. 매칭값은 파일 직접 추출값과 구분한다.</p>
 <div class="schema-table-wrap"><table class="schema-reference">
 <thead>

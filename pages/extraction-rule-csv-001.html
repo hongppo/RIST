@@ -102,7 +102,7 @@
 <tr><th scope="col">수정일</th><th scope="col">변경 항목</th><th scope="col">변경 내용</th></tr>
 </thead>
 <tbody>
-<tr><td>2026/09/25</td><td>핵심 규칙 요약</td><td>유형 판별·추출 범위·주요 항목·매칭·입력 보완 요약표 추가</td></tr>
+<tr><td>2026/09/25</td><td>핵심 규칙 요약</td><td>유형 판별·추출 범위·주요 항목·매칭·입력 보완 요약표 추가; 분석법 추출값 우선·DB 보완 및 PDF-002 예외 명시</td></tr>
 <tr><td>2026/09/21</td><td>저장 변환·스키마 정합성</td><td>파서의 원본 기록별 basic + results[] 1:N 반환 유지. 파서 record_order를 DB source_record_order로 매핑하고, 공통 저장 계층에서 결과별 독립 기본 기록·결과 1:1 쌍과 DB record_order를 생성하도록 명시. 최초 ID·순서·원본 보존 기준 추가. 분석법 고시번호·시험방법 코드의 미추출 NULL 명시</td></tr>
 <tr><td>2026/09/18</td><td>추출 예시·컬럼 매핑</td><td>공통 항목과 물질별 매핑 표에 샘플 원본 위치·값, 실제 추출·계산 예시, 적용 규칙 추가. 계산·시스템 값과 직접 추출값 구분</td></tr>
 <tr><td>2026/09/16</td><td>최초 작성</td><td>CSV-001 판별·추출 구간, 항목 매핑, 수치·날짜 해석, 원본 보존, 오류 처리 및 공통 처리 연결 정의</td></tr>
@@ -139,7 +139,7 @@
 <tr><td>물질·결과</td><td>C열 물질명과 같은 행 D열 결과를 연결. 빈 C열과 D열이 <code>Concentration</code>인 제목 행 제외. 물질명이 있으면 D열 공란·비수치도 결과 행 유지. 반복 물질은 별도 행으로 보존</td></tr>
 <tr><td>값·정밀도</td><td>실제 0은 수치로 보존. <code>ND</code> 등 비수치는 원문·표시값을 남기고 수치만 NULL, 공란·없는 열과 구별. Decimal 사용, 원문 소수·지수 표기 보존, 임의 반올림 금지</td></tr>
 <tr><td>지역 매칭</td><td>시료명·지역 입력값 → <a href="rist-matching-location.html" data-viewer-page="rist-matching-location">지역 매칭</a> → 해당 지점명·DB 좌표. 등록 단어가 없거나 서로 다른 지점이 겹치면 위치는 NULL. 파일명·기관 주소로 추정하지 않음</td></tr>
-<tr><td>분석법 매칭</td><td>분석물질 추출·입력값 → <a href="rist-matching-analysis-method.html" data-viewer-page="rist-matching-analysis-method">분석법 매칭</a> → 시험방법 코드·DB 분석법명. 파서 초기 분석법은 NULL이며 매칭에 성공한 값만 MATCHED로 보완. 대응 없음·불명확은 NULL, SIFT-MS라는 유형명으로 자동 입력하지 않음</td></tr>
+<tr><td>분석법 매칭</td><td>명확한 직접 추출 분석법이 없는 이 유형에서는 DB 매칭으로 보완. 분석물질 추출·입력값 → <a href="rist-matching-analysis-method.html" data-viewer-page="rist-matching-analysis-method">분석법 매칭</a> → 시험방법 코드·DB 분석법명. 파서 초기 분석법은 NULL이며 매칭에 성공한 값만 MATCHED로 보완. 대응 없음·불명확은 NULL, SIFT-MS라는 유형명으로 자동 입력하지 않음</td></tr>
 <tr><td>인터페이스 입력</td><td>직접 추출·계산·매칭 후 남은 구분·매체·담당자·기관·채취일자·위치·BASE·채취법·분석법을 보완. 가이드 입력 예시는 자동 추출값에 넣지 않음</td></tr>
 <tr><td>행 전개·출처</td><td>파일 기본 기록 1건 + 물질별 결과 N건을 반환하고 저장 시 결과별 독립 1:1 쌍으로 전개. 파일 원문은 EXTRACTED, 기간은 SYSTEM, DB 보완값은 MATCHED로 구분하며 최초 원문·위치를 보존</td></tr>
 </tbody>
@@ -305,6 +305,7 @@
 </table></div>
 <ul>
 <li>파일명·폴더명·로그인 회원으로 담당자·기관·매체·위치를 추정하여 채우지 않음.</li>
+<li>분석법 적용: 명확하게 추출한 분석법을 우선 적용하고, 없을 때 분석물질의 DB 매칭값으로 보완한다. 명확한 추출값은 DB 값이 다르거나 매칭되지 않아도 덮어쓰거나 NULL로 바꾸지 않는다. 불명확한 원문은 스냅샷과 확인 사유를 보존하되 확정 추출값으로 사용하지 않는다. DB 보완도 대응이 없거나 불명확하면 미확정 업무값은 NULL로 유지한다. 분석법 표시값·시험방법 코드는 같은 방법에 대응해야 하며, 분석법 ID는 실제 적용한 방법과 일치하는 DB 항목에만 연결한다. 다른 방법의 ID를 붙이지 않는다. 직접 추출은 EXTRACTED, DB 보완은 MATCHED로 구분하고 원문·위치·매칭 근거를 보존한다.</li>
 <li>목록 매칭은 추출값을 보존한 상태에서 수행. 매칭되지 않은 값을 임의의 목록 ID에 연결하거나 목록 항목을 자동 생성하지 않음.</li>
 <li>SQL NULL 사용. 문자열 <code>NULL</code>, 안내 문구, 임의 예시값을 저장하지 않음.</li>
 </ul>

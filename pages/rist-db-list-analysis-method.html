@@ -116,7 +116,7 @@
 <tr><td><code>test_method_code</code></td><td>시험방법 코드</td><td>원문 값 유지. 미제공 값은 공란.</td></tr>
 <tr><td><code>method_name_ko</code></td><td>한글명</td><td>원문 값 유지. 미제공 값은 공란.</td></tr>
 <tr><td><code>method_name_en</code></td><td>영문명</td><td>원문 값 유지. 미제공 값은 공란.</td></tr>
-<tr><td><code>description</code></td><td>설명·적용 조건</td><td>파일 유형과 관계없이 분석물질에 대응하는 공통 분석법 매칭 적용.</td></tr>
+<tr><td><code>description</code></td><td>설명·적용 조건</td><td>명확한 파일 추출 분석법 우선, 없을 때 분석물질 매칭으로 보완. PDF-002는 별도 예외 적용.</td></tr>
 </tbody>
 </table></div>
 </section>
@@ -145,6 +145,6 @@
 <ul>
 <li>고시번호 공란을 시험방법 코드로 채우지 않음. 확인된 영문 철자는 교정한 값을 사용.</li>
 </ul>
-<p>파일 유형과 관계없이 분석물질 필드에 추출되거나 입력된 데이터를 기준으로 <a href="rist-matching-analysis-method.html" data-viewer-page="rist-matching-analysis-method">분석법 매칭</a>을 적용한다. 대응이 없거나 불명확하면 <code>NULL</code>로 두고 검토 화면에서 보완한다.</p>
+<p>명확한 파일 추출 분석법을 우선하며, 없을 때 분석물질 필드에 추출되거나 입력된 데이터를 기준으로 <a href="rist-matching-analysis-method.html" data-viewer-page="rist-matching-analysis-method">분석법 매칭</a>을 적용한다. DB 보완 시 대응이 없거나 불명확하면 <code>NULL</code>로 두고 검토 화면에서 보완한다. PDF-002 지정악취 22종은 별도로 정한 DB 매칭 우선 예외를 따른다.</p>
 <p><a href="rist-db-lists-index.html" data-viewer-page="rist-db-lists-index">DB 리스트로 돌아가기</a></p>
 </section></div></main></body></html>
