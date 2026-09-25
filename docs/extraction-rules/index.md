@@ -28,6 +28,7 @@ version: 1
 | 규칙명 | 바로가기 |
 | --- | --- |
 | EXCEL-001 | [상세](excel/excel-001.md) |
+| EXCEL-002 | [상세](excel/excel-002.md) |
 
 ## PDF
 
