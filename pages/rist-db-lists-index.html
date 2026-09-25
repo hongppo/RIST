@@ -77,13 +77,14 @@
     .db-lists-document .extraction-catalog th:nth-child(4) { width: 40%; }
     .db-lists-document .extraction-catalog th:nth-child(5) { width: 12%; }
     .db-lists-document code { white-space: pre-wrap; }
-</style></head><body><main class="policy-document schema-document db-lists-document" data-document-root><header class="policy-header has-labeled-download"><div class="document-header-main"><div class="policy-kicker">RIST · DB LISTS</div><h1>DB 리스트</h1><div class="schema-meta"><span>버전 2</span><span>작성일 2026/09/23</span><span>수정일 2026/09/23</span></div></div><div class="document-download-row"><span class="document-download-label">DB 리스트.md</span><a data-document-download href="../docs/db-lists/index.md" download="DB 리스트.md" class="document-download" title="MD 다운로드" aria-label="DB 리스트.md 다운로드"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m-5-5 5 5 5-5"/><path d="M4 15v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></svg></a></div></header><div class="policy-sections"><section class="policy-section schema-level-2" id="변경-이력" tabindex="-1">
+</style></head><body><main class="policy-document schema-document db-lists-document" data-document-root><header class="policy-header has-labeled-download"><div class="document-header-main"><div class="policy-kicker">RIST · DB LISTS</div><h1>DB 리스트</h1><div class="schema-meta"><span>버전 2</span><span>작성일 2026/09/23</span><span>수정일 2026/09/25</span></div></div><div class="document-download-row"><span class="document-download-label">DB 리스트.md</span><a data-document-download href="../docs/db-lists/index.md" download="DB 리스트.md" class="document-download" title="MD 다운로드" aria-label="DB 리스트.md 다운로드"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m-5-5 5 5 5-5"/><path d="M4 15v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></svg></a></div></header><div class="policy-sections"><section class="policy-section schema-level-2" id="변경-이력" tabindex="-1">
 <h2>변경 이력</h2>
 <div class="schema-table-wrap"><table class="schema-reference">
 <thead>
 <tr><th scope="col">수정일</th><th scope="col">변경항목</th><th scope="col">변경내용</th></tr>
 </thead>
 <tbody>
+<tr><td>2026/09/25</td><td>단위 사용 확정</td><td>μg와 mg를 각각 독립된 단위로 복원. 단위 11건·전체 데이터 145건으로 집계하고 두 단위의 보류 안내 제거</td></tr>
 <tr><td>2026/09/23</td><td>최초 작성·문서 정리</td><td>회신 Excel의 9개 목록·145행을 문서화하고 원본 시트·건수·대상 테이블·문서 바로가기 정리. 작업용·옵시디언 원본 링크 유지, 로컬 원본 파일은 파일명만 표기</td></tr>
 </tbody>
 </table></div>
@@ -96,12 +97,11 @@
 </thead>
 <tbody>
 <tr><td>원본 파일</td><td>RIST_목록_정리_양식_20260922_1차_rist.xlsx</td></tr>
-<tr><td>목록 범위</td><td>기준 데이터 목록 9개, 데이터 행 143개 (보류 단위 2건 별도)</td></tr>
-<tr><td>문서 상태</td><td>개발용 기준 데이터 표. 보류 단위는 확인사항에 별도 기재하며, 활성 DB 등록 확정판 아님</td></tr>
+<tr><td>목록 범위</td><td>기준 데이터 목록 9개, 데이터 행 145개</td></tr>
+<tr><td>문서 상태</td><td>개발용 기준 데이터 표. 항목별 확인사항은 개별 문서에 기재하며, 활성 DB 등록 확정판 아님</td></tr>
 <tr><td>보존 기준</td><td>승인된 수정 외에는 원본 작성 행·빈 칸·문자를 보존. 좌표는 십진수 도로 통일하며 도분초 변환값만 소수점 이하 10자리로 반올림하고 기존 십진수 정밀도는 유지. 빈 양식 행·입력 안내 문구 제외. 중복처럼 보이는 행도 임의 병합하지 않음</td></tr>
 <tr><td>채취법 시트 선택</td><td>채취법 시트는 작성 데이터가 없고 채취법_rist수정에는 10행이 작성되어 있어 수정 시트를 사용</td></tr>
 <tr><td>컬럼 구성</td><td>개별 문서는 실제 데이터 행과 스키마 대응을 제공. 주 데이터 표는 실제 스키마 컬럼명 사용. 고시번호·시험방법 코드·설명은 해당 마스터 필드에 대응하며, 확인·보류 내용은 별도로 구분</td></tr>
-<tr><td>등록 보류</td><td>μg·mg는 데이터 목록에서 제외하고 단위 문서 확인사항에 보존. 등록 여부 확인 후 추가</td></tr>
 </tbody>
 </table></div>
 </section>
@@ -120,7 +120,7 @@
 <tr><td>BASE</td><td>BASE</td><td>3건</td><td>base_master</td><td><a href="rist-db-list-base.html" data-viewer-page="rist-db-list-base">상세</a></td></tr>
 <tr><td>채취법</td><td>채취법_rist수정</td><td>10건</td><td>sampling_method_master</td><td><a href="rist-db-list-sampling-method.html" data-viewer-page="rist-db-list-sampling-method">상세</a></td></tr>
 <tr><td>분석법</td><td>분석법</td><td>13건</td><td>analysis_method_master</td><td><a href="rist-db-list-analysis-method.html" data-viewer-page="rist-db-list-analysis-method">상세</a></td></tr>
-<tr><td>단위</td><td>단위</td><td>9건</td><td>common_option (UNIT)</td><td><a href="rist-db-list-unit.html" data-viewer-page="rist-db-list-unit">상세</a></td></tr>
+<tr><td>단위</td><td>단위</td><td>11건</td><td>common_option (UNIT)</td><td><a href="rist-db-list-unit.html" data-viewer-page="rist-db-list-unit">상세</a></td></tr>
 </tbody>
 </table></div>
 </section></div></main></body></html>
