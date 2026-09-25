@@ -38,6 +38,19 @@ class ListDocumentTests(unittest.TestCase):
         self.assertEqual(base64.b64decode(payload),self.db.read_bytes())
         for p,data in before.items():self.assertEqual(p.read_bytes(),data)
 
+    def test_list_links_open_extraction_rule_anchor(self):
+        rule = self.root / 'docs/extraction-rules/pdf/pdf-002.md'
+        rule.parent.mkdir(parents=True)
+        rule.write_text('## 분석법 매칭 가이드 {#analysis-method-matching-guide}\n', encoding='utf-8')
+        for source in [self.db]:
+            with source.open('a', encoding='utf-8') as stream:
+                stream.write('\n[PDF-002](<../extraction-rules/pdf/pdf-002.md#analysis-method-matching-guide>)\n')
+        build_db_lists(self.root)
+        for page in ['rist-db-list-location']:
+            html = (self.root / 'pages' / (page + '.html')).read_text()
+            self.assertIn('data-viewer-page="extraction-rule-pdf-002"', html)
+            self.assertIn('data-viewer-anchor="analysis-method-matching-guide"', html)
+
     def test_db_missing_source_does_not_write_partial_pages(self):
         (self.root/'docs/db-lists/unit.md').unlink()
         with self.assertRaises(ValueError):build_db_lists(self.root)

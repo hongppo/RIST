@@ -2,7 +2,7 @@
 type: planning
 hub: "[[💡planning]]"
 created_at: 2026-09-16
-updated_at: 2026-09-18
+updated_at: 2026-09-25
 client: "[[RIST(포항산업과학연구원)]]"
 project: "[[RIST 데이터 표준화 프로그램 개발]]"
 status: 초안
@@ -33,3 +33,4 @@ version: 1
 | 규칙명 | 바로가기 |
 | --- | --- |
 | PDF-001 | [상세](pdf/pdf-001.md) |
+| PDF-002 | [상세](pdf/pdf-002.md) |

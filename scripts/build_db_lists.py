@@ -5,7 +5,7 @@ from html import escape
 from urllib.parse import quote
 import json
 
-from build_extraction_rules import Renderer
+from build_extraction_rules import Renderer, discover_rules
 from build_schema import STYLE
 from build_policies import DOWNLOAD_ICON
 
@@ -50,6 +50,7 @@ def build_db_lists(root=ROOT):
     if not (folder / 'index.md').exists():
         return False
     page_map = {folder / (slug + '.md'): ('rist-db-lists-index' if slug == 'index' else 'rist-db-list-' + slug) for slug, _ in DOCUMENTS}
+    page_map.update({source: 'extraction-rule-' + source.stem for source in discover_rules(root)})
     # Validate every document before writing any generated files.
     pages, rendered = [], {}
     for slug, title in DOCUMENTS:
