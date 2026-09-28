@@ -73,6 +73,12 @@ window.MOCKUP_VIEWER_MANIFEST = {
           summary: '파일 처리 오류 안내 및 파일 업로드 화면으로 복귀'
         },
         {
+          id: 'rist-sheet-partial',
+          title: '시트 확인(일부 추출)',
+          src: 'pages/rist-sheet-partial.html',
+          width: 1280, height: 800, summary: '', hideEmptyDescription: true
+        },
+        {
           id: 'rist-review-preparation-initial',
           title: '데이터 검토: 1단계(초기 상태)',
           src: 'pages/rist-review-preparation-initial.html',

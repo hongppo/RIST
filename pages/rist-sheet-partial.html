@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>시트 확인(일부 추출)</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; width: 1280px; height: 800px; overflow: hidden; }
+    body { width: 1280px; height: 800px; color: #25282d; background: #f3f4f6; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; font-size: 16px; line-height: 1.5; }
+    .app-header { display: flex; align-items: center; justify-content: space-between; width: 1280px; max-width: 100%; height: 80px; padding: 0 56px; border-bottom: 1px solid #d1d5db; background: #ffffff; }
+    .app-service-name { color: #24272c; font-size: 22px; font-weight: 700; line-height: 1.4; letter-spacing: -0.035em; }
+    .app-profile { display: flex; align-items: center; gap: 10px; height: 42px; padding: 0 12px; border: 1px solid #d1d5db; border-radius: 6px; color: #41464e; background: #ffffff; font: inherit; font-size: 15px; cursor: pointer; }
+    .app-user-icon { display: block; width: 24px; height: 24px; color: #757c86; }
+    .app-profile-chevron { display: block; width: 16px; height: 16px; margin-left: 4px; color: #757c86; }
+    .app-profile:focus-visible { outline: 2px solid #7c8591; outline-offset: 3px; }
+    .error-main { display: grid; place-items: center; width: 1280px; height: 720px; }
+    .error-state { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 720px; max-width: 100%; height: 344px; padding: 56px; border: 1px solid #d1d5db; border-radius: 12px; background: #ffffff; text-align: center; }
+    .error-title { margin: 0; color: #24272c; font-size: 30px; font-weight: 700; line-height: 1.4; letter-spacing: -0.045em; }
+    .error-message { margin: 20px 0 0; color: #c43434; font-size: 16px; line-height: 24px; }
+    .error-return-button { display: inline-flex; align-items: center; justify-content: center; width: 260px; height: 48px; flex-shrink: 0; margin-top: 36px; padding: 0 24px; border: 1px solid #4e535b; border-radius: 6px; color: #ffffff; background: #535860; font: inherit; font-size: 16px; font-weight: 650; cursor: pointer; }
+    .error-return-button:focus-visible { outline: 2px solid #7c8591; outline-offset: 3px; }
+  
+.partial-main{padding:42px 120px}.partial-card{background:white;border:1px solid #d1d5db;border-radius:12px;padding:32px 40px}.partial-card h1{margin:0;text-align:center;font-size:28px}.file-summary{margin:24px 0;padding:18px 20px;background:#f5f6f8;border-radius:6px;display:flex;justify-content:space-between}.file-summary span{font-size:14px;color:#59616c}.sheet-table{width:100%;border-collapse:collapse;text-align:left;font-size:15px}.sheet-table th{background:#f3f4f6;font-size:14px}.sheet-table th,.sheet-table td{padding:16px;border-bottom:1px solid #e2e5e9}.sheet-table th:first-child{width:17%}.sheet-table th:nth-child(2){width:19%}.badge{display:inline-block;padding:4px 10px;border-radius:4px;font-weight:650;font-size:13px}.done{background:#e8f3ed;color:#26734b}.failed{background:#fbecec;color:#ad3636}.empty{background:#edf0f4;color:#59616c}.scope{margin-top:24px;padding:16px 20px;background:#f8f6ee;border:1px solid #e8dfc2;border-radius:6px}.scope p{margin:0;font-size:15px}.scope p+p{margin-top:5px;color:#666d76;font-size:14px}.actions{display:flex;justify-content:flex-end;gap:12px;margin-top:24px}.actions a{display:inline-flex;align-items:center;height:46px;padding:0 24px;border:1px solid #c5cad0;border-radius:6px;color:#41464e;text-decoration:none;font-weight:650;font-size:15px}.actions .primary{background:#535860;border-color:#535860;color:white}.actions a:focus-visible{outline:2px solid #66758a;outline-offset:3px}
+.sheet-scroll{height:300px;overflow-y:scroll;overscroll-behavior:contain;scrollbar-gutter:stable;border:1px solid #e2e5e9;border-radius:6px}.sheet-scroll:focus-visible{outline:2px solid #66758a;outline-offset:2px}.sheet-table thead th{position:sticky;top:0;z-index:1}.sheet-scroll::-webkit-scrollbar{width:10px}.sheet-scroll::-webkit-scrollbar-track{background:#f1f3f5}.sheet-scroll::-webkit-scrollbar-thumb{background:#aab2bc;border:2px solid #f1f3f5;border-radius:6px}.partial-main{padding-top:24px}.partial-card{padding-top:24px;padding-bottom:24px}
+</style>
+</head>
+<body>
+  <header class="app-header">
+    <span class="app-service-name">환경데이터 표준화 프로그램</span>
+    <button class="app-profile" type="button" aria-label="사용자 메뉴" aria-haspopup="menu" aria-expanded="false">
+      <svg class="app-user-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.6"></circle>
+        <path d="M 5 21 V 19 A 7 7 0 0 1 19 19 V 21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+      <span>박보검</span>
+      <svg class="app-profile-chevron" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M 4 6 L 8 10 L 12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </button>
+  </header>
+
+<main class="partial-main"><section class="partial-card" aria-labelledby="partial-title">
+<h1 id="partial-title">일부 시트의 데이터를 추출했습니다.</h1>
+<div class="file-summary"><strong>측정 결과.xlsx</strong><span>전체 100개 시트 · 추출 완료 80개 시트 · 결과 1,920건</span></div>
+<div class="sheet-scroll" data-viewer-scroll-region tabindex="0" role="region" aria-label="시트별 처리 결과 목록 스크롤"><table class="sheet-table" aria-label="시트별 처리 결과"><thead><tr><th scope="col">시트명</th><th scope="col">처리 결과</th><th scope="col">안내</th></tr></thead><tbody>
+<tr><td>시트1</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트2</td><td><span class="badge failed">추출 불가</span></td><td>분석물질·결과 표 구조를 확인할 수 없습니다.</td></tr>
+<tr><td>시트3</td><td><span class="badge empty">데이터 없음</span></td><td>양식은 확인됐지만 추출할 결과가 없습니다.</td></tr>
+<tr><td>시트4</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트5</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트6</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트7</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트8</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트9</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트10</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트11</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트12</td><td><span class="badge failed">추출 불가</span></td><td>분석물질·결과 표 구조를 확인할 수 없습니다.</td></tr>
+<tr><td>시트13</td><td><span class="badge empty">데이터 없음</span></td><td>양식은 확인됐지만 추출할 결과가 없습니다.</td></tr>
+<tr><td>시트14</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트15</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트16</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트17</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트18</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트19</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트20</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트21</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트22</td><td><span class="badge failed">추출 불가</span></td><td>분석물질·결과 표 구조를 확인할 수 없습니다.</td></tr>
+<tr><td>시트23</td><td><span class="badge empty">데이터 없음</span></td><td>양식은 확인됐지만 추출할 결과가 없습니다.</td></tr>
+<tr><td>시트24</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트25</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트26</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트27</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트28</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트29</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트30</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트31</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트32</td><td><span class="badge failed">추출 불가</span></td><td>분석물질·결과 표 구조를 확인할 수 없습니다.</td></tr>
+<tr><td>시트33</td><td><span class="badge empty">데이터 없음</span></td><td>양식은 확인됐지만 추출할 결과가 없습니다.</td></tr>
+<tr><td>시트34</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트35</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트36</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트37</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트38</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트39</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트40</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트41</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트42</td><td><span class="badge failed">추출 불가</span></td><td>분석물질·결과 표 구조를 확인할 수 없습니다.</td></tr>
+<tr><td>시트43</td><td><span class="badge empty">데이터 없음</span></td><td>양식은 확인됐지만 추출할 결과가 없습니다.</td></tr>
+<tr><td>시트44</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트45</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트46</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트47</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트48</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트49</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트50</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트51</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트52</td><td><span class="badge failed">추출 불가</span></td><td>분석물질·결과 표 구조를 확인할 수 없습니다.</td></tr>
+<tr><td>시트53</td><td><span class="badge empty">데이터 없음</span></td><td>양식은 확인됐지만 추출할 결과가 없습니다.</td></tr>
+<tr><td>시트54</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트55</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트56</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트57</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트58</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트59</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트60</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트61</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트62</td><td><span class="badge failed">추출 불가</span></td><td>분석물질·결과 표 구조를 확인할 수 없습니다.</td></tr>
+<tr><td>시트63</td><td><span class="badge empty">데이터 없음</span></td><td>양식은 확인됐지만 추출할 결과가 없습니다.</td></tr>
+<tr><td>시트64</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트65</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트66</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트67</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트68</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트69</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트70</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트71</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트72</td><td><span class="badge failed">추출 불가</span></td><td>분석물질·결과 표 구조를 확인할 수 없습니다.</td></tr>
+<tr><td>시트73</td><td><span class="badge empty">데이터 없음</span></td><td>양식은 확인됐지만 추출할 결과가 없습니다.</td></tr>
+<tr><td>시트74</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트75</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트76</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트77</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트78</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트79</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트80</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트81</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트82</td><td><span class="badge failed">추출 불가</span></td><td>분석물질·결과 표 구조를 확인할 수 없습니다.</td></tr>
+<tr><td>시트83</td><td><span class="badge empty">데이터 없음</span></td><td>양식은 확인됐지만 추출할 결과가 없습니다.</td></tr>
+<tr><td>시트84</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트85</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트86</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트87</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트88</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트89</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트90</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트91</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트92</td><td><span class="badge failed">추출 불가</span></td><td>분석물질·결과 표 구조를 확인할 수 없습니다.</td></tr>
+<tr><td>시트93</td><td><span class="badge empty">데이터 없음</span></td><td>양식은 확인됐지만 추출할 결과가 없습니다.</td></tr>
+<tr><td>시트94</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트95</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트96</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트97</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트98</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트99</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+<tr><td>시트100</td><td><span class="badge done">추출 완료</span></td><td>결과 24건</td></tr>
+</tbody></table></div>
+<div class="scope"><p>전체 100개 시트 중 80개 시트의 데이터 1,920건만 검토합니다.</p><p>추출되지 않은 시트는 이번 저장에 포함되지 않습니다.</p></div>
+<div class="actions"><a href="../index.html#rist-upload" data-viewer-page="rist-upload">다시 업로드</a><a class="primary" href="../index.html#rist-review-preparation-initial" data-viewer-page="rist-review-preparation-initial">추출된 시트로 검토</a></div>
+</section></main>
+</body>
+</html>
