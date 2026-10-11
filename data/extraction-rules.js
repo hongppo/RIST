@@ -104,6 +104,15 @@ window.MOCKUP_VIEWER_EXTRACTION_RULE_PAGES = [
         "kind": "추출 규칙"
       },
       {
+        "id": "extraction-rule-excel-003-b",
+        "title": "EXCEL-003-b",
+        "summary": "EXCEL-003-b 파일의 판별·추출·변환 규칙과 컬럼 매핑.",
+        "src": "pages/extraction-rule-excel-003-b.html",
+        "width": 1280,
+        "autoHeight": true,
+        "kind": "추출 규칙"
+      },
+      {
         "id": "extraction-rule-pdf-001-a",
         "title": "PDF-001-a",
         "summary": "PDF-001-a 파일의 판별·추출·변환 규칙과 컬럼 매핑.",

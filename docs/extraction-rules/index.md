@@ -49,4 +49,5 @@ version: 1
 | 규칙명 | 바로가기 |
 | --- | --- |
 | EXCEL-003-a | [상세](excel/excel-003-a.md) |
+| EXCEL-003-b | [상세](excel/excel-003-b.md) |
 | PDF-001-a | [상세](pdf/pdf-001-a.md) |

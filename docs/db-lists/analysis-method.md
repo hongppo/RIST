@@ -24,7 +24,7 @@ version: 2
 | 원본 파일 | RIST_목록_정리_양식_20260922_1차_rist.xlsx |
 | 원본 시트 | 분석법 |
 | 원본 표 | AnalysisMethodList (B5:F18) |
-| 데이터 건수 | 15건 |
+| 데이터 건수 | 14건 |
 | 대상 테이블 | analysis_method_master |
 
 ## 컬럼 설명
@@ -50,9 +50,8 @@ version: 2
 |  | ES 09306.1b | 스타이렌 - 저온 농축 - 기체크로마토그래피 |  | 악취/Styrene |
 |  | ES 09304.2b | 트라이메틸아민 - 고체상 미량추출 - 기체크로마토그래피 |  | 악취/Trimethylamine |
 |  | ES 09302.1b | 암모니아 - 붕산용액 흡수법 - 자외선/가시선 분광법 |  | 악취/Ammonia |
-|  | ES 09307.b | 휘발성유기화합물 - 저온 농축 - 기체크로마토그래피 |  | 악취/Toluene, Xylene, MEK, MIBK, Butylacetate |
+|  | ES 09307.b | 휘발성유기화합물 - 저온 농축 - 기체크로마토그래피 |  | 악취/Toluene, Xylene, MEK, MIBK, Butylacetate, Isobutylalcohol |
 |  | ES 09308.2b | 지방산류 - 고체상 미량추출 - 기체크로마토그래피 |  | 악취/Propionic acid, Butyric acid, Isovaleric acid, Valeric acid |
-|  | ES 09307.b | 휘발성유기화합물 - 저온 농축 - 기체크로마토그래피 |  | 악취/Isobutylalcohol |
 |  |  | 자체시험법 |  |  |
 |  |  | 해수공정시험기준 |  |  |
 |  |  | 해양퇴적물공정시험기준 |  |  |
