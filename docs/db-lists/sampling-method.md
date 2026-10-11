@@ -2,7 +2,7 @@
 type: planning
 hub: "[[💡planning]]"
 created_at: 2026-09-23
-updated_at: 2026-09-23
+updated_at: 2026-10-11
 client: "[[RIST(포항산업과학연구원)]]"
 project: "[[RIST 데이터 표준화 프로그램 개발]]"
 status: 초안
@@ -23,7 +23,7 @@ version: 2
 | 원본 파일 | RIST_목록_정리_양식_20260922_1차_rist.xlsx |
 | 원본 시트 | 채취법_rist수정 |
 | 원본 표 | AnalysisMethodList6 (B5:F35) |
-| 데이터 건수 | 10건 |
+| 데이터 건수 | 12건 |
 | 대상 테이블 | sampling_method_master |
 
 ## 컬럼 설명
@@ -50,13 +50,15 @@ version: 2
 |  | - | 고정측정 |  | 악취 |
 |  | ES 09130.a | 시료채취와 보관 |  | 악취 |
 |  |  | 자체시험법 |  |  |
+|  |  | 해수공정시험기준 |  |  |
+|  |  | 해양퇴적물공정시험기준 |  |  |
 
 ## 보존 기준
 
 | 항목 | 기준 |
 | --- | --- |
 | 원본 시트 선택 | 빈 채취법 시트 대신 실제 10행이 작성된 채취법_rist수정 사용 |
-| 고시번호 | 전체 10개 항목에서 공란. 시험방법 코드로 대신 채우지 않음 |
+| 고시번호 | 전체 12개 항목에서 공란. 시험방법 코드로 대신 채우지 않음 |
 | 시험방법 코드 | 테들러백 채취·이동측정·고정측정의 -는 원문 문자로 유지하며 공란으로 바꾸지 않음 |
 | 대상 테이블 | sampling_method_master의 notice_number·test_method_code·method_name_ko·method_name_en·description에 대응. 설명·적용 조건은 원문으로 보존하며 추천·자동입력 방식은 미확정 |
 

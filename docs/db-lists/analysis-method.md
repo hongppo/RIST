@@ -2,7 +2,7 @@
 type: planning
 hub: "[[💡planning]]"
 created_at: 2026-09-23
-updated_at: 2026-09-25
+updated_at: 2026-10-11
 client: "[[RIST(포항산업과학연구원)]]"
 project: "[[RIST 데이터 표준화 프로그램 개발]]"
 status: 초안
@@ -24,7 +24,7 @@ version: 2
 | 원본 파일 | RIST_목록_정리_양식_20260922_1차_rist.xlsx |
 | 원본 시트 | 분석법 |
 | 원본 표 | AnalysisMethodList (B5:F18) |
-| 데이터 건수 | 13건 |
+| 데이터 건수 | 15건 |
 | 대상 테이블 | analysis_method_master |
 
 ## 컬럼 설명
@@ -54,6 +54,8 @@ version: 2
 |  | ES 09308.2b | 지방산류 - 고체상 미량추출 - 기체크로마토그래피 |  | 악취/Propionic acid, Butyric acid, Isovaleric acid, Valeric acid |
 |  | ES 09307.b | 휘발성유기화합물 - 저온 농축 - 기체크로마토그래피 |  | 악취/Isobutylalcohol |
 |  |  | 자체시험법 |  |  |
+|  |  | 해수공정시험기준 |  |  |
+|  |  | 해양퇴적물공정시험기준 |  |  |
 
 - 고시번호 공란을 시험방법 코드로 채우지 않음. 확인된 영문 철자는 교정한 값을 사용.
 
