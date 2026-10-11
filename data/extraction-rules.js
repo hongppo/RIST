@@ -28,6 +28,15 @@ window.MOCKUP_VIEWER_EXTRACTION_RULE_PAGES = [
     "kind": "추출 규칙"
   },
   {
+    "id": "extraction-rule-csv-002",
+    "title": "CSV-002",
+    "summary": "CSV-002 파일의 판별·추출·변환 규칙과 컬럼 매핑.",
+    "src": "pages/extraction-rule-csv-002.html",
+    "width": 1280,
+    "autoHeight": true,
+    "kind": "추출 규칙"
+  },
+  {
     "id": "extraction-rule-excel-001",
     "title": "EXCEL-001",
     "summary": "EXCEL-001 파일의 판별·추출·변환 규칙과 컬럼 매핑.",
@@ -80,5 +89,20 @@ window.MOCKUP_VIEWER_EXTRACTION_RULE_PAGES = [
     "width": 1280,
     "autoHeight": true,
     "kind": "추출 규칙"
+  },
+  {
+    "id": "extraction-sub-rules",
+    "title": "추출 규칙 서브",
+    "children": [
+      {
+        "id": "extraction-rule-pdf-001-a",
+        "title": "PDF-001-a",
+        "summary": "PDF-001-a 파일의 판별·추출·변환 규칙과 컬럼 매핑.",
+        "src": "pages/extraction-rule-pdf-001-a.html",
+        "width": 1280,
+        "autoHeight": true,
+        "kind": "추출 규칙"
+      }
+    ]
   }
 ];

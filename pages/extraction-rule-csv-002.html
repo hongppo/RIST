@@ -1,0 +1,257 @@
+<!doctype html>
+<!-- Generated extraction-rule document. Edit docs/extraction-rules Markdown, then run scripts/build_sources.py. -->
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSV-002</title>
+<style>
+    * { box-sizing: border-box; }
+    html, body { width: 1280px; margin: 0; }
+    body { background: #fff; color: #24364f; font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; -webkit-font-smoothing: antialiased; }
+    .policy-document { width: 1280px; height: auto; padding: 56px 72px 88px; }
+    .policy-header { position: relative; padding-right: 64px; padding-bottom: 32px; border-bottom: 1px solid #dfe4eb; }
+    .policy-header .document-download { position: absolute; top: 0; right: 0; display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid #dfe4eb; border-radius: 8px; background: #fff; color: #365d87; text-decoration: none; }
+    .policy-header .document-download:hover { border-color: #8fa9ca; background: #f5f8fc; color: #1c3553; }
+    .policy-header .document-download:focus-visible { outline: 3px solid #8fa9ca; outline-offset: 3px; border-radius: 8px; }
+    .policy-header.has-labeled-download { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 32px; padding-right: 0; }
+    .document-download-row { display: grid; grid-template-columns: minmax(0, 1fr) 44px; align-items: center; gap: 14px; max-width: 440px; }
+    .document-download-label { color: #62738a; text-align: right; font-size: 13px; line-height: 1.65; overflow-wrap: anywhere; }
+    .policy-header.has-labeled-download .document-download { position: static; flex-shrink: 0; }
+    .document-download svg { width: 22px; height: 22px; }
+    .policy-kicker { margin: 0 0 24px; color: #62738a; font-size: 12px; font-weight: 650; letter-spacing: 1.4px; }
+    h1 { margin: 0 0 16px; color: #16263d; font-size: 38px; font-weight: 750; line-height: 1.3; letter-spacing: -1px; }
+    .policy-header p { margin: 0; color: #62738a; font-size: 16px; line-height: 1.8; }
+    .policy-header .policy-meta { display: flex; flex-wrap: wrap; gap: 10px 24px; color: #62738a; font-size: 14px; line-height: 1.8; }
+    .policy-sections { padding-top: 36px; }
+    .policy-section { margin: 0 0 24px; padding: 28px 32px; border: 1px solid #dfe4eb; border-radius: 12px; background: #fff; scroll-margin-top: 24px; }
+    .policy-section:last-child { margin-bottom: 0; }
+    .policy-section:focus, .policy-section.is-policy-target { outline: 3px solid #8fa9ca; outline-offset: 3px; border-color: #365d87; background: #f5f8fc; }
+    h2 { margin: 0 0 18px; color: #16263d; font-size: 24px; font-weight: 700; line-height: 1.4; letter-spacing: -0.5px; }
+    h3 { margin: 26px 0 12px; font-size: 19px; line-height: 1.5; }
+    .policy-section p, .policy-section ul { margin: 14px 0 0; font-size: 17px; line-height: 1.85; }
+    .policy-section ul { padding-left: 24px; }
+    .policy-section li + li { margin-top: 5px; }
+    .policy-section table { width: 100%; table-layout: fixed; border-collapse: collapse; margin: 18px 0; font-size: 15px; line-height: 1.75; }
+    .policy-section th, .policy-section td { border: 1px solid #dfe4eb; padding: 12px 14px; text-align: left; vertical-align: top; overflow-wrap: anywhere; }
+    .policy-section th { background: #f3f6fa; color: #16263d; font-weight: 700; }
+    .policy-section th:first-child, .policy-section td:first-child { width: 15%; }
+    .policy-section .align-center { text-align: center; }
+    .policy-section .align-right { text-align: right; }
+    strong { color: #1c3553; font-weight: 700; }
+
+    .schema-document .policy-header .schema-meta { display: flex; flex-wrap: wrap; gap: 10px 24px; color: #62738a; font-size: 14px; line-height: 1.8; }
+    .schema-document .schema-group { padding: 0; border: 0; background: transparent; margin-top: 36px; }
+    .schema-group > h2 { margin: 0 0 22px; }
+    .schema-level-3 > h3 { margin: 0 0 18px; color: #16263d; font-size: 23px; font-weight: 700; line-height: 1.45; overflow-wrap: anywhere; }
+    .schema-level-4 { margin: 28px 0 0; padding: 24px 0 0; border: 0; border-top: 1px solid #dfe4eb; border-radius: 0; }
+    .schema-level-4 > h4 { margin: 0 0 16px; color: #16263d; font-size: 19px; line-height: 1.5; }
+    .schema-document p, .schema-document li { overflow-wrap: anywhere; }
+    .schema-document .policy-section p, .schema-document .policy-section ul, .schema-document .policy-section ol { margin: 14px 0 0; font-size: 16px; line-height: 1.85; }
+    .schema-document ul, .schema-document ol { padding-left: 24px; }
+    .schema-document code { padding: 2px 4px; border-radius: 4px; background: #edf2f7; color: #264463; font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; font-size: 0.88em; white-space: normal; overflow-wrap: anywhere; }
+    .schema-document a { color: #285d94; text-decoration: underline; text-underline-offset: 3px; }
+    .schema-document a:hover { color: #163d69; }
+    .schema-document a:focus-visible { outline: 2px solid #365d87; outline-offset: 4px; border-radius: 2px; }
+    .schema-table-wrap { width: 100%; margin: 18px 0; }
+    .schema-table-wrap:last-child { margin-bottom: 0; }
+    .schema-document table { width: 100%; table-layout: fixed; border-collapse: collapse; font-size: 14px; line-height: 1.75; }
+    .schema-document th, .schema-document td { padding: 12px 13px; border: 1px solid #dfe4eb; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: normal; }
+    .schema-document th { background: #eef3f8; color: #243e5c; font-weight: 700; }
+    .schema-document tbody tr:nth-child(even) { background: #fafbfd; }
+    .schema-document table code { padding: 0; background: transparent; font-size: 12.5px; line-height: 1.7; }
+    .schema-columns th:nth-child(1) { width: 21%; }
+    .schema-columns th:nth-child(2) { width: 14%; }
+    .schema-columns th:nth-child(3) { width: 18%; }
+    .schema-columns th:nth-child(4) { width: 6%; }
+    .schema-columns th:nth-child(5) { width: 41%; }
+    .schema-columns th:nth-child(4), .schema-columns td:nth-child(4) { text-align: center; padding-left: 6px; padding-right: 6px; white-space: nowrap; }
+    .schema-catalog th:nth-child(1) { width: 25%; }
+    .schema-catalog th:nth-child(2) { width: 22%; }
+    .schema-catalog th:nth-child(3) { width: 45%; }
+    .schema-catalog th:nth-child(4) { width: 8%; }
+    .schema-catalog td:last-child { white-space: nowrap; }
+    .schema-reference th:first-child { width: 26%; }
+    .schema-document .align-center { text-align: center; }
+    .schema-document .align-right { text-align: right; }
+
+    .extraction-document .policy-header { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 32px; padding-right: 0; }
+    .extraction-downloads { display: grid; gap: 10px; max-width: 440px; }
+    .extraction-download-row { display: grid; grid-template-columns: minmax(0, 1fr) 44px; align-items: center; gap: 14px; min-height: 44px; }
+    .extraction-download-label { color: #62738a; text-align: right; font-size: 13px; line-height: 1.65; overflow-wrap: anywhere; }
+    .extraction-document .policy-header .document-download { position: static; flex-shrink: 0; }
+    .extraction-document pre { margin: 18px 0; padding: 18px 20px; overflow-x: auto; border: 1px solid #dfe4eb; border-radius: 8px; background: #f5f8fc; }
+    .extraction-document pre code { display: block; padding: 0; background: transparent; font-size: 13px; line-height: 1.8; white-space: pre; overflow-wrap: normal; }
+    .extraction-catalog th:first-child { width: 76%; }
+    .extraction-catalog th:last-child { width: 24%; }
+</style>
+</head>
+<body>
+<main class="policy-document schema-document extraction-document" data-document-root>
+<header class="policy-header">
+<div class="extraction-header-main"><div class="policy-kicker">RIST · EXTRACTION RULES</div>
+<h1>CSV-002</h1>
+<div class="schema-meta"><span>버전 1</span><span>작성일 2026/10/11</span><span>수정일 2026/10/11</span></div></div>
+<div class="extraction-downloads"><div class="extraction-download-row"><span class="extraction-download-label">csv-002.md</span><a data-document-download href="../docs/extraction-rules/csv/csv-002.md" download="csv-002.md" class="document-download" title="csv-002.md 다운로드" aria-label="csv-002.md 다운로드"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m-5-5 5 5 5-5"/><path d="M4 15v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></svg></a></div></div>
+</header>
+<div class="policy-sections">
+<section class="policy-section schema-level-2" id="변경-이력" tabindex="-1">
+<h2>변경 이력</h2>
+<div class="schema-table-wrap"><table class="schema-reference">
+<thead>
+<tr><th scope="col">수정일</th><th scope="col">변경 항목</th><th scope="col">변경 내용</th></tr>
+</thead>
+<tbody>
+<tr><td>2026/10/11</td><td>최초 문서화</td><td>최종 엑셀 규칙 반영. 동일 연월일시분의 원본 순서 첫 행만 유지하고 해당 행의 시간·좌표·물질별 결과 연결</td></tr>
+</tbody>
+</table></div>
+</section>
+<section class="policy-section schema-level-2" id="규칙-개요" tabindex="-1">
+<h2>규칙 개요</h2>
+<div class="schema-table-wrap"><table class="schema-reference">
+<thead>
+<tr><th scope="col">항목</th><th scope="col">내용</th></tr>
+</thead>
+<tbody>
+<tr><td>규칙 코드</td><td><code>CSV-002</code></td></tr>
+<tr><td>대상</td><td>SIFT-MS online 측정 CSV의 시간별 물질 농도 표</td></tr>
+<tr><td>샘플 파일명</td><td><code>SIFT-MS online 측정_rawdata_박서인 - 복사본.csv</code></td></tr>
+<tr><td>추출 단위</td><td>동일 연월일시분별로 유지한 측정행과 그 행의 물질별 결과</td></tr>
+<tr><td>규칙 목록</td><td><a href="extraction-rules-index.html#csv" data-viewer-page="extraction-rules-index" data-viewer-anchor="csv">추출 규칙</a></td></tr>
+</tbody>
+</table></div>
+</section>
+<section class="policy-section schema-level-2" id="핵심-규칙-요약표" tabindex="-1">
+<h2>핵심 규칙 요약표</h2>
+<div class="schema-table-wrap"><table class="schema-reference">
+<thead>
+<tr><th scope="col">구분</th><th scope="col">적용 기준</th></tr>
+</thead>
+<tbody>
+<tr><td>입력 파일</td><td>실제 측정 CSV. XLSX 항목 설명자료의 색상·입력 예시는 자동 추출 근거로 사용하지 않음</td></tr>
+<tr><td>표 구조</td><td><code>Measured Time</code>, C열부터 <code>Wind Speed</code> 직전의 물질명, <code>Latitude</code>, <code>Longitude</code> 헤더와 표 전체 구조 확인</td></tr>
+<tr><td>행 선별</td><td>연월일·시·분이 같으면 원본 순서상 첫 행 전체만 유지. 나머지 행의 농도·좌표도 제외. 시간 재정렬 금지</td></tr>
+<tr><td>날짜·시간</td><td>유지 행의 Measured Time을 채취일시와 분석일시에 동일하게 적용. 원문 초 보존, 없는 초 추정 금지</td></tr>
+<tr><td>좌표</td><td>유지 행의 위도·경도를 쌍으로 연결. 첫 행 좌표 전체 복제·지역 DB 좌표 덮어쓰기 금지</td></tr>
+<tr><td>결과</td><td>유지 행과 물질 열의 교차값을 전개. 원문 정밀도·0 보존, 빈값 NULL</td></tr>
+<tr><td>인터페이스 입력</td><td>구분·매체·시료명·담당자·분석기관·BASE·채취법·분석법·단위는 목록 선택 또는 입력</td></tr>
+</tbody>
+</table></div>
+</section>
+<section class="policy-section schema-level-2" id="파일-읽기-및-유형-판별" tabindex="-1">
+<h2>파일 읽기 및 유형 판별</h2>
+<div class="schema-table-wrap"><table class="schema-reference">
+<thead>
+<tr><th scope="col">항목</th><th scope="col">규칙</th></tr>
+</thead>
+<tbody>
+<tr><td>실제 입력</td><td><code>.csv</code> 측정 파일을 CSV 파서로 읽고 최초 셀 문자열과 원본 행 순서를 보존</td></tr>
+<tr><td>설명자료</td><td>XLSX 설명자료를 측정 CSV로 대체하지 않음. 색상은 판별 조건이 아님</td></tr>
+<tr><td>헤더 관계</td><td>Measured Time과 물질 열 구간, Wind Speed 경계, Latitude·Longitude를 함께 확인</td></tr>
+<tr><td>물질 범위</td><td>헤더 C열부터 Wind Speed 직전까지. 실제 물질명 전체를 사용하며 끝 열 AP·40개를 고정하지 않음</td></tr>
+<tr><td>제외 열</td><td>Total Concentration은 물질별 결과에 포함하지 않음. Wind Speed부터의 기상 항목도 물질별 결과가 아님. Latitude·Longitude는 공통 좌표로 읽음</td></tr>
+<tr><td>위치</td><td>위도·경도는 헤더로 찾으며 AW·AX로 고정하지 않음</td></tr>
+</tbody>
+</table></div>
+</section>
+<section class="policy-section schema-level-2" id="측정행-선별-및-추출-구간" tabindex="-1">
+<h2>측정행 선별 및 추출 구간</h2>
+<div class="schema-table-wrap"><table class="schema-reference">
+<thead>
+<tr><th scope="col">순서</th><th scope="col">규칙</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>원본 측정행 순서를 유지한 채 Measured Time의 연월일·시·분을 비교</td></tr>
+<tr><td>2</td><td>해당 연월일시분이 처음 나타난 행 전체를 유지</td></tr>
+<tr><td>3</td><td>같은 연월일시분이 다시 나타나면 그 행의 농도·좌표를 포함한 전체 추출을 제외</td></tr>
+<tr><td>4</td><td>연월일·시·분 중 하나라도 다르면 다른 그룹으로 처리하고 그 그룹의 첫 행 유지</td></tr>
+<tr><td>5</td><td>유지한 행의 시간·위도·경도를 같은 행의 모든 물질 결과에 연결</td></tr>
+</tbody>
+</table></div>
+<p>시간순 재정렬 후 첫 행을 선택하지 않는다. 초는 그룹 비교에서만 제외하며, 유지 행의 추출 시간에서는 삭제하거나 00으로 바꾸지 않는다.</p>
+</section>
+<section class="policy-section schema-level-2 schema-group" id="공통-항목-추출" tabindex="-1">
+<h2>공통 항목 추출</h2>
+<section class="policy-section schema-level-3" id="추출-예시-및-컬럼-매핑" tabindex="-1">
+<h3>추출 예시 및 컬럼 매핑</h3>
+<div class="schema-table-wrap"><table class="schema-reference">
+<thead>
+<tr><th scope="col">항목</th><th scope="col">매핑 컬럼</th><th scope="col">샘플 원본 위치·값</th><th scope="col">실제 추출 예시</th><th scope="col">추출 규칙</th></tr>
+</thead>
+<tbody>
+<tr><td>채취일시</td><td><code>collected_date</code>, <code>collected_at</code></td><td>A2 Measured Time <code>2025-12-02 13:26:33</code></td><td><code>2025/12/02 13:26:33</code></td><td>해당 분의 원본 순서 첫 행. 원문과 시간 정밀도 보존</td></tr>
+<tr><td>분석일시</td><td><code>analyzed_date</code>, <code>analyzed_at</code></td><td>같은 행 Measured Time</td><td><code>2025/12/02 13:26:33</code></td><td>채취일시와 동일하게 적용. 실행시간·파일 수정시간 사용 금지</td></tr>
+<tr><td>위도</td><td><code>latitude</code></td><td>AW2 Latitude <code>34.942309</code></td><td><code>34.942309</code></td><td>유지 행 좌표. 공통 저장 정밀도 적용 시에도 최초 원문 별도 보존</td></tr>
+<tr><td>경도</td><td><code>longitude</code></td><td>AX2 Longitude <code>127.724085</code></td><td><code>127.724085</code></td><td>같은 행 위도와 쌍으로 연결. 시료명 지역 DB 좌표로 덮어쓰지 않음</td></tr>
+</tbody>
+</table></div>
+<p>샘플 3행의 <code>2025-12-02 13:26:49</code>는 2행과 같은 분이므로 제외한다. 3행의 위도 <code>34.942287</code>, 경도 <code>127.724078</code>도 추출에 사용하지 않는다.</p>
+</section>
+</section>
+<section class="policy-section schema-level-2 schema-group" id="물질별-결과-추출" tabindex="-1">
+<h2>물질별 결과 추출</h2>
+<section class="policy-section schema-level-3" id="추출-예시-및-컬럼-매핑-2" tabindex="-1">
+<h3>추출 예시 및 컬럼 매핑</h3>
+<div class="schema-table-wrap"><table class="schema-reference">
+<thead>
+<tr><th scope="col">항목</th><th scope="col">매핑 컬럼</th><th scope="col">샘플 원본 위치·값</th><th scope="col">실제 추출 예시</th><th scope="col">추출 규칙</th></tr>
+</thead>
+<tbody>
+<tr><td>분석물질</td><td><code>substance_name</code></td><td>C1 <code>methanol</code></td><td><code>methanol</code></td><td>C열부터 Wind Speed 직전의 물질명 전체 보존</td></tr>
+<tr><td>결과 원문·표시</td><td><code>result_raw</code>, <code>result_text</code></td><td>C2 <code>6.60</code></td><td><code>6.60</code></td><td>유지한 행의 해당 물질 교차값. 원문 정밀도 보존</td></tr>
+<tr><td>숫자 결과</td><td><code>result_value</code></td><td>C2 <code>6.60</code></td><td>정밀 소수 <code>6.60</code></td><td>임의 반올림 없이 원문 정밀도 유지. 실제 0 보존, 빈값 NULL</td></tr>
+</tbody>
+</table></div>
+<div class="schema-table-wrap"><table class="schema-reference">
+<thead>
+<tr><th scope="col">항목</th><th scope="col">규칙</th></tr>
+</thead>
+<tbody>
+<tr><td>물질명</td><td>혼합명·<code>[R]</code>·슬래시·플러스 기호를 임의 분리하지 않음</td></tr>
+<tr><td>결과 전개</td><td>유지 측정행마다 물질 열 전체의 교차값을 결과로 전개</td></tr>
+<tr><td>연결</td><td>각 결과는 자신이 속한 유지 행의 시간·위도·경도와 연결</td></tr>
+<tr><td>제외 행</td><td>제외한 행에서 농도나 좌표를 가져와 유지 행을 보완하지 않음</td></tr>
+</tbody>
+</table></div>
+</section>
+</section>
+<section class="policy-section schema-level-2" id="미추출-항목-및-인터페이스-입력" tabindex="-1">
+<h2>미추출 항목 및 인터페이스 입력</h2>
+<div class="schema-table-wrap"><table class="schema-reference">
+<thead>
+<tr><th scope="col">항목</th><th scope="col">초기 값</th><th scope="col">입력 규칙</th></tr>
+</thead>
+<tbody>
+<tr><td>구분</td><td>NULL</td><td>목록 선택 또는 입력</td></tr>
+<tr><td>매체 구분</td><td>NULL</td><td>목록 선택 또는 입력</td></tr>
+<tr><td>시료명</td><td>NULL</td><td>목록 선택 또는 입력</td></tr>
+<tr><td>담당자</td><td>NULL</td><td>목록 선택 또는 입력</td></tr>
+<tr><td>분석기관</td><td>NULL</td><td>목록 선택 또는 입력</td></tr>
+<tr><td>BASE</td><td>NULL</td><td>목록 선택 또는 입력</td></tr>
+<tr><td>채취법</td><td>NULL</td><td>목록 선택 또는 입력</td></tr>
+<tr><td>분석법</td><td>NULL</td><td>목록 선택 또는 입력</td></tr>
+<tr><td>단위</td><td>NULL</td><td>목록 선택 또는 입력</td></tr>
+</tbody>
+</table></div>
+<p>담당자를 파일명의 인명으로 자동 입력하지 않는다. 분석법의 코드·고시번호는 실제 선택한 목록 항목에 연결하고 예시를 자동 적용하지 않는다. BASE 미입력은 NULL이다. 인터페이스 입력 예시를 파일 추출값으로 저장하지 않는다.</p>
+</section>
+<section class="policy-section schema-level-2" id="샘플-검증-예시" tabindex="-1">
+<h2>샘플 검증 예시</h2>
+<div class="schema-table-wrap"><table class="schema-reference">
+<thead>
+<tr><th scope="col">항목</th><th scope="col">검증값</th></tr>
+</thead>
+<tbody>
+<tr><td>원본 측정행</td><td>701행</td></tr>
+<tr><td>연월일시분별 유지 행</td><td>194행</td></tr>
+<tr><td>제외 행</td><td>507행</td></tr>
+<tr><td>물질 열</td><td>40개</td></tr>
+<tr><td>추출 결과</td><td>194 × 40 = 7,760건</td></tr>
+</tbody>
+</table></div>
+<p>행 수·물질 수·셀 주소는 이 샘플의 검증 예시이며 고정 추출 조건으로 사용하지 않는다.</p>
+</section>
+</div>
+</main>
+</body>
+</html>

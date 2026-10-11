@@ -61,6 +61,29 @@ class ExtractionRuleTests(unittest.TestCase):
         self.root = Path(self.folder.name)
         self.index = self.root / 'docs' / 'extraction-rules' / 'index.md'
 
+    def test_suffix_rule_order_title_and_links(self):
+        self.fixture()
+        for name in ['pdf-002', 'pdf-001-a', 'pdf-001']:
+            self.write('docs/extraction-rules/pdf/' + name + '.md', '## Example\n\nContent.\n')
+        self.write('docs/extraction-rules/pdf/pdf-001-A.md', 'Ignored')
+        self.assertEqual([p.stem for p in discover_rules(self.root)],
+                         ['csv-001', 'pdf-001', 'pdf-001-a', 'pdf-002'])
+        build_extraction_rules(self.root)
+        pages = self.page_data()
+        group = next(p for p in pages if p['id'] == 'extraction-sub-rules')
+        self.assertEqual(group['title'], '추출 규칙 서브')
+        variant = group['children'][0]
+        self.assertEqual(variant['id'], 'extraction-rule-pdf-001-a')
+        self.assertNotIn('PDF-001-a', self.index.read_text().split('## 추출 규칙 서브')[0])
+        self.assertEqual(variant['title'], 'PDF-001-a')
+        self.assertIn('[상세](pdf/pdf-001-a.md)', self.index.read_text())
+        self.assertIn('| PDF-001-a |', self.index.read_text())
+        document = self.document('extraction-rule-pdf-001-a')
+        self.assertIn('<title>PDF-001-a</title>', document)
+        self.assertIn('download="pdf-001-a.md"', document)
+        self.assertIn('data-viewer-page="extraction-rule-pdf-001-a"',
+                      self.document('extraction-rules-index'))
+
     def tearDown(self):
         self.folder.cleanup()
 

@@ -2,7 +2,7 @@
 type: planning
 hub: "[[💡planning]]"
 created_at: 2026-09-16
-updated_at: 2026-09-28
+updated_at: 2026-10-11
 client: "[[RIST(포항산업과학연구원)]]"
 project: "[[RIST 데이터 표준화 프로그램 개발]]"
 status: 초안
@@ -26,6 +26,7 @@ version: 1
 | 규칙명 | 바로가기 |
 | --- | --- |
 | CSV-001 | [상세](csv/csv-001.md) |
+| CSV-002 | [상세](csv/csv-002.md) |
 
 ## EXCEL
 
@@ -42,3 +43,9 @@ version: 1
 | PDF-001 | [상세](pdf/pdf-001.md) |
 | PDF-002 | [상세](pdf/pdf-002.md) |
 | PDF-003 | [상세](pdf/pdf-003.md) |
+
+## 추출 규칙 서브
+
+| 규칙명 | 바로가기 |
+| --- | --- |
+| PDF-001-a | [상세](pdf/pdf-001-a.md) |
