@@ -468,24 +468,24 @@ test('initial load collapses every group, including nested and empty groups; use
 
 test('phase-two review pages stay in their own scope with linked guides', () => {
   const app = boot({ hash: '#rist-phase2-review-preparation' });
-  expectPage(app, 'rist-phase2-review-preparation', '04/09');
+  expectPage(app, 'rist-phase2-review-preparation', '07/10');
   assert.equal(app.get('annotation-layer').children.length, 1);
   assert.equal(app.get('page-breadcrumb').textContent, '화면 기획서(2차 개선)');
   app.pageLink('rist-phase2-review-detail');
-  expectPage(app, 'rist-phase2-review-detail', '05/09');
+  expectPage(app, 'rist-phase2-review-detail', '08/10');
   assert.equal(app.get('annotation-layer').children.length, 8);
   app.get('next-page').click();
-  expectPage(app, 'rist-phase2-final-validation', '06/09');
+  expectPage(app, 'rist-phase2-final-validation', '09/10');
   assert.equal(app.get('annotation-layer').children.length, 6);
   app.pageLink('rist-phase2-review-preparation');
-  expectPage(app, 'rist-phase2-review-preparation', '04/09');
+  expectPage(app, 'rist-phase2-review-preparation', '07/10');
 });
 
 
-test('new phase-two policy examples follow final inspection in the approved order', () => {
+test('phase-two file and profile pages precede preparation', () => {
  const app=boot({hash:'#rist-phase2-duplicate-filename'});
- const ids=['rist-phase2-duplicate-filename','rist-phase2-nas-deduplication','rist-phase2-profile-menu'];
- const counts=[4,5,4];
- ids.forEach((id,i)=>{expectPage(app,id,String(7+i).padStart(2,'0')+'/09');assert.equal(app.get('annotation-layer').children.length,counts[i]);app.get('next-page').click();});
- expectPage(app,'rist-phase2-profile-menu','09/09');assert.equal(app.get('next-page').disabled,true);
+ const ids=['rist-phase2-duplicate-filename','rist-phase2-profile-menu','rist-phase2-review-preparation','rist-phase2-review-detail','rist-phase2-final-validation','rist-phase2-nas-deduplication'];
+ ids.forEach((id,i)=>{expectPage(app,id,String(5+i).padStart(2,'0')+'/10');if(i<ids.length-1)app.get('next-page').click();});
+ assert.equal(app.get('next-page').disabled,true);
+ app.get('previous-page').click();expectPage(app,'rist-phase2-final-validation','09/10');
 });

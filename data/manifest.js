@@ -314,6 +314,12 @@ window.MOCKUP_VIEWER_MANIFEST = {
           hideEmptyDescription: true
         },
         {
+          id: 'rist-phase2-policy-changes',
+          title: '정책 변경 사항',
+          src: 'pages/rist-phase2-policy-changes.html',
+          width: 1280, autoHeight: true, summary: '', hideEmptyDescription: true
+        },
+        {
           id: 'rist-phase2-copy-improvements',
           title: '문구 개선',
           src: 'pages/rist-phase2-copy-improvements.html',
@@ -321,6 +327,18 @@ window.MOCKUP_VIEWER_MANIFEST = {
           autoHeight: true,
           summary: '',
           hideEmptyDescription: true
+        },
+        {
+          id: 'rist-phase2-duplicate-filename',
+          title: '동일 파일명 확인',
+          src: 'pages/rist-phase2-duplicate-filename.html',
+          width: 1280, height: 800, summary: '', hideEmptyDescription: true
+        },
+        {
+          id: 'rist-phase2-profile-menu',
+          title: '프로필 메뉴(2차 개선)',
+          src: 'pages/rist-phase2-profile-menu.html',
+          width: 1280, height: 800, summary: '', hideEmptyDescription: true
         },
         {
           id: 'rist-phase2-review-preparation',
@@ -341,23 +359,11 @@ window.MOCKUP_VIEWER_MANIFEST = {
           width: 1280, height: 800, summary: '', hideEmptyDescription: true
         },
         {
-          id: 'rist-phase2-duplicate-filename',
-          title: '동일 파일명 확인',
-          src: 'pages/rist-phase2-duplicate-filename.html',
-          width: 1280, height: 800, summary: '', hideEmptyDescription: true
-        },
-        {
           id: 'rist-phase2-nas-deduplication',
           title: 'NAS 보관 시 중복 데이터 검사',
           src: 'pages/rist-phase2-nas-deduplication.html',
           width: 1280, autoHeight: true, summary: '', hideEmptyDescription: true
         },
-        {
-          id: 'rist-phase2-profile-menu',
-          title: '프로필 메뉴(2차 개선)',
-          src: 'pages/rist-phase2-profile-menu.html',
-          width: 1280, height: 800, summary: '', hideEmptyDescription: true
-        }
       ]
     },
     {

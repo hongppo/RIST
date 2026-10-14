@@ -46,15 +46,27 @@
 <header class="policy-header has-labeled-download">
 <div class="document-header-main"><div class="policy-kicker">RIST · POLICIES</div>
 <h1>정책 문서</h1>
-<div class="policy-meta"><span>버전 1</span><span>작성일 2026/09/16</span><span>수정일 2026/09/25</span></div>
+<div class="policy-meta"><span>버전 2</span><span>작성일 2026/09/16</span><span>수정일 2026/10/14</span></div>
 
 </div>
 <div class="document-download-row"><span class="document-download-label">정책 문서.md</span><a data-document-download href="../docs/rist-policies.md" download="정책 문서.md" class="document-download" title="정책 문서 MD 다운로드" aria-label="정책 문서 MD 다운로드"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m-5-5 5 5 5-5"/><path d="M4 15v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></svg></a></div>
 </header>
 <div class="policy-sections">
+<section class="policy-section" id="policy-change-history" tabindex="-1">
+<h2>변경 이력</h2>
+<div class="schema-table-wrap"><table class="schema-reference">
+<thead>
+<tr><th scope="col">수정일</th><th scope="col">변경 항목</th><th scope="col">변경 내용</th></tr>
+</thead>
+<tbody>
+<tr><td>2026/10/14</td><td>단위 표기 정규화</td><td>단독·복합 단위의 ug·µg를 μg로 통일하고 전체 원문·단위식 구조·결과 정밀도 보존 및 목록 연결 조건 정의</td></tr>
+</tbody>
+</table></div>
+</section>
 <section class="policy-section" id="policy-index" tabindex="-1">
 <h2>인덱스</h2>
 <ul>
+<li><a href="#unit-normalization-policy">단위 표기 정규화 정책</a></li>
 <li><a href="#login-policy">로그인 정책</a></li>
 <li><a href="#upload-history-policy">업로드 이력 정책</a></li>
 <li><a href="#work-save-policy">작업 저장·종료 정책</a></li>
@@ -63,6 +75,44 @@
 <li><a href="#upload-policy">파일 업로드 정책</a></li>
 <li><a href="#required-fields-policy">필수 항목 및 검사 시점 정책</a></li>
 </ul>
+</section>
+<section class="policy-section" id="unit-normalization-policy" tabindex="-1">
+<h2>단위 표기 정규화 정책</h2>
+<div class="schema-table-wrap"><table class="schema-reference">
+<thead>
+<tr><th scope="col">항목</th><th scope="col">처리 기준</th></tr>
+</thead>
+<tbody>
+<tr><td>적용 대상</td><td>단위 필드에서 마이크로그램을 뜻하는 <code>ug</code> 또는 <code>µg</code>(U+00B5) 요소. 단독·복합 단위 모두 적용</td></tr>
+<tr><td>업무 단위</td><td>식별된 마이크로그램 요소를 <code>μg</code>로 통일. μ는 U+03BC 사용. 이미 <code>μg</code>인 표기는 유지하며 검토 화면과 DB의 <code>unit</code>을 동일하게 표시</td></tr>
+<tr><td>복합 단위 해석</td><td>전체 단위식을 해석하여 식별한 마이크로그램 질량 단위 요소만 정규화. 분자 및 복합 단위 내 해당 요소에 같은 원칙 적용</td></tr>
+<tr><td>구조 보존</td><td>분모·다른 단위 요소·지수·수식 구조 유지. <code>ug/m3</code>는 <code>μg/m3</code>로 처리하며 <code>m3</code>를 <code>m³</code>로 바꾸지 않음. 대소문자를 임의 변경하거나 추측하지 않음</td></tr>
+<tr><td>원문 보존</td><td>물질 결과의 <code>source_snapshot</code>에 최초 전체 단위 문자열, 정규화 해석값, 원본 위치를 구분하여 보존. <code>ug/m³</code> 등 원문 전체를 그대로 유지</td></tr>
+<tr><td>결과 보존</td><td>분석 결과 수치·표시 자릿수·정밀도 유지. 질량 단위·농도 수치 환산이나 배수 변환 없음</td></tr>
+<tr><td>추출 상태</td><td>원본 단위가 명시되어 있으면 <code>was_extracted=true</code>, <code>value_source=EXTRACTED</code> 유지. 표기 정규화만으로 DB 매칭 성공으로 처리하지 않음</td></tr>
+<tr><td>목록 연결</td><td>정규화된 전체 단위와 실제 단위 목록 항목의 유효한 연결이 확인될 때만 <code>unit_option_id</code> 부여 및 <code>match_status=MATCHED</code> 처리. 연결되지 않으면 ID는 NULL이며 임의 생성하지 않음</td></tr>
+<tr><td>치환 범위</td><td>단위 필드에만 적용. 시료명·물질명·파일명 등 일반 문자열은 치환하지 않음. <code>mg/kg</code> 등 다른 단위 유지</td></tr>
+<tr><td>인식 불가</td><td><code>ug</code>가 문자열 일부에 포함됐다는 이유만으로 변환하지 않음. 단위식을 해석할 수 없으면 원문을 보존하고 검토 대상으로 처리하며 정규화값을 추측하여 확정하지 않음</td></tr>
+</tbody>
+</table></div>
+<h3>적용 예시</h3>
+<p>모든 예시에서 결과 `1.50`의 수치·표시 자릿수는 유지하고, 원문 전체 단위를 `source_snapshot`에 별도로 보존합니다.</p>
+<div class="schema-table-wrap"><table class="schema-reference">
+<thead>
+<tr><th scope="col">원문 단위</th><th scope="col">검토·DB 업무 단위</th><th scope="col">처리</th></tr>
+</thead>
+<tbody>
+<tr><td><code>ug</code></td><td><code>μg</code></td><td>단독 단위 정규화</td></tr>
+<tr><td><code>ug/m³</code></td><td><code>μg/m³</code></td><td>분모와 지수 보존. <code>1.50 ug/m³</code> → <code>1.50 μg/m³</code></td></tr>
+<tr><td><code>ug/L</code></td><td><code>μg/L</code></td><td>L 표기 보존</td></tr>
+<tr><td><code>ug/kg</code></td><td><code>μg/kg</code></td><td>kg 유지</td></tr>
+<tr><td><code>ug/m3</code></td><td><code>μg/m3</code></td><td>m3 표기 유지</td></tr>
+<tr><td><code>µg</code>, <code>µg/m³</code>, <code>µg/L</code>, <code>µg/kg</code></td><td><code>μg</code>, <code>μg/m³</code>, <code>μg/L</code>, <code>μg/kg</code></td><td>U+00B5를 U+03BC로 통일</td></tr>
+<tr><td><code>μg</code>, <code>μg/m³</code></td><td><code>μg</code>, <code>μg/m³</code></td><td>정규화 표기 유지</td></tr>
+<tr><td><code>mg</code>, <code>mg/kg</code></td><td><code>mg</code>, <code>mg/kg</code></td><td>다른 질량 단위 유지</td></tr>
+<tr><td><code>UG/L</code>, <code>unknownug</code></td><td>추측 정규화하지 않음</td><td>대소문자·문자 부분 일치로 확정하지 않고 원문 보존 및 검토</td></tr>
+</tbody>
+</table></div>
 </section>
 <section class="policy-section" id="login-policy" tabindex="-1">
 <h2>로그인 정책</h2>
