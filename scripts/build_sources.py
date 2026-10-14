@@ -19,6 +19,8 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
+from build_phase2_policies import build_phase2_policies
+from build_copy_improvements import build_copy_improvements
 from build_change_history import build_change_history
 from build_policies import build_policies
 from build_schema import build_schema
@@ -291,7 +293,10 @@ def build_page(path):
 
 
 def main():
+    build_phase2_policies(ROOT)
+    build_copy_improvements(ROOT)
     build_change_history(ROOT)
+    build_change_history(ROOT, 'rist-phase2-change-history')
     build_policies(ROOT)
     build_schema(ROOT)
     build_extraction_rules(ROOT)

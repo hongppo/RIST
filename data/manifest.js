@@ -9,7 +9,7 @@ window.MOCKUP_VIEWER_MANIFEST = {
   tree: [
     {
       id: 'rist',
-      title: '화면 기획서',
+      title: '화면기획서(PoC)',
       children: [
         {
           id: 'rist-cover',
@@ -287,6 +287,82 @@ window.MOCKUP_VIEWER_MANIFEST = {
           src: 'pages/rist-upload-history-detail-unavailable.html',
           width: 1280, height: 800,
           summary: '', hideEmptyDescription: true
+        }
+      ]
+    },
+    {
+      id: 'rist-phase2',
+      title: '화면 기획서(2차 개선)',
+      children: [
+        {
+          id: 'rist-phase2-cover',
+          title: '표지',
+          src: 'pages/rist-phase2-cover.html',
+          width: 1280,
+          height: 800,
+          kind: 'RIST · 2차 개선 표지',
+          summary: '',
+          hideEmptyDescription: true
+        },
+        {
+          id: 'rist-phase2-change-history',
+          title: '변경 히스토리',
+          src: 'pages/rist-phase2-change-history.html',
+          width: 1280,
+          autoHeight: true,
+          summary: '',
+          hideEmptyDescription: true
+        },
+        {
+          id: 'rist-phase2-copy-improvements',
+          title: '문구 개선',
+          src: 'pages/rist-phase2-copy-improvements.html',
+          width: 1280,
+          autoHeight: true,
+          summary: '',
+          hideEmptyDescription: true
+        },
+        {
+          id: 'rist-phase2-review-preparation',
+          title: '데이터 검토: 1단계',
+          src: 'pages/rist-phase2-review-preparation.html',
+          width: 1280, height: 800, summary: '', hideEmptyDescription: true
+        },
+        {
+          id: 'rist-phase2-review-detail',
+          title: '데이터 검토: 2단계',
+          src: 'pages/rist-phase2-review-detail.html',
+          width: 1280, height: 800, summary: '', hideEmptyDescription: true
+        },
+        {
+          id: 'rist-phase2-final-inspection',
+          title: '최종 저장 전 검사',
+          src: 'pages/rist-phase2-final-inspection.html',
+          width: 1280, height: 800, summary: '', hideEmptyDescription: true
+        },
+        {
+          id: 'rist-phase2-duplicate-filename',
+          title: '동일 파일명 확인',
+          src: 'pages/rist-phase2-duplicate-filename.html',
+          width: 1280, height: 800, summary: '', hideEmptyDescription: true
+        },
+        {
+          id: 'rist-phase2-nas-deduplication',
+          title: 'NAS 보관 시 중복 데이터 검사',
+          src: 'pages/rist-phase2-nas-deduplication.html',
+          width: 1280, autoHeight: true, summary: '', hideEmptyDescription: true
+        },
+        {
+          id: 'rist-phase2-profile-menu',
+          title: '프로필 메뉴(2차 개선)',
+          src: 'pages/rist-phase2-profile-menu.html',
+          width: 1280, height: 800, summary: '', hideEmptyDescription: true
+        },
+        {
+          id: 'rist-phase2-date-comparison',
+          title: '채취일자·분석일자 비교',
+          src: 'pages/rist-phase2-date-comparison.html',
+          width: 1280, height: 800, summary: '', hideEmptyDescription: true
         }
       ]
     },

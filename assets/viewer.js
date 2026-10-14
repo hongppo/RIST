@@ -88,9 +88,10 @@
         button.type = 'button';
         button.className = 'tree-group-button';
         button.style.paddingLeft = (10 + depth * 16) + 'px';
-        button.setAttribute('aria-expanded', 'true');
+        button.setAttribute('aria-expanded', 'false');
         button.append(icon('chevron'), span('tree-title', node.title || node.id));
         const childList = buildTree(node.children, depth + 1, ancestors.concat({ id: node.id, title: node.title || node.id }));
+        childList.hidden = true;
         childList.id = 'tree-group-' + groupLists.size;
         button.setAttribute('aria-controls', childList.id);
         groupButtons.set(node.id, button);
@@ -336,7 +337,7 @@
     if (typeof source !== 'string' || !/^(?:\.\/)?pages\/[a-zA-Z0-9_./-]+\.html$/.test(source) || source.split('/').includes('..')) return 'about:blank';
     return source;
   }
-  function renderPage(index) {
+  function renderPage(index, expandAncestors = true) {
     if (index < 0 || index >= pages.length) return;
     if (canvasBinding) canvasBinding.reset();
     elements.viewport.classList.remove('is-panning');
@@ -347,7 +348,7 @@
       if (id === page.id) button.setAttribute('aria-current', 'page');
       else button.removeAttribute('aria-current');
     });
-    page.ancestors.forEach((group) => toggleGroup(group.id, true));
+    if (expandAncestors) page.ancestors.forEach((group) => toggleGroup(group.id, true));
     $('page-title').textContent = page.title;
     $('page-breadcrumb').textContent = page.ancestors.map((group) => group.title).join(' / ') || '화면 목록';
     $('artboard-kind').textContent = page.kind || '';
@@ -405,7 +406,7 @@
   elements.tree.append(buildTree(config.tree, 0, []));
   setPanel(elements.sidebar, 'toggle-sidebar', Boolean(preferences.sidebarHidden), false);
   setPanel(elements.descriptions, 'toggle-descriptions', Boolean(preferences.descriptionsHidden), false);
-  setAnnotationsVisible(preferences.annotationsVisible !== false, false);
+  setAnnotationsVisible(true, false);
   state.fit = preferences.fit !== false;
   if (Number.isFinite(preferences.zoom)) state.zoom = canvasMath.clampZoom(preferences.zoom);
   $('toggle-sidebar').addEventListener('click', () => setPanel(elements.sidebar, 'toggle-sidebar', !elements.sidebar.hidden));
@@ -505,7 +506,7 @@
   else window.addEventListener('resize', onResize);
 
   if (pages.length) {
-    renderPage(indexFromHash());
+    renderPage(indexFromHash(), false);
   } else {
     elements.stack.hidden = true;
     $('empty-state').hidden = false;

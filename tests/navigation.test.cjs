@@ -87,7 +87,7 @@ test('screen planning pages stay within their screen-planning list through butto
   const app = boot();
   const ids = ['rist-cover', 'rist-change-history', 'rist-login', 'rist-profile-menu', 'rist-upload', 'rist-processing', 'rist-error', 'rist-sheet-partial', 'rist-review-preparation-initial', 'rist-review-preparation-badge-states', 'rist-review-preparation-stage-confirm', 'rist-review-preparation-dropdown', 'rist-review-preparation-search', 'rist-review-preparation-search-empty', 'rist-review-preparation-direct-input', 'rist-review-preparation-region-examples', 'rist-review-preparation-date-time', 'rist-review-preparation-selected', 'rist-review-preparation-changed', 'rist-review-preparation-add-modals', 'rist-review-detail', 'rist-review-detail-new', 'rist-save-confirm', 'rist-saving', 'rist-save-complete', 'rist-save-error', 'rist-save-status', 'rist-upload-history', 'rist-upload-history-empty', 'rist-upload-history-no-results', 'rist-upload-history-error', 'rist-upload-history-detail', 'rist-upload-history-detail-unavailable'];
   const markers = [0, 0, 2, 0, 4, 3, 3, 4, 2, 4, 0, 0, 1, 0, 0, 4, 0, 0, 0, 0, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  assert.equal(app.get('page-breadcrumb').textContent, '화면 기획서');
+  assert.equal(app.get('page-breadcrumb').textContent, '화면기획서(PoC)');
   app.get('previous-page').click(); app.key('ArrowLeft'); app.iframe('previous');
   expectPage(app, 'rist-cover', '01/33');
   ids.forEach((id, index) => {
@@ -281,7 +281,7 @@ test('basic flow uses screen ID labels without overlay markers and keeps its pol
 });
 
 
-test('annotation visibility keeps descriptions available and persists across pages and reloads', () => {
+test('annotation visibility persists across pages but resets to visible on reload', () => {
   const values = new Map();
   const storage = { getItem: key => values.get(key) ?? null, setItem: (key, value) => values.set(key, String(value)) };
   const app = boot({ hash: '#rist-login', storage });
@@ -303,12 +303,12 @@ test('annotation visibility keeps descriptions available and persists across pag
   assert.equal(app.get('annotation-layer').hidden, true);
   assert.equal(button.getAttribute('aria-pressed'), 'false');
   const restored = boot({ hash: '#rist-login', storage });
-  assert.equal(restored.get('toggle-annotations').getAttribute('aria-pressed'), 'false');
-  assert.equal(restored.get('annotation-layer').hidden, true);
-  restored.get('toggle-annotations').click();
-  assert.equal(restored.get('annotation-layer').hidden, false);
   assert.equal(restored.get('toggle-annotations').getAttribute('aria-pressed'), 'true');
-  assert.equal(JSON.parse(values.get('mockup-viewer-preferences-v1')).annotationsVisible, true);
+  assert.equal(restored.get('annotation-layer').hidden, false);
+  restored.get('toggle-annotations').click();
+  assert.equal(restored.get('annotation-layer').hidden, true);
+  assert.equal(restored.get('toggle-annotations').getAttribute('aria-pressed'), 'false');
+  assert.equal(JSON.parse(values.get('mockup-viewer-preferences-v1')).annotationsVisible, false);
   const enabledAgain = boot({ hash: '#rist-login', storage });
   assert.equal(enabledAgain.get('toggle-annotations').getAttribute('aria-pressed'), 'true');
   assert.equal(enabledAgain.get('annotation-layer').hidden, false);
@@ -441,4 +441,51 @@ test('matching document links enter the DB group without changing page IDs',()=>
   app.pageLink('rist-db-list-location');
   expectPage(app,'rist-db-list-location','06/10');
   assert.equal(app.get('page-breadcrumb').textContent,'DB 리스트');
+});
+
+
+test('initial load collapses every group, including nested and empty groups; user actions still expand', () => {
+  const tree = [{ id: 'outer', title: 'Outer', children: [
+    { id: 'inner', title: 'Inner', children: [{ id: 'nested-page', title: 'Nested', src: 'pages/rist-login.html' }] }
+  ] }, { id: 'empty', title: 'Empty', children: [] }];
+  for (const hash of ['', '#nested-page']) {
+    const app = boot({ tree, hash });
+    const groups = app.descendants('page-tree').filter(n => n.getAttribute('aria-expanded') !== null);
+    assert.equal(groups.length, 3);
+    groups.forEach(g => assert.equal(g.getAttribute('aria-expanded'), 'false'));
+    app.descendants('page-tree').filter(n => n.tagName === 'UL' && n.id).forEach(n => assert.equal(n.hidden, true));
+    groups[0].click();
+    assert.equal(groups[0].getAttribute('aria-expanded'), 'true');
+    groups[0].click();
+    assert.equal(groups[0].getAttribute('aria-expanded'), 'false');
+    app.pageLink('nested-page');
+    assert.equal(groups[0].getAttribute('aria-expanded'), 'true');
+    assert.equal(groups[1].getAttribute('aria-expanded'), 'true');
+    assert.equal(groups[2].getAttribute('aria-expanded'), 'false');
+  }
+});
+
+
+test('phase-two review pages stay in their own scope with linked guides', () => {
+  const app = boot({ hash: '#rist-phase2-review-preparation' });
+  expectPage(app, 'rist-phase2-review-preparation', '04/10');
+  assert.equal(app.get('annotation-layer').children.length, 3);
+  assert.equal(app.get('page-breadcrumb').textContent, '화면 기획서(2차 개선)');
+  app.pageLink('rist-phase2-review-detail');
+  expectPage(app, 'rist-phase2-review-detail', '05/10');
+  assert.equal(app.get('annotation-layer').children.length, 8);
+  app.get('next-page').click();
+  expectPage(app, 'rist-phase2-final-inspection', '06/10');
+  assert.equal(app.get('annotation-layer').children.length, 8);
+  app.pageLink('rist-phase2-review-preparation');
+  expectPage(app, 'rist-phase2-review-preparation', '04/10');
+});
+
+
+test('new phase-two policy examples follow final inspection in the approved order', () => {
+ const app=boot({hash:'#rist-phase2-duplicate-filename'});
+ const ids=['rist-phase2-duplicate-filename','rist-phase2-nas-deduplication','rist-phase2-profile-menu','rist-phase2-date-comparison'];
+ const counts=[4,5,4,6];
+ ids.forEach((id,i)=>{expectPage(app,id,String(7+i).padStart(2,'0')+'/10');assert.equal(app.get('annotation-layer').children.length,counts[i]);app.get('next-page').click();});
+ expectPage(app,'rist-phase2-date-comparison','10/10');assert.equal(app.get('next-page').disabled,true);
 });
