@@ -1,0 +1,353 @@
+<!doctype html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>최종 저장 전 통합 검사</title><style>*{box-sizing:border-box}html,body{margin:0;width:1280px;height:800px;overflow:hidden}body{background:#f3f4f6;color:#303842;font:13px -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif}button,input,select{font:inherit}button{cursor:pointer;background:#fff;border:1px solid #bfcad6;border-radius:5px;color:#52677c;padding:6px 10px;white-space:nowrap}button:disabled{cursor:default;color:#a1acb7;background:#eff2f5;border-color:#dce3ea}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #708aa5;outline-offset:1px}input,select{width:100%;min-width:0;height:34px;border:1px solid #c5d0dc;border-radius:4px;color:#40556b;background:#fff;padding:0 8px}input::placeholder{color:#9ba7b3}input[type=checkbox]{width:17px;height:17px;accent-color:#6a819a;cursor:pointer}.app-header{height:54px;border-bottom:1px solid #d8dfe7;background:white;padding:0 24px;display:flex;align-items:center;justify-content:space-between}.service{font-weight:700;font-size:18px}.workspace{height:746px;padding:16px 24px;display:flex;flex-direction:column;gap:12px}.heading{display:flex;align-items:center;justify-content:space-between;height:40px;flex:none}h1{margin:0;font-size:24px}.steps{display:flex;border:1px solid #c5d0dc;border-radius:6px;overflow:hidden}.steps button{border:0;border-radius:0;min-width:180px;height:38px}.steps .active{background:#e2e8ef;color:#35495f;font-weight:700;box-shadow:inset 0 -3px #71869b}.file-bar{display:flex;align-items:center;justify-content:space-between;height:38px;flex:none;padding:0 12px;border:1px solid #d5dce4;border-radius:6px;background:#fff}.file-type{margin-left:14px;color:#82909f;font-size:12px}.tools{display:flex;gap:6px}.tools button{padding:3px;width:29px;height:28px}.tools svg{width:18px;height:18px}.toolbar{height:34px;flex:none;display:flex;align-items:center;justify-content:space-between}.counts{font-weight:600;color:#5b7085}.load{display:flex;gap:6px}.grid-scroll{min-height:0;flex:1;border:1px solid #b8c5d3;border-radius:7px;overflow:scroll;background:white;overscroll-behavior:contain;scrollbar-color:#8798ab #e8edf2;scrollbar-gutter:stable}table{border-collapse:separate;border-spacing:0;table-layout:fixed}th,td{border-right:1px solid #e0e6ed;border-bottom:1px solid #dee5ed;padding:8px;background:#fff;text-align:left}thead th{position:sticky;z-index:4;font-weight:600}thead tr:nth-child(1) th{top:0;height:38px;background:#e7edf3}thead tr:nth-child(2) th{top:38px;height:94px;background:#f3f6f9}thead tr:nth-child(3) th{top:132px;height:42px;background:#f3f6f9}tbody td{height:76px}th.lock-select,td.lock-select{position:sticky;left:0;z-index:3;text-align:center;background:#f7f9fb}th.lock-number,td.lock-number{position:sticky;left:42px;z-index:3;text-align:center;background:#f7f9fb;box-shadow:2px 0 #b8c5d3;color:#8290a0}thead th.lock-select,thead th.lock-number{z-index:7}thead .bulk-label{left:0;z-index:7;text-align:center;font-size:11px;box-shadow:2px 0 #b8c5d3}.location-actions{display:flex;gap:12px;align-items:center}.location-actions small{font-weight:400;color:#788b9d}.location-actions .cell{display:flex;gap:5px;align-items:center;min-height:40px}.control{min-width:0;flex:1}.combo{position:relative}.combo input{padding-right:24px}.chevron{position:absolute;right:8px;top:8px;pointer-events:none;color:#7f91a4}.cell-save{display:none;font-size:11px;padding:6px;flex:none}.cell:focus-within .cell-save,.cell.dirty .cell-save,.cell.open .cell-save,.cell.geo-focus .cell-save{display:block}.cell.dirty input{background:#eef5fc;border-color:#809bb7}.read{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#69798a}.selected td{background:#fafcfe}.date-control{display:flex;flex-direction:column;gap:5px}.date-control input{font-size:12px;height:30px}.number-control{display:flex;align-items:center;gap:8px}.location-control{display:flex;flex-direction:column;gap:5px}.location-control button{align-self:flex-start;font-size:11px;padding:3px 7px}.footer{flex:none;height:58px;border-top:1px solid #d1dae4;padding-top:12px;display:flex;align-items:center;justify-content:space-between}.footer .status{font-size:12px;color:#788b9c;margin-bottom:5px}.footer .scope{font-size:13px;color:#52677b}.primary{background:#5c6c7e;color:white;border-color:#536376;height:42px;padding:0 28px;font-weight:600}.lookup{position:fixed;width:292px;z-index:200;background:#fff;border:1px solid #aebfd0;border-radius:6px;box-shadow:0 8px 24px #26394d29;overflow:hidden}.lookup[hidden]{display:none}.lookup-list{max-height:176px;overflow:auto;overscroll-behavior:contain;padding:5px}.option{display:block;border:0;border-radius:3px;width:100%;text-align:left;padding:9px 10px}.option:hover{background:#eff5fb}.add-option{border-radius:0;border:0;border-bottom:1px solid #dce5ee;background:#f1f6fb;width:100%;text-align:left;padding:10px 14px;color:#486a8a;font-weight:600}.empty-result{padding:14px;color:#8c99a7;font-size:12px}thead tr[hidden]{display:none}#toggle-bulk .bulk-pending[hidden]{display:none}.table-summary{display:flex;align-items:center;gap:16px;min-width:0}#toggle-bulk{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 10px;background:#eef3f8;border-color:#afc0d2;font-weight:600}#bulk-toggle-icon{font-size:17px;line-height:1}#toggle-bulk .bulk-pending{width:6px;height:6px;border-radius:50%;background:#c47a34;margin-left:2px;flex:none}
+.app-profile { display: flex; align-items: center; gap: 10px; height: 42px; padding: 0 12px; border: 1px solid #d1d5db; border-radius: 6px; color: #41464e; background: #ffffff; font: inherit; font-size: 15px; cursor: pointer; }.app-user-icon { display: block; width: 24px; height: 24px; color: #757c86; }.app-profile-chevron { display: block; width: 16px; height: 16px; margin-left: 4px; color: #757c86; }
+.app-profile{line-height:1.5;flex-shrink:0}.app-profile:focus-visible{outline:2px solid #7c8591;outline-offset:3px}.app-header{justify-content:space-between}
+
+.lock-number,th.lock-number,td.lock-number{left:0!important;z-index:3}.grid-cell{position:relative;cursor:cell;padding:8px;height:76px}.grid-cell.chosen{background:#e6eff9;box-shadow:inset 0 0 0 2px #6485a7}.grid-cell.edited{background:#fff3d7}.grid-cell.missing{box-shadow:inset 0 0 0 2px #c85a5a}.edit-cell{position:relative;padding-right:27px}.edit-cell input{height:34px}.confirm-cell{position:absolute;right:-5px;top:0;width:29px;height:34px;padding:0;color:#3b6a98}.edit-cell .date-control{display:flex;flex-wrap:wrap}.required-star{color:#b14d4d}.active-column{color:#245787!important}.grid-scroll thead tr:nth-child(2) th{height:68px}.grid-scroll thead tr:nth-child(3) th{top:106px;height:44px}.grid-scroll thead tr:nth-child(3) th{left:0}.toolbar{height:38px}.table-summary{display:flex;gap:16px;align-items:center}.read{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.notice{font-size:12px;color:#708095}.footer .scope{margin-top:4px}.position-dialog{width:860px;border:1px solid #bbc8d5;border-radius:10px;padding:0;color:#40556b;box-shadow:0 20px 70px #263f5655}.position-dialog::backdrop{background:#23354866}.dialog-head{display:flex;align-items:center;justify-content:space-between;padding:16px 22px;border-bottom:1px solid #dbe2e9}.dialog-head h2{margin:0;font-size:19px}.dialog-body{padding:18px 22px;display:grid;grid-template-columns:1.2fr 1fr;gap:20px}.map-canvas{position:relative;height:330px;padding:0;width:100%;overflow:hidden;background:#e9eeeb;cursor:crosshair}.map-canvas svg{width:100%;height:100%}.map-pin{position:absolute;left:50%;top:50%;width:18px;height:18px;border-radius:50%;background:#607f9e;border:3px solid white;transform:translate(-50%,-50%);box-shadow:0 0 0 4px #607f9e55}.map-fields label{display:block;margin:16px 0 7px}.map-fields label:first-child{margin-top:0}.map-fields input,.map-fields select{height:38px}.dialog-foot{padding:14px 22px;border-top:1px solid #dbe2e9;display:flex;justify-content:flex-end;gap:8px}.map-state{min-height:40px;font-size:12px;line-height:1.6;margin:8px 0}.target-badge{background:#eaf0f6;border-radius:4px;padding:7px 10px;margin-bottom:16px;font-weight:600}.optional{font-size:11px;color:#8996a4}.lookup{z-index:50}.lookup-list{max-height:220px;overflow:auto}.lookup-list button{display:block;width:100%;text-align:left;border:0;border-radius:0;padding:9px 12px}.lookup-list .add-option{border-bottom:1px solid #dce3eb;color:#427099;background:#f1f6fa}[hidden]{display:none!important}
+.apply-pair{display:flex;gap:5px}.apply-pair button{font-size:11px;padding:5px 8px;flex:1}.grid-scroll thead tr:nth-child(2) th{height:94px}#change-apply-row th{top:132px;height:42px;background:#f3f6f9}.lock-number,th.lock-number,td.lock-number{left:42px!important}.lock-select{left:0!important}.lock-select input{width:17px;height:17px}thead .lock-select{font-size:11px}
+/* Table-only density: fixed selection rails and usable control hit areas. */
+#review-table{--table-font:10.4px;--table-ratio:1;--cell-x:4px;--cell-y:6px;--row-height:61px;--head-height:32px;--bulk-height:78px;--apply-height:38px;font-size:var(--table-font)}
+#review-table th,#review-table td{padding:var(--cell-y) var(--cell-x);font-size:var(--table-font)}
+#review-table tbody td{height:var(--row-height)}
+#review-table input:not([type=checkbox]),#review-table select{font-size:var(--table-font);height:max(28px,calc(30px * var(--table-ratio)));padding:0 var(--cell-x)}
+#review-table .combo input{padding-right:20px}
+#review-table button{font-size:var(--table-font);min-height:28px;padding:4px;min-width:24px}
+#review-table .confirm-cell{width:28px;height:max(28px,calc(30px * var(--table-ratio)));padding:0;right:-2px}
+#review-table .edit-cell{padding-right:29px}
+#review-table .apply-pair{gap:calc(4px * var(--table-ratio))}
+#review-table .apply-pair button{min-width:46px;padding:4px 2px}
+#review-table .date-control{gap:calc(4px * var(--table-ratio))}
+#review-table thead tr:nth-child(1) th{height:var(--head-height);top:0;white-space:nowrap}
+#review-table thead tr:nth-child(2) th{height:var(--bulk-height);top:var(--head-height)}
+#review-table #change-apply-row th{height:var(--apply-height);top:calc(var(--head-height) + var(--bulk-height))}
+#review-table .lock-select{width:42px;min-width:42px}
+#review-table .lock-number{width:46px;min-width:46px;left:42px!important}
+#review-table .required-star{font-size:inherit;white-space:nowrap}
+.table-tools,.table-size{display:flex;align-items:center;gap:5px;white-space:nowrap}
+.table-tools{gap:10px}.table-size button{padding:3px 7px;min-width:28px;height:28px}
+.missing-toggle{display:flex;align-items:center;gap:5px;white-space:nowrap;font-size:12px}
+.filter-status{display:flex;align-items:center;gap:10px;min-height:28px;flex:none;color:#708095;font-size:12px}
+.filter-status button,.empty-columns button{font-size:12px;padding:3px 8px}
+#newly-filled{display:flex;align-items:center;gap:6px}
+.empty-columns{padding:30px 18px;text-align:center;color:#708095;line-height:2}
+
+.filter-status{justify-content:space-between;align-items:center;gap:12px}.filter-controls{display:flex;align-items:center;gap:10px;min-width:0}.filter-status .table-size{margin-left:auto;flex:none}
+#review-table #bulk-input-row th[data-col]:not(.column-editable)>*,#review-table #change-apply-row th[data-col]:not(.column-editable)>*{visibility:hidden}
+#review-table th[data-col],#review-table td[data-col]{overflow:hidden}
+
+#review-table #bulk-input-row th[data-col]>*{visibility:visible!important}
+#review-table thead th{overflow:visible}#review-table .read{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#review-table input{width:100%;text-overflow:ellipsis}#review-table #bulk-input-row th{height:46px}
+#review-table .bulk-active{background:#dcecfb!important;box-shadow:inset 0 0 0 1px #7998b7}
+.resize-handle{position:absolute;right:-3px;top:0;bottom:0;width:9px;cursor:col-resize;z-index:10;touch-action:none}.resize-handle:hover{background:#6083a966}
+.common-apply{display:flex;align-items:center;gap:8px;flex:none;min-height:34px;padding:5px 10px;background:#e9eff5;border-radius:5px;font-size:12px}.common-apply span{margin-right:auto}.common-apply button{padding:4px 9px}
+.toolbar{gap:12px}.table-summary{gap:10px}.table-size{margin-left:auto}.toolbar .filter-controls{margin:0 auto 0 0}.toolbar details{position:relative}.toolbar summary{cursor:pointer;border:1px solid #c2ccd7;border-radius:4px;padding:5px 8px;background:white}.toolbar details .load{position:absolute;top:34px;left:0;z-index:20;display:flex;flex-direction:column;background:white;padding:6px;border:1px solid #c2ccd7}
+#date-editor{border:1px solid #aebdcc;border-radius:8px;width:310px;color:#40556b}#date-editor label{display:block;margin:12px 0}#date-editor p{text-align:right}#date-editor::backdrop{background:#24364b44}
+
+#review-table #bulk-input-row th{height:calc(76px * var(--table-ratio));vertical-align:top}
+.column-apply{display:flex;flex-direction:row;flex-wrap:nowrap;gap:calc(3px * var(--table-ratio));margin-top:5px;align-items:center}
+#review-table .column-apply button{font-size:var(--table-font);height:calc(23px * var(--table-ratio));padding:2px 0;min-width:calc(42px * var(--table-ratio));flex:1 1 0;white-space:nowrap;letter-spacing:-.15px}
+#toggle-bulk[aria-expanded="true"]{background:#dceaf7;border-color:#7e9bb9}
+.toolbar-left,.toolbar-right{display:flex;align-items:center;gap:12px}.toolbar-right{margin-left:auto;flex:none}.toolbar-left{min-width:0}.toolbar .toolbar-left .filter-controls{margin:0}.toolbar-right .table-size{margin-left:0}.toolbar-right details .load{left:auto;right:0}
+#map-target:empty{display:none}#detail-work-state{min-width:0;max-width:980px}#detail-work-state .status,#detail-work-state .scope{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.inspection-demo{height:40px;display:flex;align-items:center;gap:8px;padding:0 24px;background:#eeeaf6;border-bottom:1px solid #d8cce9;color:#675580;font-size:11px}.inspection-demo button{padding:4px 8px;font-size:11px}.inspection-demo [aria-pressed=true]{background:#ded5ed}.inspection-demo small{margin-left:auto}.workspace{height:706px}
+.inspection-errors{flex:none;border:1px solid #d99b91;border-radius:6px;background:#fff6f3;padding:8px 12px;color:#80483f}.inspection-error-heading{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:11px}.inspection-error-heading strong{font-size:13px}.inspection-filters{display:flex;gap:5px;margin:5px 0}.inspection-filters button,.inspection-error-nav button,.inspection-groups button{font-size:11px;padding:3px 7px}.inspection-filters [aria-pressed=true]{background:#ead6d0}.inspection-groups{max-height:88px;overflow:auto;overscroll-behavior:contain;font-size:11px}.issue-row{display:flex;align-items:center;gap:6px;padding:3px 0}.issue-row span{flex:1}.issue-row button{flex:none}.inspection-error-nav{display:flex;align-items:center;gap:6px;font-size:11px;margin-top:5px}.inspection-error-nav .recheck{margin-left:auto}.inspection-freshness{font-size:11px;margin:4px 0 0}.inspection-pending{font-size:12px;font-weight:600;margin:6px 0 0}
+#review-table td.inspection-error{box-shadow:inset 0 0 0 2px #bd6257}#review-table td.inspection-current{box-shadow:inset 0 0 0 3px #a44137;background:#fff0e9}
+.inspection-dialog{width:620px;padding:0;border:1px solid #bdc9d5;border-radius:9px;color:#40556b}.inspection-dialog::backdrop{background:#23354866}.inspection-dialog header{padding:18px 22px;border-bottom:1px solid #dbe2e9}.inspection-dialog h2{font-size:19px;margin:0}.inspection-body{padding:16px 22px;line-height:1.7;max-height:460px;overflow:auto}.inspection-dialog footer{padding:14px 22px;border-top:1px solid #dbe2e9;display:flex;justify-content:flex-end;gap:8px}.inspection-dialog footer button{height:38px}.inspection-pass{background:#eff5f1;border:1px solid #d5e3d9;padding:8px 12px}.inspection-list-table{width:100%;font-size:12px}.inspection-list-table th,.inspection-list-table td{position:static;height:auto;padding:8px}.inspection-list-table th:nth-child(1){width:90px}.inspection-list-table th:nth-child(2){width:55px}.inspection-list-table th:nth-child(4){width:130px}#inspection-list{width:760px}
+#inspection-errors{width:min(980px,calc(100vw - 48px));max-height:85vh;padding:22px;color:#80483f}#inspection-errors::backdrop{background:#23354866}#inspection-errors .inspection-groups{max-height:45vh;min-height:90px;font-size:12px;padding:8px 0}#inspection-errors .issue-row{padding:10px 0;flex-wrap:wrap;border-bottom:1px solid #ead9d3}#inspection-errors .inspection-error-heading{flex-wrap:wrap;font-size:12px}#inspection-errors .inspection-error-heading strong{font-size:18px}#inspection-errors .inspection-filters{margin:16px 0 8px}#inspection-errors button{min-height:30px}#inspection-errors .inspection-close-row{display:flex;justify-content:flex-end;margin-top:16px}#inspection-errors .inspection-close-row button{padding:7px 20px}</style></head><body><div class="inspection-demo" id="inspection-examples"><strong>예시</strong><button data-inspection-example="errors" aria-pressed="true">오류 있음</button><button data-inspection-example="optional" aria-pressed="false">선택 항목 미입력</button><button data-inspection-example="complete" aria-pressed="false">검사 통과</button><small id="demo-save-status" role="status"></small><span data-document-root><a data-document-download href="../docs/rist-phase2-final-validation.md" download="최종 저장 전 통합 검사.md" aria-label="통합 검사 문서 다운로드">문서 ↓</a></span></div><header class="app-header"><span class="service">환경데이터 표준화 프로그램</span><button class="app-profile" type="button" aria-label="사용자 메뉴" aria-haspopup="menu" aria-expanded="false">
+      <svg class="app-user-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.6"></circle>
+        <path d="M 5 21 V 19 A 7 7 0 0 1 19 19 V 21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+      <span>박보검</span>
+      <svg class="app-profile-chevron" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M 4 6 L 8 10 L 12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </button></header><main class="workspace" data-component="phase2-final-validation" data-component-title="최종 저장 전 통합 검사" data-component-width="1280"><div class="heading"><h1 id="detail-stage-title">데이터 검토</h1><div class="steps" role="tablist" aria-label="검토 단계"><button type="button" role="tab" aria-selected="false" data-viewer-page="rist-phase2-review-preparation">1단계: 사전 준비</button><button type="button" class="active" role="tab" aria-selected="true">2단계: 상세 검토</button></div></div><div class="file-bar" id="detail-file-bar"><div>SIFT-MS offline.csv <span class="file-type">유형 CSV-001</span></div><div class="tools">
+      <button class="review-icon-button" id="detail-work-save" type="button" aria-label="작업 저장" title="작업 저장"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 3h12l4 4v14H3V3h2Z M7 3v6h10V3 M7 21v-8h10v8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="review-icon-button" id="detail-undo" type="button" aria-label="되돌리기" title="되돌리기"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 4 3 9l5 5 M3 9h11a7 7 0 0 1 0 14" transform="translate(0 -2)" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div></div><div class="toolbar" id="column-filter-status"><div class="toolbar-left"><button id="toggle-bulk" aria-expanded="false"><span aria-hidden="true">+</span> 일괄 변경</button><div class="filter-controls"><label class="missing-toggle" id="missing-filter"><input type="checkbox" id="only-missing">비어있는 열만 보기</label><span id="column-filter-summary" hidden></span><span id="newly-filled" hidden><span id="newly-filled-text" hidden></span><button id="hide-filled-columns">채워진 열 숨기기</button></span></div></div><div class="toolbar-right"><details id="detail-load-buttons"><summary>행 더보기 ▾</summary><div class="load"><button data-load="50">50행 추가</button><button data-load="100">100행 추가</button><button data-load="all">전체 데이터 보기</button></div></details><span class="counts" id="counts"></span><div class="table-size" id="table-size-controls"><span>표 크기</span><button id="table-smaller">−</button><button id="table-size-reset">0</button><button id="table-larger">+</button></div></div></div><div id="grid-scroll" class="grid-scroll" data-viewer-scroll-region tabindex="0" aria-label="상세 검토 표 가로·세로 스크롤"><table id="review-table" aria-label="추출 데이터 상세 검토"></table><div id="empty-columns" class="empty-columns" hidden>모든 열의 값이 입력되어 있습니다. 위의 ‘비어있는 열만 보기’를 해제하면 모든 열을 확인할 수 있습니다.</div></div><footer class="footer" id="detail-final-save"><div id="detail-work-state"><div class="status" id="change-status">변경 적용 전: 시료명 1개</div><div class="scope">최종 저장 대상: 전체 171행</div></div><button class="primary" id="final-check">검토 완료 및 저장</button></footer></main><dialog class="inspection-errors" id="inspection-errors" aria-labelledby="inspection-title"><div class="inspection-error-heading" id="inspection-error-heading"><strong id="inspection-title"></strong><span id="inspection-count"></span></div><div class="inspection-filters" id="inspection-filters"><button data-issue-filter="all" aria-pressed="true">전체</button><button data-issue-filter="missing">필수값 누락</button><button data-issue-filter="date">날짜 오류</button><button data-issue-filter="invalid">형식 오류</button></div><div data-viewer-scroll-region class="inspection-groups" id="inspection-groups"></div><p class="inspection-freshness" id="inspection-freshness"></p><p class="inspection-pending" id="inspection-pending" hidden></p><div class="inspection-close-row"><button id="inspection-errors-close" autofocus>닫기</button></div></dialog><dialog id="date-editor"><h3>날짜·시간 입력</h3><label>날짜<input id="edit-date" type="date"></label><label>시간(선택)<input id="edit-time" type="time" step="1"></label><p><button id="date-cancel">취소</button><button id="date-accept">입력 완료</button></p></dialog><div id="lookup" class="lookup" hidden><div id="lookup-list" class="lookup-list" role="listbox" data-viewer-scroll-region></div></div>
+<dialog id="map-dialog" class="position-dialog" aria-labelledby="map-title"><header class="dialog-head"><h2 id="map-title">위치 선택</h2><button id="map-close" aria-label="위치 선택 닫기">×</button></header><div class="dialog-body"><div><button id="map-canvas" class="map-canvas" aria-label="지도에서 좌표 선택"><svg viewBox="0 0 440 380" aria-hidden="true"><rect width="440" height="380" fill="#e9eeeb"/><path d="M330 0H440V380H370L315 260 335 140Z" fill="#dbe7ee"/><path d="M0 20H135L124 155 0 140ZM168 0H290L275 145 172 157ZM0 195L126 201 150 380H0ZM180 190L293 176 335 380H198Z" fill="#dbe3df"/><path d="M146-10 143 172 171 400M0 170 310 161M0 307 335 283" stroke="#fff" stroke-width="15" fill="none"/><path d="M44 0V380M231 0 225 380M0 81 310 70M0 240H322" stroke="#f7f9f8" stroke-width="7" fill="none"/></svg><span id="map-pin" class="map-pin" hidden></span></button><p id="map-state" class="map-state"></p></div><div class="map-fields"><div id="map-target" class="target-badge"></div><label for="map-site">지역 검색 <span class="optional">선택</span></label><input id="map-site" list="map-sites" placeholder="지점명 검색 혹은 선택"><datalist id="map-sites"><option value="포항 관측 지점 A"><option value="포항 관측 지점 B"></datalist><label for="map-lat">위도 [필수]</label><input id="map-lat" placeholder="위도 도°분′초″N/S"><label for="map-lng">경도 [필수]</label><input id="map-lng" placeholder="경도 도°분′초″E/W"><p class="notice">지점명 없이 좌표만 적용할 수 있습니다.</p></div></div><footer class="dialog-foot"><button id="map-cancel">취소</button><button class="primary" id="map-apply" disabled>좌표 적용</button></footer></dialog><dialog class="inspection-dialog" id="inspection-confirm" aria-labelledby="inspection-confirm-title"><header><h2 id="inspection-confirm-title">검토한 데이터를 저장하시겠습니까?</h2></header><div class="inspection-body"><p>저장 대상: 전체 <strong>171행</strong></p><div class="inspection-pass">검사 통과 · 필수값·입력 형식·날짜 선후 확인 완료</div><p id="inspection-optional-summary"></p><ul id="inspection-optional-list"></ul><p id="inspection-optional-note">선택 항목이 비어 있어도 저장할 수 있습니다.</p></div><footer><button id="inspection-back">돌아가서 확인</button><button class="primary" id="inspection-save">저장</button></footer></dialog><script>
+const cols=[["category", "구분", "combo", 190], ["medium", "매체", "combo", 150], ["sample", "시료명", "text", 245], ["owner", "담당자", "combo", 200], ["institution", "분석 기관", "combo", 210], ["collected", "채취 일자", "date", 270], ["analyzed", "분석 일자", "date", 285], ["duration", "분석 기간", "number", 160], ["region", "지역명", "combo", 245], ["lat", "위도", "coord", 245], ["lng", "경도", "coord", 245], ["substance", "분석 물질", "text", 285], ["base", "BASE", "combo", 190], ["sampling", "채취법", "combo", 220], ["analysis", "분석법", "combo", 270], ["result", "결과", "text", 250], ["unit", "단위", "combo", 170]], original=[["환경", "대기", "RIST_Sample", "김희진", "RIST", "2025/05/16 15:00", "2025/11/05 17:40:39", "1", null, "36°01′28.20″N", "129°22′23.88″E", "1-butanamine (109-73-9)", "", "", "", "4.627399605208463", "ppb"], ["환경", "대기", "RIST_Sample", "김희진", "RIST", "2025/05/16 15:00", "2025/11/05 17:40:39", "1", null, "36°01′28.20″N", "129°22′23.88″E", "1-butanethiol (109-79-5)", "", "", "", "8.314354619597506", "ppb"], ["환경", "대기", "RIST_Sample", "김희진", "RIST", "2025/05/16 15:00", "2025/11/05 17:40:39", "1", null, "36°01′28.20″N", "129°22′23.88″E", "1-hexanethiol (111-31-9)", "", "", "", "0.9418972262560915", "ppb"], ["환경", "대기", "RIST_Sample", "김희진", "RIST", "2025/05/16 15:00", "2025/11/05 17:40:39", "1", null, "36°01′28.20″N", "129°22′23.88″E", "1-hexanol (111-27-3)", "", "", "", "1.0395720284081749", "ppb"], ["환경", "대기", "RIST_Sample", "김희진", "RIST", "2025/05/16 15:00", "2025/11/05 17:40:39", "1", null, "36°01′28.20″N", "129°22′23.88″E", "1-hexene (592-41-6)", "", "", "", "8.655795894061255", "ppb"]];
+const $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const total=171, required=[5,9,10,11,15,16], mapCol=17, order=[0,1,2,3,4,5,6,7,8,9,10,17,11,12,13,14,15,16];
+const options={category:['환경','공정','설비','원료','제품','품질','안전','에너지'],medium:['부산물','대기','악취'],owner:['김희진','김민수','김서연','김지훈'],institution:['RIST','포항산업과학연구원','환경분석센터'],base:['습식','건식'],sampling:['직접 채취','흡착관법'],analysis:['SIFT-MS','GC-MS','시험방법 ES 01501.1'],unit:['ppb','ppm','mg/m³'],region:['포항 관측 지점 A','포항 관측 지점 B']};
+let data=Array.from({length:total},(_,i)=>structuredClone(original[i%5])), draft=structuredClone(data), shown=5, selection=new Set([0]), column=2, anchor=0, expanded=false, history=[], changes=0, lookupInput=null, mapTargets=[], returnFocus=null, validateMissing=false;
+data[1][9]=draft[1][9]='36°02′00.00″N';data[1][10]=draft[1][10]='129°22′40.00″E';draft[0][2]='RIST_Sample_01';
+cols.push(['map','지도','map',170]);
+// Display-only controls: retain the DOM, draft edits, and selection on each toggle.
+
+let tableSize=0, onlyMissing=false;
+const isEmpty=value=>value===null||value===undefined||String(value).trim()==='';
+function incompleteColumns(){return new Set(order.filter(c=>c!==mapCol&&data.some(row=>isEmpty(row[c]))));}
+let visibleColumns=incompleteColumns();
+function visibleColumn(c){return !onlyMissing||(c===mapCol?visibleColumns.has(9)||visibleColumns.has(10):visibleColumns.has(c));}
+// Stable widths in base 80% units; manual widths survive render/filter/load.
+const baseWidths=[96,96,132,96,96,115,115,96,96,96,96,139,96,96,105,123,96,96];
+const minWidths=[96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96];
+const manualWidths={};let fittedWidths=[];
+function fitContentColumns(){const ratio=(80+tableSize*5)/80,table=$('review-table');fittedWidths=baseWidths.map((w,c)=>(manualWidths[c]??w)*ratio);table.querySelectorAll('col[data-col]').forEach(el=>el.style.width=fittedWidths[+el.dataset.col]+'px');table.style.width=(88+order.filter(visibleColumn).reduce((n,c)=>n+fittedWidths[c],0))+'px';}
+let columnFitFrame;
+function scheduleColumnFit(){cancelAnimationFrame(columnFitFrame);columnFitFrame=requestAnimationFrame(fitContentColumns);}
+document.addEventListener('input',e=>{if(e.target.closest('#review-table'))scheduleColumnFit();});
+
+function applyTableSize(){
+ const table=$('review-table'),ratio=(80+tableSize*5)/80;
+ table.style.setProperty('--table-font',(13*(80+tableSize*5)/100)+'px');
+ table.style.setProperty('--table-ratio',ratio);
+ for(const [key,value] of Object.entries({'cell-x':4,'cell-y':6,'row-height':61,'head-height':32,'bulk-height':78,'apply-height':38}))table.style.setProperty('--'+key,(value*ratio)+'px');
+ fitContentColumns();
+ $('table-size-reset').textContent=tableSize>0?'+'+tableSize:String(tableSize);
+ $('table-size-reset').title=`기존 크기의 ${80+tableSize*5}% · 클릭하면 기본 0으로 복원`;
+ $('table-smaller').disabled=tableSize===-2;$('table-larger').disabled=tableSize===4;
+}
+function applyColumnVisibility(){
+ const missing=incompleteColumns();
+ // Undo or other committed changes may reopen a previously hidden column.
+ missing.forEach(c=>visibleColumns.add(c));
+ $('review-table').querySelectorAll('[data-col]').forEach(el=>el.hidden=!visibleColumn(+el.dataset.col));
+ const filled=[...visibleColumns].filter(c=>!missing.has(c));
+ const hidden=onlyMissing?17-visibleColumns.size:0;
+ $('column-filter-summary').textContent=`입력할 열 ${missing.size}개 · 채워진 열 ${hidden}개 숨김`;
+ $('newly-filled').hidden=!onlyMissing||!filled.length;
+ $('newly-filled-text').textContent=`새로 채워진 열 ${filled.length}개가 있습니다.`;
+ const empty=onlyMissing&&visibleColumns.size===0;
+ $('review-table').hidden=empty;$('empty-columns').hidden=!empty;
+ $('only-missing').checked=onlyMissing;
+ applyTableSize();
+}
+function setMissingFilter(enabled){closeLookup();onlyMissing=enabled;if(enabled)visibleColumns=incompleteColumns();applyColumnVisibility();}
+$('only-missing').onchange=e=>setMissingFilter(e.target.checked);
+$('hide-filled-columns').onclick=()=>{visibleColumns=incompleteColumns();applyColumnVisibility();};
+$('table-smaller').onclick=()=>{tableSize=Math.max(-2,tableSize-1);applyTableSize();};
+$('table-larger').onclick=()=>{tableSize=Math.min(4,tableSize+1);applyTableSize();};
+$('table-size-reset').onclick=()=>{tableSize=0;applyTableSize();};
+
+function control(c,value,scope,disabled=false){const [key,label,kind]=cols[c],attrs=`data-key="${key}" aria-label="${scope} ${label}" ${disabled?'disabled':''}`;
+ if(kind==='map')return `<button type="button" data-map="bulk" ${disabled?'disabled':''}>지도 보기</button>`;
+ if(kind==='date')return `<input ${attrs} data-date-editor="${c}" readonly value="${esc(value)}" placeholder="날짜·시간 입력" title="${esc(value)}">`;
+ if(kind==='combo')return `<div class="combo"><input ${attrs} data-lookup="${key}" data-accepted="${esc(value)}" role="combobox" aria-expanded="false" aria-autocomplete="list" value="${esc(value)}" placeholder="검색 혹은 선택"><span class="chevron">⌄</span></div>`;
+ return `<input ${attrs} type="${kind==='number'?'number':'text'}" ${kind==='number'?'min="1"':''} value="${esc(value)}" placeholder="${kind==='coord'?'도° 분′ 초″':'입력'}">`;}
+const bulkValues={},bulkAccepted={};let bulkTarget=null,mapDraftMode=false;
+let savedWorkData=JSON.stringify(data),hasWorkSave=false,workNotice='';
+function refreshWorkState(){
+ const parts=[];if(selection.size&&column!==null)parts.push(`선택: ${cols[column][1]} · ${selection.size}개 행`);
+ const pending=Object.keys(bulkValues).filter(c=>String(bulkValues[c]??'').trim()).map(c=>cols[c][1]);if(pending.length)parts.push(`일괄 입력 중: ${pending.slice(0,2).join('·')}${pending.length>2?` 외 ${pending.length-2}개 열`:''} · 적용 전`);
+ const edits=new Map();draft.forEach((row,r)=>row.forEach((v,c)=>{if(v!==data[r][c])edits.set(c,(edits.get(c)||0)+1);}));if(edits.size){const list=[...edits];parts.push(`셀 수정: ${list.slice(0,2).map(([c,n])=>`${cols[c][1]} ${n}건`).join('·')}${list.length>2?` 외 ${list.length-2}개 열`:''} · 적용 전`);}
+ const first=workNotice||parts.join(' / ');$('change-status').textContent=first;$('change-status').title=first;
+ const dirtyWork=JSON.stringify(data)!==savedWorkData;const second=(dirtyWork?'작업 저장 전 변경사항이 있습니다. / ':hasWorkSave?'작업 저장 후 추가 변경 없음 / ':'')+`최종 저장 대상: 전체 ${total}행`;
+ const scope=document.querySelector('#detail-work-state .scope');scope.textContent=second;scope.title=second;
+}
+function syncBulkUI(){
+ $('toggle-bulk').setAttribute('aria-expanded',String(expanded));$('toggle-bulk').innerHTML=`<span aria-hidden="true">${expanded?'−':'+'}</span> 일괄 변경`;
+ document.querySelectorAll('[data-bulk-col]').forEach(el=>{el.classList.toggle('bulk-active',+el.dataset.bulkCol===bulkTarget);el.querySelectorAll('input').forEach(input=>{input.title=input.value;});});
+ document.querySelectorAll('thead tr:first-child th[data-col]').forEach(el=>el.classList.toggle('bulk-active',+el.dataset.col===bulkTarget));
+ document.querySelectorAll('[data-column-apply]').forEach(b=>b.disabled=!bulkReady(+b.dataset.applyColumn)||(b.dataset.columnApply==='selected'&&!selection.size));refreshWorkState();
+}
+function bulkReady(c){if(c===mapCol)return !!bulkValues[9]&&!!bulkValues[10];return !!String(bulkValues[c]||'').trim()&&(cols[c][2]!=='combo'||bulkAccepted[c]===true);}
+function hasPendingCells(rows,columns){return rows.some(r=>columns.some(c=>draft[r][c]!==data[r][c]));}
+function applyBulk(mode,c){
+ if(!bulkReady(c))return;const rows=mode==='all'?Array.from({length:total},(_,i)=>i):[...selection];
+ if(!rows.length)return;const targets=c===mapCol?[9,10]:[c];
+ if(hasPendingCells(rows,targets)){status('대상 셀의 미확정 변경을 먼저 적용해 주세요.');return;}
+ if(targets.some(k=>[9,10].includes(k)&&!parseCoord(bulkValues[k],k===9?90:180))){status('도분초 좌표를 확인해 주세요.');return;}
+ if(c===7&&(!Number.isFinite(+bulkValues[c])||+bulkValues[c]<1)){status('분석 기간은 1일 이상으로 입력해 주세요.');return;}
+ const values=targets.map(k=>bulkValues[k]);targets.forEach(k=>{delete bulkValues[k];delete bulkAccepted[k];});
+ if(c===mapCol){capture();rows.forEach(r=>targets.forEach((k,i)=>data[r][k]=draft[r][k]=values[i]));changes++;render();status(`좌표 적용 완료 · ${rows.length}행`);document.dispatchEvent(new Event('bulk-applied'));}
+ else commitRows(rows,c,values[0]);
+}
+document.addEventListener('focusin',e=>{const p=e.target.closest('[data-bulk-col]');if(p){bulkTarget=+p.dataset.bulkCol;syncBulkUI();}if(e.target.matches('#review-table input'))e.target.title=e.target.value;});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-column-apply]');if(b)applyBulk(b.dataset.columnApply,+b.dataset.applyColumn);});
+let dateOrigin=null;
+$('date-cancel').onclick=()=>$('date-editor').close();
+$('date-accept').onclick=()=>{if(!$('edit-date').value){status('날짜를 입력해 주세요.');return;}dateOrigin.value=$('edit-date').value.replaceAll('-','/')+($('edit-time').value?' '+$('edit-time').value:'');updateInput(dateOrigin);$('date-editor').close();dateOrigin.focus();};
+function showBulkFromInteraction(){if(expanded)return;expanded=true;$('bulk-input-row').hidden=false;syncBulkUI();}
+$('toggle-bulk').onclick=()=>{expanded=!expanded;$('bulk-input-row').hidden=!expanded;closeLookup();syncBulkUI();};
+document.addEventListener('click',e=>{if(e.target.closest('td[data-r],[data-cell-row]'))showBulkFromInteraction();},true);
+document.addEventListener('keydown',e=>{if(e.target.closest('td[data-r]')&&!['Tab','Escape'].includes(e.key))showBulkFromInteraction();});
+let resizeState=null;
+document.addEventListener('pointerdown',e=>{const h=e.target.closest('[data-resize]');if(!h)return;e.preventDefault();e.stopPropagation();const c=+h.dataset.resize;resizeState={c,x:e.clientX,width:manualWidths[c]??baseWidths[c]};h.setPointerCapture(e.pointerId);});
+document.addEventListener('pointermove',e=>{if(!resizeState)return;const {c,x,width}=resizeState;manualWidths[c]=Math.max(minWidths[c],width+(e.clientX-x)/((80+tableSize*5)/80));fitContentColumns();});
+document.addEventListener('pointerup',()=>resizeState=null);
+function dirty(r,c){return draft[r][c]!==data[r][c];}
+function render(){closeLookup();const table=$('review-table');table.style.width=(88+order.reduce((n,c)=>n+cols[c][3],0))+'px';
+ table.innerHTML='<colgroup><col style="width:42px"><col style="width:46px">'+order.map(c=>`<col data-col="${c}" style="width:${cols[c][3]}px">`).join('')+'</colgroup><thead><tr><th class="lock-select">선택</th><th class="lock-number">행</th>'+order.map(c=>`<th data-col="${c}" ${c===2?'id="resize-column-heading"':c===17?'id="map-column-heading"':''} scope="col" class="${column===c?'active-column':''}">${cols[c][1]}${required.includes(c)?`<span ${c===5?'id="detail-required-label"':''} class="required-star" title="필수"> [필수]</span>`:''}<span class="resize-handle" data-resize="${c}" role="separator" aria-label="${cols[c][1]} 열 너비"></span></th>`).join('')+`</tr><tr id="bulk-input-row" ${expanded?'':'hidden'}><th class="lock-select" colspan="2">일괄 입력</th>`+order.map(c=>`<th data-col="${c}" data-bulk-col="${c}">${control(c,bulkValues[c]||'','일괄')}<div class="column-apply"><button data-column-apply="selected" data-apply-column="${c}" disabled>선택 변경</button><button data-column-apply="all" data-apply-column="${c}" disabled>일괄 변경</button></div></th>`).join('')+`</tr></thead><tbody>`+Array.from({length:shown},(_,r)=>`<tr><td class="lock-select"><input type="checkbox" data-cell-row="${r}" aria-label="${r+1}행 ${column===null?'셀':cols[column][1]} 선택" ${selection.has(r)?'checked':''} ${column===null?'disabled':''}></td><td class="lock-number">${r+1}</td>`+order.map(c=>{const selected=column===c&&selection.has(r);return `<td data-col="${c}" data-r="${r}" data-c="${c}" tabindex="0" aria-label="${r+1}행 ${cols[c][1]}" aria-selected="${selected}" class="grid-cell ${selected?'chosen':''} ${validateMissing&&required.includes(c)&&String(data[r][c]??'').trim()===''?'missing':''} ${c!==mapCol&&dirty(r,c)?'edited':''}">${c===mapCol?`<button data-map="${r}">지도 보기</button>`:selected&&selection.size===1?`<div class="edit-cell">${control(c,draft[r][c],(r+1)+'행')}<button class="confirm-cell" aria-label="${r+1}행 ${cols[c][1]} 변경 확정" ${dirty(r,c)?'':'disabled'}>✓</button></div>`:`<span class="read" title="${esc(draft[r][c]??'—')}">${esc(draft[r][c]??'—')}</span>`}</td>`}).join('')+'</tr>').join('')+'</tbody>';
+ $('counts').textContent=`표시 ${shown}행 / 전체 ${total}행`;syncBulkUI();$('detail-undo').disabled=!history.length;applyColumnVisibility();applyTableSize();
+}
+function selectCell(r,c,event){workNotice='';if(column!==c||(!event.ctrlKey&&!event.metaKey&&!event.shiftKey)){selection=new Set([r]);anchor=r;}else if(event.shiftKey){selection=new Set(Array.from({length:Math.abs(r-anchor)+1},(_,i)=>Math.min(anchor,r)+i));}else{selection.has(r)?selection.delete(r):selection.add(r);anchor=r;}column=c;expanded=true;render();if(selection.size===1&&c!==mapCol){const input=document.querySelector(`td[data-r="${r}"][data-c="${c}"] input`);input?.focus();}}
+function capture(){history.push({data:structuredClone(data),changes});if(history.length>10)history.shift();}
+function status(text){workNotice=/먼저|확인해|입력해|실패/.test(text)?text:'';refreshWorkState();}
+function commitRows(rows,c,value){capture();rows.forEach(r=>{data[r][c]=value;draft[r][c]=value;});changes++;status(`변경 사항: ${changes}개`);render();}
+function inputValue(parent,c){const inputs=[...parent.querySelectorAll('input')];return inputs[0]?.value??'';}
+function closeLookup(){if(lookupInput)lookupInput.setAttribute('aria-expanded','false');lookupInput=null;$('lookup').hidden=true;}
+function openLookup(input){closeLookup();lookupInput=input;input.setAttribute('aria-expanded','true');const key=input.dataset.lookup,query=input.value,list=$('lookup-list');list.innerHTML='';const matches=(options[key]||[]).filter(x=>x.includes(query));const add=document.createElement('button');add.textContent=query?`+ "${query}" 신규 추가`:'+ 신규 추가';add.className='add-option';add.onclick=()=>{const val=input.value.trim();if(!val){status('신규 항목명을 입력해 주세요.');return;}options[key].push(val);accept(val);};list.append(add);if(!matches.length){const empty=document.createElement('p');empty.textContent='검색 결과가 없습니다.';list.append(empty);}matches.forEach(value=>{const b=document.createElement('button');b.className='option';b.textContent=value;b.onclick=()=>accept(value);list.append(b);});const rect=input.getBoundingClientRect();$('lookup').hidden=false;$('lookup').style.left=Math.min(rect.left,950)+'px';$('lookup').style.top=Math.min(rect.bottom+4,520)+'px';}
+function accept(value){const input=lookupInput;input.value=value;input.dataset.accepted=value;closeLookup();updateInput(input);}
+function updateInput(input){workNotice='';const cell=input.closest('td[data-r]');if(cell){const r=+cell.dataset.r,c=+cell.dataset.c;draft[r][c]=inputValue(cell,c);cell.classList.toggle('edited',dirty(r,c));cell.querySelector('.confirm-cell').disabled=!dirty(r,c);}else if(input.closest('[data-bulk-col]')){const p=input.closest('[data-bulk-col]'),c=+p.dataset.bulkCol;bulkTarget=c;bulkValues[c]=inputValue(p,c);if(input.dataset.lookup)bulkAccepted[c]=input.dataset.accepted===bulkValues[c];syncBulkUI();}scheduleColumnFit();refreshWorkState();}
+function parseCoord(value,max){const m=value.match(/^(\d{1,3})°(\d{1,2})[′'](\d{1,2}(?:\.\d+)?)[″"]([NSEW])$/i);return !!m&&+m[1]<=max&&+m[2]<60&&+m[3]<60&&(+m[1]<max||(+m[2]===0&&+m[3]===0))&&(max===90?/^[NS]$/i:/^[EW]$/i).test(m[4]);}
+function setMapCoords(lat,lng){$('map-lat').value=lat;$('map-lng').value=lng;updateMap();}
+function updateMap(){const ok=parseCoord($('map-lat').value,90)&&parseCoord($('map-lng').value,180);$('map-apply').disabled=!ok;$('map-pin').hidden=!ok;$('map-state').textContent=ok?`${$('map-lat').value} / ${$('map-lng').value}`:'지도에서 위치를 선택하거나 좌표를 입력해 주세요.';}
+function openMap(rows,origin){closeLookup();mapTargets=[...rows];if(!mapTargets.length){status('좌표를 적용할 셀 범위를 먼저 선택해 주세요.');return;}returnFocus=origin;const all=rows.length===total;$('map-target').textContent=all?`전체 ${total}개 행`:rows.length===1?`해당 행 · ${rows[0]+1}행`:`선택한 ${rows.length}개 행`;const pairs=new Set(rows.map(r=>data[r][9]+'|'+data[r][10]));$('map-site').value='';$('map-dialog').showModal();if(pairs.size>1){setMapCoords('','');$('map-state').textContent='여러 위치 · 새 좌표를 선택해 주세요.';}else setMapCoords(data[rows[0]][9]||'',data[rows[0]][10]||'');}
+function closeMap(){$('map-dialog').close();returnFocus?.focus();}
+let cellDrag=null, suppressCellClick=false;
+document.addEventListener('mousedown',e=>{const cell=e.target.closest('td[data-r]');if(e.button!==0||!cell||e.ctrlKey||e.metaKey||e.shiftKey||e.target.closest('input,button,select,textarea'))return;cellDrag={row:+cell.dataset.r,col:+cell.dataset.c,x:e.clientX,y:e.clientY,last:+cell.dataset.r,moved:false};});
+document.addEventListener('mousemove',e=>{if(!cellDrag)return;if(!cellDrag.moved&&Math.hypot(e.clientX-cellDrag.x,e.clientY-cellDrag.y)<5)return;cellDrag.moved=true;e.preventDefault();window.getSelection()?.removeAllRanges();const target=document.elementFromPoint(e.clientX,e.clientY)?.closest('td[data-r]');if(target)cellDrag.last=+target.dataset.r;column=cellDrag.col;anchor=cellDrag.row;selection=new Set(Array.from({length:Math.abs(cellDrag.last-anchor)+1},(_,i)=>Math.min(anchor,cellDrag.last)+i));document.querySelectorAll('td[data-r]').forEach(cell=>{const selected=+cell.dataset.c===column&&selection.has(+cell.dataset.r);cell.classList.toggle('chosen',selected);cell.setAttribute('aria-selected',selected);});document.querySelectorAll('[data-cell-row]').forEach(check=>{check.checked=selection.has(+check.dataset.cellRow);check.setAttribute('aria-label',`${+check.dataset.cellRow+1}행 ${cols[column][1]} 선택`);});});
+document.addEventListener('mouseup',()=>{if(!cellDrag)return;const moved=cellDrag.moved;cellDrag=null;if(moved){suppressCellClick=true;expanded=true;render();setTimeout(()=>suppressCellClick=false,0);}});
+window.addEventListener('blur',()=>{cellDrag=null;});
+document.addEventListener('click',e=>{const check=e.target.closest('[data-cell-row]');if(check){if(column===null)return;const r=+check.dataset.cellRow;check.checked?selection.add(r):selection.delete(r);anchor=r;expanded=true;render();return;}if(suppressCellClick){e.preventDefault();return;}const map=e.target.closest('[data-map]');if(map){if(e.ctrlKey||e.metaKey||e.shiftKey){const cell=map.closest('td');if(cell)selectCell(+cell.dataset.r,mapCol,e);return;}if(map.dataset.map==='bulk'){bulkTarget=mapCol;mapDraftMode=true;openMap([0],map);$('map-target').textContent='';setMapCoords(bulkValues[9]||'',bulkValues[10]||'');return;}mapDraftMode=false;openMap(map.dataset.map==='all'?Array.from({length:total},(_,i)=>i):map.dataset.map==='bulk'?[...selection]:[+map.dataset.map],map);return;}
+ const confirm=e.target.closest('.confirm-cell');if(confirm){const cell=confirm.closest('td'),c=+cell.dataset.c;if(cell.querySelector('[data-lookup]')&&cell.querySelector('[data-lookup]').dataset.accepted!==draft[+cell.dataset.r][c])return;if([9,10].includes(c)&&!parseCoord(draft[+cell.dataset.r][c],c===9?90:180)){status('도분초 좌표를 확인해 주세요.');return;}commitRows([+cell.dataset.r],c,draft[+cell.dataset.r][c]);return;}
+ const date=e.target.closest('[data-date-editor]');if(date){dateOrigin=date;const [d='',t='']=date.value.replaceAll('/','-').split(' ');$('edit-date').value=d;$('edit-time').value=t;$('date-editor').showModal();return;}
+ const input=e.target.closest('[data-lookup]');if(input&&!e.ctrlKey&&!e.metaKey&&!e.shiftKey){openLookup(input);return;}
+ const cell=e.target.closest('td[data-r]');if(cell){if(e.target.matches('input')&&!e.ctrlKey&&!e.metaKey&&!e.shiftKey)return;selectCell(+cell.dataset.r,+cell.dataset.c,e);return;}
+ if(!$('lookup').contains(e.target))closeLookup();
+});
+document.addEventListener('input',e=>{if(e.target.matches('[data-lookup]')){updateInput(e.target);openLookup(e.target);const cell=e.target.closest('td');if(cell)cell.querySelector('.confirm-cell').disabled=true;else syncBulkUI();return;}if(e.target.closest('td[data-r]')||e.target.closest('[data-bulk-col]'))updateInput(e.target);});
+document.querySelectorAll('[data-load]').forEach(b=>b.onclick=()=>{shown=Math.min(total,b.dataset.load==='all'?total:shown+Number(b.dataset.load));$('detail-load-buttons').open=false;render();});
+$('detail-work-save').onclick=()=>{savedWorkData=JSON.stringify(data);hasWorkSave=true;history=[];status('작업 저장 완료 · 되돌리기 기준점 갱신');render();};$('detail-undo').onclick=()=>{if(draft.some((row,r)=>row.some((v,c)=>v!==data[r][c]))){status('미확정 셀 변경을 먼저 적용해 주세요.');return;}const last=history.pop();if(last){data=last.data;draft=structuredClone(data);changes=last.changes;status(`변경 사항: ${changes}개`);render();}};
+$('map-cancel').onclick=closeMap;$('map-close').onclick=closeMap;$('map-lat').oninput=updateMap;$('map-lng').oninput=updateMap;
+$('map-site').onchange=()=>{const b=$('map-site').value.endsWith('B');if(options.region.includes($('map-site').value))setMapCoords(b?'36°02′00.00″N':'36°01′28.20″N',b?'129°22′40.00″E':'129°22′23.88″E');};
+$('map-canvas').onclick=e=>{const b=e.currentTarget.getBoundingClientRect(),x=Math.max(0,Math.min(1,(e.clientX-b.left)/b.width)),y=Math.max(0,Math.min(1,(e.clientY-b.top)/b.height));$('map-site').value='';setMapCoords(`36°01′${(10+40*y).toFixed(2)}″N`,`129°22′${(10+40*x).toFixed(2)}″E`);$('map-pin').style.left=(x*100)+'%';$('map-pin').style.top=(y*100)+'%';};
+$('map-apply').onclick=()=>{if(mapDraftMode){bulkValues[9]=$('map-lat').value;bulkValues[10]=$('map-lng').value;bulkTarget=mapCol;closeMap();render();status('좌표 준비 완료 · 지도 열의 선택 변경 또는 일괄 변경을 선택해 주세요.');return;}if(hasPendingCells(mapTargets,[9,10])){status('좌표 셀의 미확정 변경을 먼저 적용해 주세요.');return;}capture();mapTargets.forEach(r=>{data[r][9]=draft[r][9]=$('map-lat').value;data[r][10]=draft[r][10]=$('map-lng').value;});changes++;closeMap();status(`좌표 적용 완료 · ${mapTargets.length}개 행 · 변경 사항: ${changes}개`);render();};
+let inspectionIssues=[],inspectionIndex=-1,inspectionStale=false,issueFilter='all';
+const optionalColumns=order.filter(c=>c!==mapCol&&!required.includes(c));
+function dateOnly(value){
+ const m=String(value??'').match(/^(\d{4})[/-](\d{2})[/-](\d{2})(?: (\d{2}):(\d{2})(?::(\d{2}))?)?$/);if(!m)return null;
+ const y=+m[1],month=+m[2],day=+m[3],dt=new Date(0);dt.setUTCFullYear(y,month-1,day);
+ if(dt.getUTCFullYear()!==y||dt.getUTCMonth()!==month-1||dt.getUTCDate()!==day||(m[4]!==undefined&&(+m[4]>23||+m[5]>59||+(m[6]||0)>59)))return null;return y*10000+month*100+day;
+}
+function collectInspectionIssues(){
+ const issues=[];
+ data.forEach((row,r)=>{
+  required.forEach(c=>{if(isEmpty(row[c]))issues.push({r,c,type:'missing',reason:`${cols[c][1]} 값을 입력해 주세요.`});});
+  [9,10].forEach(c=>{if(!isEmpty(row[c])&&!parseCoord(String(row[c]),c===9?90:180))issues.push({r,c,type:'invalid',reason:'도분초 형식과 좌표 범위를 확인해 주세요.'});});
+  [5,6].forEach(c=>{if(!isEmpty(row[c])&&dateOnly(row[c])===null)issues.push({r,c,type:'invalid',reason:'유효한 날짜를 입력해 주세요.'});});
+  if(!isEmpty(row[7])&&(!Number.isFinite(Number(row[7]))||Number(row[7])<1))issues.push({r,c:7,type:'invalid',reason:'분석 기간은 1일 이상으로 입력해 주세요.'});
+  const collected=dateOnly(row[5]),analyzed=dateOnly(row[6]);
+  if(collected!==null&&analyzed!==null&&analyzed<collected)issues.push({r,c:6,type:'date-order',reason:'채취일자가 분석일자보다 늦습니다. 두 날짜를 확인해 주세요.'});
+ });
+ return issues.sort((a,b)=>a.r-b.r||order.indexOf(a.c)-order.indexOf(b.c));
+}
+function pendingInspectionEdit(){
+ const cell=[...document.querySelectorAll('td[data-r]')].find(el=>el.querySelector('input:not([type=checkbox])')&&inputValue(el,+el.dataset.c)!==String(data[+el.dataset.r][+el.dataset.c]??''));
+ if(cell)return {r:+cell.dataset.r,c:+cell.dataset.c};
+ for(let r=0;r<draft.length;r++)for(let c=0;c<17;c++)if(draft[r][c]!==data[r][c])return {r,c};
+ const c=Object.keys(bulkValues).find(c=>String(bulkValues[c]).trim());return c===undefined?null:{bulk:true,c:+c};
+}
+function markInspectionStale(){
+ if(!inspectionIssues.length)return;
+ inspectionStale=true;
+ $('inspection-freshness').textContent='수정한 내용은 다시 검사해 주세요. 저장은 자동으로 진행되지 않습니다.';
+}
+function paintInspectionMarks(){
+ document.querySelectorAll('td.inspection-error').forEach(el=>{el.classList.remove('inspection-error','inspection-current');el.removeAttribute('aria-invalid');});
+ inspectionIssues.forEach((issue,index)=>{
+  const cell=document.querySelector(`td[data-r="${issue.r}"][data-c="${issue.c}"]`);
+  if(!cell)return;
+  cell.classList.add('inspection-error');if(issue.type==='date-order'){const other=document.querySelector(`td[data-r="${issue.r}"][data-c="5"]`);other?.classList.add('inspection-error');if(index===inspectionIndex)other?.classList.add('inspection-current');}cell.setAttribute('aria-invalid','true');
+  if(index===inspectionIndex)cell.classList.add('inspection-current');
+ });
+}
+function inspectionSummary(){
+ const missing=inspectionIssues.filter(x=>x.type==='missing'),dateErrors=inspectionIssues.some(x=>x.type==='date-order');
+ if(missing.length&&dateErrors&&missing.every(x=>[9,10,16].includes(x.c)))return '단위와 좌표를 입력하고 날짜를 확인해 주세요.';
+ if(missing.length&&dateErrors)return '필수값을 입력하고 날짜를 확인해 주세요.';
+ if(missing.length&&missing.every(x=>[9,10,16].includes(x.c)))return '단위와 좌표를 입력해 주세요.';
+ if(missing.length)return '필수 항목을 입력해 주세요.';
+ if(dateErrors)return '채취 일자와 분석 일자를 확인해 주세요.';
+ return '입력값을 확인해 주세요.';
+}
+function filteredIssueIndexes(){return inspectionIssues.flatMap((x,i)=>issueFilter==='all'||issueFilter==='missing'&&x.type==='missing'||issueFilter==='date'&&(x.type==='date-order'||x.type==='invalid'&&[5,6].includes(x.c))||issueFilter==='invalid'&&x.type==='invalid'&&!([5,6].includes(x.c))?[i]:[]);}
+function renderInspectionSummary(){
+ 
+ $('inspection-title').textContent='저장 전 확인이 필요합니다.';
+ const missing=inspectionIssues.filter(x=>x.type==='missing').length,date=inspectionIssues.filter(x=>x.type==='date-order'||x.type==='invalid'&&[5,6].includes(x.c)).length,invalid=inspectionIssues.length-missing-date;
+ $('inspection-count').textContent=`필수 누락 ${missing}건 / 날짜 오류 ${date}건${invalid?` / 형식 오류 ${invalid}건`:''} / 중복 제외 대상 ${new Set(inspectionIssues.map(x=>x.r)).size}개 행 · 총 ${inspectionIssues.length}건`;
+ $('inspection-freshness').textContent=inspectionStale?'수정한 내용은 다시 검사해 주세요.':'입력 위치로 이동하여 확인해 주세요. 날짜는 원본의 두 값을 함께 확인해 주세요.';
+ const groups=new Map(),indexes=filteredIssueIndexes();indexes.forEach(i=>{const x=inspectionIssues[i];if(!groups.has(x.r))groups.set(x.r,[]);groups.get(x.r).push(i);});
+ $('inspection-groups').innerHTML=[...groups].map(([r,items])=>`<div class="issue-row"><strong>${r+1}행</strong><span>${items.map(i=>esc(inspectionIssues[i].reason)).join(' · ')}</span>${items.map(i=>{const x=inspectionIssues[i];return x.type==='date-order'?`<span>채취 ${esc(data[r][5])} / 분석 ${esc(data[r][6])}</span><button data-issue-go="${i}" data-date-field="5">채취일자 확인</button><button data-issue-go="${i}" data-date-field="6">분석일자 확인</button>`:`<button data-issue-go="${i}">${esc(cols[x.c][1])} 입력</button>`;}).join('')}</div>`).join('')||'해당 유형의 오류가 없습니다.';
+ document.querySelectorAll('[data-issue-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.issueFilter===issueFilter)));paintInspectionMarks();
+}
+function goToInspectionIssue(index,dateField){
+ if(!Number.isInteger(index)||index<0||index>=inspectionIssues.length)return;
+ 
+ // Ask the user to finish pending input before a render could replace it.
+ if(pendingInspectionEdit()){
+  $('inspection-pending').hidden=false;
+  $('inspection-pending').textContent='적용하지 않은 입력이 있습니다. 셀의 ✓ 또는 해당 열의 선택 변경·일괄 변경으로 먼저 적용해 주세요.';
+  return;
+ }
+ 
+ if($('inspection-errors').open)$('inspection-errors').close();
+ inspectionIndex=index;const issue=inspectionIssues[index],r=issue.r,c=dateField??issue.c;if(issue.type==='date-order'){visibleColumns.add(5);visibleColumns.add(6);}
+ visibleColumns.add(c);shown=Math.max(shown,r+1);column=c;selection=new Set([r]);anchor=r;expanded=true;
+ render();renderInspectionSummary();
+ const cell=document.querySelector(`td[data-r="${r}"][data-c="${c}"]`);
+ cell.scrollIntoView({block:'nearest',inline:'center'});cell.querySelector('input')?.focus({preventScroll:true});
+}
+function optionalInspectionMissing(){
+ return optionalColumns.map(c=>({c,rows:data.flatMap((row,r)=>isEmpty(row[c])?[r+1]:[])})).filter(x=>x.rows.length);
+}
+function openInspectionErrors(){if(!$('inspection-errors').open)$('inspection-errors').showModal();}
+function showInspectionConfirm(){
+ if($('inspection-errors').open)$('inspection-errors').close();
+ const missing=optionalInspectionMissing();
+ $('inspection-optional-summary').textContent=missing.length?`선택 항목 미입력: ${missing.reduce((n,x)=>n+x.rows.length,0)}개 셀`:'선택 항목도 모두 입력되어 있습니다.';
+ $('inspection-optional-list').innerHTML=missing.map(({c,rows})=>`<li>${esc(cols[c][1])}: ${rows.slice(0,8).join(', ')}행${rows.length>8?` 외 ${rows.length-8}행`:''}</li>`).join('');
+ $('inspection-optional-note').hidden=!missing.length;
+ $('inspection-confirm').showModal();
+}
+function runFinalInspection(){
+ closeLookup();
+ if(pendingInspectionEdit()){
+  openInspectionErrors();
+  $('inspection-pending').hidden=false;
+  $('inspection-pending').textContent='적용하지 않은 입력이 있습니다. 셀의 ✓ 또는 해당 열의 선택 변경·일괄 변경으로 적용한 뒤 다시 검사해 주세요.';
+  if(!inspectionIssues.length){$('inspection-title').textContent='입력을 확정한 뒤 검사해 주세요.';$('inspection-count').textContent='입력값은 그대로 유지됩니다.';}
+  status('미확정 입력을 먼저 적용해 주세요.');return;
+ }
+ $('inspection-pending').hidden=true;
+ inspectionIssues=collectInspectionIssues();inspectionIndex=-1;inspectionStale=false;issueFilter='all';
+ inspectionIssues.forEach(issue=>{visibleColumns.add(issue.c);if(issue.type==='date-order')visibleColumns.add(5);});
+ applyColumnVisibility();renderInspectionSummary();
+ if(inspectionIssues.length){openInspectionErrors();status(`전체 ${total}행 검사 · 오류 ${inspectionIssues.length}개를 확인해 주세요.`);return;}
+ status(`전체 ${total}행 검사 통과 · 저장 확인 전`);showInspectionConfirm();
+}
+function loadInspectionExample(kind){
+ if($('inspection-errors').open)$('inspection-errors').close();
+ if($('inspection-confirm').open)$('inspection-confirm').close();
+ closeLookup();data=Array.from({length:total},(_,i)=>structuredClone(original[i%5]));
+ data.forEach(row=>{row[8]='포항 관측 지점 A';row[12]='습식';row[13]='직접 채취';row[14]='SIFT-MS';});
+ data[0][15]='0';data[1][15]='n.d';
+ if(kind!=='complete'){data[11][3]='';data[2][4]='';}
+ if(kind==='errors'){data[2][16]='';data[11][9]='';data[11][10]='';data[7][5]='2026/10/14';data[7][6]='2026/10/13';}
+ draft=structuredClone(data);shown=5;selection=new Set();column=null;anchor=0;expanded=false;history=[];changes=0;validateMissing=false;
+ Object.keys(bulkValues).forEach(k=>delete bulkValues[k]);Object.keys(bulkAccepted).forEach(k=>delete bulkAccepted[k]);bulkTarget=null;issueFilter='all';inspectionIssues=[];inspectionIndex=-1;inspectionStale=false;onlyMissing=false;visibleColumns=incompleteColumns();tableSize=0;
+ $('inspection-pending').hidden=true;delete window.inspectionSavePreview;$('demo-save-status').textContent='';savedWorkData=JSON.stringify(data);hasWorkSave=false;workNotice='';
+ document.querySelectorAll('[data-inspection-example]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.inspectionExample===kind)));
+ render();inspectionIssues=collectInspectionIssues();renderInspectionSummary();if(inspectionIssues.length)openInspectionErrors();
+}
+const inspectionBaseCommit=commitRows;
+commitRows=function(rows,c,value){inspectionBaseCommit(rows,c,value);markInspectionStale();};
+const inspectionBaseUndo=$('detail-undo').onclick;
+$('detail-undo').onclick=()=>{inspectionBaseUndo();markInspectionStale();};
+const inspectionBaseMapApply=$('map-apply').onclick;
+$('map-apply').onclick=()=>{inspectionBaseMapApply();markInspectionStale();};
+$('final-check').onclick=runFinalInspection;
+$('inspection-errors').addEventListener('keydown',e=>{if(e.key!=='Tab')return;const buttons=[...e.currentTarget.querySelectorAll('button:not(:disabled)')].filter(x=>x.getClientRects().length);const first=buttons[0],last=buttons.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}});
+$('inspection-errors-close').onclick=()=>$('inspection-errors').close();
+$('inspection-back').onclick=()=>$('inspection-confirm').close();
+$('inspection-save').onclick=()=>{
+ if(pendingInspectionEdit()||collectInspectionIssues().length){$('inspection-confirm').close();runFinalInspection();return;}
+ // Serialized preview only: empty optional fields become null; zero/n.d are retained.
+ window.inspectionSavePreview=data.map(row=>row.map((value,c)=>optionalColumns.includes(c)&&isEmpty(value)?null:value));
+ $('inspection-confirm').close();status(`저장 완료 · 전체 ${total}행`);
+ $('demo-save-status').textContent='저장 완료 · 전체 171행';savedWorkData=JSON.stringify(data);hasWorkSave=true;refreshWorkState();
+};
+document.addEventListener('click',e=>{const go=e.target.closest('[data-issue-go]');if(go)goToInspectionIssue(+go.dataset.issueGo,go.dataset.dateField?+go.dataset.dateField:undefined);const filter=e.target.closest('[data-issue-filter]');if(filter){issueFilter=filter.dataset.issueFilter;inspectionIndex=-1;renderInspectionSummary();}const example=e.target.closest('[data-inspection-example]');if(example)loadInspectionExample(example.dataset.inspectionExample);});
+
+
+document.addEventListener('bulk-applied',markInspectionStale);
+const inspectionRender=render;render=function(){inspectionRender();paintInspectionMarks();};
+
+const inspectionVisibility=applyColumnVisibility;applyColumnVisibility=function(){inspectionIssues.forEach(x=>{visibleColumns.add(x.c);if(x.type==='date-order')visibleColumns.add(5);});inspectionVisibility();};
+document.addEventListener('scroll',e=>{if(!$('lookup').contains(e.target))closeLookup();},true);window.addEventListener('mockup-viewer:viewport-motion',closeLookup);document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLookup();});loadInspectionExample('errors');
+</script></body></html>

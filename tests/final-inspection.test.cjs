@@ -1,6 +1,6 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
-const html=fs.readFileSync(path.join(__dirname,'../pages/rist-phase2-final-inspection.html'),'utf8');
+const html=fs.readFileSync(path.join(__dirname,'../pages/rist-phase2-final-validation.html'),'utf8');
 function validator(){
  const definitions=html.slice(html.indexOf('const cols='),html.indexOf('const options='));
  const coord=html.slice(html.indexOf('function parseCoord('),html.indexOf('function setMapCoords('));

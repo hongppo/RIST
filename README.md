@@ -276,4 +276,4 @@ node --test tests/*.test.cjs
 
 PoC 원본을 유지한 별도 목업입니다. [1단계 기획 원본](docs/rist-phase2-review-preparation.md)과 [2단계 기획 원본](docs/rist-phase2-review-detail.md)을 로컬 Markdown 다운로드 문서로 관리합니다. 화면은 `pages/rist-phase2-review-preparation.html`, `pages/rist-phase2-review-detail.html`이며 설명은 `data/descriptions.js`에 연결합니다. 표 크기와 열 필터는 화면 내 표시 기능이며 실제 앱·DB 변경은 수행하지 않습니다.
 
-[최종 저장 전 검사 기획 원본](docs/rist-phase2-final-inspection.md)은 `pages/rist-phase2-final-inspection.html`의 별도 예시 화면과 연결합니다. 오류·검사 통과 예시는 페이지 위 기획용 컨트롤로 전환하며, 실제 데이터 저장은 수행하지 않습니다.
+[최종 저장 전 통합 검사](docs/rist-phase2-final-validation.md)는 `pages/rist-phase2-final-validation.html`에서 전체 행의 필수값·입력 형식·날짜 선후를 검사합니다.

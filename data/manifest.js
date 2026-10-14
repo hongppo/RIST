@@ -335,9 +335,9 @@ window.MOCKUP_VIEWER_MANIFEST = {
           width: 1280, height: 800, summary: '', hideEmptyDescription: true
         },
         {
-          id: 'rist-phase2-final-inspection',
-          title: '최종 저장 전 검사',
-          src: 'pages/rist-phase2-final-inspection.html',
+          id: 'rist-phase2-final-validation',
+          title: '최종 저장 전 통합 검사',
+          src: 'pages/rist-phase2-final-validation.html',
           width: 1280, height: 800, summary: '', hideEmptyDescription: true
         },
         {
@@ -356,12 +356,6 @@ window.MOCKUP_VIEWER_MANIFEST = {
           id: 'rist-phase2-profile-menu',
           title: '프로필 메뉴(2차 개선)',
           src: 'pages/rist-phase2-profile-menu.html',
-          width: 1280, height: 800, summary: '', hideEmptyDescription: true
-        },
-        {
-          id: 'rist-phase2-date-comparison',
-          title: '채취일자·분석일자 비교',
-          src: 'pages/rist-phase2-date-comparison.html',
           width: 1280, height: 800, summary: '', hideEmptyDescription: true
         }
       ]

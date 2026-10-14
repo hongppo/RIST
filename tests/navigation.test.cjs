@@ -468,24 +468,24 @@ test('initial load collapses every group, including nested and empty groups; use
 
 test('phase-two review pages stay in their own scope with linked guides', () => {
   const app = boot({ hash: '#rist-phase2-review-preparation' });
-  expectPage(app, 'rist-phase2-review-preparation', '04/10');
-  assert.equal(app.get('annotation-layer').children.length, 3);
+  expectPage(app, 'rist-phase2-review-preparation', '04/09');
+  assert.equal(app.get('annotation-layer').children.length, 1);
   assert.equal(app.get('page-breadcrumb').textContent, '화면 기획서(2차 개선)');
   app.pageLink('rist-phase2-review-detail');
-  expectPage(app, 'rist-phase2-review-detail', '05/10');
+  expectPage(app, 'rist-phase2-review-detail', '05/09');
   assert.equal(app.get('annotation-layer').children.length, 8);
   app.get('next-page').click();
-  expectPage(app, 'rist-phase2-final-inspection', '06/10');
-  assert.equal(app.get('annotation-layer').children.length, 8);
+  expectPage(app, 'rist-phase2-final-validation', '06/09');
+  assert.equal(app.get('annotation-layer').children.length, 6);
   app.pageLink('rist-phase2-review-preparation');
-  expectPage(app, 'rist-phase2-review-preparation', '04/10');
+  expectPage(app, 'rist-phase2-review-preparation', '04/09');
 });
 
 
 test('new phase-two policy examples follow final inspection in the approved order', () => {
  const app=boot({hash:'#rist-phase2-duplicate-filename'});
- const ids=['rist-phase2-duplicate-filename','rist-phase2-nas-deduplication','rist-phase2-profile-menu','rist-phase2-date-comparison'];
- const counts=[4,5,4,6];
- ids.forEach((id,i)=>{expectPage(app,id,String(7+i).padStart(2,'0')+'/10');assert.equal(app.get('annotation-layer').children.length,counts[i]);app.get('next-page').click();});
- expectPage(app,'rist-phase2-date-comparison','10/10');assert.equal(app.get('next-page').disabled,true);
+ const ids=['rist-phase2-duplicate-filename','rist-phase2-nas-deduplication','rist-phase2-profile-menu'];
+ const counts=[4,5,4];
+ ids.forEach((id,i)=>{expectPage(app,id,String(7+i).padStart(2,'0')+'/09');assert.equal(app.get('annotation-layer').children.length,counts[i]);app.get('next-page').click();});
+ expectPage(app,'rist-phase2-profile-menu','09/09');assert.equal(app.get('next-page').disabled,true);
 });
