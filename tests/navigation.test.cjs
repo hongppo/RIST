@@ -476,7 +476,7 @@ test('phase-two review pages stay in their own scope with linked guides', () => 
   assert.equal(app.get('annotation-layer').children.length, 8);
   app.get('next-page').click();
   expectPage(app, 'rist-phase2-final-validation', '09/10');
-  assert.equal(app.get('annotation-layer').children.length, 6);
+  assert.equal(app.get('annotation-layer').children.length, 9);
   app.pageLink('rist-phase2-review-preparation');
   expectPage(app, 'rist-phase2-review-preparation', '07/10');
 });

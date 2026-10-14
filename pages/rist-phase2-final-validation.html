@@ -52,9 +52,8 @@
 
 .inspection-demo{height:40px;display:flex;align-items:center;gap:8px;padding:0 24px;background:#eeeaf6;border-bottom:1px solid #d8cce9;color:#675580;font-size:11px}.inspection-demo button{padding:4px 8px;font-size:11px}.inspection-demo [aria-pressed=true]{background:#ded5ed}.inspection-demo small{margin-left:auto}.workspace{height:706px}
 .inspection-errors{flex:none;border:1px solid #d99b91;border-radius:6px;background:#fff6f3;padding:8px 12px;color:#80483f}.inspection-error-heading{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:11px}.inspection-error-heading strong{font-size:13px}.inspection-filters{display:flex;gap:5px;margin:5px 0}.inspection-filters button,.inspection-error-nav button,.inspection-groups button{font-size:11px;padding:3px 7px}.inspection-filters [aria-pressed=true]{background:#ead6d0}.inspection-groups{max-height:88px;overflow:auto;overscroll-behavior:contain;font-size:11px}.issue-row{display:flex;align-items:center;gap:6px;padding:3px 0}.issue-row span{flex:1}.issue-row button{flex:none}.inspection-error-nav{display:flex;align-items:center;gap:6px;font-size:11px;margin-top:5px}.inspection-error-nav .recheck{margin-left:auto}.inspection-freshness{font-size:11px;margin:4px 0 0}.inspection-pending{font-size:12px;font-weight:600;margin:6px 0 0}
-#review-table td.inspection-error{box-shadow:inset 0 0 0 2px #bd6257}#review-table td.inspection-current{box-shadow:inset 0 0 0 3px #a44137;background:#fff0e9}
 .inspection-dialog{width:620px;padding:0;border:1px solid #bdc9d5;border-radius:9px;color:#40556b}.inspection-dialog::backdrop{background:#23354866}.inspection-dialog header{padding:18px 22px;border-bottom:1px solid #dbe2e9}.inspection-dialog h2{font-size:19px;margin:0}.inspection-body{padding:16px 22px;line-height:1.7;max-height:460px;overflow:auto}.inspection-dialog footer{padding:14px 22px;border-top:1px solid #dbe2e9;display:flex;justify-content:flex-end;gap:8px}.inspection-dialog footer button{height:38px}.inspection-pass{background:#eff5f1;border:1px solid #d5e3d9;padding:8px 12px}.inspection-list-table{width:100%;font-size:12px}.inspection-list-table th,.inspection-list-table td{position:static;height:auto;padding:8px}.inspection-list-table th:nth-child(1){width:90px}.inspection-list-table th:nth-child(2){width:55px}.inspection-list-table th:nth-child(4){width:130px}#inspection-list{width:760px}
-#inspection-errors{width:min(980px,calc(100vw - 48px));max-height:85vh;padding:22px;color:#80483f}#inspection-errors::backdrop{background:#23354866}#inspection-errors .inspection-groups{max-height:45vh;min-height:90px;font-size:12px;padding:8px 0}#inspection-errors .issue-row{padding:10px 0;flex-wrap:wrap;border-bottom:1px solid #ead9d3}#inspection-errors .inspection-error-heading{flex-wrap:wrap;font-size:12px}#inspection-errors .inspection-error-heading strong{font-size:18px}#inspection-errors .inspection-filters{margin:16px 0 8px}#inspection-errors button{min-height:30px}#inspection-errors .inspection-close-row{display:flex;justify-content:flex-end;margin-top:16px}#inspection-errors .inspection-close-row button{padding:7px 20px}</style></head><body><div class="inspection-demo" id="inspection-examples"><strong>예시</strong><button data-inspection-example="errors" aria-pressed="true">오류 있음</button><button data-inspection-example="optional" aria-pressed="false">선택 항목 미입력</button><button data-inspection-example="complete" aria-pressed="false">검사 통과</button><small id="demo-save-status" role="status"></small><span data-document-root><a data-document-download href="../docs/rist-phase2-final-validation.md" download="최종 저장 전 통합 검사.md" aria-label="통합 검사 문서 다운로드">문서 ↓</a></span></div><header class="app-header"><span class="service">환경데이터 표준화 프로그램</span><button class="app-profile" type="button" aria-label="사용자 메뉴" aria-haspopup="menu" aria-expanded="false">
+#inspection-errors{width:min(980px,calc(100vw - 48px));max-height:85vh;padding:22px;color:#80483f}#inspection-errors::backdrop{background:#23354866}#inspection-errors .inspection-groups{max-height:45vh;min-height:90px;font-size:12px;padding:8px 0}#inspection-errors .issue-row{padding:10px 0;flex-wrap:wrap;border-bottom:1px solid #ead9d3}#inspection-errors .inspection-error-heading{flex-wrap:wrap;font-size:12px}#inspection-errors .inspection-error-heading strong{font-size:18px}#inspection-errors .inspection-filters{margin:16px 0 8px}#inspection-errors button{min-height:30px}#inspection-errors .inspection-close-row{display:flex;justify-content:flex-end;margin-top:16px}#inspection-errors .inspection-close-row button{padding:7px 20px}#review-table td.inspection-error{box-shadow:inset 0 0 0 2px #bd6257}#review-table th.inspection-column-error{color:#b23d32!important;background:#fff0ed}#inspection-errors .issue-row strong{flex:0 0 145px}#inspection-errors .inspection-groups{max-height:45vh;overflow-y:auto;min-height:0}</style></head><body><div class="inspection-demo" id="inspection-examples"><strong>예시</strong><button data-inspection-example="errors" aria-pressed="true">오류 있음</button><button data-inspection-example="optional" aria-pressed="false">선택 항목 미입력</button><button data-inspection-example="complete" aria-pressed="false">검사 통과</button><small id="demo-save-status" role="status"></small><span data-document-root><a data-document-download href="../docs/rist-phase2-final-validation.md" download="최종 저장 전 통합 검사.md" aria-label="통합 검사 문서 다운로드">문서 ↓</a></span></div><header class="app-header"><span class="service">환경데이터 표준화 프로그램</span><button class="app-profile" type="button" aria-label="사용자 메뉴" aria-haspopup="menu" aria-expanded="false">
       <svg class="app-user-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.6"></circle>
         <path d="M 5 21 V 19 A 7 7 0 0 1 19 19 V 21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -63,10 +62,10 @@
       <svg class="app-profile-chevron" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path d="M 4 6 L 8 10 L 12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
       </svg>
-    </button></header><main class="workspace" data-component="phase2-final-validation" data-component-title="최종 저장 전 통합 검사" data-component-width="1280"><div class="heading"><h1 id="detail-stage-title">데이터 검토</h1><div class="steps" role="tablist" aria-label="검토 단계"><button type="button" role="tab" aria-selected="false" data-viewer-page="rist-phase2-review-preparation">1단계: 사전 준비</button><button type="button" class="active" role="tab" aria-selected="true">2단계: 상세 검토</button></div></div><div class="file-bar" id="detail-file-bar"><div>SIFT-MS offline.csv <span class="file-type">유형 CSV-001</span></div><div class="tools">
+    </button></header><main class="workspace" data-component="phase2-final-validation" data-component-title="최종 저장 전 통합 검사" data-component-width="1280"><div class="heading"><h1 id="detail-stage-title">데이터 검토</h1><div class="steps" role="tablist" aria-label="검토 단계"><button type="button" role="tab" aria-selected="false" data-viewer-page="rist-phase2-review-preparation">1단계: 사전 준비</button><button id="review-stage2" type="button" class="active" role="tab" aria-selected="true">2단계: 상세 검토</button><button id="review-stage3" type="button" role="tab" aria-selected="false" hidden>3단계: 오류 검토</button></div></div><div class="file-bar" id="detail-file-bar"><div>SIFT-MS offline.csv <span class="file-type">유형 CSV-001</span></div><div class="tools">
       <button class="review-icon-button" id="detail-work-save" type="button" aria-label="작업 저장" title="작업 저장"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 3h12l4 4v14H3V3h2Z M7 3v6h10V3 M7 21v-8h10v8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <button class="review-icon-button" id="detail-undo" type="button" aria-label="되돌리기" title="되돌리기"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 4 3 9l5 5 M3 9h11a7 7 0 0 1 0 14" transform="translate(0 -2)" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-    </div></div><div class="toolbar" id="column-filter-status"><div class="toolbar-left"><button id="toggle-bulk" aria-expanded="false"><span aria-hidden="true">+</span> 일괄 변경</button><div class="filter-controls"><label class="missing-toggle" id="missing-filter"><input type="checkbox" id="only-missing">비어있는 열만 보기</label><span id="column-filter-summary" hidden></span><span id="newly-filled" hidden><span id="newly-filled-text" hidden></span><button id="hide-filled-columns">채워진 열 숨기기</button></span></div></div><div class="toolbar-right"><details id="detail-load-buttons"><summary>행 더보기 ▾</summary><div class="load"><button data-load="50">50행 추가</button><button data-load="100">100행 추가</button><button data-load="all">전체 데이터 보기</button></div></details><span class="counts" id="counts"></span><div class="table-size" id="table-size-controls"><span>표 크기</span><button id="table-smaller">−</button><button id="table-size-reset">0</button><button id="table-larger">+</button></div></div></div><div id="grid-scroll" class="grid-scroll" data-viewer-scroll-region tabindex="0" aria-label="상세 검토 표 가로·세로 스크롤"><table id="review-table" aria-label="추출 데이터 상세 검토"></table><div id="empty-columns" class="empty-columns" hidden>모든 열의 값이 입력되어 있습니다. 위의 ‘비어있는 열만 보기’를 해제하면 모든 열을 확인할 수 있습니다.</div></div><footer class="footer" id="detail-final-save"><div id="detail-work-state"><div class="status" id="change-status">변경 적용 전: 시료명 1개</div><div class="scope">최종 저장 대상: 전체 171행</div></div><button class="primary" id="final-check">검토 완료 및 저장</button></footer></main><dialog class="inspection-errors" id="inspection-errors" aria-labelledby="inspection-title"><div class="inspection-error-heading" id="inspection-error-heading"><strong id="inspection-title"></strong><span id="inspection-count"></span></div><div class="inspection-filters" id="inspection-filters"><button data-issue-filter="all" aria-pressed="true">전체</button><button data-issue-filter="missing">필수값 누락</button><button data-issue-filter="date">날짜 오류</button><button data-issue-filter="invalid">형식 오류</button></div><div data-viewer-scroll-region class="inspection-groups" id="inspection-groups"></div><p class="inspection-freshness" id="inspection-freshness"></p><p class="inspection-pending" id="inspection-pending" hidden></p><div class="inspection-close-row"><button id="inspection-errors-close" autofocus>닫기</button></div></dialog><dialog id="date-editor"><h3>날짜·시간 입력</h3><label>날짜<input id="edit-date" type="date"></label><label>시간(선택)<input id="edit-time" type="time" step="1"></label><p><button id="date-cancel">취소</button><button id="date-accept">입력 완료</button></p></dialog><div id="lookup" class="lookup" hidden><div id="lookup-list" class="lookup-list" role="listbox" data-viewer-scroll-region></div></div>
+    </div></div><div class="toolbar" id="column-filter-status"><div class="toolbar-left"><button id="toggle-bulk" aria-expanded="false"><span aria-hidden="true">+</span> 일괄 변경</button><div class="filter-controls"><label class="missing-toggle" id="missing-filter"><input type="checkbox" id="only-missing">비어있는 열만 보기</label><label class="missing-toggle" id="error-filter" hidden><input type="checkbox" id="only-errors">오류 항목만 보기</label><span id="column-filter-summary" hidden></span><span id="newly-filled" hidden><span id="newly-filled-text" hidden></span><button id="hide-filled-columns">채워진 열 숨기기</button></span></div></div><div class="toolbar-right"><details id="detail-load-buttons"><summary>행 더보기 ▾</summary><div class="load"><button data-load="50">50행 추가</button><button data-load="100">100행 추가</button><button data-load="all">전체 데이터 보기</button></div></details><div id="error-cell-navigation" class="table-summary" hidden><button id="error-cell-prev" title="이전 오류" aria-label="이전 오류">←</button><span id="error-cell-position" aria-live="polite"></span><button id="error-cell-next" title="다음 오류" aria-label="다음 오류">→</button></div><span class="counts" id="counts"></span><div class="table-size" id="table-size-controls"><span>표 크기</span><button id="table-smaller">−</button><button id="table-size-reset">0</button><button id="table-larger">+</button></div></div></div><div id="grid-scroll" class="grid-scroll" data-viewer-scroll-region tabindex="0" aria-label="상세 검토 표 가로·세로 스크롤"><table id="review-table" aria-label="추출 데이터 상세 검토"></table><div id="empty-columns" class="empty-columns" hidden>모든 열의 값이 입력되어 있습니다. 위의 ‘비어있는 열만 보기’를 해제하면 모든 열을 확인할 수 있습니다.</div></div><div id="error-pagination" class="toolbar" hidden><span id="error-page-summary"></span><div class="table-summary"><span id="error-page-range"></span><button id="error-page-prev">이전</button><span id="error-page-number"></span><button id="error-page-next">다음</button></div></div><p id="inspection-progress-status" role="status" hidden></p><footer class="footer" id="detail-final-save"><div id="detail-work-state"><div class="status" id="change-status">변경 적용 전: 시료명 1개</div><div class="scope">최종 저장 대상: 전체 171행</div></div><button class="primary" id="final-check">검토 완료 및 저장</button></footer></main><dialog class="inspection-errors" id="inspection-errors" aria-labelledby="inspection-title"><div class="inspection-error-heading" id="inspection-error-heading"><strong id="inspection-title"></strong><span id="inspection-count"></span></div><div data-viewer-scroll-region class="inspection-groups" id="inspection-groups"></div><p class="inspection-freshness" id="inspection-freshness"></p><p class="inspection-pending" id="inspection-pending" hidden></p><div class="inspection-close-row"><button id="inspection-errors-close" autofocus>닫기</button></div></dialog><dialog id="date-editor"><h3>날짜·시간 입력</h3><label>날짜<input id="edit-date" type="date"></label><label>시간(선택)<input id="edit-time" type="time" step="1"></label><p><button id="date-cancel">취소</button><button id="date-accept">입력 완료</button></p></dialog><div id="lookup" class="lookup" hidden><div id="lookup-list" class="lookup-list" role="listbox" data-viewer-scroll-region></div></div>
 <dialog id="map-dialog" class="position-dialog" aria-labelledby="map-title"><header class="dialog-head"><h2 id="map-title">위치 선택</h2><button id="map-close" aria-label="위치 선택 닫기">×</button></header><div class="dialog-body"><div><button id="map-canvas" class="map-canvas" aria-label="지도에서 좌표 선택"><svg viewBox="0 0 440 380" aria-hidden="true"><rect width="440" height="380" fill="#e9eeeb"/><path d="M330 0H440V380H370L315 260 335 140Z" fill="#dbe7ee"/><path d="M0 20H135L124 155 0 140ZM168 0H290L275 145 172 157ZM0 195L126 201 150 380H0ZM180 190L293 176 335 380H198Z" fill="#dbe3df"/><path d="M146-10 143 172 171 400M0 170 310 161M0 307 335 283" stroke="#fff" stroke-width="15" fill="none"/><path d="M44 0V380M231 0 225 380M0 81 310 70M0 240H322" stroke="#f7f9f8" stroke-width="7" fill="none"/></svg><span id="map-pin" class="map-pin" hidden></span></button><p id="map-state" class="map-state"></p></div><div class="map-fields"><div id="map-target" class="target-badge"></div><label for="map-site">지역 검색 <span class="optional">선택</span></label><input id="map-site" list="map-sites" placeholder="지점명 검색 혹은 선택"><datalist id="map-sites"><option value="포항 관측 지점 A"><option value="포항 관측 지점 B"></datalist><label for="map-lat">위도 [필수]</label><input id="map-lat" placeholder="위도 도°분′초″N/S"><label for="map-lng">경도 [필수]</label><input id="map-lng" placeholder="경도 도°분′초″E/W"><p class="notice">지점명 없이 좌표만 적용할 수 있습니다.</p></div></div><footer class="dialog-foot"><button id="map-cancel">취소</button><button class="primary" id="map-apply" disabled>좌표 적용</button></footer></dialog><dialog class="inspection-dialog" id="inspection-confirm" aria-labelledby="inspection-confirm-title"><header><h2 id="inspection-confirm-title">검토한 데이터를 저장하시겠습니까?</h2></header><div class="inspection-body"><p>저장 대상: 전체 <strong>171행</strong></p><div class="inspection-pass">검사 통과 · 필수값·입력 형식·날짜 선후 확인 완료</div><p id="inspection-optional-summary"></p><ul id="inspection-optional-list"></ul><p id="inspection-optional-note">선택 항목이 비어 있어도 저장할 수 있습니다.</p></div><footer><button id="inspection-back">돌아가서 확인</button><button class="primary" id="inspection-save">저장</button></footer></dialog><script>
 const cols=[["category", "구분", "combo", 190], ["medium", "매체", "combo", 150], ["sample", "시료명", "text", 245], ["owner", "담당자", "combo", 200], ["institution", "분석 기관", "combo", 210], ["collected", "채취 일자", "date", 270], ["analyzed", "분석 일자", "date", 285], ["duration", "분석 기간", "number", 160], ["region", "지역명", "combo", 245], ["lat", "위도", "coord", 245], ["lng", "경도", "coord", 245], ["substance", "분석 물질", "text", 285], ["base", "BASE", "combo", 190], ["sampling", "채취법", "combo", 220], ["analysis", "분석법", "combo", 270], ["result", "결과", "text", 250], ["unit", "단위", "combo", 170]], original=[["환경", "대기", "RIST_Sample", "김희진", "RIST", "2025/05/16 15:00", "2025/11/05 17:40:39", "1", null, "36°01′28.20″N", "129°22′23.88″E", "1-butanamine (109-73-9)", "", "", "", "4.627399605208463", "ppb"], ["환경", "대기", "RIST_Sample", "김희진", "RIST", "2025/05/16 15:00", "2025/11/05 17:40:39", "1", null, "36°01′28.20″N", "129°22′23.88″E", "1-butanethiol (109-79-5)", "", "", "", "8.314354619597506", "ppb"], ["환경", "대기", "RIST_Sample", "김희진", "RIST", "2025/05/16 15:00", "2025/11/05 17:40:39", "1", null, "36°01′28.20″N", "129°22′23.88″E", "1-hexanethiol (111-31-9)", "", "", "", "0.9418972262560915", "ppb"], ["환경", "대기", "RIST_Sample", "김희진", "RIST", "2025/05/16 15:00", "2025/11/05 17:40:39", "1", null, "36°01′28.20″N", "129°22′23.88″E", "1-hexanol (111-27-3)", "", "", "", "1.0395720284081749", "ppb"], ["환경", "대기", "RIST_Sample", "김희진", "RIST", "2025/05/16 15:00", "2025/11/05 17:40:39", "1", null, "36°01′28.20″N", "129°22′23.88″E", "1-hexene (592-41-6)", "", "", "", "8.655795894061255", "ppb"]];
 const $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -77,11 +76,11 @@ data[1][9]=draft[1][9]='36°02′00.00″N';data[1][10]=draft[1][10]='129°22′
 cols.push(['map','지도','map',170]);
 // Display-only controls: retain the DOM, draft edits, and selection on each toggle.
 
-let tableSize=0, onlyMissing=false;
+let tableSize=0, onlyMissing=false, onlyErrors=false, inspectionHasRun=false, reviewStage=2, currentErrorCell=null, errorPage=0, pageRows=[], pagePoolCount=0, pageColumns=new Set(), inspectionRunning=false, stageBulkState={2:false,3:true};
 const isEmpty=value=>value===null||value===undefined||String(value).trim()==='';
 function incompleteColumns(){return new Set(order.filter(c=>c!==mapCol&&data.some(row=>isEmpty(row[c]))));}
 let visibleColumns=incompleteColumns();
-function visibleColumn(c){return !onlyMissing||(c===mapCol?visibleColumns.has(9)||visibleColumns.has(10):visibleColumns.has(c));}
+function visibleColumn(c){if(reviewStage===3&&onlyErrors)return pageColumns.has(c);return !onlyMissing||(c===mapCol?visibleColumns.has(9)||visibleColumns.has(10):visibleColumns.has(c));}
 // Stable widths in base 80% units; manual widths survive render/filter/load.
 const baseWidths=[96,96,132,96,96,115,115,96,96,96,96,139,96,96,105,123,96,96];
 const minWidths=[96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96];
@@ -116,7 +115,7 @@ function applyColumnVisibility(){
  $('only-missing').checked=onlyMissing;
  applyTableSize();
 }
-function setMissingFilter(enabled){closeLookup();onlyMissing=enabled;if(enabled)visibleColumns=incompleteColumns();applyColumnVisibility();}
+function setMissingFilter(enabled){closeLookup();if(enabled){onlyErrors=false;$('only-errors').checked=false;}onlyMissing=enabled;if(enabled)visibleColumns=incompleteColumns();applyColumnVisibility();}
 $('only-missing').onchange=e=>setMissingFilter(e.target.checked);
 $('hide-filled-columns').onclick=()=>{visibleColumns=incompleteColumns();applyColumnVisibility();};
 $('table-smaller').onclick=()=>{tableSize=Math.max(-2,tableSize-1);applyTableSize();};
@@ -171,10 +170,10 @@ document.addEventListener('pointermove',e=>{if(!resizeState)return;const {c,x,wi
 document.addEventListener('pointerup',()=>resizeState=null);
 function dirty(r,c){return draft[r][c]!==data[r][c];}
 function render(){closeLookup();const table=$('review-table');table.style.width=(88+order.reduce((n,c)=>n+cols[c][3],0))+'px';
- table.innerHTML='<colgroup><col style="width:42px"><col style="width:46px">'+order.map(c=>`<col data-col="${c}" style="width:${cols[c][3]}px">`).join('')+'</colgroup><thead><tr><th class="lock-select">선택</th><th class="lock-number">행</th>'+order.map(c=>`<th data-col="${c}" ${c===2?'id="resize-column-heading"':c===17?'id="map-column-heading"':''} scope="col" class="${column===c?'active-column':''}">${cols[c][1]}${required.includes(c)?`<span ${c===5?'id="detail-required-label"':''} class="required-star" title="필수"> [필수]</span>`:''}<span class="resize-handle" data-resize="${c}" role="separator" aria-label="${cols[c][1]} 열 너비"></span></th>`).join('')+`</tr><tr id="bulk-input-row" ${expanded?'':'hidden'}><th class="lock-select" colspan="2">일괄 입력</th>`+order.map(c=>`<th data-col="${c}" data-bulk-col="${c}">${control(c,bulkValues[c]||'','일괄')}<div class="column-apply"><button data-column-apply="selected" data-apply-column="${c}" disabled>선택 변경</button><button data-column-apply="all" data-apply-column="${c}" disabled>일괄 변경</button></div></th>`).join('')+`</tr></thead><tbody>`+Array.from({length:shown},(_,r)=>`<tr><td class="lock-select"><input type="checkbox" data-cell-row="${r}" aria-label="${r+1}행 ${column===null?'셀':cols[column][1]} 선택" ${selection.has(r)?'checked':''} ${column===null?'disabled':''}></td><td class="lock-number">${r+1}</td>`+order.map(c=>{const selected=column===c&&selection.has(r);return `<td data-col="${c}" data-r="${r}" data-c="${c}" tabindex="0" aria-label="${r+1}행 ${cols[c][1]}" aria-selected="${selected}" class="grid-cell ${selected?'chosen':''} ${validateMissing&&required.includes(c)&&String(data[r][c]??'').trim()===''?'missing':''} ${c!==mapCol&&dirty(r,c)?'edited':''}">${c===mapCol?`<button data-map="${r}">지도 보기</button>`:selected&&selection.size===1?`<div class="edit-cell">${control(c,draft[r][c],(r+1)+'행')}<button class="confirm-cell" aria-label="${r+1}행 ${cols[c][1]} 변경 확정" ${dirty(r,c)?'':'disabled'}>✓</button></div>`:`<span class="read" title="${esc(draft[r][c]??'—')}">${esc(draft[r][c]??'—')}</span>`}</td>`}).join('')+'</tr>').join('')+'</tbody>';
- $('counts').textContent=`표시 ${shown}행 / 전체 ${total}행`;syncBulkUI();$('detail-undo').disabled=!history.length;applyColumnVisibility();applyTableSize();
+ table.innerHTML='<colgroup><col style="width:42px"><col style="width:46px">'+order.map(c=>`<col data-col="${c}" style="width:${cols[c][3]}px">`).join('')+'</colgroup><thead><tr><th class="lock-select">선택</th><th class="lock-number">행</th>'+order.map(c=>`<th data-col="${c}" ${c===2?'id="resize-column-heading"':c===17?'id="map-column-heading"':''} scope="col" class="${column===c?'active-column':''}">${cols[c][1]}${required.includes(c)?`<span ${c===5?'id="detail-required-label"':''} class="required-star" title="필수"> [필수]</span>`:''}<span class="resize-handle" data-resize="${c}" role="separator" aria-label="${cols[c][1]} 열 너비"></span></th>`).join('')+`</tr><tr id="bulk-input-row" ${expanded?'':'hidden'}><th class="lock-select" colspan="2">일괄 입력</th>`+order.map(c=>`<th data-col="${c}" data-bulk-col="${c}">${control(c,bulkValues[c]||'','일괄')}<div class="column-apply"><button data-column-apply="selected" data-apply-column="${c}" disabled>선택 변경</button><button data-column-apply="all" data-apply-column="${c}" disabled>일괄 변경</button></div></th>`).join('')+`</tr></thead><tbody>`+displayedRows().map(r=>`<tr><td class="lock-select"><input type="checkbox" data-cell-row="${r}" aria-label="${r+1}행 ${column===null?'셀':cols[column][1]} 선택" ${selection.has(r)?'checked':''} ${column===null?'disabled':''}></td><td class="lock-number">${r+1}</td>`+order.map(c=>{const selected=column===c&&selection.has(r);return `<td data-col="${c}" data-r="${r}" data-c="${c}" tabindex="0" aria-label="${r+1}행 ${cols[c][1]}" aria-selected="${selected}" class="grid-cell ${selected?'chosen':''} ${validateMissing&&required.includes(c)&&String(data[r][c]??'').trim()===''?'missing':''} ${c!==mapCol&&dirty(r,c)?'edited':''}">${c===mapCol?`<button data-map="${r}">지도 보기</button>`:(selected&&selection.size===1||inspectionEditTarget?.r===r&&inspectionEditTarget?.c===c)?`<div class="edit-cell">${control(c,draft[r][c],(r+1)+'행')}<button class="confirm-cell" aria-label="${r+1}행 ${cols[c][1]} 변경 확정" ${dirty(r,c)?'':'disabled'}>✓</button></div>`:`<span class="read" title="${esc(draft[r][c]??'—')}">${esc(draft[r][c]??'—')}</span>`}</td>`}).join('')+'</tr>').join('')+'</tbody>';
+ $('counts').textContent=`표시 ${displayedRows().length}행 / 전체 ${total}행`;syncBulkUI();$('detail-undo').disabled=!history.length;applyColumnVisibility();applyTableSize();
 }
-function selectCell(r,c,event){workNotice='';if(column!==c||(!event.ctrlKey&&!event.metaKey&&!event.shiftKey)){selection=new Set([r]);anchor=r;}else if(event.shiftKey){selection=new Set(Array.from({length:Math.abs(r-anchor)+1},(_,i)=>Math.min(anchor,r)+i));}else{selection.has(r)?selection.delete(r):selection.add(r);anchor=r;}column=c;expanded=true;render();if(selection.size===1&&c!==mapCol){const input=document.querySelector(`td[data-r="${r}"][data-c="${c}"] input`);input?.focus();}}
+function selectCell(r,c,event){inspectionEditTarget=null;workNotice='';if(column!==c||(!event.ctrlKey&&!event.metaKey&&!event.shiftKey)){selection=new Set([r]);anchor=r;}else if(event.shiftKey){selection=new Set(Array.from({length:Math.abs(r-anchor)+1},(_,i)=>Math.min(anchor,r)+i));}else{selection.has(r)?selection.delete(r):selection.add(r);anchor=r;}column=c;expanded=true;render();if(selection.size===1&&c!==mapCol){const input=document.querySelector(`td[data-r="${r}"][data-c="${c}"] input`);input?.focus();}}
 function capture(){history.push({data:structuredClone(data),changes});if(history.length>10)history.shift();}
 function status(text){workNotice=/먼저|확인해|입력해|실패/.test(text)?text:'';refreshWorkState();}
 function commitRows(rows,c,value){capture();rows.forEach(r=>{data[r][c]=value;draft[r][c]=value;});changes++;status(`변경 사항: ${changes}개`);render();}
@@ -207,16 +206,16 @@ $('map-cancel').onclick=closeMap;$('map-close').onclick=closeMap;$('map-lat').on
 $('map-site').onchange=()=>{const b=$('map-site').value.endsWith('B');if(options.region.includes($('map-site').value))setMapCoords(b?'36°02′00.00″N':'36°01′28.20″N',b?'129°22′40.00″E':'129°22′23.88″E');};
 $('map-canvas').onclick=e=>{const b=e.currentTarget.getBoundingClientRect(),x=Math.max(0,Math.min(1,(e.clientX-b.left)/b.width)),y=Math.max(0,Math.min(1,(e.clientY-b.top)/b.height));$('map-site').value='';setMapCoords(`36°01′${(10+40*y).toFixed(2)}″N`,`129°22′${(10+40*x).toFixed(2)}″E`);$('map-pin').style.left=(x*100)+'%';$('map-pin').style.top=(y*100)+'%';};
 $('map-apply').onclick=()=>{if(mapDraftMode){bulkValues[9]=$('map-lat').value;bulkValues[10]=$('map-lng').value;bulkTarget=mapCol;closeMap();render();status('좌표 준비 완료 · 지도 열의 선택 변경 또는 일괄 변경을 선택해 주세요.');return;}if(hasPendingCells(mapTargets,[9,10])){status('좌표 셀의 미확정 변경을 먼저 적용해 주세요.');return;}capture();mapTargets.forEach(r=>{data[r][9]=draft[r][9]=$('map-lat').value;data[r][10]=draft[r][10]=$('map-lng').value;});changes++;closeMap();status(`좌표 적용 완료 · ${mapTargets.length}개 행 · 변경 사항: ${changes}개`);render();};
-let inspectionIssues=[],inspectionIndex=-1,inspectionStale=false,issueFilter='all';
+let inspectionIssues=[],inspectionIndex=-1,inspectionStale=false;
 const optionalColumns=order.filter(c=>c!==mapCol&&!required.includes(c));
 function dateOnly(value){
  const m=String(value??'').match(/^(\d{4})[/-](\d{2})[/-](\d{2})(?: (\d{2}):(\d{2})(?::(\d{2}))?)?$/);if(!m)return null;
  const y=+m[1],month=+m[2],day=+m[3],dt=new Date(0);dt.setUTCFullYear(y,month-1,day);
  if(dt.getUTCFullYear()!==y||dt.getUTCMonth()!==month-1||dt.getUTCDate()!==day||(m[4]!==undefined&&(+m[4]>23||+m[5]>59||+(m[6]||0)>59)))return null;return y*10000+month*100+day;
 }
-function collectInspectionIssues(){
+function collectInspectionIssues(start=0,end=data.length){
  const issues=[];
- data.forEach((row,r)=>{
+ data.slice(start,end).forEach((row,i)=>{const r=start+i;
   required.forEach(c=>{if(isEmpty(row[c]))issues.push({r,c,type:'missing',reason:`${cols[c][1]} 값을 입력해 주세요.`});});
   [9,10].forEach(c=>{if(!isEmpty(row[c])&&!parseCoord(String(row[c]),c===9?90:180))issues.push({r,c,type:'invalid',reason:'도분초 형식과 좌표 범위를 확인해 주세요.'});});
   [5,6].forEach(c=>{if(!isEmpty(row[c])&&dateOnly(row[c])===null)issues.push({r,c,type:'invalid',reason:'유효한 날짜를 입력해 주세요.'});});
@@ -232,20 +231,80 @@ function pendingInspectionEdit(){
  for(let r=0;r<draft.length;r++)for(let c=0;c<17;c++)if(draft[r][c]!==data[r][c])return {r,c};
  const c=Object.keys(bulkValues).find(c=>String(bulkValues[c]).trim());return c===undefined?null:{bulk:true,c:+c};
 }
+function paintInspectionErrors(){
+ document.querySelectorAll('td.inspection-error').forEach(el=>{el.classList.remove('inspection-error');el.removeAttribute('aria-invalid');});
+ document.querySelectorAll('th.inspection-column-error').forEach(el=>el.classList.remove('inspection-column-error'));
+ if(!inspectionHasRun)return;
+ const counts=new Map();errorCells().forEach(x=>counts.set(x.c,(counts.get(x.c)||0)+1));
+ if(data.length)counts.forEach((count,c)=>{if(count===data.length)document.querySelector(`thead tr:first-child th[data-col="${c}"]`)?.classList.add('inspection-column-error');});
+ inspectionIssues.forEach(x=>{const c=x.type==='date-order'?5:x.c,cell=document.querySelector(`td[data-r="${x.r}"][data-c="${c}"]`);if(cell){cell.classList.add('inspection-error');cell.setAttribute('aria-invalid','true');}});
+}
+function errorCells(){
+ const found=new Map();inspectionIssues.forEach(x=>{const c=x.type==='date-order'?5:x.c;found.set(x.r+':'+c,{r:x.r,c});});
+ return [...found.values()].sort((a,b)=>a.r-b.r||order.indexOf(a.c)-order.indexOf(b.c));
+}
+function syncErrorNavigation(){
+ const cells=errorCells();let index=cells.findIndex(x=>x.r===currentErrorCell?.r&&x.c===currentErrorCell?.c);
+ if(index<0&&cells.length){index=currentErrorCell?cells.findIndex(x=>x.r>currentErrorCell.r||x.r===currentErrorCell.r&&order.indexOf(x.c)>order.indexOf(currentErrorCell.c)):0;if(index<0)index=cells.length-1;currentErrorCell=cells[index];}
+ if(!cells.length)currentErrorCell=null;
+ $('error-cell-navigation').hidden=reviewStage!==3;
+ $('error-cell-position').textContent=cells.length?`오류 ${index+1} / ${cells.length}`:'오류 없음';
+ $('error-cell-prev').disabled=cells.length<=1;
+ $('error-cell-next').disabled=cells.length<=1;
+}
+function moveErrorCell(delta){
+ if(pendingInspectionEdit()){status('적용하지 않은 입력을 먼저 셀의 ✓ 또는 열별 변경으로 적용해 주세요.');return;}
+ const cells=errorCells(),index=cells.findIndex(x=>x.r===currentErrorCell?.r&&x.c===currentErrorCell?.c),target=cells.length>1?cells[(index+delta+cells.length)%cells.length]:null;if(!target)return;
+ locateErrorPage(target.r);currentErrorCell=target;inspectionEditTarget=target;shown=Math.max(shown,target.r+1);visibleColumns.add(target.c);render();
+ const cell=document.querySelector(`td[data-r="${target.r}"][data-c="${target.c}"]`);cell?.scrollIntoView({block:'nearest',inline:'center'});cell?.querySelector('input')?.focus({preventScroll:true});
+}
+$('error-cell-prev').onclick=()=>moveErrorCell(-1);
+$('error-cell-next').onclick=()=>moveErrorCell(1);
+document.addEventListener('click',e=>{const cell=e.target.closest('td[data-r][data-c]');if(!cell)return;const r=+cell.dataset.r,c=+cell.dataset.c;if(errorCells().some(x=>x.r===r&&x.c===c)){currentErrorCell={r,c};syncErrorNavigation();}});
+function errorRowPool(){return onlyErrors?[...new Set(inspectionIssues.map(x=>x.r))].sort((a,b)=>a-b):Array.from({length:total},(_,r)=>r);}
+function rebuildErrorPage(page=errorPage){const pool=errorRowPool();pagePoolCount=pool.length;errorPage=Math.max(0,Math.min(page,Math.max(0,Math.ceil(pool.length/50)-1)));pageRows=pool.slice(errorPage*50,errorPage*50+50);pageColumns=new Set(errorCells().map(x=>x.c));}
+function locateErrorPage(r){if(!pageRows.includes(r)){const pool=errorRowPool();rebuildErrorPage(Math.floor(Math.max(0,pool.indexOf(r))/50));}}
+function displayedRows(){return reviewStage===3?pageRows:Array.from({length:shown},(_,r)=>r);}
+function syncPagination(){
+ $('error-pagination').hidden=reviewStage!==3;
+ const pool=errorRowPool(),pages=Math.max(1,Math.ceil(pagePoolCount/50));
+ $('error-page-summary').textContent=`오류 ${errorCells().length}개 · 오류가 있는 행 ${new Set(inspectionIssues.map(x=>x.r)).size}개`;
+ const first=pageRows.length?errorPage*50+1:0,last=pageRows.length?errorPage*50+pageRows.length:0;
+ $('error-page-range').textContent=`${onlyErrors?'오류 행':'전체 행'} ${first}-${last} / ${pagePoolCount}행 표시`;
+ $('error-page-number').textContent=`${errorPage+1} / ${pages}`;
+ $('error-page-prev').disabled=errorPage===0;
+ $('error-page-next').disabled=errorPage>=pages-1;
+}
+function turnErrorPage(delta){if(pendingInspectionEdit()){status('미적용 입력을 먼저 적용해 주세요.');return;}rebuildErrorPage(errorPage+delta);render();$('grid-scroll').scrollTop=0;}
+$('error-page-prev').onclick=()=>turnErrorPage(-1);
+$('error-page-next').onclick=()=>turnErrorPage(1);
+function syncErrorFilter(){
+ const available=inspectionHasRun&&inspectionIssues.length>0;
+ $('missing-filter').hidden=reviewStage===3;
+ $('error-filter').hidden=reviewStage!==3;
+ $('only-errors').disabled=!available;
+ if(!available)onlyErrors=false;
+ $('only-errors').checked=onlyErrors;
+ $('review-stage3').hidden=!inspectionHasRun;
+ [2,3].forEach(n=>{const tab=$('review-stage'+n);tab.classList.toggle('active',reviewStage===n);tab.setAttribute('aria-selected',String(reviewStage===n));});
+ $('detail-load-buttons').hidden=reviewStage===3;syncErrorNavigation();syncPagination();
+}
+function switchReviewStage(stage){
+ if(stage===3&&!inspectionHasRun)return;
+ stageBulkState[reviewStage]=expanded;reviewStage=stage;expanded=stageBulkState[stage];closeLookup();
+ if(stage===3){onlyMissing=false;rebuildErrorPage();}
+ render();
+}
+$('review-stage2').onclick=()=>switchReviewStage(2);
+$('review-stage3').onclick=()=>switchReviewStage(3);
 function markInspectionStale(){
- if(!inspectionIssues.length)return;
- inspectionStale=true;
- $('inspection-freshness').textContent='수정한 내용은 다시 검사해 주세요. 저장은 자동으로 진행되지 않습니다.';
+ if(!inspectionHasRun)return;
+ inspectionIssues=collectInspectionIssues();inspectionStale=false;
+ if(!inspectionIssues.length){onlyErrors=false;rebuildErrorPage(0);}else errorCells().forEach(x=>pageColumns.add(x.c));
+ syncErrorFilter();render();renderInspectionSummary();paintInspectionErrors();
+ if(!inspectionIssues.length)status('오류가 모두 해결되었습니다. 검토 완료 및 저장을 선택해 주세요.');
 }
-function paintInspectionMarks(){
- document.querySelectorAll('td.inspection-error').forEach(el=>{el.classList.remove('inspection-error','inspection-current');el.removeAttribute('aria-invalid');});
- inspectionIssues.forEach((issue,index)=>{
-  const cell=document.querySelector(`td[data-r="${issue.r}"][data-c="${issue.c}"]`);
-  if(!cell)return;
-  cell.classList.add('inspection-error');if(issue.type==='date-order'){const other=document.querySelector(`td[data-r="${issue.r}"][data-c="5"]`);other?.classList.add('inspection-error');if(index===inspectionIndex)other?.classList.add('inspection-current');}cell.setAttribute('aria-invalid','true');
-  if(index===inspectionIndex)cell.classList.add('inspection-current');
- });
-}
+$('only-errors').onchange=e=>{onlyErrors=e.target.checked;if(onlyErrors){onlyMissing=false;$('only-missing').checked=false;}rebuildErrorPage(0);render();};
 function inspectionSummary(){
  const missing=inspectionIssues.filter(x=>x.type==='missing'),dateErrors=inspectionIssues.some(x=>x.type==='date-order');
  if(missing.length&&dateErrors&&missing.every(x=>[9,10,16].includes(x.c)))return '단위와 좌표를 입력하고 날짜를 확인해 주세요.';
@@ -255,33 +314,36 @@ function inspectionSummary(){
  if(dateErrors)return '채취 일자와 분석 일자를 확인해 주세요.';
  return '입력값을 확인해 주세요.';
 }
-function filteredIssueIndexes(){return inspectionIssues.flatMap((x,i)=>issueFilter==='all'||issueFilter==='missing'&&x.type==='missing'||issueFilter==='date'&&(x.type==='date-order'||x.type==='invalid'&&[5,6].includes(x.c))||issueFilter==='invalid'&&x.type==='invalid'&&!([5,6].includes(x.c))?[i]:[]);}
 function renderInspectionSummary(){
  
  $('inspection-title').textContent='저장 전 확인이 필요합니다.';
  const missing=inspectionIssues.filter(x=>x.type==='missing').length,date=inspectionIssues.filter(x=>x.type==='date-order'||x.type==='invalid'&&[5,6].includes(x.c)).length,invalid=inspectionIssues.length-missing-date;
  $('inspection-count').textContent=`필수 누락 ${missing}건 / 날짜 오류 ${date}건${invalid?` / 형식 오류 ${invalid}건`:''} / 중복 제외 대상 ${new Set(inspectionIssues.map(x=>x.r)).size}개 행 · 총 ${inspectionIssues.length}건`;
  $('inspection-freshness').textContent=inspectionStale?'수정한 내용은 다시 검사해 주세요.':'입력 위치로 이동하여 확인해 주세요. 날짜는 원본의 두 값을 함께 확인해 주세요.';
- const groups=new Map(),indexes=filteredIssueIndexes();indexes.forEach(i=>{const x=inspectionIssues[i];if(!groups.has(x.r))groups.set(x.r,[]);groups.get(x.r).push(i);});
- $('inspection-groups').innerHTML=[...groups].map(([r,items])=>`<div class="issue-row"><strong>${r+1}행</strong><span>${items.map(i=>esc(inspectionIssues[i].reason)).join(' · ')}</span>${items.map(i=>{const x=inspectionIssues[i];return x.type==='date-order'?`<span>채취 ${esc(data[r][5])} / 분석 ${esc(data[r][6])}</span><button data-issue-go="${i}" data-date-field="5">채취일자 확인</button><button data-issue-go="${i}" data-date-field="6">분석일자 확인</button>`:`<button data-issue-go="${i}">${esc(cols[x.c][1])} 입력</button>`;}).join('')}</div>`).join('')||'해당 유형의 오류가 없습니다.';
- document.querySelectorAll('[data-issue-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.issueFilter===issueFilter)));paintInspectionMarks();
+ const byReason=new Map();
+ inspectionIssues.forEach((x,i)=>{const key=JSON.stringify([x.c,x.type,x.reason]);if(!byReason.has(key))byReason.set(key,[]);byReason.get(key).push(i);});
+ const entries=[];
+ byReason.forEach(items=>{const whole=data.length>0&&new Set(items.map(i=>inspectionIssues[i].r)).size===data.length;
+ if(whole)entries.push({i:items[0],whole:true});else items.forEach(i=>entries.push({i,whole:false}));});
+ entries.sort((a,b)=>Number(b.whole)-Number(a.whole)||inspectionIssues[a.i].r-inspectionIssues[b.i].r||order.indexOf(inspectionIssues[a.i].c)-order.indexOf(inspectionIssues[b.i].c));
+ $('inspection-groups').innerHTML=entries.map(({i,whole})=>{const x=inspectionIssues[i],c=x.type==='date-order'?5:x.c,label=cols[c][1].replaceAll(' ','');
+ return `<div class="issue-row"><strong>${esc(label)}${whole?'열 전체행':` ${x.r+1}행`}</strong><span>${esc(x.reason)}${x.type==='date-order'&&!whole?` (채취 ${esc(data[x.r][5])} / 분석 ${esc(data[x.r][6])})`:''}</span><button data-issue-go="${i}">위치로 이동</button></div>`;}).join('')||'오류가 없습니다.';
+
 }
+let inspectionEditTarget=null;
 function goToInspectionIssue(index,dateField){
  if(!Number.isInteger(index)||index<0||index>=inspectionIssues.length)return;
- 
- // Ask the user to finish pending input before a render could replace it.
- if(pendingInspectionEdit()){
-  $('inspection-pending').hidden=false;
-  $('inspection-pending').textContent='적용하지 않은 입력이 있습니다. 셀의 ✓ 또는 해당 열의 선택 변경·일괄 변경으로 먼저 적용해 주세요.';
-  return;
- }
- 
+ if(pendingInspectionEdit()){$('inspection-pending').hidden=false;$('inspection-pending').textContent='적용하지 않은 입력을 먼저 적용해 주세요.';return;}
+ const issue=inspectionIssues[index],c=issue.type==='date-order'?5:(dateField??issue.c);
+ const rows=inspectionIssues.filter(x=>x.type===issue.type&&x.c===issue.c&&x.reason===issue.reason).map(x=>x.r);
+ const r=Math.min(...rows);
  if($('inspection-errors').open)$('inspection-errors').close();
- inspectionIndex=index;const issue=inspectionIssues[index],r=issue.r,c=dateField??issue.c;if(issue.type==='date-order'){visibleColumns.add(5);visibleColumns.add(6);}
- visibleColumns.add(c);shown=Math.max(shown,r+1);column=c;selection=new Set([r]);anchor=r;expanded=true;
- render();renderInspectionSummary();
+ locateErrorPage(r);currentErrorCell={r,c};
+ visibleColumns.add(c);
+ shown=Math.max(shown,r+1);inspectionEditTarget={r,c};render();
  const cell=document.querySelector(`td[data-r="${r}"][data-c="${c}"]`);
- cell.scrollIntoView({block:'nearest',inline:'center'});cell.querySelector('input')?.focus({preventScroll:true});
+ cell?.scrollIntoView({block:'start',inline:'center'});
+ cell?.querySelector('input')?.focus({preventScroll:true});
 }
 function optionalInspectionMissing(){
  return optionalColumns.map(c=>({c,rows:data.flatMap((row,r)=>isEmpty(row[c])?[r+1]:[])})).filter(x=>x.rows.length);
@@ -295,7 +357,17 @@ function showInspectionConfirm(){
  $('inspection-optional-note').hidden=!missing.length;
  $('inspection-confirm').showModal();
 }
-function runFinalInspection(){
+async function runFinalInspection(){
+ if(inspectionRunning)return;
+ if(pendingInspectionEdit()){finishFinalInspection();return;}
+ inspectionRunning=true;$('final-check').disabled=true;$('inspection-progress-status').hidden=false;
+ const issues=[];
+ try{for(let start=0;start<data.length;start+=50){$('inspection-progress-status').textContent=`검사 중 ${Math.min(start+50,data.length)} / ${data.length}행`;
+ await new Promise(resolve=>setTimeout(resolve,0));issues.push(...collectInspectionIssues(start,start+50));}
+ finishFinalInspection(issues);
+ }finally{inspectionRunning=false;$('final-check').disabled=false;$('inspection-progress-status').hidden=true;}
+}
+function finishFinalInspection(collectedIssues){
  closeLookup();
  if(pendingInspectionEdit()){
   openInspectionErrors();
@@ -305,25 +377,28 @@ function runFinalInspection(){
   status('미확정 입력을 먼저 적용해 주세요.');return;
  }
  $('inspection-pending').hidden=true;
- inspectionIssues=collectInspectionIssues();inspectionIndex=-1;inspectionStale=false;issueFilter='all';
+ if(!inspectionHasRun){onlyMissing=false;onlyErrors=false;}
+ if(reviewStage!==3){stageBulkState[reviewStage]=expanded;expanded=stageBulkState[3];}
+ inspectionHasRun=true;reviewStage=3;onlyMissing=false;inspectionIssues=collectedIssues??collectInspectionIssues();onlyErrors=inspectionIssues.length>0;inspectionIndex=-1;inspectionStale=false;
  inspectionIssues.forEach(issue=>{visibleColumns.add(issue.c);if(issue.type==='date-order')visibleColumns.add(5);});
- applyColumnVisibility();renderInspectionSummary();
+ rebuildErrorPage(0);syncErrorFilter();render();renderInspectionSummary();paintInspectionErrors();
  if(inspectionIssues.length){openInspectionErrors();status(`전체 ${total}행 검사 · 오류 ${inspectionIssues.length}개를 확인해 주세요.`);return;}
  status(`전체 ${total}행 검사 통과 · 저장 확인 전`);showInspectionConfirm();
 }
 function loadInspectionExample(kind){
+ inspectionHasRun=false;reviewStage=2;stageBulkState={2:false,3:true};currentErrorCell=null;errorPage=0;pageRows=[];pageColumns=new Set();onlyErrors=false;inspectionEditTarget=null;
  if($('inspection-errors').open)$('inspection-errors').close();
  if($('inspection-confirm').open)$('inspection-confirm').close();
  closeLookup();data=Array.from({length:total},(_,i)=>structuredClone(original[i%5]));
  data.forEach(row=>{row[8]='포항 관측 지점 A';row[12]='습식';row[13]='직접 채취';row[14]='SIFT-MS';});
  data[0][15]='0';data[1][15]='n.d';
- if(kind!=='complete'){data[11][3]='';data[2][4]='';}
- if(kind==='errors'){data[2][16]='';data[11][9]='';data[11][10]='';data[7][5]='2026/10/14';data[7][6]='2026/10/13';}
+ if(kind!=='complete'){data[11][3]='';data[2][4]='RIST';}
+ if(kind==='errors'){data.forEach(row=>row[16]='');data[11][9]='';data[11][10]='';data[7][5]='2026/10/14';data[7][6]='2026/10/13';}
  draft=structuredClone(data);shown=5;selection=new Set();column=null;anchor=0;expanded=false;history=[];changes=0;validateMissing=false;
- Object.keys(bulkValues).forEach(k=>delete bulkValues[k]);Object.keys(bulkAccepted).forEach(k=>delete bulkAccepted[k]);bulkTarget=null;issueFilter='all';inspectionIssues=[];inspectionIndex=-1;inspectionStale=false;onlyMissing=false;visibleColumns=incompleteColumns();tableSize=0;
+ Object.keys(bulkValues).forEach(k=>delete bulkValues[k]);Object.keys(bulkAccepted).forEach(k=>delete bulkAccepted[k]);bulkTarget=null;inspectionIssues=[];inspectionIndex=-1;inspectionStale=false;onlyMissing=false;visibleColumns=incompleteColumns();tableSize=0;
  $('inspection-pending').hidden=true;delete window.inspectionSavePreview;$('demo-save-status').textContent='';savedWorkData=JSON.stringify(data);hasWorkSave=false;workNotice='';
  document.querySelectorAll('[data-inspection-example]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.inspectionExample===kind)));
- render();inspectionIssues=collectInspectionIssues();renderInspectionSummary();if(inspectionIssues.length)openInspectionErrors();
+ render();syncErrorFilter();renderInspectionSummary();
 }
 const inspectionBaseCommit=commitRows;
 commitRows=function(rows,c,value){inspectionBaseCommit(rows,c,value);markInspectionStale();};
@@ -342,12 +417,12 @@ $('inspection-save').onclick=()=>{
  $('inspection-confirm').close();status(`저장 완료 · 전체 ${total}행`);
  $('demo-save-status').textContent='저장 완료 · 전체 171행';savedWorkData=JSON.stringify(data);hasWorkSave=true;refreshWorkState();
 };
-document.addEventListener('click',e=>{const go=e.target.closest('[data-issue-go]');if(go)goToInspectionIssue(+go.dataset.issueGo,go.dataset.dateField?+go.dataset.dateField:undefined);const filter=e.target.closest('[data-issue-filter]');if(filter){issueFilter=filter.dataset.issueFilter;inspectionIndex=-1;renderInspectionSummary();}const example=e.target.closest('[data-inspection-example]');if(example)loadInspectionExample(example.dataset.inspectionExample);});
+document.addEventListener('click',e=>{const go=e.target.closest('[data-issue-go]');if(go)goToInspectionIssue(+go.dataset.issueGo,go.dataset.dateField?+go.dataset.dateField:undefined);const example=e.target.closest('[data-inspection-example]');if(example)loadInspectionExample(example.dataset.inspectionExample);});
 
 
 document.addEventListener('bulk-applied',markInspectionStale);
-const inspectionRender=render;render=function(){inspectionRender();paintInspectionMarks();};
 
-const inspectionVisibility=applyColumnVisibility;applyColumnVisibility=function(){inspectionIssues.forEach(x=>{visibleColumns.add(x.c);if(x.type==='date-order')visibleColumns.add(5);});inspectionVisibility();};
-document.addEventListener('scroll',e=>{if(!$('lookup').contains(e.target))closeLookup();},true);window.addEventListener('mockup-viewer:viewport-motion',closeLookup);document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLookup();});loadInspectionExample('errors');
+
+const inspectionRender=render;render=function(){inspectionRender();syncErrorFilter();paintInspectionErrors();};
+document.addEventListener('scroll',e=>{if(!$('lookup').contains(e.target))closeLookup();},true);window.addEventListener('mockup-viewer:viewport-motion',closeLookup);document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLookup();});loadInspectionExample('errors');runFinalInspection();
 </script></body></html>
