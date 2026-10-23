@@ -19,6 +19,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
+from build_phase25 import build_phase25
 from build_phase2_policy_changes import build_phase2_policy_changes
 from build_phase2_policies import build_phase2_policies
 from build_copy_improvements import build_copy_improvements
@@ -294,6 +295,7 @@ def build_page(path):
 
 
 def main():
+    build_phase25(ROOT)
     build_phase2_policy_changes(ROOT)
     build_phase2_policies(ROOT)
     build_copy_improvements(ROOT)

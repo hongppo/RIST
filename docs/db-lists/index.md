@@ -2,7 +2,7 @@
 type: planning
 hub: "[[💡planning]]"
 created_at: 2026-09-23
-updated_at: 2026-10-11
+updated_at: 2026-10-23
 client: "[[RIST(포항산업과학연구원)]]"
 project: "[[RIST 데이터 표준화 프로그램 개발]]"
 status: 초안
@@ -32,11 +32,11 @@ version: 2
 | 목록명 | 원본 시트 | 건수 | 대상 테이블 | 바로가기 |
 | --- | --- | --- | --- | --- |
 | 구분 | 구분 | 4건 | common_option (CATEGORY) | [상세](<category.md>) |
-| 매체 | 매체 | 6건 | common_option (MEDIUM) | [상세](<medium.md>) |
+| 매체 | 매체 | 7건 | common_option (MEDIUM) | [상세](<medium.md>) |
 | 담당자 | 담당자 | 79건 | person_master | [상세](<person.md>) |
 | 분석 기관 | 분석 기관 | 8건 | institution_master | [상세](<institution.md>) |
 | 지역·관측 지점 | 지역·관측 지점 | 11건 | location_master | [상세](<location.md>) |
 | BASE | BASE | 3건 | base_master | [상세](<base.md>) |
-| 채취법 | 채취법_rist수정 | 12건 | sampling_method_master | [상세](<sampling-method.md>) |
-| 분석법 | 분석법 | 14건 | analysis_method_master | [상세](<analysis-method.md>) |
+| 채취법 | 채취법_rist수정 | 27건 | sampling_method_master | [상세](<sampling-method.md>) |
+| 분석법 | 분석법 | 65건 | analysis_method_master | [상세](<analysis-method.md>) |
 | 단위 | 단위 | 11건 | common_option (UNIT) | [상세](<unit.md>) |

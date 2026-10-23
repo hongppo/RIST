@@ -367,6 +367,15 @@ window.MOCKUP_VIEWER_MANIFEST = {
       ]
     },
     {
+      id: 'rist-phase25',
+      title: '화면 기획서(2.5차 개선)',
+      children: [
+        { id: 'rist-phase25-cover', title: '표지', src: 'pages/rist-phase25-cover.html', width: 1280, height: 800, summary: '', hideEmptyDescription: true },
+        { id: 'rist-phase25-change-history', title: '변경 히스토리', src: 'pages/rist-phase25-change-history.html', width: 1280, autoHeight: true, summary: '', hideEmptyDescription: true },
+        { id: 'rist-phase25-policy-changes', title: '정책 변경 사항', src: 'pages/rist-phase25-policy-changes.html', width: 1280, autoHeight: true, summary: '', hideEmptyDescription: true },
+      ]
+    },
+    {
       id: 'policies',
       title: '정책',
       children: [

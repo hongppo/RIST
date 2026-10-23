@@ -3,7 +3,7 @@ window.MOCKUP_VIEWER_MATCHING_RULE_PAGES = [
   {
     "id": "rist-matching-index",
     "title": "인덱스",
-    "summary": "지역·분석법 데이터와 매칭 조건.",
+    "summary": "지역·분석법·채취법 데이터와 매칭 조건.",
     "src": "pages/rist-matching-index.html",
     "width": 1280,
     "autoHeight": true,
@@ -25,6 +25,26 @@ window.MOCKUP_VIEWER_MATCHING_RULE_PAGES = [
     "title": "분석법 매칭",
     "summary": "분석물질과 시험방법 코드의 공통 매칭.",
     "src": "pages/rist-matching-analysis-method.html",
+    "width": 1280,
+    "autoHeight": true,
+    "kind": "매칭 규칙",
+    "hideEmptyDescription": true
+  },
+  {
+    "id": "rist-matching-analysis-method-by-file-type",
+    "title": "파일 유형별 분석법 매칭",
+    "summary": "파일 유형별 분석법과 EXCEL-001 파일명 조건.",
+    "src": "pages/rist-matching-analysis-method-by-file-type.html",
+    "width": 1280,
+    "autoHeight": true,
+    "kind": "매칭 규칙",
+    "hideEmptyDescription": true
+  },
+  {
+    "id": "rist-matching-sampling-method",
+    "title": "채취법 매칭",
+    "summary": "유형별·파일명 조건의 채취법 매칭.",
+    "src": "pages/rist-matching-sampling-method.html",
     "width": 1280,
     "autoHeight": true,
     "kind": "매칭 규칙",

@@ -2,7 +2,7 @@
 type: planning
 hub: "[[💡planning]]"
 created_at: 2026-09-25
-updated_at: 2026-09-25
+updated_at: 2026-10-23
 client: "[[RIST(포항산업과학연구원)]]"
 project: "[[RIST 데이터 표준화 프로그램 개발]]"
 status: 초안
@@ -53,3 +53,6 @@ version: 1
 - 시험방법 코드는 분석법 ID·고시번호와 구분한다. DB 매칭 시 표시값은 코드와 DB 분석법명을 연결한다. ID는 실제 분석법과 동일한 목록 항목에 연결될 때만 설정하며 다른 분석법의 ID를 붙이지 않는다.
 
 관련 규칙: [PDF-002](<../extraction-rules/pdf/pdf-002.md>) · [매칭 규칙](<index.md>)
+
+
+관련 규칙: [파일 유형별 분석법 매칭](<analysis-method-by-file-type.md>)

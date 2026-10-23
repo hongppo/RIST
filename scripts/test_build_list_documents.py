@@ -26,7 +26,7 @@ class ListDocumentTests(unittest.TestCase):
     def test_catalogs_links_history_and_downloads(self):
         before={p:p.read_bytes() for p in (self.root/'docs').rglob('*.md')}
         self.assertTrue(build_matching_rules(self.root));self.assertTrue(build_db_lists(self.root))
-        for name,count in [('matching-rules',3),('db-lists',10)]:
+        for name,count in [('matching-rules',5),('db-lists',10)]:
             raw=(self.root/'data'/(name+'.js')).read_text();pages=json.loads(raw.split(' = ',1)[1].rstrip().removesuffix(';'))
             self.assertEqual(len(pages),count)
             for page in pages:

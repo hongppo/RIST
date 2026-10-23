@@ -417,7 +417,7 @@ test('extraction rule pages share a separate index-first scope and preserve docu
 
 test('matching and DB lists navigate within their own group boundaries', () => {
   const groups = [
-    ['매칭 규칙', ['rist-matching-index', 'rist-matching-location', 'rist-matching-analysis-method']],
+    ['매칭 규칙', ['rist-matching-index', 'rist-matching-location', 'rist-matching-analysis-method', 'rist-matching-analysis-method-by-file-type', 'rist-matching-sampling-method']],
     ['DB 리스트', ['rist-db-lists-index', ...['category','medium','person','institution','location','base','sampling-method','analysis-method','unit'].map(s=>'rist-db-list-'+s)]]
   ];
   for (const [title, ids] of groups) {
