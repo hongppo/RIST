@@ -23,7 +23,7 @@ def build_phase3_ui(root):
     source = root / 'docs' / (slug + '.md')
     if not source.is_file():
         return False
-    links = {root / 'pages' / (page + '.html'): page for page in ['rist-phase2-review-detail', 'rist-phase2-final-validation']}
+    links = {root / 'pages' / (page + '.html'): page for page in ['rist-phase2-review-detail', 'rist-phase2-final-validation', 'rist-phase3-upload-history', 'rist-phase3-history-review', 'rist-phase3-history-complete', 'rist-phase3-history-expired', 'rist-phase3-history-failed']}
     meta, content = Renderer(root, source, links).render(source.read_text())
     html = document_html(root, source, 'UI 변경 사항', meta, content)
     html = html.replace('RIST · EXTRACTION RULES', 'RIST INTERFACE PLANNING').replace('docs/extraction-rules Markdown', 'docs/' + slug + '.md')
