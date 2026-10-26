@@ -111,21 +111,21 @@ test('screen planning pages stay within their screen-planning list through butto
   }
 });
 
-test('policy list contains four documents and stops at both list boundaries', () => {
+test('policy list contains five documents and stops at both list boundaries', () => {
   const app = boot({ hash: '#rist-policies' });
-  const ids = ['rist-policies', 'rist-schema', 'rist-policy-link-example', 'rist-llm-flow'];
+  const ids = ['rist-policies', 'rist-storage-original-download-policy', 'rist-schema', 'rist-policy-link-example', 'rist-llm-flow'];
   assert.equal(app.get('page-breadcrumb').textContent, '정책');
   assert.equal(app.get('previous-page').disabled, true);
   app.iframe('previous');
   ids.forEach((id, index) => {
-    expectPage(app, id, String(index + 1).padStart(2, '0') + '/04');
+    expectPage(app, id, String(index + 1).padStart(2, '0') + '/05');
     app.iframe('next');
   });
   assert.equal(app.get('next-page').disabled, true);
   app.key('ArrowRight'); app.get('next-page').click();
-  expectPage(app, 'rist-llm-flow', '04/04');
+  expectPage(app, 'rist-llm-flow', '05/05');
   app.get('previous-page').click();
-  expectPage(app, 'rist-policy-link-example', '03/04');
+  expectPage(app, 'rist-policy-link-example', '04/05');
 });
 
 test('login description links cross from screen planning to the policy list without changing IDs', () => {
@@ -134,7 +134,7 @@ test('login description links cross from screen planning to the policy list with
   const link = app.descendants('description-list').find(node => node.tagName === 'A');
   assert.equal(link.href, '#rist-policies/login-policy');
   link.click();
-  expectPage(app, 'rist-policies', '01/04');
+  expectPage(app, 'rist-policies', '01/05');
   assert.equal(app.get('page-breadcrumb').textContent, '정책');
   assert.deepEqual(app.setPages.at(-1), { id: 'rist-policies', anchor: 'login-policy' });
   app.pageLink('rist-login');
@@ -143,7 +143,7 @@ test('login description links cross from screen planning to the policy list with
 
 test('schema table shortcuts preserve their fragment and remain in the schema page', () => {
   const app = boot({ hash: '#rist-schema', zoom: .5 });
-  expectPage(app, 'rist-schema', '02/04');
+  expectPage(app, 'rist-schema', '03/05');
   app.documentLink({ pageId: 'rist-schema', anchor: 'analysis_record' });
   assert.equal(app.location.hash, '#rist-schema/analysis_record');
   assert.deepEqual(app.setPages.at(-1), { id: 'rist-schema', anchor: 'analysis_record' });
@@ -157,7 +157,7 @@ test('schema table shortcuts preserve their fragment and remain in the schema pa
   app.documentLink({ pageId: 'rist-schema', anchor: '../invalid' });
   assert.equal(app.location.hash, '#rist-schema/analysis_record');
   app.get('next-page').click();
-  expectPage(app, 'rist-policy-link-example', '03/04');
+  expectPage(app, 'rist-policy-link-example', '04/05');
 });
 
 test('guide pages navigate within 1/3 to 3/3 and stop at both boundaries', () => {
@@ -226,7 +226,7 @@ test('description links preserve readable text and route to the policy anchor', 
   assert.match(app.get('description-list').textContent, /\[미등록\]\(#unknown\/missing\) <script>unsafe<\/script>/);
   assert.equal(app.descendants('description-list').some(node => node.tagName === 'SCRIPT'), false);
   links[0].click();
-  expectPage(app, 'rist-policies', '01/04');
+  expectPage(app, 'rist-policies', '01/05');
   assert.equal(app.location.hash, '#rist-policies/login-policy');
   assert.deepEqual(app.setPages.at(-1), { id: 'rist-policies', anchor: 'login-policy' });
   const pageLoads = app.setPages.length;
@@ -272,7 +272,7 @@ test('basic flow uses screen ID labels without overlay markers and keeps its pol
   const policyLink = app.descendants('description-list').find(node => node.tagName === 'A');
   assert.equal(policyLink.textContent, '로그인 정책');
   policyLink.click();
-  expectPage(app, 'rist-policies', '01/04');
+  expectPage(app, 'rist-policies', '01/05');
   assert.equal(app.setPages.at(-1).anchor, 'login-policy');
   app.pageButton('viewer-overview').click();
   const numbers = app.descendants('description-list').filter(node => node.className === 'description-number');
@@ -374,44 +374,48 @@ test('review stage tabs and footer page links route between registered pages wit
 
 test('extraction rule pages share a separate index-first scope and preserve document anchor links', () => {
   const app = boot({ hash: '#extraction-rules-index' });
-  expectPage(app, 'extraction-rules-index', '01/13');
+  expectPage(app, 'extraction-rules-index', '01/15');
   assert.equal(app.get('page-breadcrumb').textContent, '추출 규칙');
   app.key('ArrowLeft');
-  expectPage(app, 'extraction-rules-index', '01/13');
+  expectPage(app, 'extraction-rules-index', '01/15');
   app.key('ArrowRight');
-  expectPage(app, 'extraction-file-list', '02/13');
+  expectPage(app, 'extraction-file-list', '02/15');
   app.pageLink('extraction-rule-csv-001');
-  expectPage(app, 'extraction-rule-csv-001', '03/13');
+  expectPage(app, 'extraction-rule-csv-001', '03/15');
   app.key('ArrowRight');
-  expectPage(app, 'extraction-rule-csv-002', '04/13');
+  expectPage(app, 'extraction-rule-csv-002', '04/15');
   app.key('ArrowRight');
-  expectPage(app, 'extraction-rule-excel-001', '05/13');
+  expectPage(app, 'extraction-rule-csv-003', '05/15');
   app.key('ArrowRight');
-  expectPage(app, 'extraction-rule-excel-002', '06/13');
+  expectPage(app, 'extraction-rule-excel-001', '06/15');
   app.key('ArrowRight');
-  expectPage(app, 'extraction-rule-excel-003', '07/13');
+  expectPage(app, 'extraction-rule-excel-002', '07/15');
   app.key('ArrowRight');
-  expectPage(app, 'extraction-rule-pdf-001', '08/13');
+  expectPage(app, 'extraction-rule-excel-003', '08/15');
+  app.key('ArrowRight');
+  expectPage(app, 'extraction-rule-excel-004', '09/15');
+  app.key('ArrowRight');
+  expectPage(app, 'extraction-rule-pdf-001', '10/15');
   app.iframe('next');
-  expectPage(app, 'extraction-rule-pdf-002', '09/13');
+  expectPage(app, 'extraction-rule-pdf-002', '11/15');
   app.get('next-page').click();
-  expectPage(app, 'extraction-rule-pdf-003', '10/13');
+  expectPage(app, 'extraction-rule-pdf-003', '12/15');
   app.get('next-page').click();
-  expectPage(app, 'extraction-rule-excel-003-a', '11/13');
+  expectPage(app, 'extraction-rule-excel-003-a', '13/15');
   app.get('next-page').click();
-  expectPage(app, 'extraction-rule-excel-003-b', '12/13');
+  expectPage(app, 'extraction-rule-excel-003-b', '14/15');
   app.get('next-page').click();
-  expectPage(app, 'extraction-rule-pdf-001-a', '13/13');
+  expectPage(app, 'extraction-rule-pdf-001-a', '15/15');
   assert.equal(app.get('next-page').disabled, true);
   app.pageLink('rist-schema', 'review_record');
-  expectPage(app, 'rist-schema', '02/04');
+  expectPage(app, 'rist-schema', '03/05');
   assert.equal(app.location.hash, '#rist-schema/review_record');
   assert.deepEqual(app.setPages.at(-1), { id: 'rist-schema', anchor: 'review_record' });
   app.pageLink('extraction-rules-index', 'csv');
-  expectPage(app, 'extraction-rules-index', '01/13');
+  expectPage(app, 'extraction-rules-index', '01/15');
   assert.equal(app.location.hash, '#extraction-rules-index/csv');
   app.pageButton('extraction-rule-csv-001').click();
-  expectPage(app, 'extraction-rule-csv-001', '03/13');
+  expectPage(app, 'extraction-rule-csv-001', '03/15');
 });
 
 

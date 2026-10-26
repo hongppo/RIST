@@ -14,6 +14,9 @@ POLICY_HEADING = re.compile(r'^## (.+?) \{#([a-z][a-z0-9-]*)\}$')
 
 def inline(text):
     """Render escaped inline text and Obsidian links to stable policy IDs."""
+    document = re.fullmatch(r'\[([^\]]+)\]\(<(rist-[a-z0-9-]+)\.md>\)', text)
+    if document:
+        return '<a href="' + document[2] + '.html" data-viewer-page="' + document[2] + '">' + escape(document[1]) + '</a>'
     parts = []
     start = 0
     for match in re.finditer(r'\[\[#([^\]\n]+?) \{#([a-z][a-z0-9-]*)\}\|([^\]\n]+)\]\]', text):

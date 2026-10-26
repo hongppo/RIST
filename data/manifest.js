@@ -376,6 +376,19 @@ window.MOCKUP_VIEWER_MANIFEST = {
       ]
     },
     {
+      id: 'rist-phase3',
+      title: '화면 기획서(3차 개선)',
+      children: [
+        { id: 'rist-phase3-policy-changes', title: '정책 변경 사항', src: 'pages/rist-phase3-policy-changes.html', width: 1280, autoHeight: true, summary: '', hideEmptyDescription: true },
+        { id: 'rist-phase3-ui-changes', title: 'UI 변경 사항', src: 'pages/rist-phase3-ui-changes.html', width: 1280, autoHeight: true, summary: '', hideEmptyDescription: true },
+        { id: 'rist-phase3-upload-history', title: '업로드 이력', src: 'pages/rist-phase3-upload-history.html', width: 1280, height: 800, summary: '' },
+        { id: 'rist-phase3-history-review', title: '이력 상세(검토 중)', src: 'pages/rist-phase3-history-review.html', width: 1280, height: 800, summary: '' },
+        { id: 'rist-phase3-history-complete', title: '이력 상세(최종 저장 완료)', src: 'pages/rist-phase3-history-complete.html', width: 1280, height: 800, summary: '' },
+        { id: 'rist-phase3-history-expired', title: '이력 상세(보관 기간 만료)', src: 'pages/rist-phase3-history-expired.html', width: 1280, height: 800, summary: '' },
+        { id: 'rist-phase3-history-failed', title: '이력 상세(추출 실패)', src: 'pages/rist-phase3-history-failed.html', width: 1280, height: 800, summary: '' }
+      ]
+    },
+    {
       id: 'policies',
       title: '정책',
       children: [
@@ -387,6 +400,12 @@ window.MOCKUP_VIEWER_MANIFEST = {
           autoHeight: true,
           kind: 'RIST · 정책 문서',
           summary: '프로그램에 적용되는 정책과 운영 기준을 항목별로 정리합니다.'
+        },
+        {
+          id: 'rist-storage-original-download-policy',
+          title: '저장 및 원본 다운로드 정책',
+          src: 'pages/rist-storage-original-download-policy.html',
+          width: 1280, autoHeight: true, summary: '', hideEmptyDescription: true
         },
         {
           id: 'rist-schema',

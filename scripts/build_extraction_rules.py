@@ -330,6 +330,13 @@ def build_extraction_rules(root=ROOT):
     analysis_db = root / 'docs' / 'db-lists' / 'analysis-method.md'
     if analysis_db.is_file() and inside(analysis_db, root / 'docs'):
         page_map[analysis_db] = 'rist-db-list-analysis-method'
+    unit_db = root / 'docs' / 'db-lists' / 'unit.md'
+    if unit_db.is_file() and inside(unit_db, root / 'docs'):
+        page_map[unit_db] = 'rist-db-list-unit'
+    for slug in ('analysis-method-by-file-type', 'sampling-method'):
+        linked = root / 'docs' / 'matching-rules' / (slug + '.md')
+        if linked.is_file() and inside(linked, root / 'docs'):
+            page_map[linked] = 'rist-matching-' + slug
     pages, documents = [], {}
     for source in [index, *supplements, *rules]:
         source_text = index_source if source == index else source.read_text(encoding='utf-8')
