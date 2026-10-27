@@ -389,9 +389,360 @@ window.MOCKUP_VIEWER_MANIFEST = {
       ]
     },
     {
+  "id": "rist-phase4",
+  "title": "화면 기획서(여러 파일 업로드)",
+  "children": [
+    {
+      "id": "rist-phase4-policy-changes",
+      "title": "정책 변경 사항",
+      "src": "pages/rist-phase4-policy-changes.html",
+      "width": 1280,
+      "autoHeight": true,
+      "hideEmptyDescription": true
+    },
+    {
+      "id": "rist-phase4-multi-upload-policy",
+      "title": "여러 파일 업로드 정책",
+      "src": "pages/rist-phase4-multi-upload-policy.html",
+      "width": 1280,
+      "autoHeight": true,
+      "hideEmptyDescription": true
+    },
+    {
+      "id": "rist-phase4-group-storage-policy",
+      "title": "그룹 저장 및 원본 다운로드 정책",
+      "src": "pages/rist-phase4-group-storage-policy.html",
+      "width": 1280,
+      "autoHeight": true,
+      "hideEmptyDescription": true
+    },
+    {
+      "id": "rist-phase4-ui-changes",
+      "title": "UI 변경 사항",
+      "src": "pages/rist-phase4-ui-changes.html",
+      "width": 1280,
+      "autoHeight": true,
+      "hideEmptyDescription": true
+    },
+    {
+      "id": "rist-phase4-upload-single",
+      "title": "파일 업로드 변경 사항",
+      "src": "pages/rist-phase4-upload-single.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-upload-single-selected",
+      "title": "파일 업로드(단일 파일 선택)",
+      "src": "pages/rist-phase4-upload-single-selected.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-upload-multiple-selected",
+      "title": "파일 업로드(여러 파일 선택)",
+      "src": "pages/rist-phase4-upload-multiple-selected.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-upload-analyzing",
+      "title": "여러 파일 업로드(유형 분석 중)",
+      "src": "pages/rist-phase4-upload-analyzing.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-upload-analyzed",
+      "title": "여러 파일 업로드(유형 분석 완료)",
+      "src": "pages/rist-phase4-upload-analyzed.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-upload-duplicates",
+      "title": "여러 파일 업로드(중복 안내)",
+      "src": "pages/rist-phase4-upload-duplicates.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-upload-excluded",
+      "title": "여러 파일 업로드(제외 후)",
+      "src": "pages/rist-phase4-upload-excluded.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-upload-partial-error",
+      "title": "여러 파일 업로드(일부 처리 불가)",
+      "src": "pages/rist-phase4-upload-partial-error.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-review-preparation-first",
+      "title": "1단계(첫 파일)",
+      "src": "pages/rist-phase4-review-preparation-first.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-review-preparation-middle",
+      "title": "1단계(중간 파일)",
+      "src": "pages/rist-phase4-review-preparation-middle.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-review-file-list",
+      "title": "1단계(파일 목록)",
+      "src": "pages/rist-phase4-review-file-list.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-review-detail-first",
+      "title": "2단계(첫 파일)",
+      "src": "pages/rist-phase4-review-detail-first.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-review-detail-middle",
+      "title": "2단계(중간 파일)",
+      "src": "pages/rist-phase4-review-detail-middle.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-group-checking",
+      "title": "그룹 전체 검사 진행",
+      "src": "pages/rist-phase4-group-checking.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-review-errors-popup",
+      "title": "3단계(오류 팝업)",
+      "src": "pages/rist-phase4-review-errors-popup.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-review-error-first",
+      "title": "3단계(첫 오류 파일)",
+      "src": "pages/rist-phase4-review-error-first.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-review-error-next",
+      "title": "3단계(다음 오류 파일)",
+      "src": "pages/rist-phase4-review-error-next.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-group-confirm",
+      "title": "그룹 최종 저장 확인",
+      "src": "pages/rist-phase4-group-confirm.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-group-saving",
+      "title": "그룹 저장 중",
+      "src": "pages/rist-phase4-group-saving.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-group-save-failed",
+      "title": "그룹 저장 실패",
+      "src": "pages/rist-phase4-group-save-failed.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-group-saved",
+      "title": "그룹 저장 완료",
+      "src": "pages/rist-phase4-group-saved.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-review-next-group",
+      "title": "다음 유형 그룹(1단계)",
+      "src": "pages/rist-phase4-review-next-group.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-all-groups-complete",
+      "title": "모든 그룹 완료",
+      "src": "pages/rist-phase4-all-groups-complete.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-history-menu",
+      "title": "이력 진입 메뉴",
+      "src": "pages/rist-phase4-history-menu.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-bundle-history",
+      "title": "업로드 이력(여러 파일)",
+      "src": "pages/rist-phase4-bundle-history.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-bundle-partial",
+      "title": "묶음 상세(일부 완료)",
+      "src": "pages/rist-phase4-bundle-partial.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-bundle-expiring",
+      "title": "묶음 상세(만료 예정)",
+      "src": "pages/rist-phase4-bundle-expiring.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-bundle-expired",
+      "title": "묶음 상세(일부 만료)",
+      "src": "pages/rist-phase4-bundle-expired.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-bundle-complete",
+      "title": "묶음 상세(전체 완료)",
+      "src": "pages/rist-phase4-bundle-complete.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-history-group-review",
+      "title": "그룹 상세(검토 중)",
+      "src": "pages/rist-phase4-history-group-review.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-history-group-complete",
+      "title": "그룹 상세(완료)",
+      "src": "pages/rist-phase4-history-group-complete.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-history-group-expired",
+      "title": "그룹 상세(만료)",
+      "src": "pages/rist-phase4-history-group-expired.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-history-file-failed",
+      "title": "파일 상세(추출 실패)",
+      "src": "pages/rist-phase4-history-file-failed.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-history-file-unsupported",
+      "title": "파일 상세(지원하지 않는 파일)",
+      "src": "pages/rist-phase4-history-file-unsupported.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-single-upload-history",
+      "title": "업로드 이력(단일 파일)",
+      "src": "pages/rist-phase4-single-upload-history.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-single-history-failed",
+      "title": "단일 파일 이력 상세(추출 실패)",
+      "src": "pages/rist-phase4-single-history-failed.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-single-history-unsupported",
+      "title": "단일 파일 이력 상세(지원하지 않는 파일)",
+      "src": "pages/rist-phase4-single-history-unsupported.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-history-delete-single",
+      "title": "이력 삭제 확인(단일 파일)",
+      "src": "pages/rist-phase4-history-delete-single.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase4-history-delete-multiple",
+      "title": "이력 삭제 확인(여러 파일)",
+      "src": "pages/rist-phase4-history-delete-multiple.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    }
+  ]
+},
+    {
       id: 'policies',
       title: '정책',
       children: [
+        { id: 'rist-failed-upload-history-deletion-policy', title: '실패 파일 업로드 이력 삭제 정책', src: 'pages/rist-failed-upload-history-deletion-policy.html', width: 1280, autoHeight: true, summary: '', hideEmptyDescription: true },
         {
           id: 'rist-policies',
           title: '정책 문서',

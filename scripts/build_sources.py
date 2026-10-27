@@ -21,6 +21,7 @@ from urllib.parse import unquote, urlsplit
 
 from build_storage_policy import build_storage_policy
 from build_phase3 import build_phase3
+from build_phase4 import build_phase4
 from build_phase25 import build_phase25
 from build_phase2_policy_changes import build_phase2_policy_changes
 from build_phase2_policies import build_phase2_policies
@@ -299,6 +300,7 @@ def build_page(path):
 def main():
     build_storage_policy(ROOT)
     build_phase3(ROOT)
+    build_phase4(ROOT)
     build_phase25(ROOT)
     build_phase2_policy_changes(ROOT)
     build_phase2_policies(ROOT)
@@ -312,6 +314,14 @@ def main():
     build_db_lists(ROOT)
     pages = sorted((ROOT / 'pages').rglob('*.html'))
     registry = {path.relative_to(ROOT).as_posix(): build_page(path) for path in pages}
+    # Keep third-phase originals intact; only return links inherit the active single-list context.
+    history_context_path = ROOT / 'assets' / 'phase4-single-history-context.js'
+    history_context = history_context_path.read_text(encoding='utf-8') if history_context_path.exists() else ''
+    for slug in ('rist-phase3-history-review', 'rist-phase3-history-complete', 'rist-phase3-history-expired', 'rist-phase3-history-failed'):
+        entry = registry.get('pages/' + slug + '.html')
+        if entry and history_context:
+            script = '<script>window.phase4LegacyHistoryPage=' + json.dumps(slug) + ';' + history_context + '</script>'
+            entry['html'] = entry['html'].replace('</body>', script + '</body>')
     serialized = json.dumps(registry, ensure_ascii=False, indent=2)
     # Safe both as an external script and when embedded in an HTML script tag.
     serialized = serialized.replace('<', '\\u003c').replace('\u2028', '\\u2028').replace('\u2029', '\\u2029')
