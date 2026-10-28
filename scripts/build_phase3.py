@@ -9,7 +9,7 @@ def build_phase3(root):
     source = root / 'docs' / (slug + '.md')
     if not source.is_file():
         return False
-    meta, content = Renderer(root, source, {root / 'docs/rist-storage-original-download-policy.md': 'rist-storage-original-download-policy', root / 'docs/rist-policies.md': 'rist-policies', root / 'docs/extraction-rules/csv/csv-003.md': 'extraction-rule-csv-003', root / 'docs/extraction-rules/excel/excel-004.md': 'extraction-rule-excel-004'}).render(source.read_text())
+    meta, content = Renderer(root, source, {root / 'docs/rist-storage-original-download-policy.md': 'rist-storage-original-download-policy', root / 'docs/rist-policies.md': 'rist-policies', root / 'docs/extraction-rules/csv/csv-003.md': 'extraction-rule-csv-003', root / 'docs/extraction-rules/excel/excel-004.md': 'extraction-rule-excel-004', root / 'docs/matching-rules/analysis-method.md': 'rist-matching-analysis-method', root / 'docs/matching-rules/analysis-method-by-file-type.md': 'rist-matching-analysis-method-by-file-type'}).render(source.read_text())
     html = document_html(root, source, '정책 변경 사항', meta, content)
     html = html.replace('RIST · EXTRACTION RULES', 'RIST INTERFACE PLANNING')
     html = html.replace('docs/extraction-rules Markdown', 'docs/' + slug + '.md')

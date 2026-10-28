@@ -8,8 +8,8 @@ ROOT = Path(__file__).resolve().parent.parent
 DOCUMENTS = (
     ('index', '인덱스', '지역·분석법·채취법 데이터와 매칭 조건.'),
     ('location', '지역 매칭', '시료의 지역 표기와 정식 지점·좌표 연결.'),
-    ('analysis-method', '분석법 매칭', '분석물질과 시험방법 코드의 공통 매칭.'),
-    ('analysis-method-by-file-type', '파일 유형별 분석법 매칭', '파일 유형별 분석법과 EXCEL-001 파일명 조건.'),
+    ('analysis-method', '분석법 매칭', 'PDF-002 지정악취 22종 시험방법 코드 매칭.'),
+    ('analysis-method-by-file-type', '파일 유형별 분석법 매칭', '유형별 분석법과 EXCEL-001 및 CSV-003 파일명, EXCEL-004 시트 조건.'),
     ('sampling-method', '채취법 매칭', '유형별·파일명 조건의 채취법 매칭.'),
 )
 
