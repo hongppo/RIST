@@ -7,6 +7,9 @@
 window.MOCKUP_VIEWER_MANIFEST = {
   title: '화면 기획서: RIST 데이터 표준화 프로그램',
   tree: [
+    { id: 'rist-rule-overview', title: '총괄 규칙', children: [
+        { id: 'rist-phase3-type-rule-overview', title: '유형별 적용 규칙 총괄표', src: 'pages/rist-phase3-type-rule-overview.html', width: 1280, autoHeight: true, summary: '', hideEmptyDescription: true }
+    ] },
     {
       id: 'rist',
       title: '화면기획서(PoC)',
@@ -388,6 +391,28 @@ window.MOCKUP_VIEWER_MANIFEST = {
         { id: 'rist-phase3-history-failed', title: '이력 상세(추출 실패)', src: 'pages/rist-phase3-history-failed.html', width: 1280, height: 800, summary: '' }
       ]
     },
+{
+  "id": "rist-phase35",
+  "title": "화면 기획서(3.5차 개선)",
+  "children": [
+    {
+      "id": "rist-phase35-extraction-excel-partial",
+      "title": "추출 실패 안내(Excel 일부 실패)",
+      "src": "pages/rist-phase35-extraction-excel-partial.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    },
+    {
+      "id": "rist-phase35-extraction-pdf-partial",
+      "title": "추출 실패 안내(PDF 일부 실패)",
+      "src": "pages/rist-phase35-extraction-pdf-partial.html",
+      "width": 1280,
+      "height": 800,
+      "summary": ""
+    }
+  ]
+},
     {
   "id": "rist-phase4",
   "title": "화면 기획서(여러 파일 업로드)",

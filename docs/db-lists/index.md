@@ -2,7 +2,7 @@
 type: planning
 hub: "[[💡planning]]"
 created_at: 2026-09-23
-updated_at: 2026-10-23
+updated_at: 2026-10-29
 client: "[[RIST(포항산업과학연구원)]]"
 project: "[[RIST 데이터 표준화 프로그램 개발]]"
 status: 초안
@@ -13,9 +13,9 @@ version: 2
 
 | 수정일 | 변경항목 | 변경내용 |
 | --- | --- | --- |
+| 2026/10/29 | 분석법 목록 등록 | KBSI 내부시험법, XRF 분석, ICP 분석을 분석법 목록에 추가. 시험방법 코드와 고시번호는 공란, 동일 명칭 항목 연결 기준 적용. 분석법 총 68건 |
 | 2026/09/25 | 단위 사용 확정 | μg와 mg를 각각 독립된 단위로 복원. 단위 11건·전체 데이터 145건으로 집계하고 두 단위의 보류 안내 제거 |
 | 2026/09/23 | 최초 작성·문서 정리 | 회신 Excel의 9개 목록·145행을 문서화하고 원본 시트·건수·대상 테이블·문서 바로가기 정리. 작업용·옵시디언 원본 링크 유지, 로컬 원본 파일은 파일명만 표기 |
-
 ## 문서 개요
 
 | 항목 | 내용 |
@@ -38,5 +38,5 @@ version: 2
 | 지역·관측 지점 | 지역·관측 지점 | 11건 | location_master | [상세](<location.md>) |
 | BASE | BASE | 3건 | base_master | [상세](<base.md>) |
 | 채취법 | 채취법_rist수정 | 27건 | sampling_method_master | [상세](<sampling-method.md>) |
-| 분석법 | 분석법 | 65건 | analysis_method_master | [상세](<analysis-method.md>) |
+| 분석법 | 분석법 | 68건 | analysis_method_master | [상세](<analysis-method.md>) |
 | 단위 | 단위 | 11건 | common_option (UNIT) | [상세](<unit.md>) |
